@@ -4,8 +4,7 @@ const Octokit = require('@octokit/rest').plugin(require('./createPullRequest'))
 const octokit = new Octokit()
 octokit.authenticate({
   type: 'oauth',
-  token: process.env.GITHUB_TOKEN
-})
+  token: process.env.GITHUB_TOKEN})
 
 const repo = 'chicagotechevents.com'
 const owner = 'johnpolacek'
@@ -24,9 +23,7 @@ exports.handler = (event, context, callback) => {
     return callback(null, {
       statusCode: 401,
       body: JSON.stringify({
-        data: 'request malformed'
-      })
-    })
+        data: 'request malformed'})})
   }
 
   const newContent = `---
@@ -48,26 +45,19 @@ exports.handler = (event, context, callback) => {
         [`new-event-from-api`]: newContent,
       },
       commit: `adding New Event from API`
-    }
-  }).then((response) => {
+    }}).then((response) => {
     console.log('data', response.data)
     return callback(null, {
       statusCode: 200,
       body: JSON.stringify({
         message: `pr created!`,
-        url: response.data.html_url
-      })
-    })
-  }).catch((e) => {
+        url: response.data.html_url})})}).catch((e) => {
     console.log('error', e)
     if (e.status === 422) {
       console.log('BRANCH ALREADY EXISTS!')
       return callback(null, {
         statusCode: 400,
         body: JSON.stringify({
-          error: `BRANCH ALREADY EXISTS!`
-        })
-      })
-    }
-  })
+          error: `BRANCH ALREADY EXISTS!`})})
+    }})
 }

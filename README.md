@@ -22,11 +22,13 @@ In our case, we don’t want any old spammy event to get listed so let’s set u
 
 Reject or approve, what does that sound like? I’ll give you a hint—our starter will generate a new build every time one of these gets merged.
 
-With [Netlify Functions](https://www.netlify.com/docs/functions/), we can create a Lambda endpoint that can issue a pull request to our project’s Github repository.
+We are going to deploy and host our site on [Netlify](https://www.netlify.com/) and with [Netlify Functions](https://www.netlify.com/docs/functions/), we can create a Lambda endpoint that can issue a pull request to our project’s Github repository.
 
-First, we need to sign up for a [Github Developer account](https://developer.github.com/) to get access to their API. 
+First, sign up for a Netlify Account and link it to your Github account. Add a new Github repo for the events list, and create a new Netlify site from the repo.
 
-Once you have an account and have added your app, you will need to [generate a token](https://github.com/settings/tokens/new) so the app can call the API. When you generate the token, copy it because it will not be able to see it again.
+Next, sign up for a [Github Developer account](https://developer.github.com/) to get access to their API. 
+
+Once you have an account and have added a Netlify app from your events list Github repository, you will need to [generate a token](https://github.com/settings/tokens/new) so the app can call the API. When you generate the token, copy it because it will not be able to see it again.
 
 Go to your [Netlify App](https://app.netlify.com/sites/) and add the token as a Build Environment Variable in your app.
 

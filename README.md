@@ -33,6 +33,8 @@ Once you have an account and have added a Netlify app from your events list Gith
 Go to your [Netlify App](https://app.netlify.com/sites/) and add the token as a Build Environment Variable in your app.
 
 
+Add section about:
+npm scripts that installs on the add-event dir then zips etc
 
 
 

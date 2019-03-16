@@ -1,0 +1,62 @@
+# Gatsby Events List Advanced Starter
+
+Forked from the [Gatsby Events List Starter](https://github.com/johnpolacek/gatsby-starter-events-list).
+
+--
+
+### Build Log
+
+Use the Gatsby CLI to create a new events list from the starter.
+
+~~~~
+gatsby new my-events-list https://github.com/johnpolacek/gatsby-starter-events-list
+cd my-events-list
+npm run dev
+~~~~
+
+This basic events list is nice, but we want to be able to accept submissions. 
+
+There is a nice example of doing this with Google Forms in the [Gatsby Event Calendar Starter](https://www.gatsbyjs.org/starters/EmaSuriano/gatsby-starter-event-calendar/). In that example, people submit events via the Google Form and the site updates as those events are added or updated.
+
+In our case, we don’t want any old spammy event to get listed so let’s set up a review process where users can submit events, an admin can reject or approve. 
+
+Reject or approve, what does that sound like? I’ll give you a hint, our starter will generate a new build every time one of these gets merged.
+
+First, let’s add a submit button and page to our site.
+
+*
+
+~~~~
+<Header textAlign="center" pb={4} mb={2}>
+  <H1 pb={2} mb={2}>{props.title}</H1>
+  <H2 fontSize={2} fontWeight="normal" mb={4}>{props.description}</H2>
+  <Link style={{textDecoration:'none'}} to={`/submit`}><Span bg="cyan" color="white" px={3} py={2} borderRadius="4px">Submit Event</Span></Link>
+</Header>
+~~~~   
+
+
+
+Thanks to David Wells 
+
+## Customize
+
+Update the site title, description and more by editing `siteMetadata` in `gatsby-config.js`.
+
+Change the font, colors and more by editing the settings in `src/theme.js`
+
+Add events via markdown files in `/content/eventslist/`. Example markdown files have been provided.
+
+## Deploy
+
+~~~~
+npm run build
+~~~~
+
+Publish the `public` directory to a webhost or deploy with [Netlify](https://www.netlify.com/docs/).
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/johnpolacek/gatsby-starter-events-list)
+
+
+--
+
+Calendar icon made by [Freepik](https://www.freepik.com/) from [Flaticon](https://www.flaticon.com/) is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/).

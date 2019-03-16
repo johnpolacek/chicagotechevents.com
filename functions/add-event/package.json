@@ -1,0 +1,11 @@
+{
+  "name": "add-event",
+  "version": "1.0.0",
+  "description": "",
+  "main": "add-event.js",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@octokit/rest": "^16.3.0"
+  }
+}

@@ -4,7 +4,8 @@ const Octokit = require('@octokit/rest').plugin(require('./createPullRequest'))
 const octokit = new Octokit()
 octokit.authenticate({
   type: 'oauth',
-  token: process.env.GITHUB_TOKEN})
+  token: process.env.GITHUB_TOKEN
+})
 
 const repo = 'chicagotechevents.com'
 const owner = 'johnpolacek'
@@ -73,5 +74,6 @@ exports.handler = (event, context, callback) => {
         statusCode: 400,
         body: JSON.stringify({
           error: `BRANCH ALREADY EXISTS!`})})
-    }})
+    }
+  })
 }

@@ -25,12 +25,13 @@ exports.handler = (event, context, callback) => {
   // }
 
   const date = new Date()
+  const dateStr = date.toISOString().slice(0,-14)
   const title = 'New Event from API'
-  const filename = 'content/eventslist/'+date+'-'+title.toLowerCase().split(' ').join('-')+'.md'
+  const filename = 'content/eventslist/'+dateStr+'-'+title.toLowerCase().split(' ').join('-')+'.md'
 
   const newContent = `---
     title: ${title}
-    date: ${date.toISOString().slice(0,-14)}
+    date: ${dateStr}
     ---
     Event description goes here
   `;

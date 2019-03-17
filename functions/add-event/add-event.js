@@ -8,11 +8,9 @@ octokit.authenticate({
 
 const repo = 'chicagotechevents.com'
 const owner = 'johnpolacek'
-const fileToChange = 'src/tutorials.json'
 
 /* export our lambda function as named "handler" export */
 exports.handler = (event, context, callback) => {
-  // const { clientContext } = context
 
   // const body = JSON.parse(event.body)
   // console.log('body', body)
@@ -27,25 +25,38 @@ exports.handler = (event, context, callback) => {
   const date = new Date()
   const dateStr = date.toISOString().slice(0,-14)
   const title = 'New Event from API'
-  const filename = 'content/eventslist/'+dateStr+'-'+title.toLowerCase().split(' ').join('-')+'.md'
+  const filename = dateStr+'-'+title.toLowerCase().split(' ').join('-');
+  const filepath = 'content/eventslist/'+filename
 
   const newContent = `---
-    title: ${title}
-    date: ${dateStr}
     ---
-    Event description goes here
+    title: ${title}
+    date: "${date}"
+    timestart: "14:00"
+    timeend: "16:00"
+    locationName: Someplace
+    locationAddress: 123 N State
+    locationCity: Chicago
+    locationState: IL
+    cost: FREE
+    eventUrl: https://eventbrite.com/some-event
+
+    ---
+
+    Event description goes here.
+
   `;
 
   octokit.createPullRequest({
     owner,
     repo,
     title: title,
-    body: 'New event listing request - '+title,
+    body: 'New event listing request - '+filename,
     base: 'master',
     head: `pull-request-branch-name-${date.getTime()}`,
     changes: {
       files: {
-        [filename]: newContent,
+        [filepath]: newContent,
       },
       commit: 'new event listing request - '+title
     }}).then((response) => {

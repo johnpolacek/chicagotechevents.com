@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { Header, H1, H2, Button, Span } from 'styled-system-html'
+import { Header, H1, H2, Span } from 'styled-system-html'
 
 export default (props) => (
   <>{

@@ -2,7 +2,7 @@ import React from 'react'
 
 import Layout from '../components/Layout'
 import SEO from '../components/seo'
-import { Div } from 'styled-system-html'
+import SubmitEventForm from '../components/SubmitEventForm'
 
 class Submit extends React.Component {
   render() {
@@ -15,7 +15,7 @@ class Submit extends React.Component {
           title="All Events"
           keywords={[`events`, `calendar`, `gatsby`, `javascript`, `react`]}
         />
-        <Div py={4} mb={4} textAlign="center">Submit Event Form will go here...</Div>
+        <SubmitEventForm />
       </Layout>
     )
   }

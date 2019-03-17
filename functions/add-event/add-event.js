@@ -24,6 +24,8 @@ exports.handler = (event, context, callback) => {
   //       data: 'request malformed'})})
   // }
 
+  const date = new Date()
+
   const newContent = `---
     title: New Event from API
     date: ${date.toISOString().slice(0,-14)}

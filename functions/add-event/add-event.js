@@ -25,9 +25,11 @@ exports.handler = (event, context, callback) => {
   // }
 
   const date = new Date()
+  const title = 'New Event from API'
+  const filename = date+'-'+title.toLowerCase().split(' ').join('-')+'.md'
 
   const newContent = `---
-    title: New Event from API
+    title: ${title}
     date: ${date.toISOString().slice(0,-14)}
     ---
     Event description goes here
@@ -36,13 +38,13 @@ exports.handler = (event, context, callback) => {
   octokit.createPullRequest({
     owner,
     repo,
-    title: `Add New Event from API`,
-    body: `Add New Event from API`,
-    base: 'master', /* optional: defaults to default branch */
+    title: title,
+    body: 'Add New Event from API - '+title,
+    base: 'master',
     head: `pull-request-branch-name-${new Date().getTime()}`,
     changes: {
       files: {
-        [`new-event-from-api`]: newContent,
+        [filename]: newContent,
       },
       commit: `adding New Event from API`
     }}).then((response) => {

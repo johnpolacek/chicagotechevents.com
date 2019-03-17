@@ -26,7 +26,7 @@ exports.handler = (event, context, callback) => {
 
   const date = new Date()
   const title = 'New Event from API'
-  const filename = date+'-'+title.toLowerCase().split(' ').join('-')+'.md'
+  const filename = 'content/eventslist/'+date+'-'+title.toLowerCase().split(' ').join('-')+'.md'
 
   const newContent = `---
     title: ${title}
@@ -39,14 +39,14 @@ exports.handler = (event, context, callback) => {
     owner,
     repo,
     title: title,
-    body: 'Add New Event from API - '+title,
+    body: 'New event listing request - '+title,
     base: 'master',
-    head: `pull-request-branch-name-${new Date().getTime()}`,
+    head: `pull-request-branch-name-${date.getTime()}`,
     changes: {
       files: {
         [filename]: newContent,
       },
-      commit: `adding New Event from API`
+      commit: 'new event listing request - '+title
     }}).then((response) => {
     console.log('data', response.data)
     return callback(null, {

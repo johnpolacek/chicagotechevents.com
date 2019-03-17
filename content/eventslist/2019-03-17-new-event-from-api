@@ -1,0 +1,18 @@
+---
+    ---
+    title: New Event from API
+    date: "Sun Mar 17 2019 05:01:19 GMT+0000 (UTC)"
+    timestart: "14:00"
+    timeend: "16:00"
+    locationName: Someplace
+    locationAddress: 123 N State
+    locationCity: Chicago
+    locationState: IL
+    cost: FREE
+    eventUrl: https://eventbrite.com/some-event
+
+    ---
+
+    Event description goes here.
+
+  

@@ -12,19 +12,17 @@ const fileToChange = 'src/tutorials.json'
 
 /* export our lambda function as named "handler" export */
 exports.handler = (event, context, callback) => {
-  const { clientContext } = context
-  const claims = clientContext && clientContext.user
-  console.log('claims', claims)
+  // const { clientContext } = context
 
-  const body = JSON.parse(event.body)
-  console.log('body', body)
+  // const body = JSON.parse(event.body)
+  // console.log('body', body)
 
-  if (!body || !body.name) {
-    return callback(null, {
-      statusCode: 401,
-      body: JSON.stringify({
-        data: 'request malformed'})})
-  }
+  // if (!body || !body.name) {
+  //   return callback(null, {
+  //     statusCode: 401,
+  //     body: JSON.stringify({
+  //       data: 'request malformed'})})
+  // }
 
   const newContent = `---
     title: New Event from API

@@ -8,7 +8,7 @@ const onSubmit = (e) => {
 	const data = new FormData(e.target)
     const eventName = data.get('eventName')
 	console.log('onSubmit '+eventName)
-	saveEvent(data).then((response) => {
+	saveEvent({name:eventName}).then((response) => {
         console.log('response', response)
     }).catch((e) => {
         console.log('response err', e)

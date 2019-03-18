@@ -13,6 +13,8 @@ const owner = 'johnpolacek'
 /* export our lambda function as named "handler" export */
 exports.handler = (event, context, callback) => {
 
+  console.log('event')
+  console.log(JSON.parse(event))
   // const body = JSON.parse(event.body)
   // console.log('body', body)
 

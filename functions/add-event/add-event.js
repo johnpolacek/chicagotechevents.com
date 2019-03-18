@@ -14,7 +14,7 @@ const owner = 'johnpolacek'
 exports.handler = (event, context, callback) => {
 
   console.log('event')
-  console.log(JSON.parse(event))
+  console.log(event)
   // const body = JSON.parse(event.body)
   // console.log('body', body)
 

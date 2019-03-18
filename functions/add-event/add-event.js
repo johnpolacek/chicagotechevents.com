@@ -13,22 +13,20 @@ const owner = 'johnpolacek'
 /* export our lambda function as named "handler" export */
 exports.handler = (event, context, callback) => {
 
-  console.log('event')
-  console.log(event)
-  // const body = JSON.parse(event.body)
-  // console.log('body', body)
+  const body = JSON.parse(event.body)
+  console.log('body', body)
 
-  // if (!body || !body.name) {
-  //   return callback(null, {
-  //     statusCode: 401,
-  //     body: JSON.stringify({
-  //       data: 'request malformed'})})
-  // }
+  if (!body || !body.name) {
+    return callback(null, {
+      statusCode: 401,
+      body: JSON.stringify({
+        data: 'request malformed'})})
+  }
 
   const date = new Date()
   const dateStr = date.toISOString().slice(0,-14)
-  const title = 'New Event from API'
-  const filename = dateStr+'-'+title.toLowerCase().split(' ').join('-');
+  const title = 'New Event - '+body.name
+  const filename = dateStr+'-'+body.name.toLowerCase().split(' ').join('-');
   const filepath = 'content/eventslist/'+filename
 
   const newContent = `---

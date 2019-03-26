@@ -116,16 +116,4 @@ async function saveEvent(event) {
 	})
 }
 
-// async function saveEvent(event) {
-// 	console.log('save event', event)
-// 	return fetch(`/.netlify/functions/add-event/`, {
-// 		method: 'POST',
-// 		headers: { 'Content-Type': 'application/json' },
-// 		body: JSON.stringify(event),
-// 	}).then(response => {
-// 		console.log(response)
-// 		return response.json()
-// 	})
-// }
-
 export default SubmitEventForm

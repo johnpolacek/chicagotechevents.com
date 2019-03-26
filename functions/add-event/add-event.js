@@ -20,7 +20,7 @@ exports.handler = (event, context, callback) => {
     return callback(null, {
       statusCode: 422,
       body: JSON.stringify({
-        data: 'Missing required parameter: name'})})
+        data: 'Missing required parameter: eventName'})})
   }
 
   const date = new Date()
@@ -29,7 +29,7 @@ exports.handler = (event, context, callback) => {
   const filename = dateStr+'-'+body.eventName.toLowerCase().split(' ').join('-');
   const filepath = 'content/eventslist/'+filename
 
-  const newContent = `---
+  const newContent = `
     ---
     title: "${body.eventName}"
     startDate: "${body.stateDate}"

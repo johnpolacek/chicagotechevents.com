@@ -106,7 +106,7 @@ const SubmitEventForm = (props) => {
 
 async function saveEvent(event) {
 	console.log('save event', event)
-	return fetch(`/.netlify/functions/test/`, {
+	return fetch(`/.netlify/functions/add-event/`, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(event),

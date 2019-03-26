@@ -16,44 +16,44 @@ exports.handler = (event, context, callback) => {
   const body = JSON.parse(event.body)
   console.log('body', body)
 
-  // if (!body || !body.eventName) {
-  //   return callback(null, {
-  //     statusCode: 422,
-  //     body: JSON.stringify({
-  //       data: 'Missing required parameter: name'})})
-  // }
+  if (!body || !body.eventName) {
+    return callback(null, {
+      statusCode: 422,
+      body: JSON.stringify({
+        data: 'Missing required parameter: name'})})
+  }
 
-  // const date = new Date()
-  // const dateStr = date.toISOString().slice(0,-14)
-  // const title = 'New Event - '+body.eventName
-  // const filename = dateStr+'-'+body.eventName.toLowerCase().split(' ').join('-');
-  // const filepath = 'content/eventslist/'+filename
+  const date = new Date()
+  const dateStr = date.toISOString().slice(0,-14)
+  const title = 'New Event - '+body.eventName
+  const filename = dateStr+'-'+body.eventName.toLowerCase().split(' ').join('-');
+  const filepath = 'content/eventslist/'+filename
 
-  // const newContent = `---
-  //   ---
-  //   title: "${body.eventName}"
-  //   startDate: "${body.stateDate}"
-  //   startTime: "${body.startTime}"
-  //   endDate: "${body.endDate}"
-  //   endTime: "${body.endTime}"
-  //   locationName: "${body.locationName}"
-  //   locationStreet: "${body.locationStreet}"
-  //   locationCity: "${body.locationCity}"
-  //   cost: "${body.cost}"
-  //   eventUrl: "${body.linkURL}"
-  //   authorName: "${body.authorName}"
-  //   authorEmail: "${body.authorEmail}"
-  //   ---
+  const newContent = `---
+    ---
+    title: "${body.eventName}"
+    startDate: "${body.stateDate}"
+    startTime: "${body.startTime}"
+    endDate: "${body.endDate}"
+    endTime: "${body.endTime}"
+    locationName: "${body.locationName}"
+    locationStreet: "${body.locationStreet}"
+    locationCity: "${body.locationCity}"
+    cost: "${body.cost}"
+    eventUrl: "${body.linkURL}"
+    authorName: "${body.authorName}"
+    authorEmail: "${body.authorEmail}"
+    ---
 
-  //   ${body.description}
+    ${body.description}
 
-  // `;
+  `;
 
   return callback(null, {
     statusCode: 200,
     body: JSON.stringify({
-      message: `test!`,
-      // newContent: newContent
+      message: `pr created!`,
+      newContent: newContent
     })
   })
 

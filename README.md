@@ -38,6 +38,15 @@ npm scripts that installs on the add-event dir then zips etc
 
 
 
+
+How to test locally?
+netlify-lambda serve <source-folder>
+https://codeburst.io/write-and-deploy-your-first-serverless-function-within-10-minutes-or-less-d7552fcd6550
+https://travishorn.com/netlify-lambda-functions-from-scratch-1186f61c659e
+
+
+
+
 https://github.com/DavidWells/functions-site
 
 

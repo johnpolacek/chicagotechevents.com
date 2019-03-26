@@ -4,10 +4,10 @@ import {Input} from 'styled-system-html'
 const InputSubmit = props =>
 	<Input
 	    type="submit"
-	    fontSize={1}
+	    fontSize={2}
 	    m={0}
-	    px={3}
-	    py={2}
+	    px={4}
+	    py={3}
 	    color='white'
 	    bg='cyan'
 	    {...props}

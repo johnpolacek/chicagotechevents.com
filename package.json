@@ -25,6 +25,7 @@
     "gatsby-transformer-sharp": "^2.1.15",
     "prismjs": "^1.15.0",
     "react": "^16.8.4",
+    "react-datepicker": "^2.2.0",
     "react-dom": "^16.8.4",
     "react-helmet": "^5.2.0",
     "styled-components": "^4.1.3",

@@ -43,7 +43,7 @@ https://github.com/DavidWells/functions-site
 
 
 
-Let’s add a submit button and page to our site.
+Let’s add a link to our header to a new page with an add event form.
 
 *src/components/Header.js*
 

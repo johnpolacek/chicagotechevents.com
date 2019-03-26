@@ -12,7 +12,7 @@ class Submit extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle} description={siteDescription}>
         <SEO
-          title="All Events"
+          title="Submit New Event"
           keywords={[`events`, `calendar`, `gatsby`, `javascript`, `react`]}
         />
         <SubmitEventForm />

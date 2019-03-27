@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import { Div, Select, Span } from 'styled-system-html'
 
 const Timepicker = (props) => {
-    const [hours, setHours] = useState('')
-    const [minutes, setMinutes] = useState('')
-    const [period, setPeriod] = useState('')
-    const [time, setTime] = useState('')
+    const [hours, setHours] = useState(props.defaultHours || '')
+    const [minutes, setMinutes] = useState(props.defaultMinutes || (props.defaultHours ? '00' : ''))
+    const [period, setPeriod] = useState(props.defaultPeriod || (props.defaultHours ? 'pm' : ''))
+    const [time, setTime] = useState(props.defaultHours ? hours + ':' + minutes + ' ' + period : '')
 
     const onTimeChange = (valueSet, value) => {
         valueSet(value)

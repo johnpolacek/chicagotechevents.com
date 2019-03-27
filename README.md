@@ -1,3 +1,19 @@
+Current work -
+fix startTime and endTime are empty
+
+TEST YOUR FIX
+
+Cannot test locally, need to deploy to netlify to see function return stuff
+
+First, fix the submit to make a good PR. 
+
+Then add local testing
+netlify-lambda serve <source-folder>
+https://codeburst.io/write-and-deploy-your-first-serverless-function-within-10-minutes-or-less-d7552fcd6550
+https://travishorn.com/netlify-lambda-functions-from-scratch-1186f61c659e
+
+
+
 # chicagotechevents.com
 
 Forked from the [Gatsby Events List Starter](https://github.com/johnpolacek/gatsby-starter-events-list).

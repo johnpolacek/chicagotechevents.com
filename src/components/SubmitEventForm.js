@@ -88,7 +88,6 @@ const SubmitEventForm = (props) => {
 				<Label pb={1} pt={3} display="block" htmlFor="locationCity">City <Span fontSize={0}>(must be in Chicagoland area)</Span></Label>
 				<Input onChange={e => setLocationCity(e.target.value)} required type="text" width={1} mb={3} name="locationStreet" value={locationCity} />
 
-
 				<Label pb={1} pt={3} display="block" htmlFor="authorName">Your Name</Label>
 				<Input onChange={e => setAuthorName(e.target.value)} required type="text" width={1} mb={3} name="authorName" value={authorName} />
 
@@ -103,6 +102,7 @@ const SubmitEventForm = (props) => {
 		</>
 	)
 }
+
 
 async function saveEvent(event) {
 	console.log('save event', event)

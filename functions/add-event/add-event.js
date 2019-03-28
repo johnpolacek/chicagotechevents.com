@@ -32,7 +32,7 @@ exports.handler = (event, context, callback) => {
   const newContent = `
     ---
     title: "${body.eventName}"
-    startDate: "${body.stateDate}"
+    startDate: "${body.startDate}"
     startTime: "${body.startTime}"
     endDate: "${body.endDate}"
     endTime: "${body.endTime}"
@@ -49,40 +49,32 @@ exports.handler = (event, context, callback) => {
 
   `;
 
-  return callback(null, {
-    statusCode: 200,
-    body: JSON.stringify({
-      message: `pr created!`,
-      newContent: newContent
-    })
+  octokit.createPullRequest({
+    owner,
+    repo,
+    title: title,
+    body: 'New event listing request - '+filename,
+    base: 'master',
+    head: `pull-request-branch-name-${date.getTime()}`,
+    changes: {
+      files: {
+        [filepath]: newContent,
+      },
+      commit: 'new event listing request - '+title
+    }}).then((response) => {
+    console.log('data', response.data)
+    return callback(null, {
+      statusCode: 200,
+      body: JSON.stringify({
+        message: `pr created!`,
+        url: response.data.html_url})})}).catch((e) => {
+    console.log('error', e)
+    if (e.status === 422) {
+      console.log('BRANCH ALREADY EXISTS!')
+      return callback(null, {
+        statusCode: 400,
+        body: JSON.stringify({
+          error: `BRANCH ALREADY EXISTS!`})})
+    }
   })
-
-  // octokit.createPullRequest({
-  //   owner,
-  //   repo,
-  //   title: title,
-  //   body: 'New event listing request - '+filename,
-  //   base: 'master',
-  //   head: `pull-request-branch-name-${date.getTime()}`,
-  //   changes: {
-  //     files: {
-  //       [filepath]: newContent,
-  //     },
-  //     commit: 'new event listing request - '+title
-  //   }}).then((response) => {
-  //   console.log('data', response.data)
-  //   return callback(null, {
-  //     statusCode: 200,
-  //     body: JSON.stringify({
-  //       message: `pr created!`,
-  //       url: response.data.html_url})})}).catch((e) => {
-  //   console.log('error', e)
-  //   if (e.status === 422) {
-  //     console.log('BRANCH ALREADY EXISTS!')
-  //     return callback(null, {
-  //       statusCode: 400,
-  //       body: JSON.stringify({
-  //         error: `BRANCH ALREADY EXISTS!`})})
-  //   }
-  // })
 }

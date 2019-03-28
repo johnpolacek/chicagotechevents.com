@@ -1,11 +1,10 @@
 Current work -
-fix startTime and endTime are empty
+Finished setting timepicker data
 
-TEST YOUR FIX
-
+TEST FIX ON NETLIFY:
 Cannot test locally, need to deploy to netlify to see function return stuff
 
-First, fix the submit to make a good PR. 
+Continue to fix the submit to make a good PR. 
 
 Then add local testing
 netlify-lambda serve <source-folder>

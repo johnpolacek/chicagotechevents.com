@@ -13,9 +13,9 @@ const SubmitEventForm = (props) => {
 	const [linkURL, setLinkURL] = useState('')
 	const [cost, setCost] = useState('')
 	const [startDate, setStartDate] = useState(null)
-	const [startTime, setStartTime] = useState('')
+	const [startTime, setStartTime] = useState('5:00pm')
 	const [endDate, setEndDate] = useState(null)
-	const [endTime, setEndTime] = useState('')
+	const [endTime, setEndTime] = useState('7:00pm')
 	const [locationName, setLocationName] = useState('')
 	const [locationStreet, setLocationStreet] = useState('')
 	const [locationCity, setLocationCity] = useState('Chicago')
@@ -65,7 +65,7 @@ const SubmitEventForm = (props) => {
 						<DatePicker selected={startDate} onChange={onStartDateChange}/>
 					</Div>
 					<Div width={[1,1/2]} pl={[0,2]}>
-						<Timepicker onChange={(time) => {setStartTime(time)}} id="startTime" defaultHours="5" defaultPeriod="pm" />
+						<Timepicker onChange={(time) => {setStartTime(time)}} id="startTime" defaultTime={startTime} />
 					</Div>
 				</Div>
 				
@@ -75,7 +75,7 @@ const SubmitEventForm = (props) => {
 						<DatePicker selected={endDate} onChange={onEndDateChange}/>
 					</Div>
 					<Div width={[1,1/2]} pl={[0,2]}>
-						<Timepicker onChange={(time) => {setEndTime(time)}} id="endTime" defaultHours="7" defaultPeriod="pm" />
+						<Timepicker onChange={(time) => {setEndTime(time)}} id="endTime" defaultTime={endTime} />
 					</Div>
 				</Div>
 				

@@ -3,14 +3,27 @@ import PropTypes from 'prop-types'
 import { Div, Select, Span } from 'styled-system-html'
 
 const Timepicker = (props) => {
-    const [hours, setHours] = useState(props.defaultHours || '')
-    const [minutes, setMinutes] = useState(props.defaultMinutes || (props.defaultHours ? '00' : ''))
-    const [period, setPeriod] = useState(props.defaultPeriod || (props.defaultHours ? 'pm' : ''))
-    const [time, setTime] = useState(props.defaultHours ? hours + ':' + minutes + ' ' + period : '')
 
-    const onTimeChange = (valueSet, value) => {
-        valueSet(value)
-        setTime(hours + ':' + minutes + ' ' + period)
+    const [time, setTime] = useState(props.defaultTime || '')
+
+    console.log('time', time);
+
+    const onHourChange = (newHour) => {
+        setTime(newHour+time.split(':')[1])
+        if (props.onChange) {
+            props.onChange(time)
+        }
+    }
+
+    const onMinutesChange = (newMinutes) => {
+        setTime(time.split(':')[0] + ':' + newMinutes + time.split(':')[1].substring(2))
+        if (props.onChange) {
+            props.onChange(time)
+        }
+    }
+
+    const onPeriodChange = (newPeriod) => {
+        setTime(time.split(':')[0] + ':' + time.split(':')[1].substring(0,2) + newPeriod)
         if (props.onChange) {
             props.onChange(time)
         }
@@ -18,7 +31,7 @@ const Timepicker = (props) => {
 
     return (
         <Div>
-            <Select defaultValue={props.defaultHours} onChange={(e) => { onTimeChange(setHours, e.target.value) }} id={props.id+'-hours'}>
+            <Select defaultValue={props.defaultTime ? props.defaultTime.split(':')[0] : ''} onChange={(e) => { onHourChange(e.target.value) }} id={props.id+'-hours'}>
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -33,13 +46,13 @@ const Timepicker = (props) => {
                 <option>12</option>
             </Select>
             <Span px={1} fontWeight="bold">:</Span>
-            <Select defaultValue={props.defaultMinutes} onChange={(e) => { onTimeChange(setMinutes, e.target.value) }} id={props.id+'-minutes'}>
+            <Select defaultValue={props.defaultTime ? props.defaultTime.split(':')[1].substring(0,2) : ''} onChange={(e) => { onMinutesChange(e.target.value) }} id={props.id+'-minutes'}>
                 <option>00</option>
                 <option>15</option>
                 <option>30</option>
                 <option>45</option>
             </Select>
-            <Select defaultValue={props.defaultPeriod} onChange={(e) => { onTimeChange(setPeriod, e.target.value) }} ml={2} id={props.id+'-period'}>
+            <Select defaultValue={props.defaultTime ? props.defaultTime.split(':')[1].substring(2) : ''} onChange={(e) => { onPeriodChange(e.target.value) }} ml={2} id={props.id+'-period'}>
                 <option>am</option>
                 <option>pm</option>
             </Select>
@@ -52,9 +65,7 @@ Timepicker.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string,
     onChange: PropTypes.func,
-    defaultMinutes: PropTypes.oneOfType([PropTypes.string,PropTypes.number]),
-    defaultHours: PropTypes.oneOfType([PropTypes.string,PropTypes.number]),
-    defaultPeriod: PropTypes.string
+    defaultTime: PropTypes.string
 }
 
 export default Timepicker

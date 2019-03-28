@@ -33,9 +33,6 @@ const SubmitEventForm = (props) => {
 
 	const onStartDateChange = (date) => {
 		setStartDate(date)
-		if (!endDate) {
-			setEndDate(date)
-		}
 	}
 
 	const onEndDateChange = (date) => {

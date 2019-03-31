@@ -32,7 +32,9 @@ Once you have an account and have added a Netlify app from your events list Gith
 
 Go to your [Netlify App](https://app.netlify.com/sites/) and add the token as a Build Environment Variable in your app.
 
-Next, we will create the function that makes it all happen. 
+Next, we will create the Netlify function that makes it all happen.
+
+**Note: The following is very much based on the [add-example function](https://github.com/netlify-labs/functions-site/tree/master/functions/add-example) in the [Netlify Functions site](https://github.com/DavidWells/functions-site) by [David Wells](https://davidwells.io/)**
 
 Ok let’s write an `add-event` function that takes some parameters then builds a markdown file to be submitted as a pull request to our events site Github repository.
 
@@ -47,7 +49,7 @@ cd functions/addevent
 npm init
 ~~~~
 
-Follow along with the prompts to set up the npm package. You can hit enter a bunch of times to skip through - a `package.json` file will be generated that you can adjust later.
+Follow along with the prompts to set up the npm package. You can hit enter a bunch of times to skip through. 
 
 Next, install the [GitHub REST API client](https://github.com/octokit/rest.js#readme).
 
@@ -55,12 +57,188 @@ Next, install the [GitHub REST API client](https://github.com/octokit/rest.js#re
 npm i @octokit/rest
 ~~~~
 
+Open `package.json` and edit the setting for main to be `add-event.js`. It should look like this
 
+~~~~
+{
+  "name": "add-event",
+  "version": "1.0.0",
+  "description": "",
+  "main": "add-event.js",
+  "author": "John Polacek",
+  "license": "MIT",
+  "dependencies": {
+    "@octokit/rest": "^16.3.0"
+  }
+}
+~~~~
+
+Next we will set up a function to create the pull request.
+
+*functions/add-event/createPullRequest.js*
+
+~~~~
+module.exports = octokitCreatePullRequest
+
+function octokitCreatePullRequest (octokit) {
+  octokit.createPullRequest = createPullRequest.bind(null, octokit)
+}
+
+async function createPullRequest (octokit, { owner, repo, title, body, base, head, changes }) {
+  let response
+
+  if (!base) {
+    response = await octokit.repos.get({ owner, repo })
+    base = response.data.default_branch
+  }
+
+  response = await octokit.repos.listCommits({
+    owner,
+    repo,
+    sha: base,
+    per_page: 1
+  })
+  let latestCommitSha = response.data[0].sha
+  const treeSha = response.data[0].commit.tree.sha
+
+  response = await octokit.git.createTree({
+    owner,
+    repo,
+    base_tree: treeSha,
+    tree: Object.keys(changes.files).map(path => {
+      return {
+        path,
+        mode: '100644',
+        content: changes.files[path]
+      }
+    })
+  })
+  const newTreeSha = response.data.sha
+
+  response = await octokit.git.createCommit({
+    owner,
+    repo,
+    message: changes.commit,
+    tree: newTreeSha,
+    parents: [latestCommitSha]
+  })
+  latestCommitSha = response.data.sha
+
+  await octokit.git.createRef({
+    owner,
+    repo,
+    sha: latestCommitSha,
+    ref: `refs/heads/${head}`
+  })
+
+  response = await octokit.pulls.create({
+    owner,
+    repo,
+    head,
+    base,
+    title,
+    body
+  })
+  return response
+}
+~~~~
 
 *functions/add-event/add-event.js*
 
 ~~~~
-// code here
+const url = require('url')
+const Octokit = require('@octokit/rest').plugin(require('./createPullRequest'))
+
+const octokit = new Octokit()
+octokit.authenticate({
+  type: 'oauth',
+  token: process.env.GITHUB_TOKEN
+})
+
+const repo = 'chicagotechevents.com'
+const owner = 'johnpolacek'
+
+
+/* export our lambda function as named "handler" export */
+exports.handler = (event, context, callback) => {
+
+  const body = JSON.parse(event.body)
+  if (!body) {
+    return callback(null, {
+      statusCode: 422,
+      body: JSON.stringify({
+        data: 'Missing request body'
+      })
+    })
+  }
+
+  const requiredParams = ['eventName','startDate','startTime','endDate','locationName','locationStreet','locationCity','cost','linkURL','authorName','authorEmail']
+  requiredParams.forEach((param) => {
+    if (!body[param]) {
+      return callback(null, {
+        statusCode: 422,
+        body: JSON.stringify({
+          data: 'Missing required parameter: '+param
+        })
+      })
+    }
+  })
+
+  const date = new Date()
+  const dateStr = date.toISOString().slice(0,-14)
+  const title = 'New Event - '+body.eventName
+  const filename = dateStr+'-'+body.eventName.toLowerCase().split(' ').join('-');
+  const filepath = 'content/eventslist/'+filename
+
+  const newContent = `
+    ---
+    title: "${body.eventName}"
+    startDate: "${body.startDate}"
+    startTime: "${body.startTime}"
+    endDate: "${body.endDate}"
+    endTime: "${body.endTime}"
+    locationName: "${body.locationName}"
+    locationStreet: "${body.locationStreet}"
+    locationCity: "${body.locationCity}"
+    cost: "${body.cost}"
+    eventUrl: "${body.linkURL}"
+    authorName: "${body.authorName}"
+    authorEmail: "${body.authorEmail}"
+    ---
+
+    ${body.description}
+
+  `;
+
+  octokit.createPullRequest({
+    owner,
+    repo,
+    title: title,
+    body: 'New event listing request - '+filename,
+    base: 'master',
+    head: `pull-request-branch-name-${date.getTime()}`,
+    changes: {
+      files: {
+        [filepath]: newContent,
+      },
+      commit: 'new event listing request - '+title
+    }}).then((response) => {
+    console.log('data', response.data)
+    return callback(null, {
+      statusCode: 200,
+      body: JSON.stringify({
+        message: `pr created!`,
+        url: response.data.html_url})})}).catch((e) => {
+    console.log('error', e)
+    if (e.status === 422) {
+      console.log('BRANCH ALREADY EXISTS!')
+      return callback(null, {
+        statusCode: 400,
+        body: JSON.stringify({
+          error: `BRANCH ALREADY EXISTS!`})})
+    }
+  })
+}
 ~~~~
 
 

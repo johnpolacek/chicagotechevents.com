@@ -1,18 +1,3 @@
-Monday AM - Ask David Wells about testing
-
-Need to test the function separately on localhost:9000?
-
-
-
-localhost not going to work because Github requires OAuth and opening it to localhost is baaad. Simulate somehow?
-
-Trying to get local build to work. ZIP file is moved but not accessible to local. Need unzip and set up new route for localhost:9000 to connect to add-event
-
-Currently manually unzipping file and set up a gatsby-config route just for add-event. Getting: Function invocation failed: Error: OAuth2 authentication requires a token or key & secret to be set
-
-
-
-
 # chicagotechevents.com
 
 Forked from the [Gatsby Events List Starter](https://github.com/johnpolacek/gatsby-starter-events-list).
@@ -47,36 +32,7 @@ Once you have an account and have added a Netlify app from your events list Gith
 
 Go to your [Netlify App](https://app.netlify.com/sites/) and add the token as a Build Environment Variable in your app.
 
-Next, we will create the function that makes it all happen. Easy to say, but it takes a few steps to get there.
-
-To better understand what we are doing, take some time to read/review the following:
-
-* [Lambda functions on Netlify](https://www.netlify.com/docs/functions/)
-* [README for netlify-lambda](https://github.com/netlify/netlify-lambda)
-* [Turning the Static Dynamic: Gatsby + Netlify Functions + Netlify Identity
-](https://www.gatsbyjs.org/blog/2018-12-17-turning-the-static-dynamic/)
-
-Ok, did you get all that? So you can build [Lambda functions](https://www.netlify.com/docs/functions/) that can be deployed on Netlify or served locally via [netlify-lambda](https://github.com/netlify/netlify-lambda). To access these functions in a local environment, you need to set up a proxy in your gatsby config. You’ll also have to set up npm scripts that make it all happen.
-
-Let’s do it one step at a time. First, install the dependencies we need.
-
-For running our functions locally on `localhost:9000`:
-
-~~~~
-npm i -D netlify-lambda
-~~~~
-
-For routing our `localhost:9000` api calls to a proxy that matches the production url of `/.netlify/functions/`:
-
-~~~~
-npm i -D http-proxy-middleware
-~~~~
-
-For running multiple npm-scripts sequentially:
-
-~~~~
-npm i -D npm-run-all
-~~~~
+Next, we will create the function that makes it all happen. 
 
 Ok let’s write an `add-event` function that takes some parameters then builds a markdown file to be submitted as a pull request to our events site Github repository.
 
@@ -93,7 +49,7 @@ npm init
 
 Follow along with the prompts to set up the npm package. You can hit enter a bunch of times to skip through - a `package.json` file will be generated that you can adjust later.
 
-Next, iinstall the [GitHub REST API client](https://github.com/octokit/rest.js#readme).
+Next, install the [GitHub REST API client](https://github.com/octokit/rest.js#readme).
 
 ~~~~
 npm i @octokit/rest
@@ -101,7 +57,7 @@ npm i @octokit/rest
 
 
 
-*functions/add-event/index.js*
+*functions/add-event/add-event.js*
 
 ~~~~
 // code here
@@ -120,14 +76,6 @@ All this is based on https://github.com/DavidWells/functions-site
 
 
 
-https://github.com/sw-yx/jamstack-hackathon-starter
-
-
-
-https://github.com/sidneyw/gatsby-starter-netlify-lambda
-
-
-
 
 
 Add section about:
@@ -136,16 +84,7 @@ npm scripts that installs on the add-event dir then zips etc
 
 
 
-How to test locally?
-netlify-lambda serve <source-folder>
-https://codeburst.io/write-and-deploy-your-first-serverless-function-within-10-minutes-or-less-d7552fcd6550
-https://travishorn.com/netlify-lambda-functions-from-scratch-1186f61c659e
-
-https://github.com/netlify/netlify-lambda
-
-
-https://github.com/DavidWells/functions-site
-
+To test functions locally install netlify-lambda and make api calls against localhost:9000
 
 
 

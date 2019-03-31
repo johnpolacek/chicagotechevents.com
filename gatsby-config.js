@@ -1,5 +1,3 @@
-var proxy = require("http-proxy-middleware")
-
 module.exports = {
   siteMetadata: {
     title: `Chicago Tech Events`,
@@ -9,19 +7,6 @@ module.exports = {
     social: {
       twitter: `chicagotechevents`,
     },
-  },
-  // for avoiding CORS while developing Netlify Functions locally
-  // read more: https://www.gatsbyjs.org/docs/api-proxy/#advanced-proxying
-  developMiddleware: app => {
-    app.use(
-      "/.netlify/functions/",
-      proxy({
-        target: "http://localhost:9000/add-event",
-        pathRewrite: {
-          "/.netlify/functions/": "",
-        },
-      })
-    )
   },
   plugins: [
     {

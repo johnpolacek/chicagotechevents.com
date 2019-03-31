@@ -1,0 +1,19 @@
+
+    ---
+    title: "Testaroonie Event"
+    startDate: "2019-04-01T05:00:00.000Z"
+    startTime: "5:00pm"
+    endDate: "2019-04-01T05:00:00.000Z"
+    endTime: "7:00pm"
+    locationName: "Venue West"
+    locationStreet: "222 sadf"
+    locationCity: "Chicago"
+    cost: "$10"
+    eventUrl: "https://johnpolacek.com"
+    authorName: "Johnny"
+    authorEmail: "johnpolacek@gmail.com"
+    ---
+
+    This is a test
+
+  

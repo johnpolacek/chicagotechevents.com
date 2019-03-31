@@ -10,18 +10,31 @@ octokit.authenticate({
 const repo = 'chicagotechevents.com'
 const owner = 'johnpolacek'
 
+
 /* export our lambda function as named "handler" export */
 exports.handler = (event, context, callback) => {
 
   const body = JSON.parse(event.body)
-  console.log('body', body)
-
-  if (!body || !body.eventName) {
+  if (!body) {
     return callback(null, {
       statusCode: 422,
       body: JSON.stringify({
-        data: 'Missing required parameter: eventName'})})
+        data: 'Missing request body'
+      })
+    })
   }
+
+  const requiredParams = ['eventName','startDate','startTime','endDate','locationName','locationStreet','locationCity','cost','linkURL','authorName','authorEmail']
+  requiredParams.forEach((param) => {
+    if (!body[param]) {
+      return callback(null, {
+        statusCode: 422,
+        body: JSON.stringify({
+          data: 'Missing required parameter: '+param
+        })
+      })
+    }
+  })
 
   const date = new Date()
   const dateStr = date.toISOString().slice(0,-14)

@@ -6,8 +6,6 @@ const Timepicker = (props) => {
 
     const [time, setTime] = useState(props.defaultTime || '')
 
-    console.log('time', time);
-
     const onHourChange = (newHour) => {
         setTime(newHour+time.split(':')[1])
         if (props.onChange) {

@@ -51,7 +51,6 @@
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "functions-serve": "netlify-lambda serve functions",
     "makedir": "rm -rf functions-build && mkdir functions-build",
     "zip": "cd functions/add-event && npm install && zip -r add-event.zip *",
     "postzip": "mv functions/add-event/add-event.zip functions-build",

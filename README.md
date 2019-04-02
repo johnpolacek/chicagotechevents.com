@@ -241,23 +241,37 @@ exports.handler = (event, context, callback) => {
 }
 ~~~~
 
+Next, we need to add some build scripts to our package.json to zip our add-event directory when we deploy to netlify.
+
+*package.json*
+
+~~~~
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "dev": "gatsby develop -o",
+    "format": "prettier --write src/**/*.{js,jsx}",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "makedir": "rm -rf functions-build && mkdir functions-build",
+    "zip": "cd functions/add-event && npm install && zip -r add-event.zip *",
+    "postzip": "mv functions/add-event/add-event.zip functions-build",
+    "prebuild": "npm run makedir && npm run zip"
+  }
+~~~~
+
+Our script zips the add-event directory and puts it in a new directory, `functions-build`. To tell netlify about our function, we create a `netlify.toml` file.
+
+*netlify.toml*
+
+~~~~
+[build]
+command = "npm run build"
+functions = "./functions-build"
+~~~~
 
 
-All this is based on https://github.com/DavidWells/functions-site
 
-
-
-
-
-
-
-
-
-
-
-
-Add section about:
-npm scripts that installs on the add-event dir then zips etc
 
 
 

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Div, H2, Form, Label, Input, TextArea, Span } from 'styled-system-html'
 import DatePicker from "react-datepicker"
 import 'react-datepicker/dist/react-datepicker.css'
+import FormControl from './FormControl'
 import Timepicker from './Timepicker'
 import InputSubmit from './InputSubmit'
 
@@ -54,53 +55,46 @@ const SubmitEventForm = (props) => {
 		<>
 			<H2 fontSize={4} pb={4} fontWeight="bold" textAlign="center">Submit an Event</H2>
 			<Form width={[1,360]} mx="auto" onSubmit={onSubmit}>
-				
-				<Label pb={1} display="block" htmlFor="eventName">Name of Event</Label>
-				<Input onChange={e => setEventName(e.target.value)} required type="text" width={1} mb={3} name="eventName" value={eventName} />
 
-				<Label pb={1} pt={3} display="block" htmlFor="description">Event Description <Span fontSize={0}>(up to 320 characters)</Span></Label>
-				<TextArea onChange={e => setDescription(e.target.value)} required width={1} name="description" value={description} />
-				
-				<Label pb={1} pt={3} display="block" htmlFor="linkURL">Event Website <br/><Span fontSize={0}>(e.g. http://www.meetup.com/Chicago-Open-Coffee)</Span></Label>
-				<Input onChange={e => setLinkURL(e.target.value)} required type="text" width={1} mb={3} name="linkURL" value={linkURL} />
-				
-				<Label pb={1} pt={3} display="block" htmlFor="cost">Cost <Span fontSize={0}>(if none, enter FREE)</Span></Label>
-				<Input onChange={e => setCost(e.target.value)} required type="text" width={1} mb={3} name="cost" value={cost} />
-				
-				<Label pb={1} pt={3} display="block" htmlFor="startDate">Start Date</Label>
-				<Div width={1} display="flex" flexWrap="wrap" mb={3}>
-					<Div width={1/2}>
-						<DatePicker selected={startDate} onChange={onStartDateChange}/>
-					</Div>
-					<Div width={[1,1/2]} pl={[0,2]}>
-						<Timepicker onChange={(time) => {setStartTime(time)}} id="startTime" defaultTime={startTime} />
-					</Div>
-				</Div>
-				
-				<Label pb={1} pt={3} display="block" htmlFor="endDate">End Date</Label>
-				<Div width={1} display="flex" flexWrap="wrap" mb={3}>
-					<Div width={1/2}>
-						<DatePicker selected={endDate} onChange={onEndDateChange}/>
-					</Div>
-					<Div width={[1,1/2]} pl={[0,2]}>
-						<Timepicker onChange={(time) => {setEndTime(time)}} id="endTime" defaultTime={endTime} />
-					</Div>
-				</Div>
-				
-				<Label pb={1} pt={3} display="block" htmlFor="locationName">Location Name <Span fontSize={0}>(No Webinar/Online events)</Span></Label>
-				<Input onChange={e => setLocationName(e.target.value)} required type="text" width={1} mb={3} name="locationName" value={locationName} />
-				
-				<Label pb={1} pt={3} display="block" htmlFor="locationStreet">Street Address <Span fontSize={0}>(short street name, e.g. 120 N State)</Span></Label>
-				<Input onChange={e => setLocationStreet(e.target.value)} required type="text" width={1} mb={3} name="locationStreet" value={locationStreet} />
-				
-				<Label pb={1} pt={3} display="block" htmlFor="locationCity">City <Span fontSize={0}>(must be in Chicagoland area)</Span></Label>
-				<Input onChange={e => setLocationCity(e.target.value)} required type="text" width={1} mb={3} name="locationStreet" value={locationCity} />
+				<FormControl label="Name of Event" type="text" id="eventName" value={eventName} setValue={setEventName} />
 
-				<Label pb={1} pt={3} display="block" htmlFor="authorName">Your Name</Label>
-				<Input onChange={e => setAuthorName(e.target.value)} required type="text" width={1} mb={3} name="authorName" value={authorName} />
+				<FormControl label="Event Description" type="textarea" id="description" value={description} setValue={setDescription} labelAddendum="(up to 320 characters)" />
 
-				<Label pb={1} pt={3} display="block" htmlFor="authorName">Your Email</Label>
-				<Input onChange={e => setAuthorEmail(e.target.value)} required type="text" width={1} mb={3} name="authorEmail" value={authorEmail} />
+				<FormControl label="Event Website" type="text" id="linkURL" value={linkURL} setValue={setLinkURL} labelAddendum="(e.g.&nbsp;http://www.meetup.com/Chicago-Open-Coffee)" />
+
+				<FormControl label="Cost" type="text" id="cost" value={cost} setValue={setCost} labelAddendum="(if none, enter FREE)" />
+
+				<FormControl label="Start Date" type="custom" id="startDate">
+					<Div width={1} display="flex" flexWrap="wrap" mb={3}>
+						<Div width={1/2}>
+							<DatePicker selected={startDate} onChange={onStartDateChange}/>
+						</Div>
+						<Div width={[1,1/2]} pl={[0,2]}>
+							<Timepicker onChange={(time) => {setStartTime(time)}} id="startTime" defaultTime={startTime} />
+						</Div>
+					</Div>
+				</FormControl>
+
+				<FormControl label="End Date" type="custom" id="endDate">
+					<Div width={1} display="flex" flexWrap="wrap" mb={3}>
+						<Div width={1/2}>
+							<DatePicker selected={endDate} onChange={onEndDateChange}/>
+						</Div>
+						<Div width={[1,1/2]} pl={[0,2]}>
+							<Timepicker onChange={(time) => {setEndTime(time)}} id="endTime" defaultTime={endTime} />
+						</Div>
+					</Div>
+				</FormControl>
+				
+				<FormControl label="Location Name" type="text" id="locationName" value={locationName} setValue={setLocationName} labelAddendum="(No Webinar/Online events)" />
+				
+				<FormControl label="Street Address" type="text" id="locationStreet" value={locationStreet} setValue={setLocationStreet} labelAddendum="(short street name, e.g. 120 N State)" />
+				
+				<FormControl label="City" type="text" id="locationCity" value={locationCity} setValue={setLocationCity} labelAddendum="(must be in Chicagoland area)" />
+
+				<FormControl label="Your Name" type="text" id="authorName" value={authorName} setValue={setAuthorName} />
+				
+				<FormControl label="Your Email" type="email" id="authorEmail" value={authorEmail} setValue={setAuthorEmail} />
 				
 				<Div pt={4} pb={5} textAlign="right">
 					<InputSubmit value="Submit Event" />

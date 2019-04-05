@@ -6,7 +6,7 @@ startTime: "17:00"
 endDate: "2019-04-09"
 endTime: "19:00"
 locationName: Cool Spot
-locationAddress: 123 S Michigan
+locationStreet: 123 S Michigan
 locationCity: Chicago
 locationState: IL
 cost: FREE

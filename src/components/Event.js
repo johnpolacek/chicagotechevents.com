@@ -32,7 +32,7 @@ const Event = (props) => (
     />
     <P fontSize={0} mb={2} lineHeight="1.2">
       {props.locationName}<br/>
-      {props.locationAddress}<br/>
+      {props.locationStreet}<br/>
       {props.locationCity}, {props.locationState}<br/>
     </P>
     <P fontSize={0} mb={1}>Cost: {props.cost}</P>
@@ -48,7 +48,7 @@ Event.propTypes = {
   endDate: PropTypes.string,
   endTime: PropTypes.string,
   locationName: PropTypes.string.isRequired,
-  locationAddress: PropTypes.string.isRequired,
+  locationStreet: PropTypes.string.isRequired,
   locationCity: PropTypes.string.isRequired,
   locationState: PropTypes.string.isRequired,
   cost: PropTypes.string.isRequired,

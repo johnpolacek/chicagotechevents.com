@@ -6,7 +6,7 @@ startTime: "9:00"
 endDate: "2019-03-24"
 endTime: "19:00"
 locationName: Somewhere
-locationAddress: 123 E Grand
+locationStreet: 123 E Grand
 locationCity: Chicago
 locationState: IL
 cost: FREE

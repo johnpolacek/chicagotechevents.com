@@ -6,7 +6,7 @@ startTime: "14:00"
 endDate: "2019-03-23"
 endTime: "16:00"
 locationName: Someplace
-locationAddress: 123 N State
+locationStreet: 123 N State
 locationCity: Chicago
 locationState: IL
 cost: FREE

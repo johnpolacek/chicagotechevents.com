@@ -39,7 +39,7 @@ exports.handler = (event, context, callback) => {
   const date = new Date()
   const dateStr = date.toISOString().slice(0,-14)
   const title = 'New Event - '+body.eventName
-  const filename = dateStr+'-'+body.eventName.toLowerCase().split(' ').join('-');
+  const filename = dateStr+'-'+body.eventName.toLowerCase().split(' ').join('-')+'.md'
   const filepath = 'content/eventslist/'+filename
 
   const newContent = `
@@ -61,7 +61,7 @@ exports.handler = (event, context, callback) => {
 
     ${body.description}
 
-  `;
+  `
 
   octokit.createPullRequest({
     owner,

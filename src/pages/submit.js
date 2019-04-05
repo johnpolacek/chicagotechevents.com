@@ -5,12 +5,11 @@ import SEO from '../components/seo'
 import SubmitEventForm from '../components/SubmitEventForm'
 
 const onSubmit = (eventData) => {
-  console.log('onSubmit',eventData)
-  // saveEvent(eventData).then((response) => {
-  //   console.log('response', response)
-  // }).catch((e) => {
-  //   console.log('response err', e)
-  // })
+  saveEvent(eventData).then((response) => {
+    console.log('response', response)
+  }).catch((e) => {
+    console.log('response err', e)
+  })
 }
 
 const saveEvent = async event => {

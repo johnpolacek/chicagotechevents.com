@@ -21,9 +21,10 @@ class CalendarEventTemplate extends React.Component {
         />
         <Event {...{
           title:            node.frontmatter.title || node.fields.slug,
-          date:             node.frontmatter.date,
-          timestart:        node.frontmatter.timestart,
-          timeend:          node.frontmatter.timeend,
+          startDate:        node.frontmatter.startDate,
+          startTime:        node.frontmatter.startTime,
+          endDate:          node.frontmatter.endDate,
+          endTime:          node.frontmatter.endTime,
           locationName:     node.frontmatter.locationName,
           locationAddress:  node.frontmatter.locationAddress,
           locationCity:     node.frontmatter.locationCity,
@@ -80,10 +81,11 @@ export const pageQuery = graphql`
       excerpt(pruneLength: 480)
       html
       frontmatter {
-        date(formatString: "MMMM DD, YYYY")
         title
-        timestart
-        timeend
+        startDate(formatString: "MMMM DD, YYYY")
+        startTime
+        endDate(formatString: "MMMM DD, YYYY")
+        endTime
         locationName
         locationAddress
         locationCity

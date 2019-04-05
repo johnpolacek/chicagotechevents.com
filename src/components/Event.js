@@ -18,7 +18,13 @@ const Event = (props) => (
         <H2 color="base" fontSize={4} borderBottom="solid 1px" borderColor="gray2" mb={1}>{props.title}</H2>
       )
     }
-    <P color="gray7" fontStyle="italic" fontSize={0} mb={2}>{props.date}{props.timestart ? ' – '+toAmPm(props.timestart) : ''}{props.timeend && props.timeend ? ' to '+toAmPm(props.timeend) : ''}</P>
+    {
+      props.startDate !== props.endDate ? (
+        <P color="gray7" fontStyle="italic" fontSize={0} mb={2}>{props.startDate} {props.startTime ? 'at '+toAmPm(props.startTime) : ''} to {props.endDate} {props.endTime ? 'at '+toAmPm(props.endTime) : ''}</P>
+      ) : (
+        <P color="gray7" fontStyle="italic" fontSize={0} mb={2}>{props.startDate} {props.startTime ? ' – '+toAmPm(props.startTime) : ''}{props.endTime && props.endTime ? ' to '+toAmPm(props.endTime) : ''}</P>
+      )
+    }
     <P mb={3}
       dangerouslySetInnerHTML={{
         __html: props.content,
@@ -37,9 +43,10 @@ const Event = (props) => (
 Event.propTypes = {
   url: PropTypes.string,
   title: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
-  timestart: PropTypes.string,
-  timeend: PropTypes.string,
+  startDate: PropTypes.string.isRequired,
+  startTime: PropTypes.string,
+  endDate: PropTypes.string,
+  endTime: PropTypes.string,
   locationName: PropTypes.string.isRequired,
   locationAddress: PropTypes.string.isRequired,
   locationCity: PropTypes.string.isRequired,

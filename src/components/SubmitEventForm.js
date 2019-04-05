@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import { Div, H2, Form, Label, Input, TextArea, Span } from 'styled-system-html'
 import DatePicker from "react-datepicker"
 import 'react-datepicker/dist/react-datepicker.css'
@@ -24,11 +25,21 @@ const SubmitEventForm = (props) => {
 
 	const onSubmit = (e) => {
 		e.preventDefault()
-		saveEvent({eventName,description,linkURL,cost,startDate,startTime,endDate,endTime,locationName,locationStreet,locationCity,authorName,authorEmail}).then((response) => {
-	        console.log('response', response)
-	    }).catch((e) => {
-	        console.log('response err', e)
-	    })
+		props.onSubmit({
+			eventName,
+			description,
+			linkURL,
+			cost,
+			startDate,
+			startTime,
+			endDate,
+			endTime,
+			locationName,
+			locationStreet,
+			locationCity,
+			authorName,
+			authorEmail
+		})
 	}
 
 	const onStartDateChange = (date) => {
@@ -46,7 +57,7 @@ const SubmitEventForm = (props) => {
 				
 				<Label pb={1} display="block" htmlFor="eventName">Name of Event</Label>
 				<Input onChange={e => setEventName(e.target.value)} required type="text" width={1} mb={3} name="eventName" value={eventName} />
-				
+
 				<Label pb={1} pt={3} display="block" htmlFor="description">Event Description <Span fontSize={0}>(up to 320 characters)</Span></Label>
 				<TextArea onChange={e => setDescription(e.target.value)} required width={1} name="description" value={description} />
 				
@@ -100,17 +111,8 @@ const SubmitEventForm = (props) => {
 	)
 }
 
-
-async function saveEvent(event) {
-	console.log('save event', event)
-	return fetch(`/.netlify/functions/add-event/`, {
-		method: 'POST',
-		headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify(event),
-	}).then(response => {
-		console.log(response)
-		return response.json()
-	})
+SubmitEventForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 }
 
 export default SubmitEventForm

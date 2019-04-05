@@ -45,6 +45,7 @@ exports.handler = (event, context, callback) => {
   const newContent = `
     ---
     title: "${body.eventName}"
+    date: "${date.toISOString()}"
     startDate: "${body.startDate}"
     startTime: "${body.startTime}"
     endDate: "${body.endDate}"

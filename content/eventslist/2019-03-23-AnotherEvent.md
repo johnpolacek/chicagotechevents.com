@@ -1,8 +1,10 @@
 ---
-title: Another Event
-date: "2019-03-23"
-timestart: "18:00"
-timeend: "19:30"
+title: Two Day Event
+date: "2019-03-10T22:41:32.169Z"
+startDate: "2019-03-23"
+startTime: "9:00"
+endDate: "2019-03-24"
+endTime: "19:00"
 locationName: Somewhere
 locationAddress: 123 E Grand
 locationCity: Chicago

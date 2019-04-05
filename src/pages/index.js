@@ -15,7 +15,7 @@ class Index extends React.Component {
     const events = data.allMarkdownRemark.edges
     const eventsByMonth = {}
     events.forEach(({ node }) => {
-      const month = node.frontmatter.date.split(' ')[0]+' '+node.frontmatter.date.split(' ')[2]
+      const month = node.frontmatter.startDate.split(' ')[0]+' '+node.frontmatter.startDate.split(' ')[2]
       if (typeof(eventsByMonth[month]) === 'undefined') {
         eventsByMonth[month] = [{node}]
       } else {
@@ -39,9 +39,10 @@ class Index extends React.Component {
                     <Event {...{
                       url:              node.fields.slug,
                       title:            node.frontmatter.title || node.fields.slug,
-                      date:             node.frontmatter.date,
-                      timestart:        node.frontmatter.timestart,
-                      timeend:          node.frontmatter.timeend,
+                      startDate:        node.frontmatter.startDate,
+                      startTime:        node.frontmatter.startTime,
+                      endDate:          node.frontmatter.endDate,
+                      endTime:          node.frontmatter.endTime,
                       locationName:     node.frontmatter.locationName,
                       locationAddress:  node.frontmatter.locationAddress,
                       locationCity:     node.frontmatter.locationCity,
@@ -71,7 +72,7 @@ export const pageQuery = graphql`
         description
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: ASC }) {
+    allMarkdownRemark(sort: { fields: [frontmatter___startDate], order: ASC }) {
       edges {
         node {
           excerpt
@@ -79,10 +80,11 @@ export const pageQuery = graphql`
             slug
           }
           frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            timestart
-            timeend
             title
+            startDate(formatString: "MMMM DD, YYYY")
+            startTime
+            endDate(formatString: "MMMM DD, YYYY")
+            endTime
             locationName
             locationAddress
             locationCity

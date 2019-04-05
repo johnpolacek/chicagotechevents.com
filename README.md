@@ -1,3 +1,16 @@
+## WIP
+
+- Restructure README to do front end first with the submit form
+- Create FormControl component
+- Test the form submit - [see here](https://medium.com/front-end-weekly/tested-react-build-and-test-a-form-using-react-context-81870af6a9ac)
+- Auto set end date to same as start date
+- Create and test a markdown generator util function [see here](https://blog.benestudio.co/why-should-we-separate-the-utility-functions-bc4eea28022f)
+- Paginate
+- Old events should be on separate page
+
+
+----
+
 # chicagotechevents.com
 
 Forked from the [Gatsby Events List Starter](https://github.com/johnpolacek/gatsby-starter-events-list).
@@ -25,6 +38,189 @@ Reject or approve, what does that sound like? I’ll give you a hint—our start
 We are going to deploy and host our site on [Netlify](https://www.netlify.com/) and with [Netlify Functions](https://www.netlify.com/docs/functions/), we can create a Lambda endpoint that can issue a pull request to our project’s Github repository.
 
 First, sign up for a Netlify Account and link it to your Github account. Add a new Github repo for the events list, and create a new Netlify site from the repo.
+
+Add a new route with a basic page for submitting new events.
+
+*/src/pages/submit.js*
+
+~~~~
+import React from 'react'
+import { graphql } from 'gatsby'
+import Layout from '../components/Layout'
+import SEO from '../components/seo'
+import SubmitEventForm from '../components/SubmitEventForm'
+
+class Submit extends React.Component {
+  render() {
+    const { data } = this.props
+    const siteTitle = data.site.siteMetadata.title
+    const siteDescription = data.site.siteMetadata.description
+    return (
+      <Layout location={this.props.location} title={siteTitle} description={siteDescription}>
+        <SEO
+          title="Submit New Event"
+          keywords={[`events`, `calendar`, `gatsby`, `javascript`, `react`]}
+        />
+        <SubmitEventForm />
+      </Layout>
+    )
+  }
+}
+
+export default Submit
+
+export const pageQuery = graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+        description
+      }
+    }
+  }
+`
+~~~~
+
+There isn’t too much going on with this page. Most of our work here is done within a `SubmitEventForm` component that we will now create.
+
+In this form, we will have all the fields necessary for generating a new markdown file that will be submitted in a pull request to be reviewed to get added to the site.
+
+On submit, we will...
+
+
+
+
+
+
+
+
+
+
+
+*/src/components/SubmitEventForm.js*
+
+~~~~
+import React, { useState } from 'react'
+import { Div, H2, Form, Label, Input, TextArea, Span } from 'styled-system-html'
+import DatePicker from "react-datepicker"
+import 'react-datepicker/dist/react-datepicker.css'
+import Timepicker from './Timepicker'
+import InputSubmit from './InputSubmit'
+
+
+const SubmitEventForm = (props) => {
+
+	const [eventName, setEventName] = useState('')
+	const [description, setDescription] = useState('')
+	const [linkURL, setLinkURL] = useState('')
+	const [cost, setCost] = useState('')
+	const [startDate, setStartDate] = useState(null)
+	const [startTime, setStartTime] = useState('5:00pm')
+	const [endDate, setEndDate] = useState(null)
+	const [endTime, setEndTime] = useState('7:00pm')
+	const [locationName, setLocationName] = useState('')
+	const [locationStreet, setLocationStreet] = useState('')
+	const [locationCity, setLocationCity] = useState('Chicago')
+	const [authorName, setAuthorName] = useState('')
+	const [authorEmail, setAuthorEmail] = useState('')
+
+	const onSubmit = (e) => {
+		e.preventDefault()
+		saveEvent({eventName,description,linkURL,cost,startDate,startTime,endDate,endTime,locationName,locationStreet,locationCity,authorName,authorEmail}).then((response) => {
+	        console.log('response', response)
+	    }).catch((e) => {
+	        console.log('response err', e)
+	    })
+	}
+
+	const onStartDateChange = (date) => {
+		setStartDate(date)
+	}
+
+	const onEndDateChange = (date) => {
+		setEndDate(date)
+	}
+
+	return (
+		<>
+			<H2 fontSize={4} pb={4} fontWeight="bold" textAlign="center">Submit an Event</H2>
+			<Form width={[1,360]} mx="auto" onSubmit={onSubmit}>
+				
+				<Label pb={1} display="block" htmlFor="eventName">Name of Event</Label>
+				<Input onChange={e => setEventName(e.target.value)} required type="text" width={1} mb={3} name="eventName" value={eventName} />
+				
+				<Label pb={1} pt={3} display="block" htmlFor="description">Event Description <Span fontSize={0}>(up to 320 characters)</Span></Label>
+				<TextArea onChange={e => setDescription(e.target.value)} required width={1} name="description" value={description} />
+				
+				<Label pb={1} pt={3} display="block" htmlFor="linkURL">Event Website <br/><Span fontSize={0}>(e.g. http://www.meetup.com/Chicago-Open-Coffee)</Span></Label>
+				<Input onChange={e => setLinkURL(e.target.value)} required type="text" width={1} mb={3} name="linkURL" value={linkURL} />
+				
+				<Label pb={1} pt={3} display="block" htmlFor="cost">Cost <Span fontSize={0}>(if none, enter FREE)</Span></Label>
+				<Input onChange={e => setCost(e.target.value)} required type="text" width={1} mb={3} name="cost" value={cost} />
+				
+				<Label pb={1} pt={3} display="block" htmlFor="startDate">Start Date</Label>
+				<Div width={1} display="flex" flexWrap="wrap" mb={3}>
+					<Div width={1/2}>
+						<DatePicker selected={startDate} onChange={onStartDateChange}/>
+					</Div>
+					<Div width={[1,1/2]} pl={[0,2]}>
+						<Timepicker onChange={(time) => {setStartTime(time)}} id="startTime" defaultTime={startTime} />
+					</Div>
+				</Div>
+				
+				<Label pb={1} pt={3} display="block" htmlFor="endDate">End Date</Label>
+				<Div width={1} display="flex" flexWrap="wrap" mb={3}>
+					<Div width={1/2}>
+						<DatePicker selected={endDate} onChange={onEndDateChange}/>
+					</Div>
+					<Div width={[1,1/2]} pl={[0,2]}>
+						<Timepicker onChange={(time) => {setEndTime(time)}} id="endTime" defaultTime={endTime} />
+					</Div>
+				</Div>
+				
+				<Label pb={1} pt={3} display="block" htmlFor="locationName">Location Name <Span fontSize={0}>(No Webinar/Online events)</Span></Label>
+				<Input onChange={e => setLocationName(e.target.value)} required type="text" width={1} mb={3} name="locationName" value={locationName} />
+				
+				<Label pb={1} pt={3} display="block" htmlFor="locationStreet">Street Address <Span fontSize={0}>(short street name, e.g. 120 N State)</Span></Label>
+				<Input onChange={e => setLocationStreet(e.target.value)} required type="text" width={1} mb={3} name="locationStreet" value={locationStreet} />
+				
+				<Label pb={1} pt={3} display="block" htmlFor="locationCity">City <Span fontSize={0}>(must be in Chicagoland area)</Span></Label>
+				<Input onChange={e => setLocationCity(e.target.value)} required type="text" width={1} mb={3} name="locationStreet" value={locationCity} />
+
+				<Label pb={1} pt={3} display="block" htmlFor="authorName">Your Name</Label>
+				<Input onChange={e => setAuthorName(e.target.value)} required type="text" width={1} mb={3} name="authorName" value={authorName} />
+
+				<Label pb={1} pt={3} display="block" htmlFor="authorName">Your Email</Label>
+				<Input onChange={e => setAuthorEmail(e.target.value)} required type="text" width={1} mb={3} name="authorEmail" value={authorEmail} />
+				
+				<Div pt={4} pb={5} textAlign="right">
+					<InputSubmit value="Submit Event" />
+				</Div>
+
+			</Form>
+		</>
+	)
+}
+
+
+async function saveEvent(event) {
+	console.log('save event', event)
+	return fetch(`/.netlify/functions/add-event/`, {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(event),
+	}).then(response => {
+		console.log(response)
+		return response.json()
+	})
+}
+
+export default SubmitEventForm
+
+~~~~
+
+
+
 
 Next, sign up for a [Github Developer account](https://developer.github.com/) to get access to their API. 
 

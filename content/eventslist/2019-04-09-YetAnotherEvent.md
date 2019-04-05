@@ -1,8 +1,10 @@
 ---
 title: Really Really Superlong Event Name That Does Not Fit Good
-date: "2019-04-09"
-timestart: "17:00"
-timeend: "19:00"
+date: "2019-03-10T22:40:32.169Z"
+startDate: "2019-04-09"
+startTime: "17:00"
+endDate: "2019-04-09"
+endTime: "19:00"
 locationName: Cool Spot
 locationAddress: 123 S Michigan
 locationCity: Chicago

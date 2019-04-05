@@ -1,8 +1,10 @@
 ---
 title: Some Event
-date: "2019-03-23T22:40:32.169Z"
-timestart: "14:00"
-timeend: "16:00"
+date: "2019-03-10T23:40:32.169Z"
+startDate: "2019-03-23"
+startTime: "14:00"
+endDate: "2019-03-23"
+endTime: "16:00"
 locationName: Someplace
 locationAddress: 123 N State
 locationCity: Chicago

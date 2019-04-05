@@ -55,8 +55,7 @@ exports.handler = (event, context, callback) => {
     locationCity: "${body.locationCity}"
     cost: "${body.cost}"
     eventUrl: "${body.linkURL}"
-    authorName: "${body.authorName}"
-    authorEmail: "${body.authorEmail}"
+    
     ---
 
     ${body.description}
@@ -67,7 +66,7 @@ exports.handler = (event, context, callback) => {
     owner,
     repo,
     title: title,
-    body: 'New event listing request - '+filename,
+    body: 'New event listing request - '+filename+' - via '+body.authorName+' <'+(body.authorEmail.replace('@','[at]'))+'>',
     base: 'master',
     head: `pull-request-branch-name-${date.getTime()}`,
     changes: {

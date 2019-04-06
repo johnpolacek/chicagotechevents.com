@@ -1,7 +1,6 @@
 ## WIP
 
 - Restructure README to do front end first with the submit form
-- Create FormControl component
 - Test the form submit - [see here](https://medium.com/front-end-weekly/tested-react-build-and-test-a-form-using-react-context-81870af6a9ac)
 - Auto set end date to same as start date
 - Create and test a markdown generator util function [see here](https://blog.benestudio.co/why-should-we-separate-the-utility-functions-bc4eea28022f)
@@ -87,15 +86,102 @@ Now we need to create `SubmitEventForm` with all the fields necessary for genera
 
 We will create React Hooks for all the data we are collecting from the form. To collect the date and time data, we are using [React Datepicker](https://reactdatepicker.com) and a custom [Timepicker component](https://github.com/johnpolacek/chicagotechevents.com/blob/master/src/components/Timepicker.js).
 
+First, let’s make some components for the form controls.
+
+A `FormControl` component will be our base component for our form inputs and labels. We can make sure that all our controls have the same layout and share the same properties.
+
+*src/components/FormControl.js*
+
+~~~~
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Div, Label, Input, TextArea, Span } from 'styled-system-html'
+
+const getFormControl = (type) => {
+	if (type === 'email') {
+		return 'TEXT'
+	} else {
+		return type.toUpperCase()
+	}
+}
+
+const FormControl = (props) => (
+	<Div pb={2}>
+		<Label pb={1} display="block" htmlFor={props.id}>{props.label}{props.labelAddendum ? <Span fontSize={0} pl={1}> {props.labelAddendum}</Span> : ''}</Label>
+		<>
+          {{
+            TEXT: <Input type={props.type} name={props.id} onChange={e => props.setValue(e.target.value)} required width={1} mb={3} value={props.value} />,
+            TEXTAREA: <TextArea name={props.id} onChange={e => props.setValue(e.target.value)} required width={1} mb={3} value={props.value} />,
+            CUSTOM: <>{props.children}</>
+          }[getFormControl(props.type)] }
+        </>
+		
+	</Div>
+)
+
+FormControl.propTypes = {
+  id: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  labelAddendum: PropTypes.string,
+  value: PropTypes.string,
+  setValue: PropTypes.func
+}
+
+export default FormControl
+~~~~
+
+We have a special form control component for capturing event dates and times.
+
+*src/components/FormControlDateTime.js*
+
+~~~~
+import React from 'react'
+import PropTypes from 'prop-types'
+import DatePicker from "react-datepicker"
+import Timepicker from './Timepicker'
+import { Div } from 'styled-system-html'
+import FormControl from './FormControl.js'
+
+const FormControlDateTime = (props) => (
+	<FormControl label={props.label} type="custom" id={props.id} labelAddendum={props.labelAddendum}>
+		<Div width={1} display="flex" flexWrap="wrap" mb={3}>
+			<Div width={1/2}>
+				<DatePicker selected={props.dateValue} onChange={props.onDateChange}/>
+			</Div>
+			<Div width={[1,1/2]} pl={[0,2]}>
+				<Timepicker id={props.id} defaultTime={props.timeValue} onChange={props.onTimeChange} />
+			</Div>
+		</Div>
+	</FormControl>
+)
+
+FormControlDateTime.propTypes = {
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  labelAddendum: PropTypes.string,
+  dateValue: PropTypes.instanceOf(Date),
+  onDateChange: PropTypes.func.isRequired,
+  timeValue: PropTypes.string,
+  onTimeChange: PropTypes.func.isRequired
+}
+
+export default FormControlDateTime
+~~~~
+
+Now we can use these components to build our submit event form.
+
 *src/components/SubmitEventForm.js*
 
 ~~~~
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { Div, H2, Form, Label, Input, TextArea, Span } from 'styled-system-html'
+import { Div, H2, Form } from 'styled-system-html'
 import DatePicker from "react-datepicker"
-import 'react-datepicker/dist/react-datepicker.css'
 import Timepicker from './Timepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+import FormControl from './FormControl'
+import FormControlDateTime from './FormControlDateTime'
 import InputSubmit from './InputSubmit'
 
 
@@ -136,6 +222,9 @@ const SubmitEventForm = (props) => {
 
 	const onStartDateChange = (date) => {
 		setStartDate(date)
+		if (!endDate) {
+			setEndDate(date)
+		}
 	}
 
 	const onEndDateChange = (date) => {
@@ -145,54 +234,22 @@ const SubmitEventForm = (props) => {
 	return (
 		<>
 			<H2 fontSize={4} pb={4} fontWeight="bold" textAlign="center">Submit an Event</H2>
+			
 			<Form width={[1,360]} mx="auto" onSubmit={onSubmit}>
 				
-				<Label pb={1} display="block" htmlFor="eventName">Name of Event</Label>
-				<Input onChange={e => setEventName(e.target.value)} required type="text" width={1} mb={3} name="eventName" value={eventName} />
-
-				<Label pb={1} pt={3} display="block" htmlFor="description">Event Description <Span fontSize={0}>(up to 320 characters)</Span></Label>
-				<TextArea onChange={e => setDescription(e.target.value)} required width={1} name="description" value={description} />
+				<FormControl label="Name of Event" type="text" id="eventName" value={eventName} setValue={setEventName} />
+				<FormControl label="Event Description" type="textarea" id="description" value={description} setValue={setDescription} labelAddendum="(up to 320 characters)" />
+				<FormControl label="Event Website" type="text" id="linkURL" value={linkURL} setValue={setLinkURL} labelAddendum="(e.g.&nbsp;http://www.meetup.com/Chicago-Open-Coffee)" />
+				<FormControl label="Cost" type="text" id="cost" value={cost} setValue={setCost} labelAddendum="(if none, enter FREE)" />
 				
-				<Label pb={1} pt={3} display="block" htmlFor="linkURL">Event Website <br/><Span fontSize={0}>(e.g. http://www.meetup.com/Chicago-Open-Coffee)</Span></Label>
-				<Input onChange={e => setLinkURL(e.target.value)} required type="text" width={1} mb={3} name="linkURL" value={linkURL} />
+				<FormControlDateTime label="Start Date" id="startDate" onDateChange={onStartDateChange} dateValue={startDate} onTimeChange={(time) => {setStartTime(time)}} timeValue={startTime} />
+				<FormControlDateTime label="End Date" id="endDate" onDateChange={onEndDateChange} dateValue={endDate} onTimeChange={(time) => {setEndTime(time)}} timeValue={endTime} />
 				
-				<Label pb={1} pt={3} display="block" htmlFor="cost">Cost <Span fontSize={0}>(if none, enter FREE)</Span></Label>
-				<Input onChange={e => setCost(e.target.value)} required type="text" width={1} mb={3} name="cost" value={cost} />
-				
-				<Label pb={1} pt={3} display="block" htmlFor="startDate">Start Date</Label>
-				<Div width={1} display="flex" flexWrap="wrap" mb={3}>
-					<Div width={1/2}>
-						<DatePicker selected={startDate} onChange={onStartDateChange}/>
-					</Div>
-					<Div width={[1,1/2]} pl={[0,2]}>
-						<Timepicker onChange={(time) => {setStartTime(time)}} id="startTime" defaultTime={startTime} />
-					</Div>
-				</Div>
-				
-				<Label pb={1} pt={3} display="block" htmlFor="endDate">End Date</Label>
-				<Div width={1} display="flex" flexWrap="wrap" mb={3}>
-					<Div width={1/2}>
-						<DatePicker selected={endDate} onChange={onEndDateChange}/>
-					</Div>
-					<Div width={[1,1/2]} pl={[0,2]}>
-						<Timepicker onChange={(time) => {setEndTime(time)}} id="endTime" defaultTime={endTime} />
-					</Div>
-				</Div>
-				
-				<Label pb={1} pt={3} display="block" htmlFor="locationName">Location Name <Span fontSize={0}>(No Webinar/Online events)</Span></Label>
-				<Input onChange={e => setLocationName(e.target.value)} required type="text" width={1} mb={3} name="locationName" value={locationName} />
-				
-				<Label pb={1} pt={3} display="block" htmlFor="locationStreet">Street Address <Span fontSize={0}>(short street name, e.g. 120 N State)</Span></Label>
-				<Input onChange={e => setLocationStreet(e.target.value)} required type="text" width={1} mb={3} name="locationStreet" value={locationStreet} />
-				
-				<Label pb={1} pt={3} display="block" htmlFor="locationCity">City <Span fontSize={0}>(must be in Chicagoland area)</Span></Label>
-				<Input onChange={e => setLocationCity(e.target.value)} required type="text" width={1} mb={3} name="locationStreet" value={locationCity} />
-
-				<Label pb={1} pt={3} display="block" htmlFor="authorName">Your Name</Label>
-				<Input onChange={e => setAuthorName(e.target.value)} required type="text" width={1} mb={3} name="authorName" value={authorName} />
-
-				<Label pb={1} pt={3} display="block" htmlFor="authorName">Your Email</Label>
-				<Input onChange={e => setAuthorEmail(e.target.value)} required type="text" width={1} mb={3} name="authorEmail" value={authorEmail} />
+				<FormControl label="Location Name" type="text" id="locationName" value={locationName} setValue={setLocationName} labelAddendum="(No Webinar/Online events)" />
+				<FormControl label="Street Address" type="text" id="locationStreet" value={locationStreet} setValue={setLocationStreet} labelAddendum="(short street name, e.g. 120 N State)" />
+				<FormControl label="City" type="text" id="locationCity" value={locationCity} setValue={setLocationCity} labelAddendum="(must be in Chicagoland area)" />
+				<FormControl label="Your Name" type="text" id="authorName" value={authorName} setValue={setAuthorName} />
+				<FormControl label="Your Email" type="email" id="authorEmail" value={authorEmail} setValue={setAuthorEmail} />
 				
 				<Div pt={4} pb={5} textAlign="right">
 					<InputSubmit value="Submit Event" />
@@ -208,9 +265,9 @@ SubmitEventForm.propTypes = {
 }
 
 export default SubmitEventForm
-
 ~~~~
 
+Now we can visit our submit event page and test out our form and see the data logged to the console. Next up, we can add tests to make sure that that when people submit their events everything works as expected.
 
 
 
@@ -220,128 +277,6 @@ export default SubmitEventForm
 
 
 
-
-*/src/components/SubmitEventForm.js*
-
-~~~~
-import React, { useState } from 'react'
-import { Div, H2, Form, Label, Input, TextArea, Span } from 'styled-system-html'
-import DatePicker from "react-datepicker"
-import 'react-datepicker/dist/react-datepicker.css'
-import Timepicker from './Timepicker'
-import InputSubmit from './InputSubmit'
-
-
-const SubmitEventForm = (props) => {
-
-	const [eventName, setEventName] = useState('')
-	const [description, setDescription] = useState('')
-	const [linkURL, setLinkURL] = useState('')
-	const [cost, setCost] = useState('')
-	const [startDate, setStartDate] = useState(null)
-	const [startTime, setStartTime] = useState('5:00pm')
-	const [endDate, setEndDate] = useState(null)
-	const [endTime, setEndTime] = useState('7:00pm')
-	const [locationName, setLocationName] = useState('')
-	const [locationStreet, setLocationStreet] = useState('')
-	const [locationCity, setLocationCity] = useState('Chicago')
-	const [authorName, setAuthorName] = useState('')
-	const [authorEmail, setAuthorEmail] = useState('')
-
-	const onSubmit = (e) => {
-		e.preventDefault()
-		saveEvent({eventName,description,linkURL,cost,startDate,startTime,endDate,endTime,locationName,locationStreet,locationCity,authorName,authorEmail}).then((response) => {
-	        console.log('response', response)
-	    }).catch((e) => {
-	        console.log('response err', e)
-	    })
-	}
-
-	const onStartDateChange = (date) => {
-		setStartDate(date)
-	}
-
-	const onEndDateChange = (date) => {
-		setEndDate(date)
-	}
-
-	return (
-		<>
-			<H2 fontSize={4} pb={4} fontWeight="bold" textAlign="center">Submit an Event</H2>
-			<Form width={[1,360]} mx="auto" onSubmit={onSubmit}>
-				
-				<Label pb={1} display="block" htmlFor="eventName">Name of Event</Label>
-				<Input onChange={e => setEventName(e.target.value)} required type="text" width={1} mb={3} name="eventName" value={eventName} />
-				
-				<Label pb={1} pt={3} display="block" htmlFor="description">Event Description <Span fontSize={0}>(up to 320 characters)</Span></Label>
-				<TextArea onChange={e => setDescription(e.target.value)} required width={1} name="description" value={description} />
-				
-				<Label pb={1} pt={3} display="block" htmlFor="linkURL">Event Website <br/><Span fontSize={0}>(e.g. http://www.meetup.com/Chicago-Open-Coffee)</Span></Label>
-				<Input onChange={e => setLinkURL(e.target.value)} required type="text" width={1} mb={3} name="linkURL" value={linkURL} />
-				
-				<Label pb={1} pt={3} display="block" htmlFor="cost">Cost <Span fontSize={0}>(if none, enter FREE)</Span></Label>
-				<Input onChange={e => setCost(e.target.value)} required type="text" width={1} mb={3} name="cost" value={cost} />
-				
-				<Label pb={1} pt={3} display="block" htmlFor="startDate">Start Date</Label>
-				<Div width={1} display="flex" flexWrap="wrap" mb={3}>
-					<Div width={1/2}>
-						<DatePicker selected={startDate} onChange={onStartDateChange}/>
-					</Div>
-					<Div width={[1,1/2]} pl={[0,2]}>
-						<Timepicker onChange={(time) => {setStartTime(time)}} id="startTime" defaultTime={startTime} />
-					</Div>
-				</Div>
-				
-				<Label pb={1} pt={3} display="block" htmlFor="endDate">End Date</Label>
-				<Div width={1} display="flex" flexWrap="wrap" mb={3}>
-					<Div width={1/2}>
-						<DatePicker selected={endDate} onChange={onEndDateChange}/>
-					</Div>
-					<Div width={[1,1/2]} pl={[0,2]}>
-						<Timepicker onChange={(time) => {setEndTime(time)}} id="endTime" defaultTime={endTime} />
-					</Div>
-				</Div>
-				
-				<Label pb={1} pt={3} display="block" htmlFor="locationName">Location Name <Span fontSize={0}>(No Webinar/Online events)</Span></Label>
-				<Input onChange={e => setLocationName(e.target.value)} required type="text" width={1} mb={3} name="locationName" value={locationName} />
-				
-				<Label pb={1} pt={3} display="block" htmlFor="locationStreet">Street Address <Span fontSize={0}>(short street name, e.g. 120 N State)</Span></Label>
-				<Input onChange={e => setLocationStreet(e.target.value)} required type="text" width={1} mb={3} name="locationStreet" value={locationStreet} />
-				
-				<Label pb={1} pt={3} display="block" htmlFor="locationCity">City <Span fontSize={0}>(must be in Chicagoland area)</Span></Label>
-				<Input onChange={e => setLocationCity(e.target.value)} required type="text" width={1} mb={3} name="locationStreet" value={locationCity} />
-
-				<Label pb={1} pt={3} display="block" htmlFor="authorName">Your Name</Label>
-				<Input onChange={e => setAuthorName(e.target.value)} required type="text" width={1} mb={3} name="authorName" value={authorName} />
-
-				<Label pb={1} pt={3} display="block" htmlFor="authorName">Your Email</Label>
-				<Input onChange={e => setAuthorEmail(e.target.value)} required type="text" width={1} mb={3} name="authorEmail" value={authorEmail} />
-				
-				<Div pt={4} pb={5} textAlign="right">
-					<InputSubmit value="Submit Event" />
-				</Div>
-
-			</Form>
-		</>
-	)
-}
-
-
-async function saveEvent(event) {
-	console.log('save event', event)
-	return fetch(`/.netlify/functions/add-event/`, {
-		method: 'POST',
-		headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify(event),
-	}).then(response => {
-		console.log(response)
-		return response.json()
-	})
-}
-
-export default SubmitEventForm
-
-~~~~
 
 
 

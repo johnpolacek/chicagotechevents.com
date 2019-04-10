@@ -27,21 +27,26 @@ const SubmitEventForm = (props) => {
 
 	const onSubmit = (e) => {
 		e.preventDefault()
-		props.onSubmit({
-			eventName,
-			description,
-			linkURL,
-			cost,
-			startDate,
-			startTime,
-			endDate,
-			endTime,
-			locationName,
-			locationStreet,
-			locationCity,
-			authorName,
-			authorEmail
-		})
+		if (e.target.checkValidity()) {
+			props.onSubmit({
+				eventName,
+				description,
+				linkURL,
+				cost,
+				startDate,
+				startTime,
+				endDate,
+				endTime,
+				locationName,
+				locationStreet,
+				locationCity,
+				authorName,
+				authorEmail
+			})
+		} else {
+			return 'Form not valid'
+		}
+		
 	}
 
 	const onStartDateChange = (date) => {

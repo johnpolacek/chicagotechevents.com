@@ -1,8 +1,6 @@
 ## WIP
 
-- Restructure README to do front end first with the submit form
-- Test the form submit - [see here](https://medium.com/front-end-weekly/tested-react-build-and-test-a-form-using-react-context-81870af6a9ac)
-- Auto set end date to same as start date
+- Write tests for required fields
 - Create and test a markdown generator util function [see here](https://blog.benestudio.co/why-should-we-separate-the-utility-functions-bc4eea28022f)
 - Paginate
 - Old events should be on separate page
@@ -267,9 +265,161 @@ SubmitEventForm.propTypes = {
 export default SubmitEventForm
 ~~~~
 
-Now we can visit our submit event page and test out our form and see the data logged to the console. Next up, we can add tests to make sure that that when people submit their events everything works as expected.
+Now we can visit our submit event page and test out our form and see the data logged to the console. Before proceeding any further, we can add tests to make sure that that when people submit their events everything works as expected.
 
+We will follow the steps from [Gatsby Docs on Unit Testing](https://www.gatsbyjs.org/docs/unit-testing/) - be sure to read them to get more details on the setup.
 
+~~~~
+npm install --save-dev jest babel-jest react-test-renderer babel-preset-gatsby identity-obj-proxy
+~~~~
+
+We need to create some config files in our project root.
+
+*jest.config.js*
+
+~~~~
+module.exports = {
+  transform: {
+    "^.+\\.jsx?$": `<rootDir>/jest-preprocess.js`,
+  },
+  moduleNameMapper: {
+    ".+\\.(css|styl|less|sass|scss)$": `identity-obj-proxy`,
+    ".+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": `<rootDir>/__mocks__/file-mock.js`,
+  },
+  testPathIgnorePatterns: [`node_modules`, `.cache`],
+  transformIgnorePatterns: [`node_modules/(?!(gatsby)/)`],
+  globals: {
+    __PATH_PREFIX__: ``,
+  },
+  testURL: `http://localhost`,
+  setupFiles: [`<rootDir>/loadershim.js`],
+}
+~~~~
+
+*jest-preprocess.js*
+
+~~~~
+const babelOptions = {
+  presets: ["babel-preset-gatsby"],
+}
+
+module.exports = require("babel-jest").createTransformer(babelOptions)
+~~~~
+
+*loadershim.js*
+
+~~~~
+global.___loader = {
+  enqueue: jest.fn(),
+}
+~~~~
+
+Then we’ll add a test runner script to our `package.json` and a jest configuration so that it can handle css files imported (in this case, by our datepicker component).
+
+~~~~
+"scripts": {
+    ...
+    "test": "jest src/components"
+  }
+~~~~
+
+Now we are ready to write the test for our submit event form component. We will be testing the data formatting of a valid form submission and that the form will not submit when there is invalid or missing data.
+
+*SubmitEventForm.test.js*
+
+~~~~
+import React from 'react'
+import ReactDOM from 'react-dom'
+import TestUtils from 'react-dom/test-utils'
+import SubmitEventForm from './SubmitEventForm'
+
+const getTestEventDate = () => {
+	const now = new Date();
+	if (now.getMonth() == 11) {
+	    return new Date(now.getFullYear() + 1, 0, 1);
+	} else {
+	    return new Date(now.getFullYear(), now.getMonth() + 1, 1);
+	}
+}
+
+const validFormData = {
+	eventName: 'Test Event',
+	description: 'This is not a real event. It is just for testing',
+	linkURL: 'https://eventbrite.com/test-event',
+	cost: 'FREE',
+	locationName: '1871 Chicago',
+	locationStreet: '222 W Merchandise Mart Plaza #1212',
+	authorName: 'Joe Tester',
+	authorEmail: 'joe@test.com',
+	startDate: getTestEventDate(),
+	startTime: '5:00pm',
+	endDate: getTestEventDate(),
+	endTime: '7:00pm'
+}
+
+const enterFormData = (wrapper, formData) => {
+	// Enter values
+	TestUtils.Simulate.change(wrapper.querySelector('input[name=eventName]'), { target: { value: formData.eventName } })
+	TestUtils.Simulate.change(wrapper.querySelector('textarea[name=description]'), { target: { value: formData.description } })
+	TestUtils.Simulate.change(wrapper.querySelector('input[name=linkURL]'), { target: { value: formData.linkURL } })
+	TestUtils.Simulate.change(wrapper.querySelector('input[name=cost]'), { target: { value: formData.cost } })
+	TestUtils.Simulate.change(wrapper.querySelector('input[name=locationName]'), { target: { value: formData.locationName } })
+	TestUtils.Simulate.change(wrapper.querySelector('input[name=locationStreet]'), { target: { value: formData.locationStreet } })
+	TestUtils.Simulate.change(wrapper.querySelector('input[name=authorName]'), { target: { value: formData.authorName } })
+	TestUtils.Simulate.change(wrapper.querySelector('input[name=authorEmail]'), { target: { value: formData.authorEmail } })
+
+	// select date
+	TestUtils.Simulate.click(wrapper.querySelector('#datepicker-startDate input'))
+	TestUtils.Simulate.click(wrapper.querySelector('button.react-datepicker__navigation--next'))
+	TestUtils.Simulate.click(wrapper.querySelector('.react-datepicker__day--001'))
+}
+
+const validateFormSubmit = (results, formData) => {
+	expect(results.eventName).toEqual(formData.eventName)
+	expect(results.description).toEqual(formData.description)
+	expect(results.linkURL).toEqual(formData.linkURL)
+	expect(results.cost).toEqual(formData.cost)
+	expect(results.locationName).toEqual(formData.locationName)
+	expect(results.locationStreet).toEqual(formData.locationStreet)
+	expect(results.authorName).toEqual(formData.authorName)
+	expect(results.authorEmail).toEqual(formData.authorEmail)
+	expect(results.startDate).toEqual(formData.startDate)
+	expect(results.startTime).toEqual(formData.startTime)
+	expect(results.startDate).toEqual(formData.endDate)
+	expect(results.endTime).toEqual(formData.endTime)
+}
+
+it('submits event data', () => {
+	const wrapper = document.createElement('div')
+	const onSubmitFn = jest.fn(data => data)
+	ReactDOM.render(
+		<SubmitEventForm onSubmit={onSubmitFn} />,
+		wrapper
+	)
+
+	enterFormData(wrapper, validFormData)
+	TestUtils.Simulate.submit(wrapper.querySelector('form'))
+	
+	expect(onSubmitFn).toHaveBeenCalledTimes(1)
+	validateFormSubmit(onSubmitFn.mock.results[0].value, validFormData)
+	
+})
+
+it('requires a valid email', () => {
+	const wrapper = document.createElement('div')
+	const onSubmitFn = jest.fn(data => data)
+	ReactDOM.render(
+		<SubmitEventForm onSubmit={onSubmitFn} />,
+		wrapper
+	)
+
+	const formDataWithInvalidEmail = {...validFormData, authorEmail: 'joe'}
+
+	enterFormData(wrapper, formDataWithInvalidEmail)
+	TestUtils.Simulate.submit(wrapper.querySelector('form'))
+	
+})
+~~~~
 
 
 

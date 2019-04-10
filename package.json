@@ -32,7 +32,12 @@
     "styled-system-html": "^2.0.8"
   },
   "devDependencies": {
-    "prettier": "^1.16.4"
+    "babel-jest": "^24.7.1",
+    "babel-preset-gatsby": "^0.1.11",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^24.7.1",
+    "prettier": "^1.16.4",
+    "react-test-renderer": "^16.8.6"
   },
   "homepage": "https://github.com/johnpolacek/chicagotechevents.com#readme",
   "keywords": [
@@ -54,6 +59,7 @@
     "makedir": "rm -rf functions-build && mkdir functions-build",
     "zip": "cd functions/add-event && npm install && zip -r add-event.zip *",
     "postzip": "mv functions/add-event/add-event.zip functions-build",
-    "prebuild": "npm run makedir && npm run zip"
+    "prebuild": "npm run makedir && npm run zip",
+    "test": "jest src/components"
   }
 }

@@ -38,10 +38,15 @@ const enterFormData = (wrapper, formData) => {
 	TestUtils.Simulate.change(wrapper.querySelector('input[name=authorName]'), { target: { value: formData.authorName } })
 	TestUtils.Simulate.change(wrapper.querySelector('input[name=authorEmail]'), { target: { value: formData.authorEmail } })
 
-	// select date
-	TestUtils.Simulate.click(wrapper.querySelector('#datepicker-startDate input'))
-	TestUtils.Simulate.click(wrapper.querySelector('button.react-datepicker__navigation--next'))
-	TestUtils.Simulate.click(wrapper.querySelector('.react-datepicker__day--001'))
+	// select date if provided
+	if (formData.startDate !== '' && formData.EndDate !== '') {
+		TestUtils.Simulate.click(wrapper.querySelector('#datepicker-startDate'))
+		TestUtils.Simulate.click(wrapper.querySelector('button.react-datepicker__navigation--next'))
+		TestUtils.Simulate.click(wrapper.querySelector('.react-datepicker__day--001'))
+	} else {
+		TestUtils.Simulate.change(wrapper.querySelector('#datepicker-startDate'), { target: { value: '' } })
+		TestUtils.Simulate.change(wrapper.querySelector('#datepicker-endDate'), { target: { value: '' } })
+	}
 }
 
 const validateFormSubmit = (results, formData) => {
@@ -72,7 +77,6 @@ it('submits event data', () => {
 	
 	expect(onSubmitFn).toHaveBeenCalledTimes(1)
 	validateFormSubmit(onSubmitFn.mock.results[0].value, validFormData)
-	
 })
 
 it('requires a valid email', () => {
@@ -86,6 +90,25 @@ it('requires a valid email', () => {
 	const formDataWithInvalidEmail = {...validFormData, authorEmail: 'joe'}
 
 	enterFormData(wrapper, formDataWithInvalidEmail)
-	TestUtils.Simulate.submit(wrapper.querySelector('form'))
-	
+	TestUtils.Simulate.submit(wrapper.querySelector('form'))	
+	expect(onSubmitFn).toHaveBeenCalledTimes(0)
+})
+
+it('requires all fields', () => {
+	const wrapper = document.createElement('div')
+	const onSubmitFn = jest.fn(data => data)
+	ReactDOM.render(
+		<SubmitEventForm onSubmit={onSubmitFn} />,
+		wrapper
+	)
+
+	Object.keys(validFormData).forEach((key) => {
+		if (key != 'startTime' && key != 'endTime') {
+			let formDataWithMissingReq = {...validFormData}
+			formDataWithMissingReq[key]  = ''
+			enterFormData(wrapper, formDataWithMissingReq)
+			TestUtils.Simulate.submit(wrapper.querySelector('form'))
+			expect(onSubmitFn).toHaveBeenCalledTimes(0)
+		}
+	})
 })

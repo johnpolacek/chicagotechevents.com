@@ -175,8 +175,6 @@ Now we can use these components to build our submit event form.
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Div, H2, Form } from 'styled-system-html'
-import DatePicker from "react-datepicker"
-import Timepicker from './Timepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import FormControl from './FormControl'
 import FormControlDateTime from './FormControlDateTime'
@@ -201,21 +199,32 @@ const SubmitEventForm = (props) => {
 
 	const onSubmit = (e) => {
 		e.preventDefault()
-		props.onSubmit({
-			eventName,
-			description,
-			linkURL,
-			cost,
-			startDate,
-			startTime,
-			endDate,
-			endTime,
-			locationName,
-			locationStreet,
-			locationCity,
-			authorName,
-			authorEmail
-		})
+		if (e.target.checkValidity() && validateDates()) {
+			props.onSubmit({
+				eventName,
+				description,
+				linkURL,
+				cost,
+				startDate,
+				startTime,
+				endDate,
+				endTime,
+				locationName,
+				locationStreet,
+				locationCity,
+				authorName,
+				authorEmail
+			})
+		} else {
+			return 'Form not valid'
+		}
+	}
+
+	const validateDates = () => {
+		var isNotMissingValues = [startDate,startTime,endDate,endTime].filter((val) => val && val !== '').length === 4
+		var isValidStartDate = (new Date(startDate).toString !== 'Invalid Date')
+		var isValidEndDate = (new Date(endDate).toString !== 'Invalid Date')
+		return isNotMissingValues && isValidStartDate && isValidEndDate
 	}
 
 	const onStartDateChange = (date) => {
@@ -240,8 +249,8 @@ const SubmitEventForm = (props) => {
 				<FormControl label="Event Website" type="text" id="linkURL" value={linkURL} setValue={setLinkURL} labelAddendum="(e.g.&nbsp;http://www.meetup.com/Chicago-Open-Coffee)" />
 				<FormControl label="Cost" type="text" id="cost" value={cost} setValue={setCost} labelAddendum="(if none, enter FREE)" />
 				
-				<FormControlDateTime label="Start Date" id="startDate" onDateChange={onStartDateChange} dateValue={startDate} onTimeChange={(time) => {setStartTime(time)}} timeValue={startTime} />
-				<FormControlDateTime label="End Date" id="endDate" onDateChange={onEndDateChange} dateValue={endDate} onTimeChange={(time) => {setEndTime(time)}} timeValue={endTime} />
+				<FormControlDateTime required={true} label="Start Date" id="startDate" onDateChange={onStartDateChange} dateValue={startDate} onTimeChange={(time) => {setStartTime(time)}} timeValue={startTime} />
+				<FormControlDateTime required={true} label="End Date" id="endDate" onDateChange={onEndDateChange} dateValue={endDate} onTimeChange={(time) => {setEndTime(time)}} timeValue={endTime} />
 				
 				<FormControl label="Location Name" type="text" id="locationName" value={locationName} setValue={setLocationName} labelAddendum="(No Webinar/Online events)" />
 				<FormControl label="Street Address" type="text" id="locationStreet" value={locationStreet} setValue={setLocationStreet} labelAddendum="(short street name, e.g. 120 N State)" />
@@ -263,6 +272,7 @@ SubmitEventForm.propTypes = {
 }
 
 export default SubmitEventForm
+
 ~~~~
 
 Now we can visit our submit event page and test out our form and see the data logged to the console. Before proceeding any further, we can add tests to make sure that that when people submit their events everything works as expected.
@@ -368,10 +378,15 @@ const enterFormData = (wrapper, formData) => {
 	TestUtils.Simulate.change(wrapper.querySelector('input[name=authorName]'), { target: { value: formData.authorName } })
 	TestUtils.Simulate.change(wrapper.querySelector('input[name=authorEmail]'), { target: { value: formData.authorEmail } })
 
-	// select date
-	TestUtils.Simulate.click(wrapper.querySelector('#datepicker-startDate input'))
-	TestUtils.Simulate.click(wrapper.querySelector('button.react-datepicker__navigation--next'))
-	TestUtils.Simulate.click(wrapper.querySelector('.react-datepicker__day--001'))
+	// select date if provided
+	if (formData.startDate !== '' && formData.EndDate !== '') {
+		TestUtils.Simulate.click(wrapper.querySelector('#datepicker-startDate'))
+		TestUtils.Simulate.click(wrapper.querySelector('button.react-datepicker__navigation--next'))
+		TestUtils.Simulate.click(wrapper.querySelector('.react-datepicker__day--001'))
+	} else {
+		TestUtils.Simulate.change(wrapper.querySelector('#datepicker-startDate'), { target: { value: '' } })
+		TestUtils.Simulate.change(wrapper.querySelector('#datepicker-endDate'), { target: { value: '' } })
+	}
 }
 
 const validateFormSubmit = (results, formData) => {
@@ -402,7 +417,6 @@ it('submits event data', () => {
 	
 	expect(onSubmitFn).toHaveBeenCalledTimes(1)
 	validateFormSubmit(onSubmitFn.mock.results[0].value, validFormData)
-	
 })
 
 it('requires a valid email', () => {
@@ -416,12 +430,31 @@ it('requires a valid email', () => {
 	const formDataWithInvalidEmail = {...validFormData, authorEmail: 'joe'}
 
 	enterFormData(wrapper, formDataWithInvalidEmail)
-	TestUtils.Simulate.submit(wrapper.querySelector('form'))
-	
+	TestUtils.Simulate.submit(wrapper.querySelector('form'))	
+	expect(onSubmitFn).toHaveBeenCalledTimes(0)
+})
+
+it('requires all fields', () => {
+	const wrapper = document.createElement('div')
+	const onSubmitFn = jest.fn(data => data)
+	ReactDOM.render(
+		<SubmitEventForm onSubmit={onSubmitFn} />,
+		wrapper
+	)
+
+	Object.keys(validFormData).forEach((key) => {
+		if (key != 'startTime' && key != 'endTime') {
+			let formDataWithMissingReq = {...validFormData}
+			formDataWithMissingReq[key]  = ''
+			enterFormData(wrapper, formDataWithMissingReq)
+			TestUtils.Simulate.submit(wrapper.querySelector('form'))
+			expect(onSubmitFn).toHaveBeenCalledTimes(0)
+		}
+	})
 })
 ~~~~
 
-
+Now we have our submit form and have verified that it is sending valid data.
 
 
 

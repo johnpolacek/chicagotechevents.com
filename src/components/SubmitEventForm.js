@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Div, H2, Form } from 'styled-system-html'
-import DatePicker from "react-datepicker"
-import Timepicker from './Timepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import FormControl from './FormControl'
 import FormControlDateTime from './FormControlDateTime'
@@ -27,7 +25,7 @@ const SubmitEventForm = (props) => {
 
 	const onSubmit = (e) => {
 		e.preventDefault()
-		if (e.target.checkValidity()) {
+		if (e.target.checkValidity() && validateDates()) {
 			props.onSubmit({
 				eventName,
 				description,
@@ -46,7 +44,13 @@ const SubmitEventForm = (props) => {
 		} else {
 			return 'Form not valid'
 		}
-		
+	}
+
+	const validateDates = () => {
+		var isNotMissingValues = [startDate,startTime,endDate,endTime].filter((val) => val && val !== '').length === 4
+		var isValidStartDate = (new Date(startDate).toString !== 'Invalid Date')
+		var isValidEndDate = (new Date(endDate).toString !== 'Invalid Date')
+		return isNotMissingValues && isValidStartDate && isValidEndDate
 	}
 
 	const onStartDateChange = (date) => {
@@ -71,8 +75,8 @@ const SubmitEventForm = (props) => {
 				<FormControl label="Event Website" type="text" id="linkURL" value={linkURL} setValue={setLinkURL} labelAddendum="(e.g.&nbsp;http://www.meetup.com/Chicago-Open-Coffee)" />
 				<FormControl label="Cost" type="text" id="cost" value={cost} setValue={setCost} labelAddendum="(if none, enter FREE)" />
 				
-				<FormControlDateTime label="Start Date" id="startDate" onDateChange={onStartDateChange} dateValue={startDate} onTimeChange={(time) => {setStartTime(time)}} timeValue={startTime} />
-				<FormControlDateTime label="End Date" id="endDate" onDateChange={onEndDateChange} dateValue={endDate} onTimeChange={(time) => {setEndTime(time)}} timeValue={endTime} />
+				<FormControlDateTime required={true} label="Start Date" id="startDate" onDateChange={onStartDateChange} dateValue={startDate} onTimeChange={(time) => {setStartTime(time)}} timeValue={startTime} />
+				<FormControlDateTime required={true} label="End Date" id="endDate" onDateChange={onEndDateChange} dateValue={endDate} onTimeChange={(time) => {setEndTime(time)}} timeValue={endTime} />
 				
 				<FormControl label="Location Name" type="text" id="locationName" value={locationName} setValue={setLocationName} labelAddendum="(No Webinar/Online events)" />
 				<FormControl label="Street Address" type="text" id="locationStreet" value={locationStreet} setValue={setLocationStreet} labelAddendum="(short street name, e.g. 120 N State)" />

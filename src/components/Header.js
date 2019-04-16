@@ -1,10 +1,10 @@
-import React from "react"
-import { Link } from "gatsby"
-import { Header, H1, H2, Span } from "styled-system-html"
+import React from 'react'
+import { Link } from 'gatsby'
+import { Header, H1, H2, Span } from 'styled-system-html'
 
 export default props => (
   <>
-    {props.path === "/" ? (
+    {props.path === '/' ? (
       <Header textAlign="center" pb={4} mb={2}>
         <H1 pb={2} mb={2}>
           {props.title}
@@ -12,7 +12,7 @@ export default props => (
         <H2 fontSize={2} fontWeight="normal" mb={4}>
           {props.description}
         </H2>
-        <Link style={{ textDecoration: "none" }} to={`/submit`}>
+        <Link style={{ textDecoration: 'none' }} to={`/submit`}>
           <Span bg="cyan" color="white" px={3} py={2} borderRadius="4px">
             Submit an Event
           </Span>

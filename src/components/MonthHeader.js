@@ -1,6 +1,6 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { Div } from "styled-system-html"
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Div } from 'styled-system-html'
 
 const MonthHeader = props => (
   <Div

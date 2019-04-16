@@ -1,10 +1,10 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { Div, Label, Input, TextArea, Span } from "styled-system-html"
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Div, Label, Input, TextArea, Span } from 'styled-system-html'
 
 const getFormControl = type => {
-  if (type === "email") {
-    return "TEXT"
+  if (type === 'email') {
+    return 'TEXT'
   } else {
     return type.toUpperCase()
   }
@@ -16,11 +16,11 @@ const FormControl = props => (
       {props.label}
       {props.labelAddendum ? (
         <Span fontSize={0} pl={1}>
-          {" "}
+          {' '}
           {props.labelAddendum}
         </Span>
       ) : (
-        ""
+        ''
       )}
     </Label>
     <>

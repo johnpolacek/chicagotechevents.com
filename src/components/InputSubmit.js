@@ -1,5 +1,5 @@
-import React from "react"
-import { Input } from "styled-system-html"
+import React from 'react'
+import { Input } from 'styled-system-html'
 
 const InputSubmit = props => (
   <Input
@@ -12,16 +12,16 @@ const InputSubmit = props => (
     bg="cyan"
     {...props}
     css={{
-      cursor: "pointer",
-      fontFamily: "inherit",
-      display: "inline-block",
-      verticalAlign: "middle",
-      textAlign: "center",
+      cursor: 'pointer',
+      fontFamily: 'inherit',
+      display: 'inline-block',
+      verticalAlign: 'middle',
+      textAlign: 'center',
       border: 0,
-      borderRadius: "6px",
-      textDecoration: "none",
-      appearance: "none",
-      "&:disabled": {
+      borderRadius: '6px',
+      textDecoration: 'none',
+      appearance: 'none',
+      '&:disabled': {
         opacity: 1 / 4,
       },
     }}

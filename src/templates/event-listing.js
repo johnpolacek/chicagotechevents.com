@@ -1,10 +1,10 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
+import React from 'react'
+import { Link, graphql } from 'gatsby'
 
-import Layout from "../components/Layout"
-import SEO from "../components/seo"
-import Event from "../components/Event"
-import { Div, Nav, Span } from "styled-system-html"
+import Layout from '../components/Layout'
+import SEO from '../components/seo'
+import Event from '../components/Event'
+import { Div, Nav, Span } from 'styled-system-html'
 
 class CalendarEventTemplate extends React.Component {
   render() {

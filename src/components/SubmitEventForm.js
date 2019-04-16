@@ -1,25 +1,25 @@
-import React, { useState } from "react"
-import PropTypes from "prop-types"
-import { Div, H2, Form } from "styled-system-html"
-import "react-datepicker/dist/react-datepicker.css"
-import FormControl from "./FormControl"
-import FormControlDateTime from "./FormControlDateTime"
-import InputSubmit from "./InputSubmit"
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import { Div, H2, Form } from 'styled-system-html'
+import 'react-datepicker/dist/react-datepicker.css'
+import FormControl from './FormControl'
+import FormControlDateTime from './FormControlDateTime'
+import InputSubmit from './InputSubmit'
 
 const SubmitEventForm = props => {
-  const [eventName, setEventName] = useState("")
-  const [description, setDescription] = useState("")
-  const [linkURL, setLinkURL] = useState("")
-  const [cost, setCost] = useState("")
+  const [eventName, setEventName] = useState('')
+  const [description, setDescription] = useState('')
+  const [linkURL, setLinkURL] = useState('')
+  const [cost, setCost] = useState('')
   const [startDate, setStartDate] = useState(null)
-  const [startTime, setStartTime] = useState("5:00pm")
+  const [startTime, setStartTime] = useState('5:00pm')
   const [endDate, setEndDate] = useState(null)
-  const [endTime, setEndTime] = useState("7:00pm")
-  const [locationName, setLocationName] = useState("")
-  const [locationStreet, setLocationStreet] = useState("")
-  const [locationCity, setLocationCity] = useState("Chicago")
-  const [authorName, setAuthorName] = useState("")
-  const [authorEmail, setAuthorEmail] = useState("")
+  const [endTime, setEndTime] = useState('7:00pm')
+  const [locationName, setLocationName] = useState('')
+  const [locationStreet, setLocationStreet] = useState('')
+  const [locationCity, setLocationCity] = useState('Chicago')
+  const [authorName, setAuthorName] = useState('')
+  const [authorEmail, setAuthorEmail] = useState('')
 
   const onSubmit = e => {
     e.preventDefault()
@@ -40,16 +40,16 @@ const SubmitEventForm = props => {
         authorEmail,
       })
     } else {
-      return "Form not valid"
+      return 'Form not valid'
     }
   }
 
   const validateDates = () => {
     var isNotMissingValues =
-      [startDate, startTime, endDate, endTime].filter(val => val && val !== "")
+      [startDate, startTime, endDate, endTime].filter(val => val && val !== '')
         .length === 4
-    var isValidStartDate = new Date(startDate).toString !== "Invalid Date"
-    var isValidEndDate = new Date(endDate).toString !== "Invalid Date"
+    var isValidStartDate = new Date(startDate).toString !== 'Invalid Date'
+    var isValidEndDate = new Date(endDate).toString !== 'Invalid Date'
     return isNotMissingValues && isValidStartDate && isValidEndDate
   }
 

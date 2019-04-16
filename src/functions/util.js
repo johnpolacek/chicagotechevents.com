@@ -3,16 +3,16 @@ module.exports = generateEventMarkdown
 const generateEventMarkdown = eventData => {
   const date = new Date()
   const dateStr = date.toISOString().slice(0, -14)
-  const title = "New Event - " + body.eventName
+  const title = 'New Event - ' + body.eventName
   const filename =
     dateStr +
-    "-" +
+    '-' +
     body.eventName
       .toLowerCase()
-      .split(" ")
-      .join("-") +
-    ".md"
-  const filepath = "content/eventslist/" + filename
+      .split(' ')
+      .join('-') +
+    '.md'
+  const filepath = 'content/eventslist/' + filename
 
   const newContent = `---
 title: "${body.eventName}"

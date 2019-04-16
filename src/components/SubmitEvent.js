@@ -1,10 +1,11 @@
-import React, { useState } from "react"
-import SubmitEventForm from "./SubmitEventForm"
+import React, { useState } from 'react'
+import SubmitEventForm from './SubmitEventForm'
 
 const saveEvent = async event => {
-  return fetch(`/.netlify/functions/add-event/`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
+  // return fetch(`/.netlify/functions/add-event/`, {
+  return fetch(`/add-event-api-endpoint-goes-here/`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(event),
   }).then(response => {
     console.log(response)
@@ -13,10 +14,10 @@ const saveEvent = async event => {
 }
 
 const SubmitEvent = props => {
-  const SUBMIT_READY = "SUBMIT_READY"
-  const SUBMIT_SENDING = "SUBMIT_SENDING"
-  const SUBMIT_SUCCESS = "SUBMIT_SUCCESS"
-  const SUBMIT_FAIL = "SUBMIT_FAIL"
+  const SUBMIT_READY = 'SUBMIT_READY'
+  const SUBMIT_SENDING = 'SUBMIT_SENDING'
+  const SUBMIT_SUCCESS = 'SUBMIT_SUCCESS'
+  const SUBMIT_FAIL = 'SUBMIT_FAIL'
   const [submitState, setSubmitState] = useState(SUBMIT_READY)
 
   const onSubmit = eventData => {
@@ -25,11 +26,11 @@ const SubmitEvent = props => {
     saveEvent(eventData)
       .then(response => {
         setSubmitState(SUBMIT_SUCCESS)
-        console.log("response", response)
+        console.log('response', response)
       })
       .catch(e => {
         setSubmitState(SUBMIT_FAIL)
-        console.log("response err", e)
+        console.log('response err', e)
       })
   }
   return (

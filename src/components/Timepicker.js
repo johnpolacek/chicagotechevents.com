@@ -1,12 +1,12 @@
-import React, { useState } from "react"
-import PropTypes from "prop-types"
-import { Div, Select, Span } from "styled-system-html"
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import { Div, Select, Span } from 'styled-system-html'
 
 const Timepicker = props => {
-  const [time, setTime] = useState(props.defaultTime || "")
+  const [time, setTime] = useState(props.defaultTime || '')
 
   const onHourChange = newHour => {
-    setTime(newHour + time.split(":")[1])
+    setTime(newHour + time.split(':')[1])
     if (props.onChange) {
       props.onChange(time)
     }
@@ -14,7 +14,7 @@ const Timepicker = props => {
 
   const onMinutesChange = newMinutes => {
     setTime(
-      time.split(":")[0] + ":" + newMinutes + time.split(":")[1].substring(2)
+      time.split(':')[0] + ':' + newMinutes + time.split(':')[1].substring(2)
     )
     if (props.onChange) {
       props.onChange(time)
@@ -23,7 +23,7 @@ const Timepicker = props => {
 
   const onPeriodChange = newPeriod => {
     setTime(
-      time.split(":")[0] + ":" + time.split(":")[1].substring(0, 2) + newPeriod
+      time.split(':')[0] + ':' + time.split(':')[1].substring(0, 2) + newPeriod
     )
     if (props.onChange) {
       props.onChange(time)
@@ -33,11 +33,11 @@ const Timepicker = props => {
   return (
     <Div>
       <Select
-        defaultValue={props.defaultTime ? props.defaultTime.split(":")[0] : ""}
+        defaultValue={props.defaultTime ? props.defaultTime.split(':')[0] : ''}
         onChange={e => {
           onHourChange(e.target.value)
         }}
-        id={props.id + "-hours"}
+        id={props.id + '-hours'}
       >
         <option>1</option>
         <option>2</option>
@@ -58,13 +58,13 @@ const Timepicker = props => {
       <Select
         defaultValue={
           props.defaultTime
-            ? props.defaultTime.split(":")[1].substring(0, 2)
-            : ""
+            ? props.defaultTime.split(':')[1].substring(0, 2)
+            : ''
         }
         onChange={e => {
           onMinutesChange(e.target.value)
         }}
-        id={props.id + "-minutes"}
+        id={props.id + '-minutes'}
       >
         <option>00</option>
         <option>15</option>
@@ -73,13 +73,13 @@ const Timepicker = props => {
       </Select>
       <Select
         defaultValue={
-          props.defaultTime ? props.defaultTime.split(":")[1].substring(2) : ""
+          props.defaultTime ? props.defaultTime.split(':')[1].substring(2) : ''
         }
         onChange={e => {
           onPeriodChange(e.target.value)
         }}
         ml={2}
-        id={props.id + "-period"}
+        id={props.id + '-period'}
       >
         <option>am</option>
         <option>pm</option>

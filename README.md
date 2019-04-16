@@ -513,7 +513,23 @@ At the end of the test, we resolve our `fetchAddEventDeferred` promise which sim
 
 Now we have a submit form that collects data, and that’s about it. For our next step, we can set up states for sending, success and failure responses when submitting event data.
 
-To handle these states, it is necessary to structure our components a little differently. Rather than putting `SubmitEventForm` directly on the submit page, we will wrap it in a new `SubmitEvent` component that will manage state.
+To handle these states, it is necessary to structure our components a little differently. Rather than putting `SubmitEventForm` directly on the submit page, we will wrap it in a new `SubmitEvent` component that will manage state (swap out `SubmitEventForm` for `SubmitEvent` on the submit page).
+
+*/src/pages/submit.js*
+
+~~~~
+...
+    <SubmitEventForm onSubmit={onSubmit} />
+  </Layout>
+...
+~~~~
+
+The `SubmitEvent` component has 4 states:
+
+- *SUBMIT_READY* - The form is ready to submit
+- *SUBMIT_SENDING* - The form has been submitted and we await a response
+- *SUBMIT_SUCCESS* - The submission was successful and the event was added
+- *SUBMIT_FAIL* - The submission failed and the event was not added
 
 *src/components/SubmitEvent.js*
 
@@ -522,7 +538,7 @@ import React, { useState } from 'react'
 import SubmitEventForm from './SubmitEventForm'
 
 const saveEvent = async event => {
-    return fetch(`/.netlify/functions/add-event/`, {
+    return fetch(`/add-event-api-endpoint-goes-here/`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(event),
@@ -566,16 +582,7 @@ const SubmitEvent = (props) => {
 export default SubmitEvent
 ~~~~
 
-And then, swap out `SubmitEventForm` for `SubmitEvent` on our submit page.
-
-*/src/pages/submit.js*
-
-~~~~
-...
-    <SubmitEventForm onSubmit={onSubmit} />
-  </Layout>
-...
-~~~~
+To test that this is working correctly, we can add to our tests.
 
 
 

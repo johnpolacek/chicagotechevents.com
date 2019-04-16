@@ -1,24 +1,24 @@
-import React from "react"
-import { graphql } from "gatsby"
-import Layout from "../components/Layout"
-import SEO from "../components/seo"
-import SubmitEventForm from "../components/SubmitEventForm"
+import React from 'react'
+import { graphql } from 'gatsby'
+import Layout from '../components/Layout'
+import SEO from '../components/seo'
+import SubmitEventForm from '../components/SubmitEventForm'
 
 const onSubmit = eventData => {
   // console.log(eventData)
   saveEvent(eventData)
     .then(response => {
-      console.log("response", response)
+      console.log('response', response)
     })
     .catch(e => {
-      console.log("response err", e)
+      console.log('response err', e)
     })
 }
 
 const saveEvent = async event => {
   return fetch(`/.netlify/functions/add-event/`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(event),
   }).then(response => {
     console.log(response)

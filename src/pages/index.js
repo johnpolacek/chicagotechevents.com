@@ -1,11 +1,11 @@
-import React from "react"
-import { graphql } from "gatsby"
+import React from 'react'
+import { graphql } from 'gatsby'
 
-import Layout from "../components/Layout"
-import SEO from "../components/seo"
-import MonthHeader from "../components/MonthHeader"
-import Event from "../components/Event"
-import { Div } from "styled-system-html"
+import Layout from '../components/Layout'
+import SEO from '../components/seo'
+import MonthHeader from '../components/MonthHeader'
+import Event from '../components/Event'
+import { Div } from 'styled-system-html'
 
 class Index extends React.Component {
   render() {
@@ -16,10 +16,10 @@ class Index extends React.Component {
     const eventsByMonth = {}
     events.forEach(({ node }) => {
       const month =
-        node.frontmatter.startDate.split(" ")[0] +
-        " " +
-        node.frontmatter.startDate.split(" ")[2]
-      if (typeof eventsByMonth[month] === "undefined") {
+        node.frontmatter.startDate.split(' ')[0] +
+        ' ' +
+        node.frontmatter.startDate.split(' ')[2]
+      if (typeof eventsByMonth[month] === 'undefined') {
         eventsByMonth[month] = [{ node }]
       } else {
         eventsByMonth[month].push({ node })

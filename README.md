@@ -1,22 +1,21 @@
-## WIP
 
-- Write tests for required fields
-- Create and test a markdown generator util function [see here](https://blog.benestudio.co/why-should-we-separate-the-utility-functions-bc4eea28022f)
-- Paginate
-- Old events should be on separate page
+# ChicagoTechEvents.com Build Log
 
+*A step-by-step documentation of building chicagotechevents.com*
 
 ----
 
-# chicagotechevents.com
 
-Forked from the [Gatsby Events List Starter](https://github.com/johnpolacek/gatsby-starter-events-list).
+**WIP**
 
---
+- Success message for submit
+- See Past Events
 
-### Build Log
+----
 
-Use the Gatsby CLI to create a new events list from the starter.
+## Part 1: Getting Started
+
+Use the Gatsby CLI to create a new events list from the [Gatsby Events List Starter](https://github.com/johnpolacek/gatsby-starter-events-list).
 
 ~~~~
 gatsby new my-events-list https://github.com/johnpolacek/gatsby-starter-events-list
@@ -58,7 +57,7 @@ class Submit extends React.Component {
           title="Submit New Event"
           keywords={[`events`, `calendar`, `gatsby`, `javascript`, `react`]}
         />
-        <SubmitEventForm onSubmit={(data) => {console.log(data)}} />
+        <p>A submit event form will go here.</p>
       </Layout>
     )
   }
@@ -78,11 +77,53 @@ export const pageQuery = graphql`
 `
 ~~~~
 
-There isn’t too much going on with this page. Most of our work here is done within a `SubmitEventForm` component that we will now create. For now, we have placed our yet-to-be-created submit form component on the page with an `onSubmit` function that will log the data being submitted.
+Next, we add a link to our new page by adding it to the `Header` component that was part of the original [Gatsby Events List Starter](https://github.com/johnpolacek/gatsby-starter-events-list).
 
-Now we need to create `SubmitEventForm` with all the fields necessary for generating a new markdown file that will be submitted in a pull request to be reviewed to get added to the site.
+*src/components/Header.js*
 
-We will create React Hooks for all the data we are collecting from the form. To collect the date and time data, we are using [React Datepicker](https://reactdatepicker.com) and a custom [Timepicker component](https://github.com/johnpolacek/chicagotechevents.com/blob/master/src/components/Timepicker.js).
+~~~~
+import React from 'react'
+import { Link } from 'gatsby'
+import { Header, H1, H2, Span } from 'styled-system-html'
+
+export default (props) => (
+  <>{
+    props.path === '/' ? (
+      <Header textAlign="center" pb={4} mb={2}>
+        <H1 pb={2} mb={2}>{props.title}</H1>
+        <H2 fontSize={2} fontWeight="normal" mb={4}>{props.description}</H2>
+        <Link style={{textDecoration:'none'}} to={`/submit`}><Span bg="cyan" color="white" px={3} py={2} borderRadius="4px">Submit an Event</Span></Link>
+      </Header>
+    ) : (
+      <Header borderBottom="solid 2px" borderColor="gray2" textAlign="center" pt={2} pb={4} mb={4} fontSize={1}>
+        <H1 fontSize={2} pb={2}>{props.title}</H1>
+        <Link to={`/`}>view all events</Link>
+      </Header>
+    )
+  }</>
+)
+~~~~
+
+Our updated `Header` component will render a link to the `/submit` route if it is on the top level path. Note that we use a Gatsby `<Link>` component here to take advantage of its [preloading performance feature](https://www.gatsbyjs.org/docs/gatsby-link/).
+
+----
+
+## Part 2: Add a Form
+
+There isn’t too much going on with this submit page yet. We will now create a `SubmitEventForm` component with all the fields necessary for generating a new markdown file that will be submitted in a pull request to be reviewed to get added to the site.
+
+Let’s add our yet-to-be-created form component onto the submit page with an `onSubmit` function that will console log the data being submitted.
+
+*/src/pages/submit.js*
+
+~~~~
+  ...
+  <SubmitEventForm onSubmit={(data) => {console.log(data)}} />
+</Layout>
+
+~~~~
+
+In our new `SubmitEventForm` component we will create React Hooks for all the data we are collecting from the form. To collect the date and time data, we are using [React Datepicker](https://reactdatepicker.com) and a custom [Timepicker component](https://github.com/johnpolacek/chicagotechevents.com/blob/master/src/components/Timepicker.js).
 
 First, let’s make some components for the form controls.
 
@@ -275,196 +316,275 @@ export default SubmitEventForm
 
 ~~~~
 
-Now we can visit our submit event page and test out our form and see the data logged to the console. Before proceeding any further, we can add tests to make sure that that when people submit their events everything works as expected.
+Now we can visit our submit event page and test out our form and see the data logged to the console.
 
-We will follow the steps from [Gatsby Docs on Unit Testing](https://www.gatsbyjs.org/docs/unit-testing/) - be sure to read them to get more details on the setup.
+---- 
 
-~~~~
-npm install --save-dev jest babel-jest react-test-renderer babel-preset-gatsby identity-obj-proxy
-~~~~
+## Part 3: Testing
 
-We need to create some config files in our project root.
+Before proceeding any further, we can add tests to make sure that that when people submit their events everything works as expected.
 
-*jest.config.js*
+We will be using [Cypress](https://cypress.io) to run our tests. Why? Because it is awesome. Let’s go.
 
 ~~~~
-module.exports = {
-  transform: {
-    "^.+\\.jsx?$": `<rootDir>/jest-preprocess.js`,
-  },
-  moduleNameMapper: {
-    ".+\\.(css|styl|less|sass|scss)$": `identity-obj-proxy`,
-    ".+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": `<rootDir>/__mocks__/file-mock.js`,
-  },
-  testPathIgnorePatterns: [`node_modules`, `.cache`],
-  transformIgnorePatterns: [`node_modules/(?!(gatsby)/)`],
-  globals: {
-    __PATH_PREFIX__: ``,
-  },
-  testURL: `http://localhost`,
-  setupFiles: [`<rootDir>/loadershim.js`],
-}
+npm i --save-dev cypress
 ~~~~
 
-*jest-preprocess.js*
+Let’s add a command to `package.json` to open Cypress
 
-~~~~
-const babelOptions = {
-  presets: ["babel-preset-gatsby"],
-}
-
-module.exports = require("babel-jest").createTransformer(babelOptions)
-~~~~
-
-*loadershim.js*
-
-~~~~
-global.___loader = {
-  enqueue: jest.fn(),
-}
-~~~~
-
-Then we’ll add a test runner script to our `package.json` and a jest configuration so that it can handle css files imported (in this case, by our datepicker component).
-
+*package.json*
 ~~~~
 "scripts": {
-    ...
-    "test": "jest src/components"
-  }
+  ...
+  "cypress:open": "cypress open",
+  ...
+}
 ~~~~
 
-Now we are ready to write the test for our submit event form component. We will be testing the data formatting of a valid form submission and that the form will not submit when there is invalid or missing data.
+After the install finishes, let’s edit the cypress.json config file to tell it our base url path.
 
-*SubmitEventForm.test.js*
+*cypress.json*
 
 ~~~~
-import React from 'react'
-import ReactDOM from 'react-dom'
-import TestUtils from 'react-dom/test-utils'
-import SubmitEventForm from './SubmitEventForm'
-
-const getTestEventDate = () => {
-	const now = new Date();
-	if (now.getMonth() == 11) {
-	    return new Date(now.getFullYear() + 1, 0, 1);
-	} else {
-	    return new Date(now.getFullYear(), now.getMonth() + 1, 1);
-	}
+{
+  "baseUrl": "http://localhost:8000"
 }
+~~~~
 
-const validFormData = {
-	eventName: 'Test Event',
-	description: 'This is not a real event. It is just for testing',
-	linkURL: 'https://eventbrite.com/test-event',
-	cost: 'FREE',
-	locationName: '1871 Chicago',
-	locationStreet: '222 W Merchandise Mart Plaza #1212',
-	authorName: 'Joe Tester',
-	authorEmail: 'joe@test.com',
-	startDate: getTestEventDate(),
-	startTime: '5:00pm',
-	endDate: getTestEventDate(),
-	endTime: '7:00pm'
-}
+Now let’s start making our test for the submit event form. Go to the `/cypress/integration/` in the project that was generated when we installed Cypress. Delete the examples file, then make a new file for our test.
 
-const enterFormData = (wrapper, formData) => {
-	// Enter values
-	TestUtils.Simulate.change(wrapper.querySelector('input[name=eventName]'), { target: { value: formData.eventName } })
-	TestUtils.Simulate.change(wrapper.querySelector('textarea[name=description]'), { target: { value: formData.description } })
-	TestUtils.Simulate.change(wrapper.querySelector('input[name=linkURL]'), { target: { value: formData.linkURL } })
-	TestUtils.Simulate.change(wrapper.querySelector('input[name=cost]'), { target: { value: formData.cost } })
-	TestUtils.Simulate.change(wrapper.querySelector('input[name=locationName]'), { target: { value: formData.locationName } })
-	TestUtils.Simulate.change(wrapper.querySelector('input[name=locationStreet]'), { target: { value: formData.locationStreet } })
-	TestUtils.Simulate.change(wrapper.querySelector('input[name=authorName]'), { target: { value: formData.authorName } })
-	TestUtils.Simulate.change(wrapper.querySelector('input[name=authorEmail]'), { target: { value: formData.authorEmail } })
+*/cypress/integration/SubmitEvent.js*
 
-	// select date if provided
-	if (formData.startDate !== '' && formData.EndDate !== '') {
-		TestUtils.Simulate.click(wrapper.querySelector('#datepicker-startDate'))
-		TestUtils.Simulate.click(wrapper.querySelector('button.react-datepicker__navigation--next'))
-		TestUtils.Simulate.click(wrapper.querySelector('.react-datepicker__day--001'))
-	} else {
-		TestUtils.Simulate.change(wrapper.querySelector('#datepicker-startDate'), { target: { value: '' } })
-		TestUtils.Simulate.change(wrapper.querySelector('#datepicker-endDate'), { target: { value: '' } })
-	}
-}
-
-const validateFormSubmit = (results, formData) => {
-	expect(results.eventName).toEqual(formData.eventName)
-	expect(results.description).toEqual(formData.description)
-	expect(results.linkURL).toEqual(formData.linkURL)
-	expect(results.cost).toEqual(formData.cost)
-	expect(results.locationName).toEqual(formData.locationName)
-	expect(results.locationStreet).toEqual(formData.locationStreet)
-	expect(results.authorName).toEqual(formData.authorName)
-	expect(results.authorEmail).toEqual(formData.authorEmail)
-	expect(results.startDate).toEqual(formData.startDate)
-	expect(results.startTime).toEqual(formData.startTime)
-	expect(results.startDate).toEqual(formData.endDate)
-	expect(results.endTime).toEqual(formData.endTime)
-}
-
-it('submits event data', () => {
-	const wrapper = document.createElement('div')
-	const onSubmitFn = jest.fn(data => data)
-	ReactDOM.render(
-		<SubmitEventForm onSubmit={onSubmitFn} />,
-		wrapper
-	)
-
-	enterFormData(wrapper, validFormData)
-	TestUtils.Simulate.submit(wrapper.querySelector('form'))
-	
-	expect(onSubmitFn).toHaveBeenCalledTimes(1)
-	validateFormSubmit(onSubmitFn.mock.results[0].value, validFormData)
-})
-
-it('requires a valid email', () => {
-	const wrapper = document.createElement('div')
-	const onSubmitFn = jest.fn(data => data)
-	ReactDOM.render(
-		<SubmitEventForm onSubmit={onSubmitFn} />,
-		wrapper
-	)
-
-	const formDataWithInvalidEmail = {...validFormData, authorEmail: 'joe'}
-
-	enterFormData(wrapper, formDataWithInvalidEmail)
-	TestUtils.Simulate.submit(wrapper.querySelector('form'))	
-	expect(onSubmitFn).toHaveBeenCalledTimes(0)
-})
-
-it('requires all fields', () => {
-	const wrapper = document.createElement('div')
-	const onSubmitFn = jest.fn(data => data)
-	ReactDOM.render(
-		<SubmitEventForm onSubmit={onSubmitFn} />,
-		wrapper
-	)
-
-	Object.keys(validFormData).forEach((key) => {
-		if (key != 'startTime' && key != 'endTime') {
-			let formDataWithMissingReq = {...validFormData}
-			formDataWithMissingReq[key]  = ''
-			enterFormData(wrapper, formDataWithMissingReq)
-			TestUtils.Simulate.submit(wrapper.querySelector('form'))
-			expect(onSubmitFn).toHaveBeenCalledTimes(0)
-		}
+~~~~
+describe('SubmitEvent', function() {
+	it('can get to submit event form from homepage', function() {
+		cy.visit('/')
+		cy.get('a').contains('Submit an Event').click()
+		cy.location('pathname', {timeout: 10000}).should('include', '/submit')
+		cy.get('form input[value="Submit Event"]')
 	})
 })
 ~~~~
 
-Now we have our submit form and have verified that it is sending valid data.
+This test simply verifies that we can go to the homepage, click the link to navigate to the `/submit` page and where we should find our submit event form. To see the test run, start the dev server and open cypress.
+
+~~~~
+npm run dev
+npm run cypress:open
+~~~~
+
+When testing, we don’t want to actually hit our yet-to-be-created function and submit pull requests every time we run tests. Instead, we will have Cypress intercept the api request and stub out the responses that would normally come from the server.
+
+For more information on how this is done, see the [Cypress examples](https://github.com/cypress-io/cypress-example-recipes/tree/master/examples/stubbing-spying__window-fetch). We will specifically be using the technique from this [Stub Fetch Example](https://github.com/cypress-io/cypress-example-recipes/blob/master/examples/stubbing-spying__window-fetch/cypress/integration/stub-fetch-spec.js).
+
+*/cypress/integration/SubmitEvent.js*
+
+~~~~
+const deferred = require('./deferred')
+
+describe('SubmitEvent', function () {
+
+	it('can get to submit event form from homepage', function() {
+		cy.visit('/')
+		cy.get('a').contains('Submit an Event').click()
+		cy.location('pathname', {timeout: 10000}).should('include', '/submit')
+		cy.get('form input[value="Submit Event"]', { timeout: 10000 }).should('exist')
+	})
+
+	describe('when submitting event', function() {
+		
+		const validEventData = {
+			eventName: 'Test Event',
+			description: 'This is not a real event. It is just for testing',
+			linkURL: 'https://eventbrite.com/test-event',
+			cost: 'FREE',
+			locationName: '1871 Chicago',
+			locationStreet: '222 W Merchandise Mart Plaza #1212',
+			authorName: 'Joe Tester',
+			authorEmail: 'joe@test.com',
+			startDate: getTestEventDate(),
+			startTime: '5:00pm',
+			endDate: getTestEventDate(),
+			endTime: '7:00pm'
+		}
+
+		function getTestEventDate() {
+			const now = new Date();
+			if (now.getMonth() == 11) {
+			    return new Date(now.getFullYear() + 1, 0, 1);
+			} else {
+			    return new Date(now.getFullYear(), now.getMonth() + 1, 1);
+			}
+		}
+
+		beforeEach(function () {
+			this.fetchAddEventDeferred = deferred()
+			cy.visit('/submit', {
+				onBeforeLoad (win) {
+					cy.stub(win, 'fetch')
+						.withArgs('/.netlify/functions/add-event/')
+						.as('fetchAddEvent')
+						.returns(this.fetchAddEventDeferred.promise)
+				},
+		    })
+		})
+	  	
+	  	it('can submit valid event data', function () {
+			
+			// fill out the form with validEventData
+		    cy.get('input[name=eventName]').type(validEventData.eventName)
+			cy.get('textarea[name=description]').type(validEventData.description)
+			cy.get('input[name=linkURL]').type(validEventData.linkURL)
+			cy.get('input[name=cost]').type(validEventData.cost)
+			cy.get('#datepicker-startDate').focus()
+			cy.get('#datepicker-startDate').click()
+			cy.get('button.react-datepicker__navigation--next').click()
+			cy.get('.react-datepicker__day--001').first().click()
+			cy.get('input[name=locationName]').type(validEventData.locationName)
+			cy.get('input[name=locationStreet]').type(validEventData.locationStreet)
+			cy.get('input[name=authorName]').type(validEventData.authorName)
+			cy.get('input[name=authorEmail]').type(validEventData.authorEmail)
+
+			cy.get('#submitEvent').click()
+			
+			this.fetchAddEventDeferred.resolve({
+		        json () { return {message:'success'} },
+		        ok: true,
+		    })
+			cy.get('@fetchAddEvent').should('be.calledOnce')
+	    })
+	})
+  
+})
+~~~~
+
+Let’s look at our updated test file. First, we bring in a `deferred module`. This file is straight from the [Stub Fetch Example](https://github.com/cypress-io/cypress-example-recipes/blob/master/examples/stubbing-spying__window-fetch/cypress/integration/stub-fetch-spec.js). 
+
+*/cypress/integration/deferred.js*
+
+~~~~
+// little utility for making Promise-returning stubs easier
+module.exports = function () {
+  const deferred = {}
+  /* global Promise */
+  deferred.promise = new Promise((resolve, reject) => {
+    deferred.resolve = resolve
+    deferred.reject = reject
+  })
+  return deferred
+}
+~~~~
+
+Since it does not contain any tests, we can tell the Cypress test runner to ignore this file by updating our config.
+
+*cypress.json*
+
+~~~~
+{
+  "baseUrl": "http://localhost:8000",
+  "ignoreTestFiles": "deferred.js"
+}
+~~~~
+
+Next we create a new `describe()` block for tests we will create for our event submission. We have some helpers - `validEventData` and `getTestEventDate()`. These will help generate data for our tests.
+
+We also create a `beforeEach` method to run at the start of these tests where we first define the deferred object for our event submission then visit submit page. We have an `onBeforeLoad` function that replaces the browser’s native fetch method with a stub that returns our `fetchAddEventDeferred` promise.
+
+~~~~
+beforeEach(function () {
+	this.fetchAddEventDeferred = deferred()
+	cy.visit('/submit', {
+		onBeforeLoad (win) {
+			cy.stub(win, 'fetch')
+				.as('fetchAddEvent')
+				.returns(this.fetchAddEventDeferred.promise)
+		},
+	})
+})
+~~~~
+
+After this, we write out our test with various [Cypress commands](https://docs.cypress.io/guides/core-concepts/interacting-with-elements.html#Actionability) to fill out the form with the values from our `validEventData` object then submit.
+
+At the end of the test, we resolve our `fetchAddEventDeferred` promise which simulates the api returning a success message, then verify it was called once.
+
+----
+
+## Part 4: Form States
+
+Now we have a submit form that collects data, and that’s about it. For our next step, we can set up states for sending, success and failure responses when submitting event data.
+
+To handle these states, it is necessary to structure our components a little differently. Rather than putting `SubmitEventForm` directly on the submit page, we will wrap it in a new `SubmitEvent` component that will manage state.
+
+*src/components/SubmitEvent.js*
+
+~~~~
+import React, { useState } from 'react'
+import SubmitEventForm from './SubmitEventForm'
+
+const saveEvent = async event => {
+    return fetch(`/.netlify/functions/add-event/`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(event),
+  }).then(response => {
+    console.log(response)
+    return response.json()
+  })
+}
+
+const SubmitEvent = (props) => {
+
+	const SUBMIT_READY = 'SUBMIT_READY'
+	const SUBMIT_SENDING = 'SUBMIT_SENDING'
+	const SUBMIT_SUCCESS = 'SUBMIT_SUCCESS'
+	const SUBMIT_FAIL = 'SUBMIT_FAIL'
+	const [submitState, setSubmitState] = useState(SUBMIT_READY)
+
+	const onSubmit = (eventData) => {
+	  // console.log(eventData)
+	  setSubmitState(SUBMIT_SENDING)
+	  saveEvent(eventData).then((response) => {
+	    setSubmitState(SUBMIT_SUCCESS)
+	    console.log('response', response)
+	  }).catch((e) => {
+	  	setSubmitState(SUBMIT_FAIL)
+	    console.log('response err', e)
+	  })
+	}
+	return (
+		<>
+			{{
+		        [SUBMIT_READY]: <SubmitEventForm onSubmit={onSubmit} />,
+		        [SUBMIT_SENDING]: <div>Sending event...</div>,
+		        [SUBMIT_FAIL]: <div>Oops! There was a problem. Please try again later.</div>,
+		        [SUBMIT_SUCCESS]: <div>Thanks for sending your event!</div>,
+	      	}[submitState]}
+		</>
+	)
+}
+
+export default SubmitEvent
+~~~~
+
+And then, swap out `SubmitEventForm` for `SubmitEvent` on our submit page.
+
+*/src/pages/submit.js*
+
+~~~~
+...
+    <SubmitEventForm onSubmit={onSubmit} />
+  </Layout>
+...
+~~~~
 
 
 
 
 
 
+Now we have our submit form and have verified that it is sending valid data. Next up, we want to create a function that transforms that data into markdown and sends it the Github API as a pull request.
 
-
-
-Next, sign up for a [Github Developer account](https://developer.github.com/) to get access to their API. 
+To use the Github API, sign up for a [Github Developer account](https://developer.github.com/). 
 
 Once you have an account and have added a Netlify app from your events list Github repository, you will need to [generate a token](https://github.com/settings/tokens/new) so the app can call the API. When you generate the token, copy it because it will not be able to see it again.
 
@@ -478,7 +598,7 @@ Ok let’s write an `add-event` function that takes some parameters then builds 
 
 Wait. What? That’s a lot. I know, but let’s just keep going...
 
-We need to make a whole package unto itself to do all that. Make a `/functions/add-event` directory.
+We need to make a whole package unto itself to do all that. Make a `src/functions/add-event` directory.
 
 ~~~~
 mkdir functions
@@ -513,7 +633,7 @@ Open `package.json` and edit the setting for main to be `add-event.js`. It shoul
 
 Next we will set up a function to create the pull request.
 
-*functions/add-event/createPullRequest.js*
+*src/functions/add-event/createPullRequest.js*
 
 ~~~~
 module.exports = octokitCreatePullRequest
@@ -581,7 +701,7 @@ async function createPullRequest (octokit, { owner, repo, title, body, base, hea
 }
 ~~~~
 
-*functions/add-event/add-event.js*
+*src/functions/add-event/add-event.js*
 
 ~~~~
 const url = require('url')
@@ -691,8 +811,8 @@ Next, we need to add some build scripts to our package.json to zip our add-event
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "makedir": "rm -rf functions-build && mkdir functions-build",
-    "zip": "cd functions/add-event && npm install && zip -r add-event.zip *",
+    "makedir": "rm -rf src/functions-build && mkdir functions-build",
+    "zip": "cd src/functions/add-event && npm install && zip -r add-event.zip *",
     "postzip": "mv functions/add-event/add-event.zip functions-build",
     "prebuild": "npm run makedir && npm run zip"
   }
@@ -708,17 +828,7 @@ command = "npm run build"
 functions = "./functions-build"
 ~~~~
 
-
-
-
-
-
-
-To test functions locally install netlify-lambda and make api calls against localhost:9000
-
-
-
-Let’s add a link to our header to a new page with an add event form.
+To finish this part up, let’s add a link to our header to our submit page.
 
 *src/components/Header.js*
 
@@ -728,14 +838,9 @@ Let’s add a link to our header to a new page with an add event form.
   <H2 fontSize={2} fontWeight="normal" mb={4}>{props.description}</H2>
   <Link style={{textDecoration:'none'}} to={`/submit`}><Span bg="cyan" color="white" px={3} py={2} borderRadius="4px">Submit Event</Span></Link>
 </Header>
-~~~~   
+~~~~
 
-
-
-
-Thanks to David Wells 
-
-## Customize
+## Make your own events site
 
 Update the site title, description and more by editing `siteMetadata` in `gatsby-config.js`.
 
@@ -743,17 +848,9 @@ Change the font, colors and more by editing the settings in `src/theme.js`
 
 Add events via markdown files in `/content/eventslist/`. Example markdown files have been provided.
 
-## Deploy
-
-~~~~
-npm run build
-~~~~
-
-Publish the `public` directory to a webhost or deploy with [Netlify](https://www.netlify.com/docs/).
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/johnpolacek/gatsby-starter-events-list)
-
 
 --
+
+Thanks to [David Wells](https://davidwells.io/) for answering some question while I was initially figuring things out.
 
 Calendar icon made by [Freepik](https://www.freepik.com/) from [Flaticon](https://www.flaticon.com/) is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/).

@@ -67,7 +67,7 @@ const SubmitEventForm = (props) => {
 	return (
 		<>
 			<H2 fontSize={4} pb={4} fontWeight="bold" textAlign="center">Submit an Event</H2>
-			
+
 			<Form width={[1,360]} mx="auto" onSubmit={onSubmit}>
 				
 				<FormControl label="Name of Event" type="text" id="eventName" value={eventName} setValue={setEventName} />
@@ -85,7 +85,7 @@ const SubmitEventForm = (props) => {
 				<FormControl label="Your Email" type="email" id="authorEmail" value={authorEmail} setValue={setAuthorEmail} />
 				
 				<Div pt={4} pb={5} textAlign="right">
-					<InputSubmit value="Submit Event" />
+					<InputSubmit id="submitEvent" value="Submit Event" />
 				</Div>
 
 			</Form>

@@ -78,7 +78,7 @@ ${body.description}
     return callback(null, {
       statusCode: 200,
       body: JSON.stringify({
-        message: `pr created!`,
+        message: `success`,
         url: response.data.html_url})})}).catch((e) => {
     console.log('error', e)
     if (e.status === 422) {

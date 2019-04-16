@@ -32,12 +32,9 @@
     "styled-system-html": "^2.0.8"
   },
   "devDependencies": {
-    "babel-jest": "^24.7.1",
-    "babel-preset-gatsby": "^0.1.11",
-    "identity-obj-proxy": "^3.0.0",
-    "jest": "^24.7.1",
+    "cypress": "^3.2.0",
     "prettier": "^1.16.4",
-    "react-test-renderer": "^16.8.6"
+    "start-server-and-test": "^1.7.13"
   },
   "homepage": "https://github.com/johnpolacek/chicagotechevents.com#readme",
   "keywords": [
@@ -60,6 +57,7 @@
     "zip": "cd src/functions/add-event && npm install && zip -r add-event.zip *",
     "postzip": "mv src/functions/add-event/add-event.zip functions-build",
     "prebuild": "npm run makedir && npm run zip",
-    "test": "jest src/components"
+    "cypress:open": "cypress open",
+    "test": "start-server-and-test develop http://localhost:8000 cypress:open"
   }
 }

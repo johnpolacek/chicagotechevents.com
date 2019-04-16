@@ -8,8 +8,8 @@
 
 **WIP**
 
-- Success message for submit
-- See Past Events
+- Add testing for `SubmitEvent` states
+- See Past Events *(in starter)*
 
 ----
 

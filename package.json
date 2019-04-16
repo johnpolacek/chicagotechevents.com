@@ -50,7 +50,7 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "dev": "gatsby develop -o",
-    "format": "prettier --write src/**/*.{js,jsx}",
+    "format": "prettier --write src/**/*.{js,jsx} && prettier --write cypress/**/*.js",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "makedir": "rm -rf functions-build && mkdir functions-build",

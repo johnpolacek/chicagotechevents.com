@@ -6,13 +6,13 @@ import SEO from "../components/seo"
 import EventsByMonth from "../components/EventsByMonth"
 import { Div } from "styled-system-html"
 
-class Index extends React.Component {
+class Past extends React.Component {
   render() {
     const { data } = this.props
     const siteTitle = data.site.siteMetadata.title
     const siteDescription = data.site.siteMetadata.description
     const events = data.allMarkdownRemark.edges
-    const currEvents = events.filter(({ node }) => new Date(node.frontmatter.endDate) >= new Date())
+    const currEvents = events.filter(({ node }) => new Date(node.frontmatter.endDate) < new Date())
     const eventsByMonth = {}
     currEvents.forEach(({ node }) => {
       const month =
@@ -40,7 +40,7 @@ class Index extends React.Component {
         {
           currEvents < events && 
           <Div textAlign="center" pb={4} mb={3}>
-            <Link to={`/past`}>« view past events</Link>
+            <Link to={`/`}>view current events »</Link>
           </Div>
         }
       </Layout>
@@ -48,7 +48,7 @@ class Index extends React.Component {
   }
 }
 
-export default Index
+export default Past
 
 export const pageQuery = graphql`
   query {

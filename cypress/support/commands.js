@@ -107,6 +107,6 @@ Cypress.Commands.add('verifySubmitError', (test) => {
   //   '/.netlify/functions/add-event/'
   // )
   cy.get('div')
-    .contains('Oops! There was a problem.')
+    .contains('Sorry, there was a problem.')
     .should('be.visible')
 })

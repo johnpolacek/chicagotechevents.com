@@ -6,6 +6,7 @@
 ----
 
 **WIP**
+- Better UI for sending/success/fail
 - Write Netlify Functions section
 - Not a Robot
 

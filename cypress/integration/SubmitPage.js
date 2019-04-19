@@ -1,4 +1,8 @@
-import { deferred, getValidEventData, getDefaultEventDate } from '../support/helpers'
+import {
+  deferred,
+  getValidEventData,
+  getDefaultEventDate,
+} from '../support/helpers'
 
 describe('Submit Page', function() {
   it('can be accessed from homepage', function() {
@@ -29,7 +33,7 @@ describe('Submit Page', function() {
       cy.completeEventForm({})
       cy.verifySubmitSuccess(this)
     })
-    
+
     it('requires all fields', () => {
       const validFormData = getValidEventData()
       Object.keys(validFormData).forEach(key => {
@@ -45,7 +49,7 @@ describe('Submit Page', function() {
     })
 
     it('requires a valid email', function() {
-      cy.completeEventForm({authorEmail:'abc'})
+      cy.completeEventForm({ authorEmail: 'abc' })
       cy.get('@fetchAddEvent').should('not.be.called')
     })
 
@@ -55,14 +59,14 @@ describe('Submit Page', function() {
     })
 
     it('can change hours of event', function() {
-      cy.completeEventForm({startTime:'12:00pm',endTime:'1:30pm'})
+      cy.completeEventForm({ startTime: '12:00pm', endTime: '1:30pm' })
       cy.verifySubmitSuccess(this)
     })
 
     it('can make multiple day event', function() {
       let endDate = getDefaultEventDate()
-      endDate.setDate(endDate.getDate() + 1);
-      cy.completeEventForm({endDate})
+      endDate.setDate(endDate.getDate() + 1)
+      cy.completeEventForm({ endDate })
       cy.verifySubmitSuccess(this)
     })
   })

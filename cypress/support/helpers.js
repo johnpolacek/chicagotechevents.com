@@ -8,7 +8,7 @@ const defaultEventDate = () => {
 }
 
 module.exports = {
-	getValidEventData: () => ({
+  getValidEventData: () => ({
     eventName: 'Test Event',
     description: 'This is not a real event. It is just for testing',
     linkURL: 'https://eventbrite.com/test-event',
@@ -32,5 +32,5 @@ module.exports = {
       deferred.reject = reject
     })
     return deferred
-  }
+  },
 }

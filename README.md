@@ -6,7 +6,7 @@
 ----
 
 **WIP**
-- Better UI for sending/success/fail
+- Update README for SubmitEventMessage component
 - Write Netlify Functions section
 - Not a Robot
 

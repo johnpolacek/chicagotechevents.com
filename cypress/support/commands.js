@@ -26,43 +26,59 @@
 
 import { getValidEventData } from './helpers'
 
-Cypress.Commands.add('completeEventForm', (data) => {
-
-  const eventData = {...getValidEventData(), ...data}
+Cypress.Commands.add('completeEventForm', data => {
+  const eventData = { ...getValidEventData(), ...data }
 
   // fill out the form with eventData
   Object.keys(eventData)
-    .filter(field => field !== 'startTime' && field !== 'endTime' && field !== 'endDate')
-    .forEach((field) => {
+    .filter(
+      field =>
+        field !== 'startTime' && field !== 'endTime' && field !== 'endDate'
+    )
+    .forEach(field => {
       // startTime and endTime have a default and not possible to set to empty value
       // endDate is autofilled by choosing startDate
       if (field === 'startDate') {
         if (eventData.startDate !== '' && eventData.endDate !== '') {
           cy.get('#datepicker-startDate').click()
           cy.get('button.react-datepicker__navigation--next').click()
-          cy.get('.react-datepicker__day--001').first().click()
+          cy.get('.react-datepicker__day--001')
+            .first()
+            .click()
         }
       } else if (eventData[field] !== '') {
-        cy.get('input[name='+field+'],textarea[name='+field+']').type(eventData[field])
+        cy.get('input[name=' + field + '],textarea[name=' + field + ']').type(
+          eventData[field]
+        )
       }
     })
 
   if (data.startTime && data.startTime !== '') {
     cy.get('#timepicker-startDate-hours').select(data.startTime.split(':')[0])
-    cy.get('#timepicker-startDate-minutes').select(data.startTime.split(':')[1].substring(0,2))
-    cy.get('#timepicker-startDate-period').select(data.startTime.split(':')[1].substring(2))
+    cy.get('#timepicker-startDate-minutes').select(
+      data.startTime.split(':')[1].substring(0, 2)
+    )
+    cy.get('#timepicker-startDate-period').select(
+      data.startTime.split(':')[1].substring(2)
+    )
   }
 
   if (data.endTime && data.endTime !== '') {
     cy.get('#timepicker-endDate-hours').select(data.endTime.split(':')[0])
-    cy.get('#timepicker-endDate-minutes').select(data.endTime.split(':')[1].substring(0,2))
-    cy.get('#timepicker-endDate-period').select(data.endTime.split(':')[1].substring(2))
+    cy.get('#timepicker-endDate-minutes').select(
+      data.endTime.split(':')[1].substring(0, 2)
+    )
+    cy.get('#timepicker-endDate-period').select(
+      data.endTime.split(':')[1].substring(2)
+    )
   }
 
   if (eventData.endDate !== '' && eventData.endDate !== eventData.startDate) {
     cy.get('#datepicker-endDate').click()
     cy.get('button.react-datepicker__navigation--next').click()
-    cy.get('.react-datepicker__day--002').first().click()
+    cy.get('.react-datepicker__day--002')
+      .first()
+      .click()
   }
 
   // submit the form
@@ -76,7 +92,7 @@ Cypress.Commands.add('completeEventForm', (data) => {
   }
 })
 
-Cypress.Commands.add('verifySubmitSuccess', (test) => {
+Cypress.Commands.add('verifySubmitSuccess', test => {
   test.fetchAddEventDeferred.resolve({
     json() {
       return { message: 'success' }
@@ -93,7 +109,7 @@ Cypress.Commands.add('verifySubmitSuccess', (test) => {
     .should('be.visible')
 })
 
-Cypress.Commands.add('verifySubmitError', (test) => {
+Cypress.Commands.add('verifySubmitError', test => {
   // return an error message from the stub
   test.fetchAddEventDeferred.resolve({
     json() {

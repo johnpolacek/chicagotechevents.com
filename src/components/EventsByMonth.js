@@ -1,8 +1,8 @@
-import React from "react"
-import PropTypes from "prop-types"
-import MonthHeader from "../components/MonthHeader"
-import Event from "../components/Event"
-import { Div } from "styled-system-html"
+import React from 'react'
+import PropTypes from 'prop-types'
+import MonthHeader from '../components/MonthHeader'
+import Event from '../components/Event'
+import { Div } from 'styled-system-html'
 
 const EventsByMonth = props => {
   return Object.keys(props.eventsByMonth).map(month => {

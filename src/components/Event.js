@@ -77,7 +77,6 @@ Event.propTypes = {
   locationName: PropTypes.string.isRequired,
   locationStreet: PropTypes.string.isRequired,
   locationCity: PropTypes.string.isRequired,
-  locationState: PropTypes.string.isRequired,
   cost: PropTypes.string.isRequired,
   eventUrl: PropTypes.string.isRequired,
 }

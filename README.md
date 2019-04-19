@@ -5,11 +5,9 @@
 
 ----
 
-
 **WIP**
-
-- Add testing for `SubmitEvent` states
 - See Past Events *(in starter)*
+- Not a Robot
 
 ----
 
@@ -353,11 +351,11 @@ After the install finishes, let’s edit the cypress.json config file to tell it
 
 Now let’s start making our test for the submit event form. Go to the `/cypress/integration/` in the project that was generated when we installed Cypress. Delete the examples file, then make a new file for our test.
 
-*/cypress/integration/SubmitEvent.js*
+*/cypress/integration/SubmitPage.js*
 
 ~~~~
-describe('SubmitEvent', function() {
-	it('can get to submit event form from homepage', function() {
+describe('Submit Page', function() {
+	it('can be accessed from homepage', function() {
 		cy.visit('/')
 		cy.get('a').contains('Submit an Event').click()
 		cy.location('pathname', {timeout: 10000}).should('include', '/submit')
@@ -377,84 +375,93 @@ When testing, we don’t want to actually hit our yet-to-be-created function and
 
 For more information on how this is done, see the [Cypress examples](https://github.com/cypress-io/cypress-example-recipes/tree/master/examples/stubbing-spying__window-fetch). We will specifically be using the technique from this [Stub Fetch Example](https://github.com/cypress-io/cypress-example-recipes/blob/master/examples/stubbing-spying__window-fetch/cypress/integration/stub-fetch-spec.js).
 
-*/cypress/integration/SubmitEvent.js*
+*/cypress/integration/SubmitPage.js*
 
 ~~~~
 const deferred = require('./deferred')
 
-describe('SubmitEvent', function () {
+describe('Submit Page', function() {
+  it('can be accessed from homepage', function() {
+    cy.visit('/')
+    cy.get('a')
+      .contains('Submit an Event')
+      .click()
+    cy.location('pathname', { timeout: 10000 }).should('include', '/submit')
+    cy.get('form input[value="Submit Event"]', { timeout: 10000 }).should(
+      'exist'
+    )
+  })
 
-	it('can get to submit event form from homepage', function() {
-		cy.visit('/')
-		cy.get('a').contains('Submit an Event').click()
-		cy.location('pathname', {timeout: 10000}).should('include', '/submit')
-		cy.get('form input[value="Submit Event"]', { timeout: 10000 }).should('exist')
-	})
+  describe('when submitting event', function() {
+    const validEventData = {
+      eventName: 'Test Event',
+      description: 'This is not a real event. It is just for testing',
+      linkURL: 'https://eventbrite.com/test-event',
+      cost: 'FREE',
+      locationName: '1871 Chicago',
+      locationStreet: '222 W Merchandise Mart Plaza #1212',
+      authorName: 'Joe Tester',
+      authorEmail: 'joe@test.com',
+      startDate: getTestEventDate(),
+      startTime: '5:00pm',
+      endDate: getTestEventDate(),
+      endTime: '7:00pm',
+    }
 
-	describe('when submitting event', function() {
-		
-		const validEventData = {
-			eventName: 'Test Event',
-			description: 'This is not a real event. It is just for testing',
-			linkURL: 'https://eventbrite.com/test-event',
-			cost: 'FREE',
-			locationName: '1871 Chicago',
-			locationStreet: '222 W Merchandise Mart Plaza #1212',
-			authorName: 'Joe Tester',
-			authorEmail: 'joe@test.com',
-			startDate: getTestEventDate(),
-			startTime: '5:00pm',
-			endDate: getTestEventDate(),
-			endTime: '7:00pm'
-		}
+    // set event date to the first day of next month
+    function getTestEventDate() {
+      const now = new Date()
+      if (now.getMonth() == 11) {
+        return new Date(now.getFullYear() + 1, 0, 1)
+      } else {
+        return new Date(now.getFullYear(), now.getMonth() + 1, 1)
+      }
+    }
 
-		function getTestEventDate() {
-			const now = new Date();
-			if (now.getMonth() == 11) {
-			    return new Date(now.getFullYear() + 1, 0, 1);
-			} else {
-			    return new Date(now.getFullYear(), now.getMonth() + 1, 1);
-			}
-		}
+    // stub the response from the api
+    beforeEach(function() {
+      this.fetchAddEventDeferred = deferred()
+      cy.visit('/submit', {
+        onBeforeLoad(win) {
+          cy.stub(win, 'fetch')
+            .as('fetchAddEvent')
+            .returns(this.fetchAddEventDeferred.promise)
+        },
+      })
+    })
 
-		beforeEach(function () {
-			this.fetchAddEventDeferred = deferred()
-			cy.visit('/submit', {
-				onBeforeLoad (win) {
-					cy.stub(win, 'fetch')
-						.withArgs('/.netlify/functions/add-event/')
-						.as('fetchAddEvent')
-						.returns(this.fetchAddEventDeferred.promise)
-				},
-		    })
-		})
-	  	
-	  	it('can submit valid event data', function () {
-			
-			// fill out the form with validEventData
-		    cy.get('input[name=eventName]').type(validEventData.eventName)
-			cy.get('textarea[name=description]').type(validEventData.description)
-			cy.get('input[name=linkURL]').type(validEventData.linkURL)
-			cy.get('input[name=cost]').type(validEventData.cost)
-			cy.get('#datepicker-startDate').focus()
-			cy.get('#datepicker-startDate').click()
-			cy.get('button.react-datepicker__navigation--next').click()
-			cy.get('.react-datepicker__day--001').first().click()
-			cy.get('input[name=locationName]').type(validEventData.locationName)
-			cy.get('input[name=locationStreet]').type(validEventData.locationStreet)
-			cy.get('input[name=authorName]').type(validEventData.authorName)
-			cy.get('input[name=authorEmail]').type(validEventData.authorEmail)
+    it('can submit valid event data', function() {
+      
+      // fill out the form with validEventData
+      cy.get('input[name=eventName]').type(validEventData.eventName)
+      cy.get('textarea[name=description]').type(validEventData.description)
+      cy.get('input[name=linkURL]').type(validEventData.linkURL)
+      cy.get('input[name=cost]').type(validEventData.cost)
+      cy.get('#datepicker-startDate').focus()
+      cy.get('#datepicker-startDate').click()
+      cy.get('button.react-datepicker__navigation--next').click()
+      cy.get('.react-datepicker__day--001')
+        .first()
+        .click()
+      cy.get('input[name=locationName]').type(validEventData.locationName)
+      cy.get('input[name=locationStreet]').type(validEventData.locationStreet)
+      cy.get('input[name=authorName]').type(validEventData.authorName)
+      cy.get('input[name=authorEmail]').type(validEventData.authorEmail)
 
-			cy.get('#submitEvent').click()
-			
-			this.fetchAddEventDeferred.resolve({
-		        json () { return {message:'success'} },
-		        ok: true,
-		    })
-			cy.get('@fetchAddEvent').should('be.calledOnce')
-	    })
-	})
-  
+      // submit the form
+      cy.get('#submitEvent').click()
+
+      // return a success message from the stub
+      this.fetchAddEventDeferred.resolve({
+        json() {
+          return { message: 'success' }
+        },
+        ok: true,
+      })
+      cy.get('@fetchAddEvent').should('be.calledOnce')
+      cy.get('div').contains('Thanks for sending your event!').should('be.visible')
+    })
+  })
 })
 ~~~~
 
@@ -490,6 +497,8 @@ Next we create a new `describe()` block for tests we will create for our event s
 
 We also create a `beforeEach` method to run at the start of these tests where we first define the deferred object for our event submission then visit submit page. We have an `onBeforeLoad` function that replaces the browser’s native fetch method with a stub that returns our `fetchAddEventDeferred` promise.
 
+*/cypress/integration/SubmitPage.js*
+
 ~~~~
 beforeEach(function () {
 	this.fetchAddEventDeferred = deferred()
@@ -505,7 +514,140 @@ beforeEach(function () {
 
 After this, we write out our test with various [Cypress commands](https://docs.cypress.io/guides/core-concepts/interacting-with-elements.html#Actionability) to fill out the form with the values from our `validEventData` object then submit.
 
-At the end of the test, we resolve our `fetchAddEventDeferred` promise which simulates the api returning a success message, then verify it was called once.
+At the end of the test, we resolve our `fetchAddEventDeferred` promise which simulates the api resolving the promise by returning a success message. Finally, we verify it was called once.
+
+*/cypress/integration/SubmitPage.js*
+
+~~~~
+// submit the form
+cy.get('#submitEvent').click()
+
+// return a success message from the stub
+this.fetchAddEventDeferred.resolve({
+  json() {
+    return { message: 'success' }
+  },
+  ok: true,
+})
+cy.get('@fetchAddEvent').should('be.calledOnce')
+cy.get('div').contains('Thanks for sending your event!').should('be.visible')
+~~~~
+
+We will add more tests for the form and so we will be entering values over and over again into the form. Rather than repeating code, we can turn our form entry sequence into a [Cypress Custom Command](https://docs.cypress.io/api/cypress-api/custom-commands.html#Syntax).
+
+By default, Cypress has a `commands.js` ready for you to use for just this purpose.
+
+*cypress/support/commands.js*
+
+~~~~
+Cypress.Commands.add("completeEventForm", (eventData) => {
+  // fill out the form with eventData
+  cy.get('input[name=eventName]').type(eventData.eventName)
+  cy.get('textarea[name=description]').type(eventData.description)
+  cy.get('input[name=linkURL]').type(eventData.linkURL)
+  cy.get('input[name=cost]').type(eventData.cost)
+  cy.get('#datepicker-startDate').focus()
+  cy.get('#datepicker-startDate').click()
+  cy.get('button.react-datepicker__navigation--next').click()
+  cy.get('.react-datepicker__day--001')
+    .first()
+    .click()
+  cy.get('input[name=locationName]').type(eventData.locationName)
+  cy.get('input[name=locationStreet]').type(eventData.locationStreet)
+  cy.get('input[name=authorName]').type(eventData.authorName)
+  cy.get('input[name=authorEmail]').type(eventData.authorEmail)
+
+  // submit the form
+  cy.get('#submitEvent').click()
+})
+~~~~
+
+Now we can use this command in our test.
+
+*/cypress/integration/SubmitPage.js*
+
+~~~~
+it('can submit valid event data', function() {
+  cy.completeEventForm(validEventData)
+...
+~~~~
+
+We can further clean up our test by removing `validEventData` and `getTestEventDate()` into a helper function that can be shared across our test suite.
+
+*/cypress/support/helpers.js*
+
+~~~~
+const defaultEventDate = () => {
+  const now = new Date()
+  if (now.getMonth() == 11) {
+    return new Date(now.getFullYear() + 1, 0, 1)
+  } else {
+    return new Date(now.getFullYear(), now.getMonth() + 1, 1)
+  }
+}
+
+module.exports = {
+	getValidEventData: () => ({
+    eventName: 'Test Event',
+    description: 'This is not a real event. It is just for testing',
+    linkURL: 'https://eventbrite.com/test-event',
+    cost: 'FREE',
+    locationName: '1871 Chicago',
+    locationStreet: '222 W Merchandise Mart Plaza #1212',
+    authorName: 'Joe Tester',
+    authorEmail: 'joe@test.com',
+    startDate: defaultEventDate,
+    startTime: '5:00pm',
+    endDate: defaultEventDate,
+    endTime: '7:00pm',
+  })
+}
+~~~~
+
+We can use this in our completeEventForm command as default data. We can set it up so that we only need to pass in data that is different than our defaults.
+
+*cypress/support/commands.js*
+
+~~~~
+Cypress.Commands.add("completeEventForm", (data) => {
+
+  const eventData = {...getValidEventData(), ...data}
+  ...  
+~~~~
+
+So we can update our test to use `completeEventForm()` with default data only, and remove all the stuff we moved into our helper function.
+
+*/cypress/integration/SubmitPage.js*
+
+~~~~
+  ...
+  describe('when submitting event', function() {
+    // stub the response from the api
+    beforeEach(function() {
+      this.fetchAddEventDeferred = deferred()
+      cy.visit('/submit', {
+        onBeforeLoad(win) {
+          cy.stub(win, 'fetch')
+            .as('fetchAddEvent')
+            .returns(this.fetchAddEventDeferred.promise)
+        },
+      })
+    })
+
+    it('can submit valid event data', function() {
+      cy.completeEventForm({})
+      
+      // return a success message from the stub
+      this.fetchAddEventDeferred.resolve({
+        json() {
+          return { message: 'success' }
+        },
+        ok: true,
+      })
+      cy.get('@fetchAddEvent').should('be.calledOnce')
+    })
+  })
+~~~~
 
 ----
 
@@ -519,7 +661,7 @@ To handle these states, it is necessary to structure our components a little dif
 
 ~~~~
 ...
-    <SubmitEventForm onSubmit={onSubmit} />
+    <SubmitEvent />
   </Layout>
 ...
 ~~~~
@@ -537,59 +679,288 @@ The `SubmitEvent` component has 4 states:
 import React, { useState } from 'react'
 import SubmitEventForm from './SubmitEventForm'
 
-const saveEvent = async event => {
+const SubmitEvent = props => {
+  const SUBMIT_READY = 'SUBMIT_READY'
+  const SUBMIT_SENDING = 'SUBMIT_SENDING'
+  const SUBMIT_SUCCESS = 'SUBMIT_SUCCESS'
+  const SUBMIT_FAIL = 'SUBMIT_FAIL'
+  const [submitState, setSubmitState] = useState(SUBMIT_READY)
+
+  const onSubmit = eventData => {
+    setSubmitState(SUBMIT_SENDING);
     return fetch(`/add-event-api-endpoint-goes-here/`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(event),
-  }).then(response => {
-    console.log(response)
-    return response.json()
-  })
-}
-
-const SubmitEvent = (props) => {
-
-	const SUBMIT_READY = 'SUBMIT_READY'
-	const SUBMIT_SENDING = 'SUBMIT_SENDING'
-	const SUBMIT_SUCCESS = 'SUBMIT_SUCCESS'
-	const SUBMIT_FAIL = 'SUBMIT_FAIL'
-	const [submitState, setSubmitState] = useState(SUBMIT_READY)
-
-	const onSubmit = (eventData) => {
-	  // console.log(eventData)
-	  setSubmitState(SUBMIT_SENDING)
-	  saveEvent(eventData).then((response) => {
-	    setSubmitState(SUBMIT_SUCCESS)
-	    console.log('response', response)
-	  }).catch((e) => {
-	  	setSubmitState(SUBMIT_FAIL)
-	    console.log('response err', e)
-	  })
-	}
-	return (
-		<>
-			{{
-		        [SUBMIT_READY]: <SubmitEventForm onSubmit={onSubmit} />,
-		        [SUBMIT_SENDING]: <div>Sending event...</div>,
-		        [SUBMIT_FAIL]: <div>Oops! There was a problem. Please try again later.</div>,
-		        [SUBMIT_SUCCESS]: <div>Thanks for sending your event!</div>,
-	      	}[submitState]}
-		</>
-	)
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(eventData),
+    }).then(response => {
+      try {
+        if (response.json().message === 'success') {
+          setSubmitState(SUBMIT_SUCCESS)
+        } else {
+          setSubmitState(SUBMIT_FAIL)
+        }
+      }
+      catch(err) {
+        setSubmitState(SUBMIT_FAIL)
+        console.log(err)
+      }
+    })
+  }
+  return (
+    <>
+      {
+        {
+          [SUBMIT_READY]: <SubmitEventForm onSubmit={onSubmit} />,
+          [SUBMIT_SENDING]: <div>Sending event...</div>,
+          [SUBMIT_FAIL]: <div>Oops! There was a problem.</div>,
+          [SUBMIT_SUCCESS]: <div>Thanks for sending your event!</div>,
+        }[submitState]
+      }
+    </>
+  )
 }
 
 export default SubmitEvent
 ~~~~
 
-To test that this is working correctly, we can add to our tests.
+To test that this is working correctly, we can add to the end of our test.
+
+*/cypress/integration/SubmitPage.js*
+
+~~~~
+...
+      cy.get('@fetchAddEvent').should('be.calledOnce')
+      cy.get('div').contains('Thanks for sending your event!').should('be.visible')
+    })
+  })
+})
+~~~~
+
+Now we can add tests that verify all the form things:
+
+- Do we prevent form submission when missing required data?
+- Do we prevent form submission when there is invalid data?
+- Do we handle an error response from the api?
+- Can we change the hours of the event?
+- Can we submit an event that spans multiple days?
+
+To cover these cases, we need to make a few updates to our tests.
+
+First, we will update our helpers file. We will add a function to get the default event date (we will use it when we write the test for events with multiple events). Also, there’s no sense in having a separate deferred file, so we can bring it into helper.
+
+*/cypress/support/helpers.js*
+
+~~~~
+const defaultEventDate = () => {
+  const now = new Date()
+  if (now.getMonth() == 11) {
+    return new Date(now.getFullYear() + 1, 0, 1)
+  } else {
+    return new Date(now.getFullYear(), now.getMonth() + 1, 1)
+  }
+}
+
+module.exports = {
+	getValidEventData: () => ({
+    eventName: 'Test Event',
+    description: 'This is not a real event. It is just for testing',
+    linkURL: 'https://eventbrite.com/test-event',
+    cost: 'FREE',
+    locationName: '1871 Chicago',
+    locationStreet: '222 W Merchandise Mart Plaza #1212',
+    authorName: 'Joe Tester',
+    authorEmail: 'joe@test.com',
+    startDate: defaultEventDate,
+    startTime: '5:00pm',
+    endDate: defaultEventDate,
+    endTime: '7:00pm',
+  }),
+  getDefaultEventDate: () => {
+    return defaultEventDate()
+  },
+  deferred: () => {
+    const deferred = {}
+    deferred.promise = new Promise((resolve, reject) => {
+      deferred.resolve = resolve
+      deferred.reject = reject
+    })
+    return deferred
+  }
+}
+~~~~
+
+Next, we will add to our commands. For the `completeEventForm` command, we want to enable it to enter missing and invalid data. Also, the controls for entering dates and times need to be handled a little differently. We will also add new commands to verify the success and error response to keep our test functions cleaner. 
+
+*cypress/support/commands.js*
+
+~~~~
+import { getValidEventData } from './helpers'
+
+Cypress.Commands.add('completeEventForm', (data) => {
+
+  const eventData = {...getValidEventData(), ...data}
+
+  // fill out the form with eventData
+  Object.keys(eventData)
+    .filter(field => field !== 'startTime' && field !== 'endTime' && field !== 'endDate')
+    .forEach((field) => {
+      // startTime and endTime have a default and not possible to set to empty value
+      // endDate is autofilled by choosing startDate
+      if (field === 'startDate') {
+        if (eventData.startDate !== '' && eventData.endDate !== '') {
+          cy.get('#datepicker-startDate').click()
+          cy.get('button.react-datepicker__navigation--next').click()
+          cy.get('.react-datepicker__day--001').first().click()
+        }
+      } else if (eventData[field] !== '') {
+        cy.get('input[name='+field+'],textarea[name='+field+']').type(eventData[field])
+      }
+    })
+
+  if (data.startTime && data.startTime !== '') {
+    cy.get('#timepicker-startDate-hours').select(data.startTime.split(':')[0])
+    cy.get('#timepicker-startDate-minutes').select(data.startTime.split(':')[1].substring(0,2))
+    cy.get('#timepicker-startDate-period').select(data.startTime.split(':')[1].substring(2))
+  }
+
+  if (data.endTime && data.endTime !== '') {
+    cy.get('#timepicker-endDate-hours').select(data.endTime.split(':')[0])
+    cy.get('#timepicker-endDate-minutes').select(data.endTime.split(':')[1].substring(0,2))
+    cy.get('#timepicker-endDate-period').select(data.endTime.split(':')[1].substring(2))
+  }
+
+  if (eventData.endDate !== '' && eventData.endDate !== eventData.startDate) {
+    cy.get('#datepicker-endDate').click()
+    cy.get('button.react-datepicker__navigation--next').click()
+    cy.get('.react-datepicker__day--002').first().click()
+  }
+
+  // submit the form
+  cy.get('#submitEvent').click()
+})
+
+Cypress.Commands.add('verifySubmitSuccess', (test) => {
+  test.fetchAddEventDeferred.resolve({
+    json() {
+      return { message: 'success' }
+    },
+    ok: true,
+  })
+  cy.get('@fetchAddEvent').should('be.calledOnce')
+  cy.get('div')
+    .contains('Thanks for sending your event!')
+    .should('be.visible')
+})
+
+Cypress.Commands.add('verifySubmitError', (test) => {
+  // return an error message from the stub
+  test.fetchAddEventDeferred.resolve({
+    json() {
+      return { message: 'error' }
+    },
+    ok: true,
+  })
+  cy.get('@fetchAddEvent').should('be.calledOnce')
+  cy.get('div')
+    .contains('Oops! There was a problem.')
+    .should('be.visible')
+})
+~~~~
+
+Now, the tests themselves.
+
+*/cypress/integration/SubmitPage.js*
+
+~~~~
+import { deferred, getValidEventData, getDefaultEventDate } from '../support/helpers'
+
+describe('Submit Page', function() {
+  it('can be accessed from homepage', function() {
+    cy.visit('/')
+    cy.get('a')
+      .contains('Submit an Event')
+      .click()
+    cy.location('pathname', { timeout: 10000 }).should('include', '/submit')
+    cy.get('form input[value="Submit Event"]', { timeout: 10000 }).should(
+      'exist'
+    )
+  })
+
+  describe('when submitting event', function() {
+    // stub the response from the api
+    beforeEach(function() {
+      this.fetchAddEventDeferred = deferred()
+      cy.visit('/submit', {
+        onBeforeLoad(win) {
+          cy.stub(win, 'fetch')
+            .as('fetchAddEvent')
+            .returns(this.fetchAddEventDeferred.promise)
+        },
+      })
+    })
+
+    it('can submit valid event data', function() {
+      cy.completeEventForm({})
+      cy.verifySubmitSuccess(this)
+    })
+    
+    it('requires all fields', () => {
+      const validFormData = getValidEventData()
+      Object.keys(validFormData).forEach(key => {
+        // startTime and endTime have a default and not possible to set to empty value
+        if (key != 'startTime' && key != 'endTime') {
+          cy.reload()
+          let formDataWithMissingValue = { ...validFormData }
+          formDataWithMissingValue[key] = ''
+          cy.completeEventForm(formDataWithMissingValue)
+          cy.get('@fetchAddEvent').should('not.be.called')
+        }
+      })
+    })
+
+    it('requires a valid email', function() {
+      cy.completeEventForm({authorEmail:'abc'})
+      cy.get('@fetchAddEvent').should('not.be.called')
+    })
+
+    it('can handle error response', function() {
+      cy.completeEventForm({})
+      cy.verifySubmitError(this)
+    })
+
+    it('can change hours of event', function() {
+      cy.completeEventForm({startTime:'12:00pm',endTime:'1:30pm'})
+      cy.verifySubmitSuccess(this)
+    })
+
+    it('can make multiple day event', function() {
+      let endDate = getDefaultEventDate()
+      endDate.setDate(endDate.getDate() + 1);
+      cy.completeEventForm({endDate})
+      cy.verifySubmitSuccess(this)
+    })
+  })
+})
+~~~~
 
 
 
 
 
 
-Now we have our submit form and have verified that it is sending valid data. Next up, we want to create a function that transforms that data into markdown and sends it the Github API as a pull request.
+
+
+
+
+
+
+
+
+----
+
+## Part 5: Building an API
+
+Now we have our submit form and have verified that it is sending valid data. Next up, we want to create a function that transforms that data into markdown and sends it the [Github API](https://developer.github.com/v3/) as a pull request.
 
 To use the Github API, sign up for a [Github Developer account](https://developer.github.com/). 
 

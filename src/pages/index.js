@@ -42,6 +42,7 @@ class Index extends React.Component {
               <MonthHeader month={month} />
               {eventsByMonth[month].map(({ node }) => (
                 <Event
+                  key={node.fields.slug}
                   {...{
                     url: node.fields.slug,
                     title: node.frontmatter.title || node.fields.slug,

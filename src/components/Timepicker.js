@@ -6,7 +6,7 @@ const Timepicker = props => {
   const [time, setTime] = useState(props.defaultTime || '')
 
   const onHourChange = newHour => {
-    setTime(newHour + time.split(':')[1])
+    setTime(newHour + ':' + time.split(':')[1])
     if (props.onChange) {
       props.onChange(time)
     }
@@ -66,10 +66,10 @@ const Timepicker = props => {
         }}
         id={props.id + '-minutes'}
       >
-        <option>00</option>
-        <option>15</option>
-        <option>30</option>
-        <option>45</option>
+        <option value="00">00</option>
+        <option value="15">15</option>
+        <option value="30">30</option>
+        <option value="45">45</option>
       </Select>
       <Select
         defaultValue={

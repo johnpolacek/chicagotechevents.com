@@ -6,7 +6,7 @@
 ----
 
 **WIP**
-- See Past Events *(in starter)*
+- Write Netlify Functions section
 - Not a Robot
 
 ----

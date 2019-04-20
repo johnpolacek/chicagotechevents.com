@@ -26,6 +26,8 @@
 
 import { getValidEventData } from './helpers'
 
+const API_URL = '/.netlify/functions/add-event/'
+
 Cypress.Commands.add('completeEventForm', data => {
   const eventData = { ...getValidEventData(), ...data }
 
@@ -99,11 +101,7 @@ Cypress.Commands.add('verifySubmitSuccess', test => {
     },
     ok: true,
   })
-  cy.get('@fetchAddEvent').should('be.calledOnce')
-  // cy.get('@fetchAddEvent').should(
-  //   'be.calledWith',
-  //   '/.netlify/functions/add-event/'
-  // )
+  cy.get('@fetchAddEvent').should('be.calledWith', API_URL)
   cy.get('div')
     .contains('Thanks for sending your event!')
     .should('be.visible')
@@ -117,12 +115,8 @@ Cypress.Commands.add('verifySubmitError', test => {
     },
     ok: true,
   })
-  cy.get('@fetchAddEvent').should('be.calledOnce')
-  // cy.get('@fetchAddEvent').should(
-  //   'be.calledWith',
-  //   '/.netlify/functions/add-event/'
-  // )
+  cy.get('@fetchAddEvent').should('be.calledWith', API_URL)
   cy.get('div')
-    .contains('Sorry, there was a problem.')
+    .contains('Oops! There was a problem.')
     .should('be.visible')
 })

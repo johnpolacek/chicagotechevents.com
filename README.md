@@ -7,6 +7,7 @@
 
 **WIP**
 - Write Netlify Functions section
+- Test for Netlify Function
 - Not a Robot
 
 ----
@@ -1193,7 +1194,7 @@ command = "npm run build"
 functions = "./functions-build"
 ~~~~
 
-To finish this part up, let’s add a link to our header to our submit page.
+Let’s add a link to our header to our submit page.
 
 *src/components/Header.js*
 
@@ -1204,6 +1205,35 @@ To finish this part up, let’s add a link to our header to our submit page.
   <Link style={{textDecoration:'none'}} to={`/submit`}><Span bg="cyan" color="white" px={3} py={2} borderRadius="4px">Submit Event</Span></Link>
 </Header>
 ~~~~
+
+Last, we need to add our API endpoint to `SubmitEvent`.
+
+*src/components/SubmitEvent.js*
+
+~~~~
+  ...
+  const onSubmit = eventData => {
+    setSubmitState(SUBMIT_SENDING)
+    return fetch(`/.netlify/functions/add-event/`, {
+  ...
+~~~~
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Make your own events site
 

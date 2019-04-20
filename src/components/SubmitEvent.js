@@ -13,8 +13,7 @@ const SubmitEvent = props => {
 
   const onSubmit = eventData => {
     setSubmitState(SUBMIT_SENDING)
-    // return fetch(`/.netlify/functions/add-event/`, {
-    return fetch(`/add-event-api-endpoint-goes-here/`, {
+    return fetch(`/.netlify/functions/add-event/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(eventData),

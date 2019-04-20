@@ -17,8 +17,6 @@ export default props => (
         />
       </svg>
     </Div>
-    <P pt={3} pb={4} width={1} color="red">
-      Oops! There was a problem.
-    </P>
+    <P pt={3} pb={4} width={1} color="red">Oops! There was a problem.</P>
   </SubmitEventMessage>
 )

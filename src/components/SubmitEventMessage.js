@@ -10,7 +10,9 @@ export default props => (
     justifyContent="center"
     fontSize={3}
     textAlign="center"
+    color="blue"
+    flexDirection="column"
   >
-    <p>{props.children}</p>
+    {props.children}
   </Div>
 )

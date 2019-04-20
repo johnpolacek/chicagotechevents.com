@@ -4,7 +4,7 @@ import { Header, H1, H2, Span } from 'styled-system-html'
 
 export default props => (
   <>
-    {props.path === '/submit/' ? (
+    {props.path.replace(/\/$/, '') === '/submit' ? (
       <Header
         borderBottom="solid 2px"
         borderColor="gray2"

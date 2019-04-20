@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import SubmitEventForm from './SubmitEventForm'
-import SubmitEventMessage from './SubmitEventMessage'
+import SubmitSending from './SubmitSending'
+import SubmitFail from './SubmitFail'
+import SubmitSuccess from './SubmitSuccess'
 
 const SubmitEvent = props => {
   const SUBMIT_READY = 'SUBMIT_READY'
@@ -34,17 +36,9 @@ const SubmitEvent = props => {
       {
         {
           [SUBMIT_READY]: <SubmitEventForm onSubmit={onSubmit} />,
-          [SUBMIT_SENDING]: (
-            <SubmitEventMessage>Sending event...</SubmitEventMessage>
-          ),
-          [SUBMIT_FAIL]: (
-            <SubmitEventMessage>Sorry, there was a problem.</SubmitEventMessage>
-          ),
-          [SUBMIT_SUCCESS]: (
-            <SubmitEventMessage>
-              Thanks for sending your event!
-            </SubmitEventMessage>
-          ),
+          [SUBMIT_SENDING]: <SubmitSending />,
+          [SUBMIT_FAIL]: <SubmitFail />,
+          [SUBMIT_SUCCESS]: <SubmitSuccess />,
         }[submitState]
       }
     </>

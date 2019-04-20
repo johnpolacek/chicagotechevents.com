@@ -6,7 +6,6 @@
 ----
 
 **WIP**
-- Update README for SubmitEventMessage component
 - Write Netlify Functions section
 - Not a Robot
 
@@ -944,19 +943,6 @@ describe('Submit Page', function() {
 })
 ~~~~
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ----
 
 ## Part 5: Building an API
@@ -1232,4 +1218,4 @@ Add events via markdown files in `/content/eventslist/`. Example markdown files 
 
 Thanks to [David Wells](https://davidwells.io/) for answering some question while I was initially figuring things out.
 
-Calendar icon made by [Freepik](https://www.freepik.com/) from [Flaticon](https://www.flaticon.com/) is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/).
+Icons by [Freepik](https://www.freepik.com/) from [Flaticon](https://www.flaticon.com/) is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/).

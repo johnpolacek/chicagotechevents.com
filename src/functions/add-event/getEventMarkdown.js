@@ -19,4 +19,4 @@ ${data.description}
 `
 }
 
-export default getEventMarkdown
+module.exports = getEventMarkdown

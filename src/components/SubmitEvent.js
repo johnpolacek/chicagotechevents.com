@@ -21,8 +21,6 @@ const SubmitEvent = props => {
     .then(response => response.json())
     .then(data => {
       try {
-        console.log('typeof data', typeof data)
-        console.log('data', data)
         if (data.message === 'success') {
           setSubmitState(SUBMIT_SUCCESS)
         } else {

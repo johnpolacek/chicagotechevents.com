@@ -1003,7 +1003,7 @@ Open `package.json` and edit the setting for main to be `add-event.js`. It shoul
 }
 ~~~~
 
-Next we will set up a function to create the pull request.
+Next we will set up a function to create the pull request (source from [Netlify’s Functions Examples](https://github.com/netlify-labs/functions-site/blob/master/functions/add-example/utils/createPullRequest.js))
 
 *src/functions/add-event/createPullRequest.js*
 
@@ -1072,6 +1072,37 @@ async function createPullRequest (octokit, { owner, repo, title, body, base, hea
   return response
 }
 ~~~~
+
+We also need a function that will generate the markdown we need to create for the events being created through the pull request.
+
+*src/functions/add-event/getEventMarkdown.js*
+
+~~~~
+const getEventMarkdown = (data) => {
+return `---
+title: "${data.eventName}"
+date: "${data.date}"
+startDate: "${data.startDate}"
+startTime: "${data.startTime}"
+endDate: "${data.endDate}"
+endTime: "${data.endTime}"
+locationName: "${data.locationName}"
+locationStreet: "${data.locationStreet}"
+locationCity: "${data.locationCity}"
+cost: "${data.cost}"
+eventUrl: "${data.linkURL}"
+
+---
+
+${data.description}
+
+`
+}
+
+module.exports = getEventMarkdown
+~~~~
+
+Now we will create the Netlify function itself using `createPullRequest` and `getEventMarkdown`.
 
 *src/functions/add-event/add-event.js*
 

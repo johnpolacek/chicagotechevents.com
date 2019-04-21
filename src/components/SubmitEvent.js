@@ -22,6 +22,9 @@ const SubmitEvent = props => {
         if (response.json().message === 'success') {
           setSubmitState(SUBMIT_SUCCESS)
         } else {
+          console.log('typeof response', typeof response)
+          console.log('typeof response.json', typeof response.json)
+          console.log('response.json()', response.json())
           setSubmitState(SUBMIT_FAIL)
         }
       } catch (err) {

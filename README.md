@@ -1151,25 +1151,7 @@ exports.handler = (event, context, callback) => {
   const filename = dateStr+'-'+body.eventName.toLowerCase().split(' ').join('-');
   const filepath = 'content/eventslist/'+filename
 
-  const newContent = `
-    ---
-    title: "${body.eventName}"
-    startDate: "${body.startDate}"
-    startTime: "${body.startTime}"
-    endDate: "${body.endDate}"
-    endTime: "${body.endTime}"
-    locationName: "${body.locationName}"
-    locationStreet: "${body.locationStreet}"
-    locationCity: "${body.locationCity}"
-    cost: "${body.cost}"
-    eventUrl: "${body.linkURL}"
-    authorName: "${body.authorName}"
-    authorEmail: "${body.authorEmail}"
-    ---
-
-    ${body.description}
-
-  `;
+  const newContent = getEventMarkdown({...body, ...{date: date.toISOString()} })
 
   octokit.createPullRequest({
     owner,
@@ -1269,19 +1251,8 @@ Last, we need to add our API endpoint to `SubmitEvent`.
 
 
 
-
-
-## Make your own events site
-
-Update the site title, description and more by editing `siteMetadata` in `gatsby-config.js`.
-
-Change the font, colors and more by editing the settings in `src/theme.js`
-
-Add events via markdown files in `/content/eventslist/`. Example markdown files have been provided.
-
-
 --
 
-Thanks to [David Wells](https://davidwells.io/) for answering some question while I was initially figuring things out.
+Thanks to [David Wells](https://davidwells.io/) for answering some questions for me while I was initially figuring things out.
 
 Icons by [Freepik](https://www.freepik.com/) from [Flaticon](https://www.flaticon.com/) is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/).

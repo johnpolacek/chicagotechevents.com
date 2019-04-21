@@ -45,7 +45,6 @@ exports.handler = (event, context, callback) => {
 
   const newContent = getEventMarkdown({...body, ...{date: date.toISOString()} })
 
-
   octokit.createPullRequest({
     owner,
     repo,

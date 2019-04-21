@@ -3,12 +3,12 @@
 
 *A step-by-step documentation of building chicagotechevents.com*
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/62b593a7-7d74-49b1-b85f-b48f57bb426c/deploy-status)](https://app.netlify.com/sites/chicagotechevents/deploys)
+
 ----
 
 **WIP**
 
-- Test for Netlify Function
-  - WIP separate `getEventMarkdown` module (API.js) need to finish, bring into main SubmitPage test file, use in actual API
 - Not a Robot
 - Email template
 - Meetup API
@@ -1237,7 +1237,15 @@ Last, we need to add our API endpoint to `SubmitEvent`.
   ...
 ~~~~
 
+----
 
+## Part 6: Deploy
+
+After configuration, deploying to Netlify is generally as simple as pushing an update to your master branch on Gitub. Read the [Step-by-Step Guide: Deploying on Netlify](https://www.netlify.com/blog/2016/09/29/a-step-by-step-guide-deploying-on-netlify/) for more info.
+
+Some additional stuff you can do with your deploys:
+
+- [Add a status badge to your repo](https://app.netlify.com/sites/chicagotechevents/settings/general#status-badges)
 
 
 

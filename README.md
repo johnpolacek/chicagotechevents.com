@@ -6,9 +6,15 @@
 ----
 
 **WIP**
-- Write Netlify Functions section
+
 - Test for Netlify Function
+  - WIP separate `getEventMarkdown` module (API.js) need to finish, bring into main SubmitPage test file, use in actual API
 - Not a Robot
+- Email template
+- Meetup API
+- Eventbrite API
+- Sponsors
+- Mailchimp API
 
 ----
 
@@ -1217,7 +1223,6 @@ Last, we need to add our API endpoint to `SubmitEvent`.
     return fetch(`/.netlify/functions/add-event/`, {
   ...
 ~~~~
-
 
 
 

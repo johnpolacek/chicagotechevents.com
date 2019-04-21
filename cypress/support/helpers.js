@@ -1,9 +1,9 @@
 const defaultEventDate = () => {
   const now = new Date()
   if (now.getMonth() == 11) {
-    return new Date(now.getFullYear() + 1, 0, 1)
+    return new Date(now.getFullYear() + 1, 0, 1).toString()
   } else {
-    return new Date(now.getFullYear(), now.getMonth() + 1, 1)
+    return new Date(now.getFullYear(), now.getMonth() + 1, 1).toString()
   }
 }
 
@@ -15,11 +15,12 @@ module.exports = {
     cost: 'FREE',
     locationName: '1871 Chicago',
     locationStreet: '222 W Merchandise Mart Plaza #1212',
+    locationCity: 'Chicago',
     authorName: 'Joe Tester',
     authorEmail: 'joe@test.com',
-    startDate: defaultEventDate,
+    startDate: defaultEventDate(),
     startTime: '5:00pm',
-    endDate: defaultEventDate,
+    endDate: defaultEventDate(),
     endTime: '7:00pm',
   }),
   getDefaultEventDate: () => {

@@ -17,14 +17,15 @@ const SubmitEvent = props => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(eventData),
-    }).then(response => {
+    })
+    .then(response => response.json())
+    .then(data => {
       try {
-        const data = response.json()
+        console.log('typeof data', typeof data)
+        console.log('data', data)
         if (data.message === 'success') {
           setSubmitState(SUBMIT_SUCCESS)
         } else {
-          console.log('typeof data', typeof data)
-          console.log('data', data)
           setSubmitState(SUBMIT_FAIL)
         }
       } catch (err) {

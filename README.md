@@ -8,13 +8,12 @@
 ----
 
 **WIP**
-
-- Not a Robot
 - Email template
 - Meetup API
 - Eventbrite API
 - Sponsors
 - Mailchimp API
+- Not a Robot
 
 ----
 
@@ -1270,10 +1269,13 @@ To see this in action, you can now run the tests locally and see the results in 
 npm run test
 ~~~~
 
+For more information about setting up testing with Gatsby and Cypress, check out this [Test All The Things](https://gatsby-blog-0a5be4.netlify.com/) project from the creator of [start-server-and-test](https://github.com/bahmutov/start-server-and-test). 
+
 Some additional stuff we can do with our deploys:
 
 - You can set up a notification to your email or [slack](https://www.netlify.com/blog/2016/07/18/shiny-slack-notifications-from-netlify/) whenever a new pull request comes in through the API. You can see a link to a [Deploy Preview](https://www.netlify.com/blog/2016/07/20/introducing-deploy-previews-in-netlify/) so you can see what the event submission will look like in addition to reviewing the code for the PR in Github.
 - [Add a status badge to your repo](https://app.netlify.com/sites/chicagotechevents/settings/general#status-badges)
+- 
 
 
 

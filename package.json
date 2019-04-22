@@ -57,6 +57,8 @@
     "zip": "cd src/functions/add-event && npm install && zip -r add-event.zip *",
     "postzip": "mv src/functions/add-event/add-event.zip functions-build",
     "prebuild": "npm run makedir && npm run zip",
+    "predeploy": "CI=1 npm i cypress; npm test",
+    "deploy": "npm run build",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
     "test": "start-test develop 8000 cy:run"

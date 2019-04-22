@@ -341,7 +341,7 @@ Let’s add a command to `package.json` to open Cypress
 ~~~~
 "scripts": {
   ...
-  "cypress:open": "cypress open",
+  "cy:open": "cypress open",
   ...
 }
 ~~~~
@@ -375,7 +375,7 @@ This test simply verifies that we can go to the homepage, click the link to navi
 
 ~~~~
 npm run dev
-npm run cypress:open
+npm run cy:open
 ~~~~
 
 When testing, we don’t want to actually hit our yet-to-be-created function and submit pull requests every time we run tests. Instead, we will have Cypress intercept the api request and stub out the responses that would normally come from the server.
@@ -1243,8 +1243,36 @@ Last, we need to add our API endpoint to `SubmitEvent`.
 
 After configuration, deploying to Netlify is generally as simple as pushing an update to your master branch on Gitub. Read the [Step-by-Step Guide: Deploying on Netlify](https://www.netlify.com/blog/2016/09/29/a-step-by-step-guide-deploying-on-netlify/) for more info.
 
-Some additional stuff you can do with your deploys:
+To make sure our builds pass the tests, we can set up our Cypress tests to run on Netlify in a predeploy step.
 
+The first step in setting this up is to get our tests to run headlessly. We need to install a little utility called `start-server-and-test`.
+
+~~~~
+npm install --save-dev start-server-and-test
+~~~~
+
+Now we can set up a predeploy script to run the tests every time we push a commit.
+
+*package.json*
+
+~~~~
+  "scripts": {
+    ...
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "test": "start-test develop 8000 cy:run"
+  }
+~~~~
+
+To see this in action, you can now run the tests locally and see the results in your CLI.
+
+~~~~
+npm run test
+~~~~
+
+Some additional stuff we can do with our deploys:
+
+- You can set up a notification to your email or [slack](https://www.netlify.com/blog/2016/07/18/shiny-slack-notifications-from-netlify/) whenever a new pull request comes in through the API. You can see a link to a [Deploy Preview](https://www.netlify.com/blog/2016/07/20/introducing-deploy-previews-in-netlify/) so you can see what the event submission will look like in addition to reviewing the code for the PR in Github.
 - [Add a status badge to your repo](https://app.netlify.com/sites/chicagotechevents/settings/general#status-badges)
 
 

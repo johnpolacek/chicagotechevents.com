@@ -1257,13 +1257,15 @@ Now we can set up a predeploy script to run the tests every time we push a commi
 ~~~~
   "scripts": {
     ...
+    "predeploy": "CI=1 npm i cypress; npm test",
+    "deploy": "npm run build",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
     "test": "start-test develop 8000 cy:run"
   }
 ~~~~
 
-To see this in action, you can now run the tests locally and see the results in your CLI.
+Now when you push commits, you will see the tests output to the [Netlify Deploy Log](https://www.netlify.com/blog/2017/10/31/introducing-public-deploy-logs-for-open-source-sites/). To see this in action before you push, you can now run the tests locally and see the results in your CLI.
 
 ~~~~
 npm run test
@@ -1274,8 +1276,9 @@ For more information about setting up testing with Gatsby and Cypress, check out
 Some additional stuff we can do with our deploys:
 
 - You can set up a notification to your email or [slack](https://www.netlify.com/blog/2016/07/18/shiny-slack-notifications-from-netlify/) whenever a new pull request comes in through the API. You can see a link to a [Deploy Preview](https://www.netlify.com/blog/2016/07/20/introducing-deploy-previews-in-netlify/) so you can see what the event submission will look like in addition to reviewing the code for the PR in Github.
-- [Add a status badge to your repo](https://app.netlify.com/sites/chicagotechevents/settings/general#status-badges)
-- 
+- Add a [status badge to your repo](https://app.netlify.com/sites/chicagotechevents/settings/general#status-badges)
+
+
 
 
 

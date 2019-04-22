@@ -1,10 +1,8 @@
+import { DateTime } from 'luxon'
+
 const defaultEventDate = () => {
-  const now = new Date()
-  if (now.getMonth() == 11) {
-    return new Date(now.getFullYear() + 1, 0, 1).toString().replace('CDT','Central Daylight Time')
-  } else {
-    return new Date(now.getFullYear(), now.getMonth() + 1, 1).toString().replace('CDT','Central Daylight Time')
-  }
+  const now = DateTime.local().setZone('America/Chicago')
+  return now.plus({months:1}).set({day:1}).toLocaleString(DateTime.DATETIME_FULL)
 }
 
 module.exports = {

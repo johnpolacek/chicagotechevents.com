@@ -8,6 +8,7 @@
 ----
 
 **WIP**
+- Fixing tests on netlify - timezone issue
 - Email template
 - Meetup API
 - Eventbrite API

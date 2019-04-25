@@ -7,14 +7,25 @@
 
 ----
 
-**WIP**
-- Fixing tests on netlify - timezone issue
+<br>
+
+**--W--I--P--**
+
+- Design
+	- [Poster](https://www.google.com/imgres?imgurl=https%3A%2F%2Fc8.alamy.com%2Fcomp%2FPWPRX6%2Fposter-city-skyline-chicago-flat-style-vector-illustration-interior-decoration-design-PWPRX6.jpg&imgrefurl=https%3A%2F%2Fwww.alamy.com%2Fposter-city-skyline-chicago-flat-style-vector-illustration-interior-decoration-design-image222392526.html&docid=DZPZq9KlFJITDM&tbnid=N94-RrJCmNEiCM%3A&vet=12ahUKEwiWn7vr_eThAhVNvFkKHdotBn44ZBAzKA0wDXoECAEQDg..i&w=928&h=1390&bih=766&biw=1394&q=chicago%20poster%20design&ved=2ahUKEwiWn7vr_eThAhVNvFkKHdotBn44ZBAzKA0wDXoECAEQDg&iact=mrc&uact=8#h=1390&imgdii=N94-RrJCmNEiCM:&vet=12ahUKEwiWn7vr_eThAhVNvFkKHdotBn44ZBAzKA0wDXoECAEQDg..i&w=928)
+	
+	- Dark Blue: #002F6D
+	- Light Blue: #55C1E8
+	- Red: #CE112D
+
 - Email template
 - Meetup API
 - Eventbrite API
 - Sponsors
-- Mailchimp API
+- Mailchimp API - [Netlify Function for Emails](https://css-tricks.com/netlify-functions-for-sending-emails/)
 - Not a Robot
+
+<br>
 
 ----
 
@@ -1280,11 +1291,46 @@ Some additional stuff we can do with our deploys:
 - Add a [status badge to your repo](https://app.netlify.com/sites/chicagotechevents/settings/general#status-badges)
 
 
+----
 
+## Part 7: Design
 
+Now that we have a working prototype of our events website, it is a good time to do some design iteration. What we have now is based on the default design in the [Gatsby Events List Starter](https://github.com/johnpolacek/gatsby-starter-events-list).
 
+In my case, I am building website that lists tech events in Chicago, so I want to make the design more relevant by using colors and design elements that relate to Chicago.
 
+For graphics, I created an SVG silhouette of the Chicago skyline and found an SVG file for the [flag of Chicago](https://commons.wikimedia.org/wiki/File:Flag_of_Chicago,_Illinois.svg). SVG is great because as a vector-based format it has a small file size while always looking sharp no matter how you scale it.
 
+For colors, I made some adjustments to the [project theme file](https://github.com/johnpolacek/chicagotechevents.com/blob/master/src/theme.js) by bringing in a spectrum of values from the cyan and red in the Chicago flag.
+
+*src/theme.js*
+
+~~~~
+  ...
+  "red": "#CE112D",
+  "red0": "#fef8f9",
+  "red1": "#fbe9ec",
+  "red2": "#f7dade",
+  "red3": "#f4c8cf",
+  "red4": "#f0b5bd",
+  "red5": "#eb9ea9",
+  "red6": "#e58392",
+  "red7": "#de5f72",
+  "red8": "#d1213b",
+  "red9": "#810b1c",
+  "cyan": "#55c1e8",
+  "cyan0": "#f3fbfd",
+  "cyan1": "#daf1fa",
+  "cyan2": "#bee7f6",
+  "cyan3": "#9fdcf2",
+  "cyan4": "#7bcfed",
+  "cyan5": "#54bfe6",
+  "cyan6": "#4babcd",
+  "cyan7": "#4193b0",
+  "cyan8": "#33748b",
+  "cyan9": "#1e4452"
+}
+~~~~
 
 
 

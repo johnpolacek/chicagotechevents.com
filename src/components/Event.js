@@ -1,45 +1,45 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 import { Link } from 'gatsby'
 import { Div, H2, H3, P } from 'styled-system-html'
+import theme from '../theme'
 
 const toAmPm = time =>
   (parseInt(time.split(':')[0]) % 12) +
   (time.split(':')[1] !== '00' && ':' + time.split(':')[1]) +
   (parseInt(time.split(':')[0]) < 12 ? 'am' : 'pm')
 
+const StyledLink = styled(props => <Link {...props} />)`
+  color: ${theme.colors.base};
+`;
+
 const Event = props => (
   <Div key={props.url} pb={4}>
     {props.url ? (
-      <H3 fontSize={4} borderBottom="solid 1px" borderColor="gray2" mb={1}>
-        <Link to={props.url}>{props.title}</Link>
+      <H3 fontSize={[3,4]}>
+        <StyledLink to={props.url}>{props.title}</StyledLink>
       </H3>
     ) : (
-      <H2
-        color="base"
-        fontSize={4}
-        borderBottom="solid 1px"
-        borderColor="gray2"
-        mb={1}
-      >
+      <H2 color="base" fontSize={[3,4]}>
         {props.title}
       </H2>
     )}
     {props.startDate !== props.endDate ? (
-      <P color="gray7" fontStyle="italic" fontSize={0} mb={2}>
+      <P color="red" fontStyle="italic" fontSize={0} mb={2}>
         {props.startDate}{' '}
         {props.startTime ? 'at ' + toAmPm(props.startTime) : ''} to{' '}
         {props.endDate} {props.endTime ? 'at ' + toAmPm(props.endTime) : ''}
       </P>
     ) : (
-      <P color="gray7" fontStyle="italic" fontSize={0} mb={2}>
+      <P color="red" fontStyle="italic" fontSize={0} mb={2}>
         {props.startDate}{' '}
         {props.startTime ? ' – ' + toAmPm(props.startTime) : ''}
         {props.endTime && props.endTime ? ' to ' + toAmPm(props.endTime) : ''}
       </P>
     )}
     <P
-      mb={3}
+      fontSize={[1,2]} mb={3}
       dangerouslySetInnerHTML={{
         __html: props.content,
       }}

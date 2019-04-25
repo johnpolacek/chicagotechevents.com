@@ -1,22 +1,26 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Div } from 'styled-system-html'
+import { Div, Img, Span } from 'styled-system-html'
 
 const MonthHeader = props => (
   <Div
-    color="base"
+    display="flex"
+    justifyContent="center"
+    alignItems="center"
+    color="red"
     fontWeight="bold"
     fontSize={0}
-    borderTop="solid 2px"
-    borderBottom="solid 2px"
-    borderColor="gray2"
+    borderTop="solid 1px"
+    borderBottom="solid 1px"
+    borderColor="cyan"
     textAlign="center"
-    lineHeight="1"
     py={2}
     mt={2}
     mb={4}
   >
-    {props.month.toUpperCase()}
+    <Img mx={1} width={16} height={16} src="/img/chicago-star.svg" /> 
+    <Span mx={2} position="relative" top="1px">{props.month.toUpperCase()}</Span>
+    <Img mx={1} width={16} height={16} src="/img/chicago-star.svg" />
   </Div>
 )
 

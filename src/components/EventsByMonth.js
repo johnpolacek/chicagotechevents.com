@@ -7,7 +7,7 @@ import { Div } from 'styled-system-html'
 const EventsByMonth = props => {
   return Object.keys(props.eventsByMonth).map(month => {
     return (
-      <Div key={month} pb={4}>
+      <Div key={month} position="relative" width={1} mx="auto" px={[0,3]} py={3} style={{maxWidth:'800px',zIndex:'999'}}>
         <MonthHeader month={month} />
         {props.eventsByMonth[month].map(({ node }) => (
           <Event

@@ -23,51 +23,55 @@ class CalendarEventTemplate extends React.Component {
           title={node.frontmatter.title}
           description={node.frontmatter.description || node.excerpt}
         />
-        <Event
-          {...{
-            title: node.frontmatter.title || node.fields.slug,
-            startDate: node.frontmatter.startDate,
-            startTime: node.frontmatter.startTime,
-            endDate: node.frontmatter.endDate,
-            endTime: node.frontmatter.endTime,
-            locationName: node.frontmatter.locationName,
-            locationStreet: node.frontmatter.locationStreet,
-            locationCity: node.frontmatter.locationCity,
-            locationState: node.frontmatter.locationState,
-            cost: node.frontmatter.cost,
-            eventUrl: node.frontmatter.eventUrl,
-            content: node.html,
-          }}
-        />
-
-        <Nav
-          borderTop="solid 2px"
-          borderColor="gray2"
-          mt={3}
-          py={3}
-          display="flex"
-        >
-          <Div textAlign="left" width={1 / 2}>
-            {previous && (
-              <Link to={previous.fields.slug} rel="prev">
-                <Span display="flex">
-                  <Span pr={3}>←</Span>
-                  <Span>{previous.frontmatter.title}</Span>
-                </Span>
-              </Link>
-            )}
+        <Div position="relative" width={1} mx="auto" p={3} style={{maxWidth:'800px',zIndex:'999'}}>
+          <Event
+            {...{
+              title: node.frontmatter.title || node.fields.slug,
+              startDate: node.frontmatter.startDate,
+              startTime: node.frontmatter.startTime,
+              endDate: node.frontmatter.endDate,
+              endTime: node.frontmatter.endTime,
+              locationName: node.frontmatter.locationName,
+              locationStreet: node.frontmatter.locationStreet,
+              locationCity: node.frontmatter.locationCity,
+              locationState: node.frontmatter.locationState,
+              cost: node.frontmatter.cost,
+              eventUrl: node.frontmatter.eventUrl,
+              content: node.html,
+            }}
+          />
+          <Div textAlign="center" pt={5} pb={4}>
+            <Link to={`/`}>view all events</Link>
           </Div>
-          <Div textAlign="right" width={1 / 2}>
-            {next && (
-              <Link to={next.fields.slug} rel="next">
-                <Span display="flex" justifyContent="flex-end">
-                  <Span>{next.frontmatter.title}</Span>
-                  <Span pl={3}>→</Span>
-                </Span>
-              </Link>
-            )}
-          </Div>
-        </Nav>
+          <Nav
+            borderTop="solid 2px"
+            borderColor="gray2"
+            mt={3}
+            py={3}
+            display="flex"
+          >
+            <Div textAlign="left" width={1 / 2}>
+              {previous && (
+                <Link to={previous.fields.slug} rel="prev">
+                  <Span display="flex">
+                    <Span pr={3}>←</Span>
+                    <Span>{previous.frontmatter.title}</Span>
+                  </Span>
+                </Link>
+              )}
+            </Div>
+            <Div textAlign="right" width={1 / 2}>
+              {next && (
+                <Link to={next.fields.slug} rel="next">
+                  <Span display="flex" justifyContent="flex-end">
+                    <Span>{next.frontmatter.title}</Span>
+                    <Span pl={3}>→</Span>
+                  </Span>
+                </Link>
+              )}
+            </Div>
+          </Nav>
+        </Div>
       </Layout>
     )
   }

@@ -9,7 +9,7 @@ export default () => (
     py={4}
     px={[3, 0]}
   >
-    <Div display={['block', 'flex']}>
+    <Div width={1} mx="auto" p={3} style={{maxWidth:'800px',zIndex:'999'}} display={['block', 'flex']}>
       <Div width={[1, 1 / 2]} textAlign={['center', 'left']}>
         <P mb={1}>© {new Date().getFullYear()} John Polacek</P>
         <P>

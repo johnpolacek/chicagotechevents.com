@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Chicago Tech Events`,
     author: `John Polacek`,
-    description: `A starter for creating a calendar list of great events in your area.`,
+    description: `The best web, tech and startup events in Chicago`,
     siteUrl: `https://chicagotechevents.netlify.com/`,
     social: {
       twitter: `chicagotechevents`,

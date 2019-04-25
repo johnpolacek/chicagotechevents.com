@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { Div, H2, Form } from 'styled-system-html'
+import { Div, P, Form } from 'styled-system-html'
 import 'react-datepicker/dist/react-datepicker.css'
 import FormControl from './FormControl'
 import FormControlDateTime from './FormControlDateTime'
@@ -65,111 +65,106 @@ const SubmitEventForm = props => {
   }
 
   return (
-    <>
-      <H2 fontSize={4} pb={4} fontWeight="bold" textAlign="center">
-        Submit an Event
-      </H2>
+    <Form width={[1, 360]} mx="auto" onSubmit={onSubmit} style={{position:'relative',zIndex:999}}>
+      <P pb={4} px={4} color="base" fontWeight="bold" textAlign="center">Please provide the info below to get your event listed.</P>
+      <FormControl
+        label="Name of Event"
+        type="text"
+        id="eventName"
+        value={eventName}
+        setValue={setEventName}
+      />
+      <FormControl
+        label="Event Description"
+        type="textarea"
+        id="description"
+        value={description}
+        setValue={setDescription}
+        labelAddendum="(up to 320 characters)"
+      />
+      <FormControl
+        label="Event Website"
+        type="text"
+        id="linkURL"
+        value={linkURL}
+        setValue={setLinkURL}
+        labelAddendum="(e.g.&nbsp;http://www.meetup.com/Chicago-Open-Coffee)"
+      />
+      <FormControl
+        label="Cost"
+        type="text"
+        id="cost"
+        value={cost}
+        setValue={setCost}
+        labelAddendum="(if none, enter FREE)"
+      />
 
-      <Form width={[1, 360]} mx="auto" onSubmit={onSubmit}>
-        <FormControl
-          label="Name of Event"
-          type="text"
-          id="eventName"
-          value={eventName}
-          setValue={setEventName}
-        />
-        <FormControl
-          label="Event Description"
-          type="textarea"
-          id="description"
-          value={description}
-          setValue={setDescription}
-          labelAddendum="(up to 320 characters)"
-        />
-        <FormControl
-          label="Event Website"
-          type="text"
-          id="linkURL"
-          value={linkURL}
-          setValue={setLinkURL}
-          labelAddendum="(e.g.&nbsp;http://www.meetup.com/Chicago-Open-Coffee)"
-        />
-        <FormControl
-          label="Cost"
-          type="text"
-          id="cost"
-          value={cost}
-          setValue={setCost}
-          labelAddendum="(if none, enter FREE)"
-        />
+      <FormControlDateTime
+        required={true}
+        label="Start Date"
+        id="startDate"
+        onDateChange={onStartDateChange}
+        dateValue={startDate}
+        onTimeChange={time => {
+          setStartTime(time)
+        }}
+        timeValue={startTime}
+      />
+      <FormControlDateTime
+        required={true}
+        label="End Date"
+        id="endDate"
+        onDateChange={onEndDateChange}
+        dateValue={endDate}
+        onTimeChange={time => {
+          setEndTime(time)
+        }}
+        timeValue={endTime}
+      />
 
-        <FormControlDateTime
-          required={true}
-          label="Start Date"
-          id="startDate"
-          onDateChange={onStartDateChange}
-          dateValue={startDate}
-          onTimeChange={time => {
-            setStartTime(time)
-          }}
-          timeValue={startTime}
-        />
-        <FormControlDateTime
-          required={true}
-          label="End Date"
-          id="endDate"
-          onDateChange={onEndDateChange}
-          dateValue={endDate}
-          onTimeChange={time => {
-            setEndTime(time)
-          }}
-          timeValue={endTime}
-        />
+      <FormControl
+        label="Location Name"
+        type="text"
+        id="locationName"
+        value={locationName}
+        setValue={setLocationName}
+        labelAddendum="(No Webinar/Online events)"
+      />
+      <FormControl
+        label="Street Address"
+        type="text"
+        id="locationStreet"
+        value={locationStreet}
+        setValue={setLocationStreet}
+        labelAddendum="(short street name, e.g. 120 N State)"
+      />
+      <FormControl
+        label="City"
+        type="text"
+        id="locationCity"
+        value={locationCity}
+        setValue={setLocationCity}
+        labelAddendum="(must be in Chicagoland area)"
+      />
+      <FormControl
+        label="Your Name"
+        type="text"
+        id="authorName"
+        value={authorName}
+        setValue={setAuthorName}
+      />
+      <FormControl
+        label="Your Email"
+        type="email"
+        id="authorEmail"
+        value={authorEmail}
+        setValue={setAuthorEmail}
+      />
 
-        <FormControl
-          label="Location Name"
-          type="text"
-          id="locationName"
-          value={locationName}
-          setValue={setLocationName}
-          labelAddendum="(No Webinar/Online events)"
-        />
-        <FormControl
-          label="Street Address"
-          type="text"
-          id="locationStreet"
-          value={locationStreet}
-          setValue={setLocationStreet}
-          labelAddendum="(short street name, e.g. 120 N State)"
-        />
-        <FormControl
-          label="City"
-          type="text"
-          id="locationCity"
-          value={locationCity}
-          setValue={setLocationCity}
-          labelAddendum="(must be in Chicagoland area)"
-        />
-        <FormControl
-          label="Your Name"
-          type="text"
-          id="authorName"
-          value={authorName}
-          setValue={setAuthorName}
-        />
-        <FormControl
-          label="Your Email"
-          type="email"
-          id="authorEmail"
-          value={authorEmail}
-          setValue={setAuthorEmail}
-        />
-
-        <Div pt={4} pb={5} textAlign="right">
-          <InputSubmit id="submitEvent" value="Submit Event" />
-        </Div>
-      </Form>
-    </>
+      <Div pt={3} pb={5} mb={4} textAlign="right">
+        <InputSubmit id="submitEvent" value="Send Event Info" />
+      </Div>
+    </Form>
   )
 }
 

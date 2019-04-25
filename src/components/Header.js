@@ -21,10 +21,10 @@ export default props => (
             <Img mx={1} width={24} height={24} src="/img/chicago-star.svg" />
           </Div>
         </Div>
-        <H2 fontSize={2} fontWeight="normal" pt={3} mt={[0,2,0]} px={4} pb={4}>
+        <H2 fontSize={[1,2]} fontWeight="normal" pt={3} mt={[0,2,0]} px={4} pb={4}>
           {props.description}
         </H2>
-        <Div pb={[3,4,5,6]} mb={3}>
+        <Div pb={[3,4,5,6]} mb={[4,3]}>
           { props.path.replace(/\/$/, '') === '/submit' ? (
               <HeaderLink to={'/'}>VIEW EVENTS</HeaderLink>
             ) : (

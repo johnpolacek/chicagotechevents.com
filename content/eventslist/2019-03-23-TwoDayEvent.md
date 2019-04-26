@@ -2,9 +2,9 @@
 title: Two Day Event
 date: "2019-03-10T22:41:32.169Z"
 startDate: "2019-03-23"
-startTime: "9:00"
+startTime: "9am"
 endDate: "2019-03-24"
-endTime: "19:00"
+endTime: "4:30pm"
 locationName: Somewhere
 locationStreet: 123 E Grand
 locationCity: Chicago

@@ -65,8 +65,22 @@ const SubmitEventForm = props => {
   }
 
   return (
-    <Form width={[1, 360]} mx="auto" onSubmit={onSubmit} style={{position:'relative',zIndex:999}}>
-      <P pt={[4,4,3]} pb={4} px={4} color="base" fontWeight="bold" textAlign="center">Please provide the info below to get your event listed.</P>
+    <Form
+      width={[1, 360]}
+      mx="auto"
+      onSubmit={onSubmit}
+      style={{ position: 'relative', zIndex: 999 }}
+    >
+      <P
+        pt={[4, 4, 3]}
+        pb={4}
+        px={4}
+        color="base"
+        fontWeight="bold"
+        textAlign="center"
+      >
+        Please provide the info below to get your event listed.
+      </P>
       <FormControl
         label="Name of Event"
         type="text"
@@ -162,7 +176,7 @@ const SubmitEventForm = props => {
       />
 
       <Div pt={3} pb={5} mb={4} textAlign="right">
-        <InputSubmit id="submitEvent" value="Send Event Info" />
+        <InputSubmit id="submitEvent" value="SENT EVENT INFO" />
       </Div>
     </Form>
   )

@@ -1,5 +1,5 @@
-const getEventMarkdown = (data) => {
-return `---
+const getEventMarkdown = data => {
+  return `---
 title: "${data.eventName}"
 date: "${data.date}"
 startDate: "${data.startDate}"

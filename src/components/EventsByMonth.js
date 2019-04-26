@@ -1,17 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Wrapper from '../components/Wrapper'
 import MonthHeader from '../components/MonthHeader'
 import Event from '../components/Event'
-import { Div } from 'styled-system-html'
 
 const EventsByMonth = props => {
   return Object.keys(props.eventsByMonth).map(month => {
     return (
-      <Div key={month} position="relative" width={1} mx="auto" px={[0,3]} py={3} style={{maxWidth:'800px',zIndex:'999'}}>
+      <Wrapper key={month}>
         <MonthHeader month={month} />
-        {props.eventsByMonth[month].map(({ node }) => (
+        {props.eventsByMonth[month].map(({ node }, i, events) => (
           <Event
             {...{
+              key: node.fields.slug,
               url: node.fields.slug,
               title: node.frontmatter.title || node.fields.slug,
               startDate: node.frontmatter.startDate,
@@ -25,10 +26,11 @@ const EventsByMonth = props => {
               cost: node.frontmatter.cost,
               eventUrl: node.frontmatter.eventUrl,
               content: node.frontmatter.description || node.excerpt,
+              isLast: i === events.length - 1,
             }}
           />
         ))}
-      </Div>
+      </Wrapper>
     )
   })
 }

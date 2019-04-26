@@ -4,6 +4,8 @@ import { Link, graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import SEO from '../components/seo'
 import Event from '../components/Event'
+import Wrapper from '../components/Wrapper'
+import LinkButton from '../components/LinkButton'
 import { Div, Nav, Span } from 'styled-system-html'
 
 class CalendarEventTemplate extends React.Component {
@@ -23,7 +25,7 @@ class CalendarEventTemplate extends React.Component {
           title={node.frontmatter.title}
           description={node.frontmatter.description || node.excerpt}
         />
-        <Div position="relative" width={1} mx="auto" p={3} style={{maxWidth:'800px',zIndex:'999'}}>
+        <Wrapper>
           <Event
             {...{
               title: node.frontmatter.title || node.fields.slug,
@@ -38,10 +40,13 @@ class CalendarEventTemplate extends React.Component {
               cost: node.frontmatter.cost,
               eventUrl: node.frontmatter.eventUrl,
               content: node.html,
+              isLast: true,
             }}
           />
-          <Div textAlign="center" pt={5} pb={4}>
-            <Link to={`/`}>view all events</Link>
+          <Div textAlign="center" pb={[5, 6]}>
+            <Link to={`/`} style={{ textDecoration: 'none' }}>
+              <LinkButton fontSize="2">VIEW ALL EVENTS</LinkButton>
+            </Link>
           </Div>
           <Nav
             borderTop="solid 2px"
@@ -71,7 +76,7 @@ class CalendarEventTemplate extends React.Component {
               )}
             </Div>
           </Nav>
-        </Div>
+        </Wrapper>
       </Layout>
     )
   }

@@ -1,69 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
-import { Link } from 'gatsby'
-import { Div, H2, H3, P } from 'styled-system-html'
-import theme from '../theme'
-
-const toAmPm = time =>
-  (parseInt(time.split(':')[0]) % 12) +
-  (time.split(':')[1] !== '00' && ':' + time.split(':')[1]) +
-  (parseInt(time.split(':')[0]) < 12 ? 'am' : 'pm')
-
-const StyledLink = styled(props => <Link {...props} />)`
-  color: ${theme.colors.base};
-`;
+import EventHeader from './EventHeader'
+import EventDate from './EventDate'
+import EventDescription from './EventDescription'
+import EventAddress from './EventAddress'
+import EventCost from './EventCost'
+import EventLink from './EventLink'
+import { Div } from 'styled-system-html'
 
 const Event = props => (
-  <Div key={props.url} pb={4}>
-    {props.url ? (
-      <H3 fontSize={[3,4]}>
-        <StyledLink to={props.url}>{props.title}</StyledLink>
-      </H3>
-    ) : (
-      <H2 color="base" fontSize={[3,4]}>
-        {props.title}
-      </H2>
-    )}
-    {props.startDate !== props.endDate ? (
-      <P color="red" fontStyle="italic" fontSize={0} mb={2}>
-        {props.startDate}{' '}
-        {props.startTime ? 'at ' + toAmPm(props.startTime) : ''} to{' '}
-        {props.endDate} {props.endTime ? 'at ' + toAmPm(props.endTime) : ''}
-      </P>
-    ) : (
-      <P color="red" fontStyle="italic" fontSize={0} mb={2}>
-        {props.startDate}{' '}
-        {props.startTime ? ' – ' + toAmPm(props.startTime) : ''}
-        {props.endTime && props.endTime ? ' to ' + toAmPm(props.endTime) : ''}
-      </P>
-    )}
-    <P
-      fontSize={[1,2]} mb={3}
-      dangerouslySetInnerHTML={{
-        __html: props.content,
-      }}
-    />
-    <P fontSize={0} mb={2} lineHeight="1.2">
-      {props.locationName}
-      <br />
-      {props.locationStreet}
-      <br />
-      {props.locationCity}, {props.locationState}
-      <br />
-    </P>
-    <P fontSize={0} mb={1}>
-      Cost: {props.cost}
-    </P>
-    <P fontSize={0} mb={1} fontWeight="bold">
-      Go to event:{' '}
-      <a href={props.eventUrl}>
-        {props.eventUrl
-          .replace('https://', '')
-          .replace('http://', '')
-          .replace('www.', '')}
-      </a>
-    </P>
+  <Div
+    key={props.url}
+    pb={4}
+    mb={4}
+    borderBottom={props.isLast ? 'none' : 'solid 1px'}
+    borderColor="gray2"
+  >
+    <EventHeader {...props} />
+    <EventDate {...props} />
+    <EventDescription {...props} />
+    <EventAddress {...props} />
+    <EventCost {...props} />
+    <EventLink {...props} />
   </Div>
 )
 
@@ -79,6 +37,7 @@ Event.propTypes = {
   locationCity: PropTypes.string.isRequired,
   cost: PropTypes.string.isRequired,
   eventUrl: PropTypes.string.isRequired,
+  isLast: PropTypes.bool,
 }
 
 export default Event

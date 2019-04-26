@@ -18,8 +18,10 @@ const MonthHeader = props => (
     mt={2}
     mb={4}
   >
-    <Img mx={1} width={16} height={16} src="/img/chicago-star.svg" /> 
-    <Span mx={2} position="relative" top="1px">{props.month.toUpperCase()}</Span>
+    <Img mx={1} width={16} height={16} src="/img/chicago-star.svg" />
+    <Span mx={2} position="relative" top="1px">
+      {props.month.toUpperCase()}
+    </Span>
     <Img mx={1} width={16} height={16} src="/img/chicago-star.svg" />
   </Div>
 )

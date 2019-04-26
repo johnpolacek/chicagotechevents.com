@@ -15,7 +15,9 @@ export default props => (
         title={props.title}
         description={props.description}
       />
-      <Main bg="lite" px={[3, 0]}>{props.children}</Main>
+      <Main bg="lite" px={[3, 0]}>
+        {props.children}
+      </Main>
       <Footer />
     </Body>
   </ThemeProvider>

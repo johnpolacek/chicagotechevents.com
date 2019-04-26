@@ -2,7 +2,10 @@ import { DateTime } from 'luxon'
 
 const defaultEventDate = () => {
   const now = DateTime.local().setZone('America/Chicago')
-  return now.plus({months:1}).set({day:1}).toLocaleString(DateTime.DATETIME_FULL)
+  return now
+    .plus({ months: 1 })
+    .set({ day: 1 })
+    .toLocaleString(DateTime.DATETIME_FULL)
 }
 
 module.exports = {

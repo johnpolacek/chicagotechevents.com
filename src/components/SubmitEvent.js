@@ -18,19 +18,18 @@ const SubmitEvent = props => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(eventData),
     })
-    .then(response => response.json())
-    .then(data => {
-      try {
-        if (data.message === 'success') {
-          setSubmitState(SUBMIT_SUCCESS)
-        } else {
+      .then(response => response.json())
+      .then(data => {
+        try {
+          if (data.message === 'success') {
+            setSubmitState(SUBMIT_SUCCESS)
+          } else {
+            setSubmitState(SUBMIT_FAIL)
+          }
+        } catch (err) {
           setSubmitState(SUBMIT_FAIL)
         }
-      } catch (err) {
-        setSubmitState(SUBMIT_FAIL)
-        console.log(err)
-      }
-    })
+      })
   }
   return (
     <>

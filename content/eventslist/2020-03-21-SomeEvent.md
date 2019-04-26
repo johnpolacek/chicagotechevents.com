@@ -2,9 +2,9 @@
 title: Some Event
 date: "2020-03-10T23:40:32.169Z"
 startDate: "2020-03-23"
-startTime: "14:00"
+startTime: "2:00pm"
 endDate: "2020-03-23"
-endTime: "16:00"
+endTime: "4:30pm"
 locationName: Someplace
 locationStreet: 123 N State
 locationCity: Chicago

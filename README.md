@@ -12,18 +12,14 @@
 **--W--I--P--**
 
 - Design
-	- [Poster](https://www.google.com/imgres?imgurl=https%3A%2F%2Fc8.alamy.com%2Fcomp%2FPWPRX6%2Fposter-city-skyline-chicago-flat-style-vector-illustration-interior-decoration-design-PWPRX6.jpg&imgrefurl=https%3A%2F%2Fwww.alamy.com%2Fposter-city-skyline-chicago-flat-style-vector-illustration-interior-decoration-design-image222392526.html&docid=DZPZq9KlFJITDM&tbnid=N94-RrJCmNEiCM%3A&vet=12ahUKEwiWn7vr_eThAhVNvFkKHdotBn44ZBAzKA0wDXoECAEQDg..i&w=928&h=1390&bih=766&biw=1394&q=chicago%20poster%20design&ved=2ahUKEwiWn7vr_eThAhVNvFkKHdotBn44ZBAzKA0wDXoECAEQDg&iact=mrc&uact=8#h=1390&imgdii=N94-RrJCmNEiCM:&vet=12ahUKEwiWn7vr_eThAhVNvFkKHdotBn44ZBAzKA0wDXoECAEQDg..i&w=928)
-	
-	- Dark Blue: #002F6D
-	- Light Blue: #55C1E8
-	- Red: #CE112D
-
+	- Breaking into smaller components and documenting
 - Email template
+- RSS Feed
 - Meetup API
 - Eventbrite API
 - Sponsors
 - Mailchimp API - [Netlify Function for Emails](https://css-tricks.com/netlify-functions-for-sending-emails/)
-- Not a Robot
+- ReCAPTCHA - see [docs](https://developers.google.com/recaptcha/docs/v3)
 
 <br>
 
@@ -1332,7 +1328,7 @@ For colors, I made some adjustments to the [project theme file](https://github.c
 }
 ~~~~
 
-
+Now let’s go through our UI and apply a new design.
 
 
 

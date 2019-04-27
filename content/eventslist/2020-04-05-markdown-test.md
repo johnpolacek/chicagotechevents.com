@@ -8,6 +8,7 @@ endTime: "7:00pm"
 locationName: "asdf"
 locationStreet: "22 asdf"
 locationCity: "Chicago"
+locationState: "IL"
 cost: "FREE"
 eventUrl: "https://johnpolacek.com"
 

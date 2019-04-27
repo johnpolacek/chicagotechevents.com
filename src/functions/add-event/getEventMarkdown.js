@@ -9,6 +9,7 @@ endTime: "${data.endTime}"
 locationName: "${data.locationName}"
 locationStreet: "${data.locationStreet}"
 locationCity: "${data.locationCity}"
+locationState: "IL"
 cost: "${data.cost}"
 eventUrl: "${data.linkURL}"
 

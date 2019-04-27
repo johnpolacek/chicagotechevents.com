@@ -16,7 +16,7 @@ describe('API', function() {
       eventDate +
       '"\nstartTime: "5:00pm"\nendDate: "' +
       eventDate +
-      '"\nendTime: "7:00pm"\nlocationName: "1871 Chicago"\nlocationStreet: "222 W Merchandise Mart Plaza #1212"\nlocationCity: "Chicago"\ncost: "FREE"\neventUrl: "https://eventbrite.com/test-event"\n\n---\n\nThis is not a real event. It is just for testing\n\n'
+      '"\nendTime: "7:00pm"\nlocationName: "1871 Chicago"\nlocationStreet: "222 W Merchandise Mart Plaza #1212"\nlocationCity: "Chicago"\nlocationState: "IL"\ncost: "FREE"\neventUrl: "https://eventbrite.com/test-event"\n\n---\n\nThis is not a real event. It is just for testing\n\n'
     cy.expect(getEventMarkdown(validEventData)).to.equal(
       validEventDataMarkdownOutput
     )

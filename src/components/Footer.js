@@ -4,7 +4,7 @@ import FooterItem from './FooterItem'
 import { Footer, Div } from 'styled-system-html'
 
 export default () => (
-  <Footer>
+  <Footer pb={5}>
     <Wrapper display={['block', 'flex']} borderTop="solid 1px"  borderColor="gray2" pt={4} px={2} fontSize={0}>
       <Div width={[1, 1 / 2]} textAlign={['center', 'left']}>
         <FooterItem>Built with <a href="https://www.gatsbyjs.org">Gatsby</a></FooterItem>

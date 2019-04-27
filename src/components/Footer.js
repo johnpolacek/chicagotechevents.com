@@ -2,6 +2,7 @@ import React from 'react'
 import Wrapper from './Wrapper'
 import FooterItem from './FooterItem'
 import { Footer, Div } from 'styled-system-html'
+import { Link } from 'gatsby'
 
 export default () => (
   <Footer pb={5}>
@@ -13,6 +14,8 @@ export default () => (
         <FooterItem>Deployed with <a href="https://www.netlify.com/">Netlify</a></FooterItem>
         <FooterItem>Open sourced on <a href="https://github.com/johnpolacek/chicagotechevents.com">Github</a></FooterItem>
         <FooterItem mt={3}>© {new Date().getFullYear()} John Polacek</FooterItem>
+        <FooterItem><Link to="./terms">Terms of Service</Link></FooterItem>
+        <FooterItem><Link to="./privacy">Privacy Policy</Link></FooterItem>
       </Div>
       <Div width={[1, 1 / 2]} textAlign={['center', 'right']}>
         <FooterItem>Follow <a href="https://twitter.com/ChicagoTechEvnt">@ChicagoTechEvnt</a></FooterItem>

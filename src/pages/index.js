@@ -4,6 +4,7 @@ import { graphql, Link } from 'gatsby'
 import Layout from '../components/Layout'
 import SEO from '../components/seo'
 import EventsByMonth from '../components/EventsByMonth'
+import LinkButton from '../components/LinkButton'
 import { Div } from 'styled-system-html'
 
 class Index extends React.Component {
@@ -41,7 +42,9 @@ class Index extends React.Component {
         <EventsByMonth eventsByMonth={eventsByMonth} />
         {currEvents < events && (
           <Div textAlign="center" pb={4} mb={3}>
-            <Link to={`/past`}>« view past events</Link>
+            <Link style={{ textDecoration: 'none' }} to={`/past`}>
+              <LinkButton fontSize={2}>VIEW PAST EVENTS</LinkButton>
+            </Link>
           </Div>
         )}
       </Layout>

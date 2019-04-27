@@ -11,9 +11,6 @@
 
 **--W--I--P--**
 
-- Design
-	- Breaking into smaller components and document
-	- Link to Past Events (see events list starter)
 - Email template
 - RSS Feed
 - Meetup API

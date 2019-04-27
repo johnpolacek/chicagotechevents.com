@@ -1,10 +1,10 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
-
 import Layout from '../components/Layout'
 import SEO from '../components/seo'
 import EventsByMonth from '../components/EventsByMonth'
-import { Div } from 'styled-system-html'
+import LinkButton from '../components/LinkButton'
+import { Div, H2 } from 'styled-system-html'
 
 class Past extends React.Component {
   render() {
@@ -38,12 +38,13 @@ class Past extends React.Component {
           title="Events"
           keywords={[`events`, `calendar`, `gatsby`, `javascript`, `react`]}
         />
+        <Div textAlign="center" mt={-5} pb={4}>
+          <H2 pb={4} fontSize={5} fontWeight="normal" color="base">Past Events</H2>
+          <Link style={{ textDecoration: 'none' }} to={`/`}>
+            <LinkButton fontWeight={1}>VIEW CURRENT EVENTS</LinkButton>
+          </Link>
+        </Div>
         <EventsByMonth eventsByMonth={eventsByMonth} />
-        {currEvents < events && (
-          <Div textAlign="center" pb={4} mb={3}>
-            <Link to={`/`}>view current events »</Link>
-          </Div>
-        )}
       </Layout>
     )
   }

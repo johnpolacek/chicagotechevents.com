@@ -10,6 +10,7 @@ const SubmitEvent = props => {
   const SUBMIT_SUCCESS = 'SUBMIT_SUCCESS'
   const SUBMIT_FAIL = 'SUBMIT_FAIL'
   const [submitState, setSubmitState] = useState(SUBMIT_READY)
+  const [pullRequestUrl, setPullRequestUrl] = useState('')
 
   const onSubmit = eventData => {
     setSubmitState(SUBMIT_SENDING)
@@ -23,6 +24,7 @@ const SubmitEvent = props => {
         try {
           if (data.message === 'success') {
             setSubmitState(SUBMIT_SUCCESS)
+            setPullRequestUrl(data.url+'/files')
           } else {
             setSubmitState(SUBMIT_FAIL)
           }
@@ -38,7 +40,7 @@ const SubmitEvent = props => {
           [SUBMIT_READY]: <SubmitEventForm onSubmit={onSubmit} />,
           [SUBMIT_SENDING]: <SubmitSending />,
           [SUBMIT_FAIL]: <SubmitFail />,
-          [SUBMIT_SUCCESS]: <SubmitSuccess />,
+          [SUBMIT_SUCCESS]: <SubmitSuccess url={pullRequestUrl} />,
         }[submitState]
       }
     </>

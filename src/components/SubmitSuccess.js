@@ -24,8 +24,9 @@ export default props => (
         </g>
       </svg>
     </Div>
-    <P pt={3} pb={4} width={1} color="blue">
+    <P pt={3} color="base">
       Thanks for sending your event!
     </P>
+    <P id="reviewLink" fontSize={2} pb={4} color="gray8" fontStyle="italic">Review your event submission at <a href={props.url}>this link</a></P>
   </SubmitEventMessage>
 )

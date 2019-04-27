@@ -95,9 +95,14 @@ Cypress.Commands.add('completeEventForm', data => {
 })
 
 Cypress.Commands.add('verifySubmitSuccess', test => {
+  const pullRequestUrl = 'https://github.com/johnpolacek/chicagotechevents.com/pull/31'
+
   test.fetchAddEventDeferred.resolve({
     json() {
-      return { message: 'success' }
+      return { 
+        message: 'success', 
+        url: pullRequestUrl
+      }
     },
     ok: true,
   })
@@ -105,6 +110,9 @@ Cypress.Commands.add('verifySubmitSuccess', test => {
   cy.get('div')
     .contains('Thanks for sending your event!')
     .should('be.visible')
+  cy.get('#reviewLink')
+    .find('a')
+    .should('have.attr', 'href')
 })
 
 Cypress.Commands.add('verifySubmitError', test => {

@@ -12,7 +12,8 @@
 **--W--I--P--**
 
 - Design
-	- Breaking into smaller components and documenting
+	- Breaking into smaller components and document
+	- Link to Past Events (see events list starter)
 - Email template
 - RSS Feed
 - Meetup API
@@ -1328,11 +1329,120 @@ For colors, I made some adjustments to the [project theme file](https://github.c
 }
 ~~~~
 
-Now let’s go through our UI and apply a new design.
+We can start using these new colors in the existing components. Our best opportunity to apply a new design is the page header. We will add a horizontal graphic with the Chicago Star and a vector graphic Chicago skyline in white silhouette on top of the header which we will set to a dark blue.
 
+*src/components/Header.js*
 
+~~~~
+import React from 'react'
+import Wrapper from './Wrapper'
+import HeaderTitle from './HeaderTitle'
+import HeaderDescription from './HeaderDescription'
+import HeaderLink from './HeaderLink'
+import StarBar from './StarBar'
+import { Header, Img } from 'styled-system-html'
 
+export default props => (
+  <>
+    <Header
+      bg="blue7"
+      color="white"
+      textAlign="center"
+      pt={[3, 4]}
+      pb={[5, 6]}
+      mb={[-3, -4, -4, -5]}
+      position="relative"
+    >
+      <Wrapper mb={-2}>
+        <HeaderTitle>{props.title.toUpperCase()}</HeaderTitle>
+        <StarBar mt={[-3, -4, -4, 0]} />
+        <HeaderDescription>{props.description}</HeaderDescription>
+        {props.path.replace(/\/$/, '') === '/submit' ? (
+          <HeaderLink to={'/'}>VIEW EVENTS</HeaderLink>
+        ) : (
+          <HeaderLink to={'/submit'}>SUBMIT EVENT</HeaderLink>
+        )}
+      </Wrapper>
+      <Img
+        display="block"
+        position="absolute"
+        bottom="-1px"
+        left="0"
+        width="101%"
+        src="/img/skyline.svg"
+      />
+    </Header>
+  </>
+)
+~~~~
 
+*src/components/StarBar.js*
+
+~~~~
+import React from 'react'
+import { Div, Img } from 'styled-system-html'
+
+const StarBar = props => (
+  <Div borderTop="solid 1px" borderColor="white" {...props}>
+    <Div
+      display="inline-block"
+      bg="white"
+      pt="6px"
+      px={2}
+      pb="2px"
+      position="relative"
+      top="-18px"
+    >
+      <Img mx={1} width={24} height={24} src="/img/chicago-star.svg" />
+      <Img mx={1} width={24} height={24} src="/img/chicago-star.svg" />
+      <Img mx={1} width={24} height={24} src="/img/chicago-star.svg" />
+      <Img mx={1} width={24} height={24} src="/img/chicago-star.svg" />
+    </Div>
+  </Div>
+)
+
+export default StarBar
+~~~~
+
+Also we can drop our star graphic into `MonthHeader`.
+
+*src/components/MonthHeader.js*
+
+~~~~
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Div, Img, Span } from 'styled-system-html'
+
+const MonthHeader = props => (
+  <Div
+    display="flex"
+    justifyContent="center"
+    alignItems="center"
+    color="red"
+    fontWeight="bold"
+    fontSize={0}
+    borderTop="solid 1px"
+    borderBottom="solid 1px"
+    borderColor="cyan"
+    textAlign="center"
+    py={2}
+    mt={2}
+    mb={4}
+  >
+    <Img mx={1} width={16} height={16} src="/img/chicago-star.svg" />
+    <Span mx={2} position="relative" top="1px">
+      {props.month.toUpperCase()}
+    </Span>
+    <Img mx={1} width={16} height={16} src="/img/chicago-star.svg" />
+  </Div>
+)
+
+MonthHeader.propTypes = {
+  month: PropTypes.string.isRequired,
+}
+
+export default MonthHeader
+~~~~
 
 
 --

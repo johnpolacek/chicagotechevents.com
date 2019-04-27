@@ -21,7 +21,7 @@ class Privacy extends React.Component {
         />
         <Wrapper fontSize="80%">
           <h2>Terms of Service Agreement</h2>
-          <p><em>Updated April 28, 2016</em></p>
+          <p><em>Updated April 27, 2019</em></p>
           <p>The Chicago Tech Events website is available to you with the following terms of service. When using chicagotechevents.com and its services, you are deemed to have accepted these terms of service, along with any additional terms of service which expressly apply to services and information provided by third parties.</p>
           <p>Chicago Tech Events reserves the right to modify these terms and conditions. We will indicate such updates by stating the latest modification date on the Terms of Service section of the website. When changes are significant, we may email registered users with the revised terms and conditions. The revised terms and conditions will be deemed to have been accepted by you if you continue to use the web site and our services after the latest modification date.</p>
           <p>Chicago Tech Events reserves the right to refuse service to anyone for any reason at any time.</p>

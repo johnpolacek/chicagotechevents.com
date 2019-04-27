@@ -21,7 +21,7 @@ class Privacy extends React.Component {
         />
         <Wrapper fontSize="80%">
           <h2>Privacy Policy</h2>
-          <p><em>Updated April 28, 2019</em></p>
+          <p><em>Updated April 27, 2019</em></p>
           <p>If you require more information or have questions about this privacy policy, contact us by email at chicagotechevents@gmail.com</p>
           <h4>Affiliate Programs</h4>
           <p>Chicago Tech Events is an affiliate of Eventbrite. We are compensated for Eventbrite ticket sales generated when a user visits an Eventbrite site from a Chicago Tech Events referral link.</p>

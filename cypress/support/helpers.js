@@ -18,7 +18,6 @@ module.exports = {
     locationStreet: '222 W Merchandise Mart Plaza #1212',
     locationCity: 'Chicago',
     authorName: 'Joe Tester',
-    authorEmail: 'joe@test.com',
     startDate: defaultEventDate(),
     startTime: '5:00pm',
     endDate: defaultEventDate(),

@@ -25,7 +25,7 @@ exports.handler = (event, context, callback) => {
     })
   }
 
-  const requiredParams = ['eventName','startDate','startTime','endDate','locationName','locationStreet','locationCity','cost','linkURL','authorName','authorEmail']
+  const requiredParams = ['eventName','startDate','startTime','endDate','locationName','locationStreet','locationCity','cost','linkURL','authorName']
   requiredParams.forEach((param) => {
     if (!body[param]) {
       return callback(null, {
@@ -49,7 +49,7 @@ exports.handler = (event, context, callback) => {
     owner,
     repo,
     title: title,
-    body: 'New event listing request - '+filename+' - via '+body.authorName+' <'+(body.authorEmail.replace('@','[at]'))+'>',
+    body: 'New event listing request - '+filename+' - via '+body.authorName,
     base: 'master',
     head: `pull-request-branch-name-${date.getTime()}`,
     changes: {

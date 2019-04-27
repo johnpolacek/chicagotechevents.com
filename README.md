@@ -11,6 +11,7 @@
 
 **--W--I--P--**
 
+- Add [link to pull request](https://github.com/johnpolacek/chicagotechevents.com/pull/30/files) to success message
 - Email template
 - Subscribe to Newsletter
 - RSS Feed
@@ -247,7 +248,6 @@ const SubmitEventForm = (props) => {
 	const [locationStreet, setLocationStreet] = useState('')
 	const [locationCity, setLocationCity] = useState('Chicago')
 	const [authorName, setAuthorName] = useState('')
-	const [authorEmail, setAuthorEmail] = useState('')
 
 	const onSubmit = (e) => {
 		e.preventDefault()
@@ -264,8 +264,7 @@ const SubmitEventForm = (props) => {
 				locationName,
 				locationStreet,
 				locationCity,
-				authorName,
-				authorEmail
+				authorName
 			})
 		} else {
 			return 'Form not valid'
@@ -308,8 +307,6 @@ const SubmitEventForm = (props) => {
 				<FormControl label="Street Address" type="text" id="locationStreet" value={locationStreet} setValue={setLocationStreet} labelAddendum="(short street name, e.g. 120 N State)" />
 				<FormControl label="City" type="text" id="locationCity" value={locationCity} setValue={setLocationCity} labelAddendum="(must be in Chicagoland area)" />
 				<FormControl label="Your Name" type="text" id="authorName" value={authorName} setValue={setAuthorName} />
-				<FormControl label="Your Email" type="email" id="authorEmail" value={authorEmail} setValue={setAuthorEmail} />
-				
 				<Div pt={4} pb={5} textAlign="right">
 					<InputSubmit value="Submit Event" />
 				</Div>
@@ -414,7 +411,6 @@ describe('Submit Page', function() {
       locationName: '1871 Chicago',
       locationStreet: '222 W Merchandise Mart Plaza #1212',
       authorName: 'Joe Tester',
-      authorEmail: 'joe@test.com',
       startDate: getTestEventDate(),
       startTime: '5:00pm',
       endDate: getTestEventDate(),
@@ -459,7 +455,6 @@ describe('Submit Page', function() {
       cy.get('input[name=locationName]').type(validEventData.locationName)
       cy.get('input[name=locationStreet]').type(validEventData.locationStreet)
       cy.get('input[name=authorName]').type(validEventData.authorName)
-      cy.get('input[name=authorEmail]').type(validEventData.authorEmail)
 
       // submit the form
       cy.get('#submitEvent').click()
@@ -568,7 +563,6 @@ Cypress.Commands.add("completeEventForm", (eventData) => {
   cy.get('input[name=locationName]').type(eventData.locationName)
   cy.get('input[name=locationStreet]').type(eventData.locationStreet)
   cy.get('input[name=authorName]').type(eventData.authorName)
-  cy.get('input[name=authorEmail]').type(eventData.authorEmail)
 
   // submit the form
   cy.get('#submitEvent').click()
@@ -608,7 +602,6 @@ module.exports = {
     locationName: '1871 Chicago',
     locationStreet: '222 W Merchandise Mart Plaza #1212',
     authorName: 'Joe Tester',
-    authorEmail: 'joe@test.com',
     startDate: defaultEventDate,
     startTime: '5:00pm',
     endDate: defaultEventDate,
@@ -782,7 +775,6 @@ module.exports = {
     locationName: '1871 Chicago',
     locationStreet: '222 W Merchandise Mart Plaza #1212',
     authorName: 'Joe Tester',
-    authorEmail: 'joe@test.com',
     startDate: defaultEventDate,
     startTime: '5:00pm',
     endDate: defaultEventDate,
@@ -929,11 +921,6 @@ describe('Submit Page', function() {
           cy.get('@fetchAddEvent').should('not.be.called')
         }
       })
-    })
-
-    it('requires a valid email', function() {
-      cy.completeEventForm({authorEmail:'abc'})
-      cy.get('@fetchAddEvent').should('not.be.called')
     })
 
     it('can handle error response', function() {
@@ -1139,7 +1126,7 @@ exports.handler = (event, context, callback) => {
     })
   }
 
-  const requiredParams = ['eventName','startDate','startTime','endDate','locationName','locationStreet','locationCity','cost','linkURL','authorName','authorEmail']
+  const requiredParams = ['eventName','startDate','startTime','endDate','locationName','locationStreet','locationCity','cost','linkURL','authorName']
   requiredParams.forEach((param) => {
     if (!body[param]) {
       return callback(null, {

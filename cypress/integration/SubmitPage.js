@@ -48,11 +48,6 @@ describe('Submit Page', function() {
       })
     })
 
-    it('requires a valid email', function() {
-      cy.completeEventForm({ authorEmail: 'abc' })
-      cy.get('@fetchAddEvent').should('not.be.called')
-    })
-
     it('can handle error response', function() {
       cy.completeEventForm({})
       cy.verifySubmitError(this)

@@ -19,7 +19,6 @@ const SubmitEventForm = props => {
   const [locationStreet, setLocationStreet] = useState('')
   const [locationCity, setLocationCity] = useState('Chicago')
   const [authorName, setAuthorName] = useState('')
-  const [authorEmail, setAuthorEmail] = useState('')
 
   const onSubmit = e => {
     e.preventDefault()
@@ -36,8 +35,7 @@ const SubmitEventForm = props => {
         locationName,
         locationStreet,
         locationCity,
-        authorName,
-        authorEmail,
+        authorName
       })
     } else {
       return 'Form not valid'
@@ -167,14 +165,6 @@ const SubmitEventForm = props => {
         value={authorName}
         setValue={setAuthorName}
       />
-      <FormControl
-        label="Your Email"
-        type="email"
-        id="authorEmail"
-        value={authorEmail}
-        setValue={setAuthorEmail}
-      />
-
       <Div pt={3} pb={5} mb={4} textAlign="right">
         <InputSubmit id="submitEvent" value="SEND EVENT INFO" />
       </Div>

@@ -176,7 +176,7 @@ const SubmitEventForm = props => {
       />
 
       <Div pt={3} pb={5} mb={4} textAlign="right">
-        <InputSubmit id="submitEvent" value="SENT EVENT INFO" />
+        <InputSubmit id="submitEvent" value="SEND EVENT INFO" />
       </Div>
     </Form>
   )

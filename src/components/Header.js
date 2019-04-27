@@ -24,7 +24,7 @@ export default props => (
         {props.path.replace(/\/$/, '') === '/submit' ? (
           <HeaderLink to={'/'}>VIEW EVENTS</HeaderLink>
         ) : (
-          <HeaderLink to={'/submit'}>SUBMIT EVENT</HeaderLink>
+          <HeaderLink to={'/submit'}>+ ADD EVENT</HeaderLink>
         )}
       </Wrapper>
       <Img

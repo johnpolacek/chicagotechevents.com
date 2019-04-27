@@ -12,6 +12,7 @@
 **--W--I--P--**
 
 - Email template
+- Subscribe to Newsletter
 - RSS Feed
 - Meetup API
 - Eventbrite API

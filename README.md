@@ -1506,6 +1506,17 @@ MonthHeader.propTypes = {
 export default MonthHeader
 ~~~~
 
+We don’t need to go into all the little changes that have been made. You can take a look at the finished product on the [Github Project Repository](https://github.com/johnpolacek/chicagotechevents.com).
+
+----
+
+## Part 7: Newsletter
+
+A website is nice and all, but many people prefer to get a weekly email update with all the upcoming events delivered right to their inbox. So let’s make that happen.
+
+First, we need to create an email template based on the front page of our website. The trick here is that we will have to convert it to a table layout. Whaaaaaaat? Luckily, I’m super old so I know how to do that.
+
+
 
 --
 

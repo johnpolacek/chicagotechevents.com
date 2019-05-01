@@ -1561,14 +1561,12 @@ class Email extends React.Component {
 
     return (
       <ThemeProvider theme={theme}>
-        <div style={{background:theme.colors.lite, fontFamily:theme.font}}>
-          <div style={{ maxWidth: '720px', zIndex: '999', margin: 'auto', paddingBottom:'32px' }}>
-            <EmailHeader title={siteTitle} />
-            <p style={{ paddingBottom: '0', textAlign: 'center' }}>View these events online at <a style={{ fontSize:'18px' }} href="https://chicagotechevents.com">chicagotechevents.com</a></p>
-            <p style={{ paddingBottom: '32px', textAlign: 'center', fontSize:'14px' }}><a href="*|UNSUB|*">Unsubscribe</a> to stop receiving updates</p>
-            <div style={{ padding: '0 32px' }}>
-              <EventsByMonth eventsByMonth={eventsByMonth} />
-            </div>
+        <div style={{background:theme.colors.lite, fontFamily:theme.font, paddingBottom:'32px'}}>
+          <EmailHeader title={siteTitle} />
+          <p style={{ paddingBottom: '0', textAlign: 'center' }}>View these events online at <a style={{ fontSize:'18px' }} href="https://chicagotechevents.com">chicagotechevents.com</a></p>
+          <p style={{ paddingBottom: '32px', textAlign: 'center', fontSize:'14px' }}><a href="*|UNSUB|*">Unsubscribe</a> to stop receiving updates</p>
+          <div style={{ padding: '0 32px' }}>
+            <EventsByMonth eventsByMonth={eventsByMonth} />
           </div>
         </div>
       </ThemeProvider>

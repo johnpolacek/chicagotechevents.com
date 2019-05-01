@@ -12,6 +12,7 @@
 **--W--I--P--**
 
 - Email template
+  - Send test email
 - Subscribe to Newsletter
 - RSS Feed
 - Meetup API
@@ -1514,8 +1515,302 @@ We don’t need to go into all the little changes that have been made. You can t
 
 A website is nice and all, but many people prefer to get a weekly email update with all the upcoming events delivered right to their inbox. So let’s make that happen.
 
-First, we need to create an email template based on the front page of our website. The trick here is that we will have to convert it to a table layout. Whaaaaaaat? Luckily, I’m super old so I know how to do that.
+First, we need to create an email template based on the front page of our website. Writing front end code for emails is very tricky. Basically, you have to pretend that you are targeting a browser from the early days of the internet.
 
+Luckily our design is fairly straightforward, just a single column of stacked content.
+
+Some rules to follow:
+
+* All styling needs to be inline.
+* No JS whatsoever
+* Image urls need to be absolute
+* Include an unsubscribe link
+
+First, let’s make a new page and route which will be similar to `index.js`.
+
+*src/pages/email.js*
+
+~~~~
+import React from 'react'
+import { graphql } from 'gatsby'
+import { ThemeProvider } from 'styled-components'
+import theme from '../theme.js'
+import EmailHeader from '../components/email/Header'
+import EventsByMonth from '../components/email/EventsByMonth'
+
+class Email extends React.Component {
+  render() {
+    const { data } = this.props
+    const siteTitle = data.site.siteMetadata.title
+    const events = data.allMarkdownRemark.edges
+    const currEvents = events.filter(
+      ({ node }) => new Date(node.frontmatter.endDate) >= new Date()
+    )
+    const eventsByMonth = {}
+    currEvents.forEach(({ node }) => {
+      const month =
+        node.frontmatter.startDate.split(' ')[0] +
+        ' ' +
+        node.frontmatter.startDate.split(' ')[2]
+      if (typeof eventsByMonth[month] === 'undefined') {
+        eventsByMonth[month] = [{ node }]
+      } else {
+        eventsByMonth[month].push({ node })
+      }
+    })
+
+    return (
+      <ThemeProvider theme={theme}>
+        <div style={{background:theme.colors.lite, fontFamily:theme.font}}>
+          <div style={{ maxWidth: '720px', zIndex: '999', margin: 'auto', paddingBottom:'32px' }}>
+            <EmailHeader title={siteTitle} />
+            <p style={{ paddingBottom: '0', textAlign: 'center' }}>View these events online at <a style={{ fontSize:'18px' }} href="https://chicagotechevents.com">chicagotechevents.com</a></p>
+            <p style={{ paddingBottom: '32px', textAlign: 'center', fontSize:'14px' }}><a href="*|UNSUB|*">Unsubscribe</a> to stop receiving updates</p>
+            <div style={{ padding: '0 32px' }}>
+              <EventsByMonth eventsByMonth={eventsByMonth} />
+            </div>
+          </div>
+        </div>
+      </ThemeProvider>
+    )
+  }
+}
+
+export default Email
+
+export const pageQuery = graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+        description
+      }
+    }
+    allMarkdownRemark(sort: { fields: [frontmatter___startDate], order: ASC }) {
+      edges {
+        node {
+          excerpt
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+            startDate(formatString: "MMMM DD, YYYY")
+            startTime
+            endDate(formatString: "MMMM DD, YYYY")
+            endTime
+            locationName
+            locationStreet
+            locationCity
+            locationState
+            cost
+            eventUrl
+          }
+        }
+      }
+    }
+  }
+`
+~~~~
+
+Next, we will create separate versions of our components to make an email newsletter that is similar in design to our homepage events list.
+
+*src/components/email/Header.js*
+
+~~~~
+import React from 'react'
+import theme from '../../theme'
+
+export default props => (
+  <div style={{ position: 'relative', background: theme.colors.blue7, color: '#fff', textAlign: 'center', padding: '32px 32px 25%' }}>
+    <div style={{ maxWidth: '800px', zIndex: '999', margin: '0 auto -16px' }}>
+      <h1 style={{margin: '8px 0 40px', fontWeight:'normal', fontSize: '40px'}}>{props.title.toUpperCase()}</h1>
+      <div style={{ margin:"auto", maxWidth:'480px'}}>
+        <div style={{ borderTop: 'solid 1px white' }}>
+          <div style={{ display:"inline-block", background:"white", padding: "6px 8px 2px", position:"relative", top:"-18px" }}>
+            <img alt="Chicago Star Icon" style={{ margin: '0 4px' }} width="24px" height="24px" src="https://chicagotechevents.netlify.com/img/chicago-star.svg" />
+            <img alt="Chicago Star Icon" style={{ margin: '0 4px' }} width="24px" height="24px" src="https://chicagotechevents.netlify.com/img/chicago-star.svg" />
+            <img alt="Chicago Star Icon" style={{ margin: '0 4px' }} width="24px" height="24px" src="https://chicagotechevents.netlify.com/img/chicago-star.svg" />
+            <img alt="Chicago Star Icon" style={{ margin: '0 4px' }} width="24px" height="24px" src="https://chicagotechevents.netlify.com/img/chicago-star.svg" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <img alt="Chicago Skyline Graphic" src="https://chicagotechevents.netlify.com/img/skyline.svg" style={{ display:"block", position:"absolute", bottom:"-1px", left:"-2px", width:"101%" }} />
+  </div>
+)
+~~~~
+
+*src/components/email/Event.js*
+
+~~~~
+import React from 'react'
+import PropTypes from 'prop-types'
+import theme from '../../theme'
+import { getEventDateString } from '../util'
+
+const Event = props => (
+  <div key={props.url} style={{paddingBottom: '32px', marginBottom: '32px', borderBottom: props.isLast ? 'none' : 'solid 1px #ccc' }}>
+    <h2 style={{ color: theme.colors.base, fontSize: '30px'}}>{props.title}</h2>
+    <p style={{ color: theme.colors.red, fontStyle:"italic", fontWeight:"bold", fontSize: '14px', marginBottom: '8px'}}>
+      {getEventDateString(
+        props.startDate,
+        props.startTime,
+        props.endDate,
+        props.endTime
+      )}
+    </p>
+    <p style={{ fontSize:'16px', marginBottom:'16px' }} dangerouslySetInnerHTML={{__html: props.content}} />
+    <p style={{ fontSize:'14px', marginBottom:'16px', fontWeight:'600', lineHeight: '1.4', fontStyle: 'italic' }}>
+      <span>{props.locationName}</span>
+      <br />
+      {props.locationStreet}
+      <br />
+      {props.locationCity}, {props.locationState}
+      <br />
+    </p>
+    <p style={{ color: theme.colors.gray8, fontWeight:"600", fontSize: '14px', marginBottom: '8px' }}>
+      Cost: {props.cost}
+    </p>
+    <p style={{ fontWeight:"bold", fontSize: '14px', marginBottom: '8px' }}>
+      Go to event:{' '}
+      <a style={{ fontWeight:"bold", marginLeft: '4px' }} href={props.eventUrl}>
+        {props.eventUrl
+          .replace('https://', '')
+          .replace('http://', '')
+          .replace('www.', '')
+          .replace(/\/$/, '')}
+      </a>
+    </p>
+  </div>
+)
+
+Event.propTypes = {
+  url: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  startDate: PropTypes.string.isRequired,
+  startTime: PropTypes.string,
+  endDate: PropTypes.string,
+  endTime: PropTypes.string,
+  locationName: PropTypes.string.isRequired,
+  locationStreet: PropTypes.string.isRequired,
+  locationCity: PropTypes.string.isRequired,
+  cost: PropTypes.string.isRequired,
+  eventUrl: PropTypes.string.isRequired,
+  isLast: PropTypes.bool,
+}
+
+export default Event
+~~~~
+
+*src/components/email/EventsByMonth.js*
+
+~~~~
+import React from 'react'
+import PropTypes from 'prop-types'
+import theme from '../../theme'
+import Event from './Event'
+
+const EventsByMonth = props => {
+  return Object.keys(props.eventsByMonth).map(month => {
+    return (
+      <div key={month} style={{ zIndex: '999' }}>
+        <div style={{
+          textAlign:'center', 
+          color: theme.colors.red, 
+          fontWeight:'bold', 
+          fontSize: '14px', 
+          borderTop: 'solid 1px '+theme.colors.cyan, 
+          borderBottom: 'solid 1px '+theme.colors.cyan,
+          padding: '4px 0 8px',
+          margin: '8px 0 32px'
+        }}>
+          <img alt="Chicago Star Icon" style={{margin: '0 4px', position: 'relative', top: '4px'}} width="16px" height="16px" src="https://chicagotechevents.netlify.com/img/chicago-star.svg" />
+          <span style={{margin: '0 8px', position:'relative', top:'1px'}}>
+            {month.toUpperCase()}
+          </span>
+          <img alt="Chicago Star Icon" style={{margin: '0 4px', position: 'relative', top: '4px'}} width="16px" height="16px" src="https://chicagotechevents.netlify.com/img/chicago-star.svg" />
+        </div>
+        {props.eventsByMonth[month].map(({ node }, i, events) => (
+          <Event
+            {...{
+              key: node.fields.slug,
+              url: node.fields.slug,
+              title: node.frontmatter.title || node.fields.slug,
+              startDate: node.frontmatter.startDate,
+              startTime: node.frontmatter.startTime,
+              endDate: node.frontmatter.endDate,
+              endTime: node.frontmatter.endTime,
+              locationName: node.frontmatter.locationName,
+              locationStreet: node.frontmatter.locationStreet,
+              locationCity: node.frontmatter.locationCity,
+              locationState: node.frontmatter.locationState,
+              cost: node.frontmatter.cost,
+              eventUrl: node.frontmatter.eventUrl,
+              content: node.frontmatter.description || node.excerpt,
+              isLast: i === events.length - 1,
+            }}
+          />
+        ))}
+      </div>
+    )
+  })
+}
+
+EventsByMonth.propTypes = {
+  eventsByMonth: PropTypes.object.isRequired,
+}
+
+export default EventsByMonth
+
+~~~~
+
+*src/components/email/MonthHeader.js*
+
+~~~~
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Div, Img, Span } from 'styled-system-html'
+
+const MonthHeader = props => (
+  <Div
+    display="flex"
+    justifyContent="center"
+    alignItems="center"
+    color="red"
+    fontWeight="bold"
+    fontSize={0}
+    borderTop="solid 1px"
+    borderBottom="solid 1px"
+    borderColor="cyan"
+    textAlign="center"
+    py={2}
+    mt={2}
+    mb={4}
+  >
+    <Img mx={1} width={16} height={16} src="/img/chicago-star.svg" />
+    <Span mx={2} position="relative" top="1px">
+      {props.month.toUpperCase()}
+    </Span>
+    <Img mx={1} width={16} height={16} src="/img/chicago-star.svg" />
+  </Div>
+)
+
+MonthHeader.propTypes = {
+  month: PropTypes.string.isRequired,
+}
+
+export default MonthHeader
+
+~~~~
+
+Now we can deploy and access the new email template from `/email`.
+
+To manage our email list and batch send to our subscribers, we will use [Mailchimp](https://mailchimp.com/) which has a convenient [free plan](https://mailchimp.com/pricing/) that will allow us to send emails to up to 2,000 subscribers.
+
+Sign up for an account, then set up a new email test.
+
+You can also test your email code with tools like [Litmus](https://litmus.com/) or [HTML Email Check](https://www.htmlemailcheck.com/check/).
 
 
 --

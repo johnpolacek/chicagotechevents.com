@@ -14,14 +14,14 @@ const EventsByMonth = props => {
           fontSize: '14px', 
           borderTop: 'solid 1px '+theme.colors.cyan, 
           borderBottom: 'solid 1px '+theme.colors.cyan,
-          padding: '4px 0 px',
+          padding: '4px 0 8px',
           margin: '8px 0 32px'
         }}>
-          <img alt="Chicago Star Icon" style={{margin: '0 4px', position: 'relative', top: '4px'}} width="16px" height="16px" src="/img/chicago-star.svg" />
+          <img alt="Chicago Star Icon" style={{margin: '0 4px', position: 'relative', top: '4px'}} width="16px" height="16px" src="https://chicagotechevents.netlify.com/img/chicago-star.svg" />
           <span style={{margin: '0 8px', position:'relative', top:'1px'}}>
             {month.toUpperCase()}
           </span>
-          <img alt="Chicago Star Icon" style={{margin: '0 4px', position: 'relative', top: '4px'}} width="16px" height="16px" src="/img/chicago-star.svg" />
+          <img alt="Chicago Star Icon" style={{margin: '0 4px', position: 'relative', top: '4px'}} width="16px" height="16px" src="https://chicagotechevents.netlify.com/img/chicago-star.svg" />
         </div>
         {props.eventsByMonth[month].map(({ node }, i, events) => (
           <Event

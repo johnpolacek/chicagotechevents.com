@@ -8,14 +8,14 @@ export default props => (
       <div style={{ margin:"auto", maxWidth:'480px'}}>
         <div style={{ borderTop: 'solid 1px white' }}>
           <div style={{ display:"inline-block", background:"white", padding: "6px 8px 2px", position:"relative", top:"-18px" }}>
-            <img alt="Chicago Star Icon" style={{ margin: '0 4px' }} width="24px" height="24px" src="/img/chicago-star.svg" />
-            <img alt="Chicago Star Icon" style={{ margin: '0 4px' }} width="24px" height="24px" src="/img/chicago-star.svg" />
-            <img alt="Chicago Star Icon" style={{ margin: '0 4px' }} width="24px" height="24px" src="/img/chicago-star.svg" />
-            <img alt="Chicago Star Icon" style={{ margin: '0 4px' }} width="24px" height="24px" src="/img/chicago-star.svg" />
+            <img alt="Chicago Star Icon" style={{ margin: '0 4px' }} width="24px" height="24px" src="https://chicagotechevents.netlify.com/img/chicago-star.svg" />
+            <img alt="Chicago Star Icon" style={{ margin: '0 4px' }} width="24px" height="24px" src="https://chicagotechevents.netlify.com/img/chicago-star.svg" />
+            <img alt="Chicago Star Icon" style={{ margin: '0 4px' }} width="24px" height="24px" src="https://chicagotechevents.netlify.com/img/chicago-star.svg" />
+            <img alt="Chicago Star Icon" style={{ margin: '0 4px' }} width="24px" height="24px" src="https://chicagotechevents.netlify.com/img/chicago-star.svg" />
           </div>
         </div>
       </div>
     </div>
-    <img alt="Chicago Skyline Graphic" src="/img/skyline.svg" style={{ display:"block", position:"absolute", bottom:"-1px", left:"-2px", width:"101%" }} />
+    <img alt="Chicago Skyline Graphic" src="https://chicagotechevents.netlify.com/img/skyline.svg" style={{ display:"block", position:"absolute", bottom:"-1px", left:"-2px", width:"101%" }} />
   </div>
 )

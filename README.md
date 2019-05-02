@@ -19,7 +19,9 @@
 - Eventbrite API
 - Sponsors
 - Mailchimp API - [Netlify Function for Emails](https://css-tricks.com/netlify-functions-for-sending-emails/)
-- ReCAPTCHA - see [docs](https://developers.google.com/recaptcha/docs/v3)
+- ReCAPTCHA 
+	- see [docs](https://developers.google.com/recaptcha/docs/v3)
+	- alternative [honeypot](https://stackoverflow.com/questions/36227376/better-honeypot-implementation-form-anti-spam) also [this](https://stackoverflow.com/questions/26452716/how-to-create-a-nuclear-honeypot-to-catch-form-spammers)
 
 <br>
 
@@ -1524,6 +1526,7 @@ Some rules to follow:
 * All styling needs to be inline.
 * No JS whatsoever
 * Image urls need to be absolute
+* Convert SVG to PNG
 * Include an unsubscribe link
 
 First, let’s make a new page and route which will be similar to `index.js`.
@@ -1561,7 +1564,7 @@ class Email extends React.Component {
 
     return (
       <ThemeProvider theme={theme}>
-        <div style={{background:theme.colors.lite, fontFamily:theme.font, paddingBottom:'32px'}}>
+        <div id="emailTemplate" style={{background:theme.colors.lite, fontFamily:theme.font, paddingBottom:'32px'}}>
           <EmailHeader title={siteTitle} />
           <p style={{ paddingBottom: '0', textAlign: 'center' }}>View these events online at <a style={{ fontSize:'18px' }} href="https://chicagotechevents.com">chicagotechevents.com</a></p>
           <p style={{ paddingBottom: '32px', textAlign: 'center', fontSize:'14px' }}><a href="*|UNSUB|*">Unsubscribe</a> to stop receiving updates</p>
@@ -1622,7 +1625,7 @@ import theme from '../../theme'
 export default props => (
   <div style={{ position: 'relative', background: theme.colors.blue7, color: '#fff', textAlign: 'center', padding: '32px 32px 25%' }}>
     <div style={{ maxWidth: '800px', zIndex: '999', margin: '0 auto -16px' }}>
-      <h1 style={{margin: '8px 0 40px', fontWeight:'normal', fontSize: '40px'}}>{props.title.toUpperCase()}</h1>
+      <h1 style={{margin: '8px 0 40px', fontWeight:'normal', fontSize: '40px', color: '#fff'}}>{props.title.toUpperCase()}</h1>
       <div style={{ margin:"auto", maxWidth:'480px'}}>
         <div style={{ borderTop: 'solid 1px white' }}>
           <div style={{ display:"inline-block", background:"white", padding: "6px 8px 2px", position:"relative", top:"-18px" }}>
@@ -1806,9 +1809,9 @@ Now we can deploy and access the new email template from `/email`.
 
 To manage our email list and batch send to our subscribers, we will use [Mailchimp](https://mailchimp.com/) which has a convenient [free plan](https://mailchimp.com/pricing/) that will allow us to send emails to up to 2,000 subscribers.
 
-Sign up for an account, then set up a new email test.
+After you sign up for a Mailchimp account, create a new 1-column template. Run a build of the site, then open `public/email/index.html` and grab all the markup in `#emailTemplate` to paste into the template body. 
 
-You can also test your email code with tools like [Litmus](https://litmus.com/) or [HTML Email Check](https://www.htmlemailcheck.com/check/).
+You can then save the template and send test emails. You can also test your email code with tools like [Litmus](https://litmus.com/) or [HTML Email Check](https://www.htmlemailcheck.com/check/).
 
 
 --

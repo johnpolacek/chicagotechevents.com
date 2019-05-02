@@ -16,9 +16,9 @@ const EventsByMonth = props => {
         }}>
           <table style={{width:'100%'}}>
             <tr>
-              <td style={{width:'33%',textAlign:'right'}}><StarIcon /></td>
+              <td style={{width:'33%',textAlign:'right', paddingTop:'3px'}}><StarIcon /></td>
               <td style={{textAlign:'center', color: theme.colors.red, fontWeight:'bold', fontSize: '14px', }}>{month.toUpperCase()}</td>
-              <td style={{width:'33%',textAlign:'left'}}><StarIcon /></td>
+              <td style={{width:'33%',textAlign:'left', paddingTop:'3px'}}><StarIcon /></td>
             </tr>
           </table>
         </div>

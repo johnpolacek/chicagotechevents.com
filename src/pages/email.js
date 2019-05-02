@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { ThemeProvider } from 'styled-components'
 import theme from '../theme.js'
-import EmailHeader from '../components/email/Header'
+import Header from '../components/email/Header'
 import EventsByMonth from '../components/email/EventsByMonth'
 
 class Email extends React.Component {
@@ -28,14 +28,24 @@ class Email extends React.Component {
 
     return (
       <ThemeProvider theme={theme}>
-        <div id="emailTemplate" style={{background:theme.colors.lite, fontFamily:theme.font, paddingBottom:'32px'}}>
-          <EmailHeader title={siteTitle} />
-          <p style={{ paddingBottom: '0', textAlign: 'center' }}>View these events online at <a style={{ fontSize:'18px' }} href="https://chicagotechevents.com">chicagotechevents.com</a></p>
-          <p style={{ paddingBottom: '32px', textAlign: 'center', fontSize:'14px' }}><a href="*|UNSUB|*">Unsubscribe</a> to stop receiving updates</p>
-          <div style={{ padding: '0 32px' }}>
-            <EventsByMonth eventsByMonth={eventsByMonth} />
-          </div>
-        </div>
+        <table id="emailTemplate" cellpadding="0" style={{background:theme.colors.lite, fontFamily:theme.font, paddingBottom:'32px'}}>
+          <Header title={siteTitle} />
+          <tr>
+            <td>
+              <p style={{ paddingBottom: '0', textAlign: 'center' }}>View these events online at <a style={{ color: theme.colors.blue, fontSize:'18px' }} href="https://chicagotechevents.com">chicagotechevents.com</a></p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p style={{ paddingBottom: '32px', textAlign: 'center', fontSize:'14px' }}><a style={{color: theme.colors.blue}} href="*|UNSUB|*">Unsubscribe</a> to stop receiving updates</p>
+            </td>
+          </tr>
+          <tr>
+            <td style={{ padding: '0 32px' }}>
+              <EventsByMonth eventsByMonth={eventsByMonth} />
+            </td>
+          </tr>
+        </table>
       </ThemeProvider>
     )
   }

@@ -3,25 +3,24 @@ import PropTypes from 'prop-types'
 import theme from '../../theme'
 import Event from './Event'
 
+const StarIcon = () => <img alt="Chicago Star Icon" width="16px" height="16px" src="https://chicagotechevents.netlify.com/img/chicago-star.png" />
+
 const EventsByMonth = props => {
   return Object.keys(props.eventsByMonth).map(month => {
     return (
       <div key={month} style={{ zIndex: '999' }}>
         <div style={{
-          textAlign:'center', 
-          color: theme.colors.red, 
-          fontWeight:'bold', 
-          fontSize: '14px', 
           borderTop: 'solid 1px '+theme.colors.cyan, 
           borderBottom: 'solid 1px '+theme.colors.cyan,
-          padding: '4px 0 8px',
-          margin: '8px 0 32px'
+          paddingTop: '2px'
         }}>
-          <img alt="Chicago Star Icon" style={{margin: '0 4px', position: 'relative', top: '4px'}} width="16px" height="16px" src="https://chicagotechevents.netlify.com/img/chicago-star.png" />
-          <span style={{margin: '0 8px', position:'relative', top:'1px'}}>
-            {month.toUpperCase()}
-          </span>
-          <img alt="Chicago Star Icon" style={{margin: '0 4px', position: 'relative', top: '4px'}} width="16px" height="16px" src="https://chicagotechevents.netlify.com/img/chicago-star.png" />
+          <table style={{width:'100%'}}>
+            <tr>
+              <td style={{width:'33%',textAlign:'right'}}><StarIcon /></td>
+              <td style={{textAlign:'center', color: theme.colors.red, fontWeight:'bold', fontSize: '14px', }}>{month.toUpperCase()}</td>
+              <td style={{width:'33%',textAlign:'left'}}><StarIcon /></td>
+            </tr>
+          </table>
         </div>
         {props.eventsByMonth[month].map(({ node }, i, events) => (
           <Event

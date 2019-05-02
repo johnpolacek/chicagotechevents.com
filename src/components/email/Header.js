@@ -10,7 +10,7 @@ export default props => (
     </tr>
     <tr>
       <td>
-        <img alt="Chicago Stars and Skyline" style={{width:'100%',height:'auto'}} src="/img/email-header.png" />
+        <img alt="Chicago Stars and Skyline" style={{width:'100%',height:'auto'}} src="https://chicagotechevents.netlify.com//img/email-header.png" />
       </td>
     </tr>
   </>

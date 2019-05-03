@@ -1537,6 +1537,90 @@ First, let’s make a new page and route which will be similar to `index.js`.
 *src/pages/email.js*
 
 ~~~~
+import React from 'react'
+import { graphql } from 'gatsby'
+import { ThemeProvider } from 'styled-components'
+import theme from '../theme.js'
+import Header from '../components/email/Header'
+import EventsByMonth from '../components/email/EventsByMonth'
+
+class Email extends React.Component {
+  render() {
+    const { data } = this.props
+    const siteTitle = data.site.siteMetadata.title
+    const events = data.allMarkdownRemark.edges
+    const currEvents = events.filter(
+      ({ node }) => new Date(node.frontmatter.endDate) >= new Date()
+    )
+    const eventsByMonth = {}
+    currEvents.forEach(({ node }) => {
+      const month =
+        node.frontmatter.startDate.split(' ')[0] +
+        ' ' +
+        node.frontmatter.startDate.split(' ')[2]
+      if (typeof eventsByMonth[month] === 'undefined') {
+        eventsByMonth[month] = [{ node }]
+      } else {
+        eventsByMonth[month].push({ node })
+      }
+    })
+
+    return (
+      <ThemeProvider theme={theme}>
+        <table id="emailTemplate" cellpadding="0" style={{background:theme.colors.lite, fontFamily:theme.font, paddingBottom:'32px', borderCollapse: 'collapse'}}>
+          <Header title={siteTitle} />
+          <tr>
+            <td style={{ paddingBottom: '0', textAlign: 'center' }}>
+              View these events online at <a style={{ color: theme.colors.blue, fontSize:'18px' }} href="https://chicagotechevents.com">chicagotechevents.com</a>
+            </td>
+          </tr>
+          <tr>
+            <td style={{ paddingBottom: '32px', textAlign: 'center', fontSize:'14px' }}>
+              <a style={{color: theme.colors.blue}} href="*|UNSUB|*">Unsubscribe</a> to stop receiving updates
+            </td>
+          </tr>
+          <EventsByMonth eventsByMonth={eventsByMonth} />
+        </table>
+      </ThemeProvider>
+    )
+  }
+}
+
+export default Email
+
+export const pageQuery = graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+        description
+      }
+    }
+    allMarkdownRemark(sort: { fields: [frontmatter___startDate], order: ASC }) {
+      edges {
+        node {
+          excerpt
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+            startDate(formatString: "MMMM DD, YYYY")
+            startTime
+            endDate(formatString: "MMMM DD, YYYY")
+            endTime
+            locationName
+            locationStreet
+            locationCity
+            locationState
+            cost
+            eventUrl
+          }
+        }
+      }
+    }
+  }
+`
 ~~~~
 
 Next, we will create separate versions of our components to make an email newsletter that is similar in design to our homepage events list.
@@ -1544,21 +1628,147 @@ Next, we will create separate versions of our components to make an email newsle
 *src/components/email/Header.js*
 
 ~~~~
+import React from 'react'
+import theme from '../../theme'
+
+export default props => (
+  <>
+    <tr style={{ background: theme.colors.blue7, textAlign: 'center' }}>
+      <td style={{ padding: '32px 0 8px' }}>
+        <h1 style={{margin: '8px 0 0', fontWeight:'normal', fontSize: '42px', color: '#fff', textAlign: 'center' }}>{props.title.toUpperCase()}</h1>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <img alt="Chicago Stars and Skyline" style={{width:'100%',height:'auto'}} src="https://chicagotechevents.netlify.com//img/email-header.png" />
+      </td>
+    </tr>
+  </>
+)
 ~~~~
 
 *src/components/email/Event.js*
 
 ~~~~
+import React from 'react'
+import PropTypes from 'prop-types'
+import theme from '../../theme'
+import { getEventDateString } from '../util'
+
+const Event = props => (
+  <tr>
+    <td colspan="3" key={props.url} style={{padding: '16px 0 32px', marginBottom: '32px', borderBottom: props.isLast ? 'none' : 'solid 1px #ccc' }}>
+      <h2 style={{ color: theme.colors.base, fontSize: '30px'}}>{props.title}</h2>
+      <p style={{ color: theme.colors.red, fontStyle:"italic", fontWeight:"bold", fontSize: '14px', marginBottom: '8px'}}>
+        {getEventDateString(
+          props.startDate,
+          props.startTime,
+          props.endDate,
+          props.endTime
+        )}
+      </p>
+      <p style={{ fontSize:'16px', marginBottom:'16px' }} dangerouslySetInnerHTML={{__html: props.content}} />
+      <p style={{ fontSize:'14px', marginBottom:'16px', fontWeight:'600', lineHeight: '1.4', fontStyle: 'italic' }}>
+        <span>{props.locationName}</span>
+        <br />
+        {props.locationStreet}
+        <br />
+        {props.locationCity}, {props.locationState}
+        <br />
+      </p>
+      <p style={{ color: theme.colors.gray8, fontWeight:"600", fontSize: '14px', marginBottom: '8px' }}>
+        Cost: {props.cost}
+      </p>
+      <p style={{ fontWeight:"bold", fontSize: '14px', marginBottom: '8px' }}>
+        Go to event:{' '}
+        <a style={{ fontWeight:"bold", marginLeft: '4px' }} href={props.eventUrl}>
+          {props.eventUrl
+            .replace('https://', '')
+            .replace('http://', '')
+            .replace('www.', '')
+            .replace(/\/$/, '')}
+        </a>
+      </p>
+    </td>
+  </tr>
+)
+
+Event.propTypes = {
+  url: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  startDate: PropTypes.string.isRequired,
+  startTime: PropTypes.string,
+  endDate: PropTypes.string,
+  endTime: PropTypes.string,
+  locationName: PropTypes.string.isRequired,
+  locationStreet: PropTypes.string.isRequired,
+  locationCity: PropTypes.string.isRequired,
+  cost: PropTypes.string.isRequired,
+  eventUrl: PropTypes.string.isRequired,
+  isLast: PropTypes.bool,
+}
+
+export default Event
 ~~~~
 
 *src/components/email/EventsByMonth.js*
 
 ~~~~
-~~~~
+import React from 'react'
+import PropTypes from 'prop-types'
+import theme from '../../theme'
+import Event from './Event'
 
-*src/components/email/MonthHeader.js*
+const StarIcon = () => <img alt="Chicago Star Icon" width="16px" height="16px" src="https://chicagotechevents.netlify.com/img/chicago-star.png" />
 
-~~~~
+const EventsByMonth = props => {
+  return Object.keys(props.eventsByMonth).map(month => {
+    return (
+      <tr key={month}>
+        <td>
+          <table style={{width:'100%'}}>
+            <tr style={{
+              borderTop: 'solid 1px '+theme.colors.cyan, 
+              borderBottom: 'solid 1px '+theme.colors.cyan,
+              paddingTop: '2px'
+            }}>
+              <td style={{width:'33%',textAlign:'right', paddingTop:'3px'}}><StarIcon /></td>
+              <td style={{textAlign:'center', color: theme.colors.red, fontWeight:'bold', fontSize: '14px', }}>{month.toUpperCase()}</td>
+              <td style={{width:'33%',textAlign:'left', paddingTop:'3px'}}><StarIcon /></td>
+            </tr>
+            {props.eventsByMonth[month].map(({ node }, i, events) => (
+              <Event
+                {...{
+                  key: node.fields.slug,
+                  url: node.fields.slug,
+                  title: node.frontmatter.title || node.fields.slug,
+                  startDate: node.frontmatter.startDate,
+                  startTime: node.frontmatter.startTime,
+                  endDate: node.frontmatter.endDate,
+                  endTime: node.frontmatter.endTime,
+                  locationName: node.frontmatter.locationName,
+                  locationStreet: node.frontmatter.locationStreet,
+                  locationCity: node.frontmatter.locationCity,
+                  locationState: node.frontmatter.locationState,
+                  cost: node.frontmatter.cost,
+                  eventUrl: node.frontmatter.eventUrl,
+                  content: node.frontmatter.description || node.excerpt,
+                  isLast: i === events.length - 1,
+                }}
+              />
+            ))}
+          </table>
+        </td>
+      </tr>
+    )
+  })
+}
+
+EventsByMonth.propTypes = {
+  eventsByMonth: PropTypes.object.isRequired,
+}
+
+export default EventsByMonth
 ~~~~
 
 Now we can deploy and access the new email template from `/email`.

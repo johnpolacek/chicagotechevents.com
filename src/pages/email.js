@@ -31,20 +31,16 @@ class Email extends React.Component {
         <table id="emailTemplate" cellpadding="0" style={{background:theme.colors.lite, fontFamily:theme.font, paddingBottom:'32px', borderCollapse: 'collapse'}}>
           <Header title={siteTitle} />
           <tr>
-            <td>
-              <p style={{ paddingBottom: '0', textAlign: 'center' }}>View these events online at <a style={{ color: theme.colors.blue, fontSize:'18px' }} href="https://chicagotechevents.com">chicagotechevents.com</a></p>
+            <td style={{ paddingBottom: '0', textAlign: 'center' }}>
+              View these events online at <a style={{ color: theme.colors.blue, fontSize:'18px' }} href="https://chicagotechevents.com">chicagotechevents.com</a>
             </td>
           </tr>
           <tr>
-            <td>
-              <p style={{ paddingBottom: '32px', textAlign: 'center', fontSize:'14px' }}><a style={{color: theme.colors.blue}} href="*|UNSUB|*">Unsubscribe</a> to stop receiving updates</p>
+            <td style={{ paddingBottom: '32px', textAlign: 'center', fontSize:'14px' }}>
+              <a style={{color: theme.colors.blue}} href="*|UNSUB|*">Unsubscribe</a> to stop receiving updates
             </td>
           </tr>
-          <tr>
-            <td style={{ padding: '0 32px' }}>
-              <EventsByMonth eventsByMonth={eventsByMonth} />
-            </td>
-          </tr>
+          <EventsByMonth eventsByMonth={eventsByMonth} />
         </table>
       </ThemeProvider>
     )

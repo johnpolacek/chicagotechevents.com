@@ -12,11 +12,12 @@
 **--W--I--P--**
 
 - Email template
-  - Send test email
+  - white background
 - Subscribe to Newsletter
 - RSS Feed
 - Meetup API
 - Eventbrite API
+- Ship It!
 - Sponsors
 - Mailchimp API - [Netlify Function for Emails](https://css-tricks.com/netlify-functions-for-sending-emails/)
 - ReCAPTCHA 

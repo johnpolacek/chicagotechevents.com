@@ -28,7 +28,7 @@ class Email extends React.Component {
 
     return (
       <ThemeProvider theme={theme}>
-        <table id="emailTemplate" cellpadding="0" style={{background:theme.colors.lite, fontFamily:theme.font, paddingBottom:'32px', borderCollapse: 'collapse'}}>
+        <table id="emailTemplate" cellpadding="0" style={{background:'#fff', fontFamily:theme.font, paddingBottom:'32px', borderCollapse: 'collapse'}}>
           <Header title={siteTitle} />
           <tr>
             <td style={{ paddingBottom: '0', textAlign: 'center' }}>

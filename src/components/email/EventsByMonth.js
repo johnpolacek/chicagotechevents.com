@@ -10,9 +10,8 @@ const EventsByMonth = props => {
     return (
       <tr key={month}>
         <td>
-          <table style={{width:'100%'}}>
+          <table style={{borderCollapse: 'collapse', width:'100%'}}>
             <tr style={{
-              borderCollapse: 'collapse',
               borderTop: 'solid 1px '+theme.colors.cyan, 
               borderBottom: 'solid 1px '+theme.colors.cyan
             }}>

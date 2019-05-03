@@ -12,13 +12,13 @@ const EventsByMonth = props => {
         <td>
           <table style={{width:'100%'}}>
             <tr style={{
+              borderCollapse: 'collapse',
               borderTop: 'solid 1px '+theme.colors.cyan, 
-              borderBottom: 'solid 1px '+theme.colors.cyan,
-              paddingTop: '2px'
+              borderBottom: 'solid 1px '+theme.colors.cyan
             }}>
-              <td style={{width:'33%',textAlign:'right', paddingTop:'3px'}}><StarIcon /></td>
+              <td style={{width:'33%',textAlign:'right', paddingTop:'6px'}}><StarIcon /></td>
               <td style={{textAlign:'center', color: theme.colors.red, fontWeight:'bold', fontSize: '14px', }}>{month.toUpperCase()}</td>
-              <td style={{width:'33%',textAlign:'left', paddingTop:'3px'}}><StarIcon /></td>
+              <td style={{width:'33%',textAlign:'left', paddingTop:'6px'}}><StarIcon /></td>
             </tr>
             {props.eventsByMonth[month].map(({ node }, i, events) => (
               <Event

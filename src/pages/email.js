@@ -31,12 +31,12 @@ class Email extends React.Component {
         <table id="emailTemplate" cellpadding="0" style={{background:'#fff', fontFamily:theme.font, paddingBottom:'32px', borderCollapse: 'collapse'}}>
           <Header title={siteTitle} />
           <tr>
-            <td style={{ paddingBottom: '0', textAlign: 'center' }}>
+            <td style={{ padding: '16px 0 24px', textAlign: 'center' }}>
               View these events online at <a style={{ color: theme.colors.blue, fontSize:'18px' }} href="https://chicagotechevents.com">chicagotechevents.com</a>
             </td>
           </tr>
           <tr>
-            <td style={{ paddingBottom: '32px', textAlign: 'center', fontSize:'14px' }}>
+            <td style={{ paddingBottom: '48px', textAlign: 'center', fontSize:'14px' }}>
               <a style={{color: theme.colors.blue}} href="*|UNSUB|*">Unsubscribe</a> to stop receiving updates
             </td>
           </tr>

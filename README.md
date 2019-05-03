@@ -12,7 +12,6 @@
 **--W--I--P--**
 
 - Email template
-  - white background
 - Subscribe to Newsletter
 - RSS Feed
 - Meetup API

@@ -24,7 +24,7 @@ const SubmitEvent = props => {
         try {
           if (data.message === 'success') {
             setSubmitState(SUBMIT_SUCCESS)
-            setPullRequestUrl(data.url+'/files')
+            setPullRequestUrl(data.url + '/files')
           } else {
             setSubmitState(SUBMIT_FAIL)
           }

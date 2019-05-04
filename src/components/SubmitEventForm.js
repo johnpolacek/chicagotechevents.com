@@ -35,7 +35,7 @@ const SubmitEventForm = props => {
         locationName,
         locationStreet,
         locationCity,
-        authorName
+        authorName,
       })
     }
   }

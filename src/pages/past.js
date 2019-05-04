@@ -39,7 +39,9 @@ class Past extends React.Component {
           keywords={[`events`, `calendar`, `gatsby`, `javascript`, `react`]}
         />
         <Div textAlign="center" mt={-5} pb={4}>
-          <H2 pb={4} fontSize={5} fontWeight="normal" color="base">Past Events</H2>
+          <H2 pb={4} fontSize={5} fontWeight="normal" color="base">
+            Past Events
+          </H2>
           <Link style={{ textDecoration: 'none' }} to={`/`}>
             <LinkButton fontWeight={1}>VIEW CURRENT EVENTS</LinkButton>
           </Link>

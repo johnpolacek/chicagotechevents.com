@@ -11,8 +11,6 @@
 
 **--W--I--P--**
 
-- Subscribe to Newsletter
-- RSS Feed
 - Meetup API
 - Eventbrite API
 - Ship It!

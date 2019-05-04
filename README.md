@@ -1323,7 +1323,7 @@ The first step in setting this up is to get our tests to run headlessly. We need
 npm install --save-dev start-server-and-test
 ~~~~
 
-Now we can set up a predeploy script to run the tests every time we push a commit.
+Now we can set up a predeploy script to run the tests every time we push a commit, and only deploy the build when it passes the tests.
 
 *package.json*
 

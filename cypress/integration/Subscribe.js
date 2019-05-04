@@ -9,14 +9,18 @@ describe('Subscribe', function() {
     cy.visit('/')
     cy.get('#subscribeEmail').type('asdf@asdf.com')
     cy.get('#submitSubscribe').click()
-    cy.get('div').contains('Sorry, there was an error. Maybe try again?').should('be.visible')
+    cy.get('div')
+      .contains('Sorry, there was an error. Maybe try again?')
+      .should('be.visible')
   })
 
   it('requires valid email', () => {
     cy.visit('/')
     cy.get('#subscribeEmail').type('asdf@')
     cy.get('#submitSubscribe').click()
-    cy.get('div').contains('All set. Thanks for subscribing!').should('not.be.visible')
+    cy.get('div')
+      .contains('All set. Thanks for subscribing!')
+      .should('not.be.visible')
   })
 
   describe('when subscription succeeds', function() {
@@ -38,13 +42,14 @@ describe('Subscribe', function() {
       this.fetchSubscribeDeferred.resolve({
         json() {
           return {
-            message: 'success'
+            message: 'success',
           }
         },
         ok: true,
       })
-      cy.get('div').contains('All set. Thanks for subscribing!').should('be.visible')
+      cy.get('div')
+        .contains('All set. Thanks for subscribing!')
+        .should('be.visible')
     })
-
   })
 })

@@ -1842,8 +1842,8 @@ const SubmitEventForm = props => {
       {
         (status === READY || status === ERROR) && 
         <Form width={[360,450]} mx="auto" px={3} onSubmit={onSubmit}>
-          <Input value={email} onChange={(e) => setEmail(e.target.value)} width={[3/5,2/3]} borderColor="base" border="1px solid" type="email" placeholder="Your email" />
-          <InputSubmit width={[2/5,1/3]} textAlign="center" bg="base" fontSize={1} mt="-1px" py="9px" px={0} style={{borderRadius:'0 8px 8px 0'}} id="submitEmail" value="SUBSCRIBE" />
+          <Input id="subscribeEmail" value={email} onChange={(e) => setEmail(e.target.value)} width={[3/5,2/3]} borderColor="base" border="1px solid" type="email" placeholder="Your email" />
+          <InputSubmit width={[2/5,1/3]} textAlign="center" bg="base" fontSize={1} mt="-1px" py="9px" px={0} style={{borderRadius:'0 8px 8px 0'}} id="submitSubscribe" value="SUBSCRIBE" />
         </Form>
       }
       {
@@ -1883,7 +1883,62 @@ import Subscribe from '../components/Subscribe'
 ...
 ~~~~
 
+To finish up, we should add some new tests to verify that subscribing is working as expected.
 
+*cypress/integration/Subscribe.js*
+
+~~~~
+import {
+  deferred,
+  getValidEventData,
+  getDefaultEventDate,
+} from '../support/helpers'
+
+describe('Subscribe', function() {
+  it('when subscription fails shows error message', function() {
+    cy.visit('/')
+    cy.get('#subscribeEmail').type('asdf@asdf.com')
+    cy.get('#submitSubscribe').click()
+    cy.get('div').contains('Sorry, there was an error. Maybe try again?').should('be.visible')
+  })
+
+  it('requires valid email', () => {
+    cy.visit('/')
+    cy.get('#subscribeEmail').type('asdf@')
+    cy.get('#submitSubscribe').click()
+    cy.get('div').contains('All set. Thanks for subscribing!').should('not.be.visible')
+  })
+
+  describe('when subscription succeeds', function() {
+    // stub the response from the api
+    beforeEach(function() {
+      this.fetchSubscribeDeferred = deferred()
+      cy.visit('/', {
+        onBeforeLoad(win) {
+          cy.stub(win, 'fetch')
+            .as('fetchSubscribe')
+            .returns(this.fetchSubscribeDeferred.promise)
+        },
+      })
+    })
+
+    it('shows success message', function() {
+      cy.get('#subscribeEmail').type('johnpolacek@hotmail.com')
+      cy.get('#submitSubscribe').click()
+      this.fetchSubscribeDeferred.resolve({
+        json() {
+          return {
+            message: 'success'
+          }
+        },
+        ok: true,
+      })
+      cy.get('div').contains('All set. Thanks for subscribing!').should('be.visible')
+    })
+
+  })
+})
+~~~~
 
 
 

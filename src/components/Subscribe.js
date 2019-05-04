@@ -59,6 +59,7 @@ const SubmitEventForm = props => {
       {(status === READY || status === ERROR) && (
         <Form width={[360, 450]} mx="auto" px={3} onSubmit={onSubmit}>
           <Input
+            id="subscribeEmail"
             value={email}
             onChange={e => setEmail(e.target.value)}
             width={[3 / 5, 2 / 3]}
@@ -76,7 +77,7 @@ const SubmitEventForm = props => {
             py="9px"
             px={0}
             style={{ borderRadius: '0 8px 8px 0' }}
-            id="submitEmail"
+            id="submitSubscribe"
             value="SUBSCRIBE"
           />
         </Form>

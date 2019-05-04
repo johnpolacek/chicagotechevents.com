@@ -37,8 +37,6 @@ const SubmitEventForm = props => {
         locationCity,
         authorName
       })
-    } else {
-      return 'Form not valid'
     }
   }
 

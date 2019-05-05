@@ -1881,68 +1881,16 @@ import Subscribe from '../components/Subscribe'
 ...
 ~~~~
 
-To finish up, we should add some new tests to verify that subscribing is working as expected.
-
-*cypress/integration/Subscribe.js*
-
-~~~~
-import {
-  deferred,
-  getValidEventData,
-  getDefaultEventDate,
-} from '../support/helpers'
-
-describe('Subscribe', function() {
-  it('when subscription fails shows error message', function() {
-    cy.visit('/')
-    cy.get('#subscribeEmail').type('asdf@asdf.com')
-    cy.get('#submitSubscribe').click()
-    cy.get('div').contains('Sorry, there was an error. Maybe try again?').should('be.visible')
-  })
-
-  it('requires valid email', () => {
-    cy.visit('/')
-    cy.get('#subscribeEmail').type('asdf@')
-    cy.get('#submitSubscribe').click()
-    cy.get('div').contains('All set. Thanks for subscribing!').should('not.be.visible')
-  })
-
-  describe('when subscription succeeds', function() {
-    // stub the response from the api
-    beforeEach(function() {
-      this.fetchSubscribeDeferred = deferred()
-      cy.visit('/', {
-        onBeforeLoad(win) {
-          cy.stub(win, 'fetch')
-            .as('fetchSubscribe')
-            .returns(this.fetchSubscribeDeferred.promise)
-        },
-      })
-    })
-
-    it('shows success message', function() {
-      cy.get('#subscribeEmail').type('johnpolacek@hotmail.com')
-      cy.get('#submitSubscribe').click()
-      this.fetchSubscribeDeferred.resolve({
-        json() {
-          return {
-            message: 'success'
-          }
-        },
-        ok: true,
-      })
-      cy.get('div').contains('All set. Thanks for subscribing!').should('be.visible')
-    })
-
-  })
-})
-~~~~
-
 ## Part 9: Importing Events
 
 Currently, we can add events to our list via event submissions or entering them in ourselves. Another great source for us would be events listed on Meetup and Eventbrite. We can create new Netlify functions that pull in event data straight from their APIs.
 
 First, let’s create a special area of the site for us to access these APIs and use them to add events to the site. 
+
+*src/pages/admin.js*
+
+~~~~
+~~~~
 
 ### Meetup
 

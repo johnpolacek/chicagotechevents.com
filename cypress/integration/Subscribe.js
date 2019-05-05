@@ -22,34 +22,5 @@ describe('Subscribe', function() {
       .contains('All set. Thanks for subscribing!')
       .should('not.be.visible')
   })
-
-  describe('when subscription succeeds', function() {
-    // stub the response from the api
-    beforeEach(function() {
-      this.fetchSubscribeDeferred = deferred()
-      cy.visit('/', {
-        onBeforeLoad(win) {
-          cy.stub(win, 'fetch')
-            .as('fetchSubscribe')
-            .returns(this.fetchSubscribeDeferred.promise)
-        },
-      })
-    })
-
-    it('shows success message', function() {
-      cy.get('#subscribeEmail').type('johnpolacek@hotmail.com')
-      cy.get('#submitSubscribe').click()
-      this.fetchSubscribeDeferred.resolve({
-        json() {
-          return {
-            message: 'success',
-          }
-        },
-        ok: true,
-      })
-      cy.get('div')
-        .contains('All set. Thanks for subscribing!')
-        .should('be.visible')
-    })
-  })
+  
 })

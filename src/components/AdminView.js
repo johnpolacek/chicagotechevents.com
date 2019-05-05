@@ -16,7 +16,6 @@ const AdminView = props => {
     
     e.preventDefault()
 
-    console.log(adminCode)
     setSignedIn(SIGNIN_SENDING)
 
     return fetch(`/.netlify/functions/admin/`, {

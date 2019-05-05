@@ -11,6 +11,7 @@ const SubmitEventForm = props => {
 
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState(READY)
+  const [errorMessage, setErrorMessage] = useState('')
 
   const onSubmit = e => {
     e.preventDefault()
@@ -24,22 +25,12 @@ const SubmitEventForm = props => {
         },
         (err, data) => {
           if (err) {
-            console.dir({
-              status: 'error',
-              message: err,
-            })
             setStatus(ERROR)
-          } else if (data.result !== 'success') {
-            console.dir({
-              status: 'error',
-              message: data.msg,
-            })
+            setErrorMessage(JSON.stringify(data.msg))
+          } else if (data.message !== 'success') {
             setStatus(ERROR)
+            setErrorMessage(JSON.stringify(data.msg))
           } else {
-            console.dir({
-              status: 'success',
-              message: data.msg,
-            })
             setStatus(SUCCESS)
           }
         }
@@ -89,7 +80,7 @@ const SubmitEventForm = props => {
       )}
       {status === ERROR && (
         <P fontSize={1} pt={4} color="red">
-          Sorry, there was an error. Maybe try again?
+          Sorry, there was an error. Maybe try again?<br/>{result.msg}
         </P>
       )}
       {status === SUCCESS && (

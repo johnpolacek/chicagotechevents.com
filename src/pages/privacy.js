@@ -12,11 +12,11 @@ class Privacy extends React.Component {
     return (
       <Layout
         location={this.props.location}
-        title={siteTitle}
+        title={siteTitle+' Privacy Policy'}
         description={siteDescription}
       >
         <SEO
-          title="Privacy New Event"
+          title={siteTitle+' Privacy Policy'}
           keywords={[`events`, `calendar`, `gatsby`, `javascript`, `react`]}
         />
         <Wrapper fontSize="80%">

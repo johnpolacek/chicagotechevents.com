@@ -1,10 +1,10 @@
 {
-  "name": "add-event",
+  "name": "get-meetups",
   "version": "1.0.0",
-  "main": "add-event.js",
+  "main": "get-meetups",
   "author": "John Polacek",
   "license": "MIT",
   "dependencies": {
-    "@octokit/rest": "^16.3.0"
+    "meetup-api": "^1.4.38"
   }
 }

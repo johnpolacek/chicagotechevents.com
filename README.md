@@ -1938,6 +1938,45 @@ describe('Subscribe', function() {
 })
 ~~~~
 
+## Part 9: Importing Events
+
+Currently, we can add events to our list via event submissions or entering them in ourselves. Another great source for us would be events listed on Meetup and Eventbrite. We can create new Netlify functions that pull in event data straight from their APIs.
+
+First, let’s create a special area of the site for us to access these APIs and use them to add events to the site. 
+
+### Meetup
+
+You can get access to the [Meetup API](https://www.meetup.com/meetup_api/) by signing up for an account and requesting a key.
+
+Once you have a key, add it as an [Environment variable](https://app.netlify.com/sites/chicagotechevents/settings/deploys#environment) to Netlify under the project build settings.
+
+Next, create a new `get-meetups` in `src/functions`.
+Create a new `package.json` and install the [Meetup API library for Node](https://github.com/jkutianski/meetup-api#readme)
+
+*src/functions/get-meetups/package.json*
+
+~~~~
+{
+  "name": "get-meetups",
+  "version": "1.0.0",
+  "main": "get-meetups",
+  "author": "John Polacek",
+  "license": "MIT",
+  "dependencies": {
+    "meetup-api": "^1.4.38"
+  }
+}
+~~~~
+
+We will be creating a function that returns all the upcoming tech meetups in and around Chicago. 
+
+
+
+Use [Meetup API console](https://secure.meetup.com/meetup_api/console/) to build a search query and test that it returns good results. Once satisfied, we can copy the Request URL and bring it into our function.
+
+
+
+
 
 
 --

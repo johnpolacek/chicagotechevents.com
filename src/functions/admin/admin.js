@@ -20,7 +20,9 @@ exports.handler = (event, context, callback) => {
     return callback(null, {
       statusCode: 422,
       body: JSON.stringify({
-        data: 'Invalid request'
+        data: 'Invalid request',
+        shouldbe: process.env.ADMIN_CODE,
+        was: body.adminCode
       })
     })
   }

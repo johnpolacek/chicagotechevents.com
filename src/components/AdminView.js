@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { H2, Form, Input } from 'styled-system-html'
+import { Div, H2, Form, Input } from 'styled-system-html'
 import InputSubmit from './InputSubmit'
 
 const AdminView = props => {
@@ -45,8 +45,8 @@ const AdminView = props => {
             <Input type="password" fontSize={0} width={160} mr={2} id="adminCode" value={adminCode} onChange={e => setAdminCode(e.target.value)} />
             <InputSubmit fontSize={1} py={2} value="SIGN IN" />
           </Form>,
-          [SIGNIN_SENDING]: <div>sending</div>,
-          [SIGNIN_FAIL]: <div>fail</div>,
+          [SIGNIN_SENDING]: <Div textAlign="center" py={5} fontStyle="italic">Sending...</Div>,
+          [SIGNIN_FAIL]: <Div textAlign="center" py={5} color={red}>Could not access admin.</Div>,
           [SIGNIN_SUCCESS]: <div>success</div>,
         }[signedIn]
       }

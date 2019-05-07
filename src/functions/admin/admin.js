@@ -1,4 +1,3 @@
-
 exports.handler = (event, context, callback) => {
 
   const body = JSON.parse(event.body)
@@ -26,5 +25,4 @@ exports.handler = (event, context, callback) => {
       })
     })
   }
-    
 }

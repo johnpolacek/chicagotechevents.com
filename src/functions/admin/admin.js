@@ -11,7 +11,7 @@ exports.handler = (event, context, callback) => {
     })
   }
 
-  if (body.code && body.code === process.env.ADMIN_CODE) {
+  if (body.adminCode && body.adminCode === process.env.ADMIN_CODE) {
     return callback(null, {
       statusCode: 200,
       body: JSON.stringify({ message: `success` })
@@ -20,8 +20,7 @@ exports.handler = (event, context, callback) => {
     return callback(null, {
       statusCode: 422,
       body: JSON.stringify({
-        data: 'Invalid request',
-        shouldbe: process.env.ADMIN_CODE
+        data: 'Invalid request'
       })
     })
   }

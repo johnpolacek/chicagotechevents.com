@@ -13,7 +13,7 @@
 
 - Meetup API
 	- Try a fetch to the netlify function in console
-- Switch admin login to fetch for testing
+	- Switch subscribe to netlify function with fetch for testing
 - Eventbrite API
 - Ship It!
 - Sponsors

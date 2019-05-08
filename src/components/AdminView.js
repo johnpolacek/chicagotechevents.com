@@ -46,7 +46,7 @@ const AdminView = props => {
             <InputSubmit fontSize={1} py={2} value="SIGN IN" />
           </Form>,
           [SIGNIN_SENDING]: <Div textAlign="center" py={5} fontStyle="italic">Sending...</Div>,
-          [SIGNIN_FAIL]: <Div textAlign="center" py={5} color={red}>Could not access admin.</Div>,
+          [SIGNIN_FAIL]: <Div textAlign="center" py={5} color="red">Could not access admin.</Div>,
           [SIGNIN_SUCCESS]: <div>success</div>,
         }[signedIn]
       }

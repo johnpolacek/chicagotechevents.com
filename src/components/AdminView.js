@@ -19,18 +19,23 @@ const AdminView = props => {
 
     setSignedIn(SIGNIN_SENDING)
 
-    return fetch(`/.netlify/functions/admin/`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({adminCode}),
-      }
-    )
-      .then(response => response.json())
-      .then(data => {
-        setSignedIn(data.message === 'success' ? SIGNIN_SUCCESS : SIGNIN_FAIL)
-      }
-    )
+    try {
+      return fetch(`/.netlify/functions/admin/`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({adminCode}),
+        }
+      )
+        .then(response => response.json())
+        .then(data => {
+          setSignedIn(data.message === 'success' ? SIGNIN_SUCCESS : SIGNIN_FAIL)
+        }
+      )
+    } catch (err) {
+     setSignedIn(SIGNIN_FAIL)
+    }
   }
+
   return (
     <>
       <H2 pb={4} fontSize={5} textAlign="center" fontWeight="200" color="base">ADMIN</H2>
@@ -42,7 +47,7 @@ const AdminView = props => {
           </Form>,
           [SIGNIN_SENDING]: <Div textAlign="center" py={5} fontStyle="italic">Sending...</Div>,
           [SIGNIN_FAIL]: <Div textAlign="center" py={5} color="red">Could not access admin.</Div>,
-          [SIGNIN_SUCCESS]: <AdminViewEvents />,
+          [SIGNIN_SUCCESS]: <AdminViewEvents adminCode={adminCode} />,
         }[signedIn]
       }
     </>

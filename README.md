@@ -1920,12 +1920,22 @@ Create a new `package.json` and install the [Meetup API library for Node](https:
 
 We will be creating a function that returns all the upcoming tech meetups in and around Chicago. 
 
-
-
 Use [Meetup API console](https://secure.meetup.com/meetup_api/console/) to build a search query and test that it returns good results. Once satisfied, we can copy the Request URL and bring it into our function.
 
 
+## Part 10: Component Organization
 
+It can be a mistake to create subdirectories too soon in a project. I prefer to wait until it starts feeling too crowded in `/src/components` and we are at that point now.
+
+`/admin`
+
+`/email`
+
+`/forms`
+
+`/events`
+
+`/layout`
 
 
 

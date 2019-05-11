@@ -11,9 +11,9 @@
 
 **--W--I--P--**
 
+- Trying out netlify-lambda - running npm run start:lambda is causing problems
 - Meetup API
-	- Try a fetch to the netlify function in console
-	- Switch subscribe to netlify function with fetch for testing
+	- move fetch get-meetups into AdminViewEvents
 - Eventbrite API
 - Ship It!
 - Sponsors

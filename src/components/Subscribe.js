@@ -80,7 +80,9 @@ const SubmitEventForm = props => {
       )}
       {status === ERROR && (
         <P fontSize={1} pt={4} color="red">
-          Sorry, there was an error. Maybe try again?<br/>{errorMessage}
+          Sorry, there was an error. Maybe try again?
+          <br />
+          {errorMessage}
         </P>
       )}
       {status === SUCCESS && (

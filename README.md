@@ -11,9 +11,11 @@
 
 **--W--I--P--**
 
-- Trying out netlify-lambda - running npm run start:lambda is causing problems
+
 - Meetup API
-	- move fetch get-meetups into AdminViewEvents
+	- re-use SubmitEventForm in AdminMeetupAddEventForm
+	- writing up Admin step in README #9 (setting up a PIN for admin)
+- Trying out netlify-lambda - running npm run start:lambda is causing problems
 - Eventbrite API
 - Ship It!
 - Sponsors
@@ -1883,18 +1885,75 @@ import Subscribe from '../components/Subscribe'
 ...
 ~~~~
 
-## Part 9: Importing Events
+## Part 9: Admin
 
-Currently, we can add events to our list via event submissions or entering them in ourselves. Another great source for us would be events listed on Meetup and Eventbrite. We can create new Netlify functions that pull in event data straight from their APIs.
+Currently, we can add events to our list via event submissions or entering them in ourselves. We want to create a way to import events from Meetup and Eventbrite. We can create new Netlify functions that pull in event data straight from their APIs.
 
-First, let’s create a special area of the site for us to access these APIs and use them to add events to the site. 
+Before we do that though, let’s create a special area of the site for us to access these APIs and use them to add events to the site. The new page component will be very similar to our other pages.
 
 *src/pages/admin.js*
 
 ~~~~
+import React from 'react'
+import { graphql } from 'gatsby'
+import SEO from '../components/seo'
+import Layout from '../components/Layout'
+import Wrapper from '../components/Wrapper'
+import AdminView from '../components/AdminView'
+
+class Admin extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {signedIn:false}
+  }
+
+  render() {
+    const { data } = this.props
+    const siteTitle = data.site.siteMetadata.title
+
+    return (
+      <Layout
+        location={this.props.location}
+        title={siteTitle}
+      >
+        <SEO
+          title="Admin"
+          keywords={[`events`, `calendar`, `gatsby`, `javascript`, `react`]}
+          meta={[{
+            name: `robots`,
+            content: `noindex`,
+          }]}
+        />
+        <Wrapper>
+          <AdminView />
+        </Wrapper>
+      </Layout>
+    )
+  }
+}
+
+export default Admin
+
+export const pageQuery = graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`
 ~~~~
 
-### Meetup
+It seems like overkill to set up user management and login just to create an admin area. We aren't dealing with private user data or confidential information here. This event info is all publicly available and we are just creating a means of curating and sharing it.
+
+Therefore, we can create a PIN that can be used to access the admin area of the site. With Netlify we can create environment variables that can contain things like API keys, and we can use on of these to store our PIN.
+
+
+
+
+## Part 10: Importing Events
 
 You can get access to the [Meetup API](https://www.meetup.com/meetup_api/) by signing up for an account and requesting a key.
 
@@ -1923,7 +1982,7 @@ We will be creating a function that returns all the upcoming tech meetups in and
 Use [Meetup API console](https://secure.meetup.com/meetup_api/console/) to build a search query and test that it returns good results. Once satisfied, we can copy the Request URL and bring it into our function.
 
 
-## Part 10: Component Organization
+## Part 11: Component Organization
 
 It can be a mistake to create subdirectories too soon in a project. I prefer to wait until it starts feeling too crowded in `/src/components` and we are at that point now.
 

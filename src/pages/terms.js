@@ -12,7 +12,7 @@ class Privacy extends React.Component {
     return (
       <Layout
         location={this.props.location}
-        title={siteTitle+' Terms of Service'}
+        title={siteTitle + ' Terms of Service'}
         description={siteDescription}
       >
         <SEO

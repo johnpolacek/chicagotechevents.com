@@ -45,6 +45,7 @@ const FormControl = props => (
               width={1}
               mb={3}
               value={props.value}
+              rows="8"
             />
           ),
           CUSTOM: <>{props.children}</>,

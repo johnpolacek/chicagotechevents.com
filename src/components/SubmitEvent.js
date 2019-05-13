@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import SubmitEventForm from './SubmitEventForm'
 import SubmitSending from './SubmitSending'
 import SubmitFail from './SubmitFail'
@@ -37,7 +38,13 @@ const SubmitEvent = props => {
     <>
       {
         {
-          [SUBMIT_READY]: <SubmitEventForm onSubmit={onSubmit} />,
+          [SUBMIT_READY]: (
+            <SubmitEventForm
+              event={props.eventData}
+              instructions="Please provide the info below to get your event listed."
+              onSubmit={onSubmit}
+            />
+          ),
           [SUBMIT_SENDING]: <SubmitSending />,
           [SUBMIT_FAIL]: <SubmitFail />,
           [SUBMIT_SUCCESS]: <SubmitSuccess url={pullRequestUrl} />,
@@ -45,6 +52,10 @@ const SubmitEvent = props => {
       }
     </>
   )
+}
+
+SubmitEvent.propTypes = {
+  eventData: PropTypes.object,
 }
 
 export default SubmitEvent

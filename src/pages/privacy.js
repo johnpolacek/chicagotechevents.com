@@ -16,7 +16,7 @@ class Privacy extends React.Component {
         description={siteDescription}
       >
         <SEO
-          title={siteTitle+' Privacy Policy'}
+          title={siteTitle + ' Privacy Policy'}
           keywords={[`events`, `calendar`, `gatsby`, `javascript`, `react`]}
         />
         <Wrapper fontSize="80%">

@@ -6,10 +6,9 @@ import Wrapper from '../components/Wrapper'
 import AdminView from '../components/AdminView'
 
 class Admin extends React.Component {
-
   constructor(props) {
-    super(props);
-    this.state = {signedIn:false}
+    super(props)
+    this.state = { signedIn: false }
   }
 
   render() {
@@ -17,17 +16,16 @@ class Admin extends React.Component {
     const siteTitle = data.site.siteMetadata.title
 
     return (
-      <Layout
-        location={this.props.location}
-        title={siteTitle}
-      >
+      <Layout location={this.props.location} title={siteTitle}>
         <SEO
           title="Admin"
           keywords={[`events`, `calendar`, `gatsby`, `javascript`, `react`]}
-          meta={[{
-            name: `robots`,
-            content: `noindex`,
-          }]}
+          meta={[
+            {
+              name: `robots`,
+              content: `noindex`,
+            },
+          ]}
         />
         <Wrapper>
           <AdminView />

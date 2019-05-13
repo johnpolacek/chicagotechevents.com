@@ -7,18 +7,24 @@ import FormControlDateTime from './FormControlDateTime'
 import InputSubmit from './InputSubmit'
 
 const SubmitEventForm = props => {
-  const [eventName, setEventName] = useState('')
-  const [description, setDescription] = useState('')
-  const [linkURL, setLinkURL] = useState('')
-  const [cost, setCost] = useState('')
-  const [startDate, setStartDate] = useState(null)
-  const [startTime, setStartTime] = useState('5:00pm')
-  const [endDate, setEndDate] = useState(null)
-  const [endTime, setEndTime] = useState('7:00pm')
-  const [locationName, setLocationName] = useState('')
-  const [locationStreet, setLocationStreet] = useState('')
-  const [locationCity, setLocationCity] = useState('Chicago')
-  const [authorName, setAuthorName] = useState('')
+  const eventData = props.event || {}
+
+  const [eventName, setEventName] = useState(eventData.eventName || '')
+  const [description, setDescription] = useState(eventData.description || '')
+  const [linkURL, setLinkURL] = useState(eventData.linkURL || '')
+  const [cost, setCost] = useState(eventData.cost || '')
+  const [startDate, setStartDate] = useState(eventData.startDate || null)
+  const [startTime, setStartTime] = useState(eventData.startTime || '5:00pm')
+  const [endDate, setEndDate] = useState(eventData.endDate || null)
+  const [endTime, setEndTime] = useState(eventData.endTime || '7:00pm')
+  const [locationName, setLocationName] = useState(eventData.locationName || '')
+  const [locationStreet, setLocationStreet] = useState(
+    eventData.locationStreet || ''
+  )
+  const [locationCity, setLocationCity] = useState(
+    eventData.locationCity || 'Chicago'
+  )
+  const [authorName, setAuthorName] = useState(eventData.authorName || '')
 
   const onSubmit = e => {
     e.preventDefault()
@@ -67,16 +73,18 @@ const SubmitEventForm = props => {
       onSubmit={onSubmit}
       style={{ position: 'relative', zIndex: 999 }}
     >
-      <P
-        pt={[4, 4, 3]}
-        pb={4}
-        px={4}
-        color="base"
-        fontWeight="bold"
-        textAlign="center"
-      >
-        Please provide the info below to get your event listed.
-      </P>
+      {props.instructions && (
+        <P
+          pt={[4, 4, 3]}
+          pb={4}
+          px={4}
+          color="base"
+          fontWeight="bold"
+          textAlign="center"
+        >
+          {props.instructions}
+        </P>
+      )}
       <FormControl
         label="Name of Event"
         type="text"
@@ -108,7 +116,6 @@ const SubmitEventForm = props => {
         setValue={setCost}
         labelAddendum="(if none, enter FREE)"
       />
-
       <FormControlDateTime
         required={true}
         label="Start Date"
@@ -164,7 +171,7 @@ const SubmitEventForm = props => {
         setValue={setAuthorName}
       />
       <Div pt={3} pb={5} mb={4} textAlign="right">
-        <InputSubmit id="submitEvent" value="SEND EVENT INFO" />
+        <InputSubmit id="submitEvent" value="ADD EVENT" />
       </Div>
     </Form>
   )
@@ -172,6 +179,8 @@ const SubmitEventForm = props => {
 
 SubmitEventForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  instructions: PropTypes.string,
+  event: PropTypes.object,
 }
 
 export default SubmitEventForm

@@ -13,7 +13,7 @@
 
 
 - Meetup API
-	- re-use SubmitEventForm in AdminMeetupAddEventForm
+	- Fix build, test admin add event from meetup data
 	- writing up Admin step in README #9 (setting up a PIN for admin)
 - Trying out netlify-lambda - running npm run start:lambda is causing problems
 - Eventbrite API

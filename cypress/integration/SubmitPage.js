@@ -11,7 +11,7 @@ describe('Submit Page', function() {
       .contains('+ ADD EVENT')
       .click()
     cy.location('pathname', { timeout: 10000 }).should('include', '/submit')
-    cy.get('form input[value="SEND EVENT INFO"]', { timeout: 10000 }).should(
+    cy.get('form input[value="ADD EVENT"]', { timeout: 10000 }).should(
       'exist'
     )
   })

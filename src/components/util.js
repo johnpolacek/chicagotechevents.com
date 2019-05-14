@@ -23,7 +23,7 @@ module.exports = {
         new DOMParser().parseFromString(meetupData.description, 'text/html')
           .body.textContent || '',
       linkURL: meetupData.link,
-      cost: meetupData.fee.amount.toString(),
+      cost: (meetupData.fee && meetupData.fee.amount ? meetupData.fee.amount.toString() : 'FREE'),
       startDate: new Date(meetupData.local_date),
       startTime: timeToAmPm(meetupData.local_time),
       endDate: new Date(

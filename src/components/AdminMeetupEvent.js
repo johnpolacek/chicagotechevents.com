@@ -10,6 +10,7 @@ const AdminMeetupEvent = props => {
   const [view, setView] = useState(VIEW_INFO)
 
   const event = props.event
+  console.log('event',event)
 
   return (
     <>

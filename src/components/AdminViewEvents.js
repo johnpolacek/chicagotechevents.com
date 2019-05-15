@@ -126,7 +126,7 @@ const AdminViewEvents = props => {
             data.message === 'success' &&
             typeof data.response.events === 'object'
           ) {
-            setMeetupData(data.response.events)
+            setMeetupData(data.response.events.filter((event) => event.venue))
             setMeetupSearchStatus(MEETUPS_READY)
           } else {
             setMeetupSearchStatus(MEETUPS_FAIL)

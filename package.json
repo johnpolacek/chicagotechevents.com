@@ -7,6 +7,7 @@
     "url": "https://github.com/johnpolacek/chicagotechevents.com/issues"
   },
   "dependencies": {
+    "@octokit/rest": "^16.25.6",
     "babel-plugin-styled-components": "^1.10.0",
     "gatsby": "^2.1.23",
     "gatsby-image": "^2.0.31",
@@ -24,6 +25,7 @@
     "gatsby-transformer-remark": "^2.3.1",
     "gatsby-transformer-sharp": "^2.1.15",
     "jsonp": "^0.2.1",
+    "meetup-api": "^1.4.38",
     "prismjs": "^1.15.0",
     "react": "^16.8.4",
     "react-datepicker": "^2.2.0",
@@ -51,17 +53,11 @@
     "url": "git+https://github.com/johnpolacek/chicagotechevents.com.git"
   },
   "scripts": {
-    "build": "gatsby build",
     "develop": "gatsby develop",
     "dev": "gatsby develop -o",
+    "serve": "netlify-lambda serve src-functions && gatsby serve",
+    "build": "netlify-lambda build src-functions && gatsby build",
     "format": "prettier --write --single-quote src/**/*.{js,jsx,json} && prettier --write --single-quote cypress/**/*.{js,jsx,json}",
-    "start": "npm run develop",
-    "start:lambda": "netlify-lambda serve src/functions",
-    "serve": "gatsby serve",
-    "makedir": "rm -rf functions-build && mkdir functions-build",
-    "zip": "cd src/functions/add-event && npm install && zip -r add-event.zip * && cd ../admin && zip -r admin.zip * && cd ../get-meetups && npm install && zip -r get-meetups.zip *",
-    "postzip": "mv src/functions/add-event/add-event.zip functions-build && mv src/functions/admin/admin.zip functions-build && mv src/functions/get-meetups/get-meetups.zip functions-build",
-    "prebuild": "npm run makedir && npm run zip",
     "predeploy": "CI=1 npm i cypress; npm test",
     "deploy": "npm run build",
     "cy:open": "cypress open",

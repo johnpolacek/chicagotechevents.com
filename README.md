@@ -14,13 +14,20 @@
 
 - Meetup API
 	- Paginate Meetup API data - adding offset param
+	- Refactoring functions 
+		- https://github.com/netlify/netlify-lambda/issues/142 
+		- branch is refactor-functions
+
 	- Filter out events that already exist. How?
 	- writing up Admin step in README #9 (setting up a PIN for admin)
-- Trying out netlify-lambda - running npm run start:lambda is causing problems
+- Mailchimp API 
+	- [Netlify example for Mailchimp integration](https://github.com/tobilg/netlify-functions-landingpage/blob/)169de175d04b165b5d4801b09cb250cd9a740da5/src/lambda/signup.js
+	- [Netlify Function for Emails](https://css-tricks.com/netlify-functions-for-sending-emails/)
 - Eventbrite API
 - Ship It!
 - Sponsors
-- Mailchimp API - [Netlify Function for Emails](https://css-tricks.com/netlify-functions-for-sending-emails/)
+
+	
 - ReCAPTCHA 
 	- see [docs](https://developers.google.com/recaptcha/docs/v3)
 	- alternative [honeypot](https://stackoverflow.com/questions/36227376/better-honeypot-implementation-form-anti-spam) also [this](https://stackoverflow.com/questions/26452716/how-to-create-a-nuclear-honeypot-to-catch-form-spammers)

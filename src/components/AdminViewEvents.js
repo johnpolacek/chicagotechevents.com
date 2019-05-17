@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { PropTypes } from 'prop-types'
 import { Div, Form, Input } from 'styled-system-html'
+import Button from './Button'
 import InputSubmit from './InputSubmit'
 import AdminMeetupEvent from './AdminMeetupEvent'
 
@@ -105,6 +106,7 @@ const AdminViewEvents = props => {
   const [meetupSearch, setMeetupSearch] = useState('tech')
   const [meetupSearchStatus, setMeetupSearchStatus] = useState(MEETUPS_LOADING)
   const [meetupData, setMeetupData] = useState(null)
+  const [resultSet, setResultSet] = useState(0)
   // const [meetupData, setMeetupData] = useState(exampleMeetupData)
 
   const onSearchMeetups = e => {
@@ -118,6 +120,7 @@ const AdminViewEvents = props => {
         body: JSON.stringify({
           adminCode: props.adminCode,
           search: meetupSearch,
+          page: resultSet
         }),
       })
         .then(response => response.json())
@@ -135,6 +138,11 @@ const AdminViewEvents = props => {
     } catch (err) {
       setMeetupSearchStatus(MEETUPS_FAIL)
     }
+  }
+
+  const onLoadMore = e => {
+    setResultSet(resultSet+1)
+    onSearchMeetups(e)
   }
 
   return (
@@ -169,6 +177,9 @@ const AdminViewEvents = props => {
           ))}
         </Div>
       )}
+      <Div textAlign="center" pb={5}>
+        <Button py={3} px={4} fontSize={3} onClick={onLoadMore} bg="base" color="white">Load More</Button>
+      </Div>
     </>
   )
 }

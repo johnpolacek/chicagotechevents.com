@@ -14,12 +14,14 @@ exports.handler = (event, context, callback) => {
     })
   }
 
-  // https://api.meetup.com/find/upcoming_events?&sign=true&photo-host=public&lon=-87.6298&page=20&text=tech&radius=5&lat=41.8781
+  // https://api.meetup.com/find/upcoming_events?&sign=true&photo-host=public&lon=-87.6298&page=20&text=tech&radius=5&lat=41.8781&offset=0
+  // https://secure.meetup.com/meetup_api/console/?path=/find/upcoming_events
 
   meetup.getUpcomingEvents({
     lat: 41.8781,
     lon: -87.6298,
     text: 'tech',
+    offset: body.offset || 0,
     radius: 5
   }, function(err, res) {
       if (err) {
@@ -33,20 +35,5 @@ exports.handler = (event, context, callback) => {
           body: JSON.stringify({ message: `success`, response: res })
         })
       }
-  });
-
-
-  // API Endpoint
-  // "getUpcomingEvents": {
-  //       "resource": "https://api.meetup.com/find/upcoming_events",
-  //       "method": "get",
-  //       "test": {
-  //           "params": {},
-  //           "return": {
-  //               "type": "object",
-  //               "keys": ["city", "events"]
-  //           }
-  //       }
-  //   },
-  
+  });  
 }

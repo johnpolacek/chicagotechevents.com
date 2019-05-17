@@ -1,4 +1,6 @@
-const meetup = require('meetup-api')({
+import MeetupApi from 'meetup-api'
+
+const meetup = new MeetupApi({
 	key: process.env.MEETUP_KEY
 })
 

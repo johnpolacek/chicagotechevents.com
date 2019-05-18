@@ -15,8 +15,10 @@
 - Meetup API
 	- Paginate Meetup API data - adding offset param
 	- Refactoring functions 
-		- https://github.com/netlify/netlify-lambda/issues/142 
-		- branch is refactor-functions
+		- Move functions up a level and zip the functions folder instead of subfolders
+		- unbundled isn't working
+			- https://github.com/netlify/netlify-lambda/issues/142 
+			- branch is refactor-functions
 
 	- Filter out events that already exist. How?
 	- writing up Admin step in README #9 (setting up a PIN for admin)

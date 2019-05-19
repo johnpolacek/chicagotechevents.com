@@ -1,4 +1,4 @@
-import getEventMarkdown from '../../src/functions/add-event/getEventMarkdown'
+import getEventMarkdown from '../../src/functions/util/getEventMarkdown'
 import { getValidEventData, getDefaultEventDate } from '../support/helpers'
 import { DateTime } from 'luxon'
 

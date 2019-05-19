@@ -1,6 +1,6 @@
 const url = require('url')
-const Octokit = require('@octokit/rest').plugin(require('./util/createPullRequest'))
-const getEventMarkdown = require('./util/getEventMarkdown')
+const Octokit = require('@octokit/rest').plugin(require('./createPullRequest'))
+const getEventMarkdown = require('./getEventMarkdown')
 
 const octokit = new Octokit()
 octokit.authenticate({

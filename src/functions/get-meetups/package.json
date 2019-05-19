@@ -1,0 +1,10 @@
+{
+  "name": "get-meetups",
+  "version": "1.0.0",
+  "main": "get-meetups.js",
+  "author": "John Polacek",
+  "license": "MIT",
+  "dependencies": {
+    "meetup-api": "^1.4.38"
+  }
+}

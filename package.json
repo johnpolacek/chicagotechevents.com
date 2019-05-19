@@ -59,7 +59,7 @@
     "start:lambda": "netlify-lambda serve src/functions",
     "serve": "gatsby serve",
     "makedir": "rm -rf functions-build && mkdir functions-build",
-    "zip": "cd src/functions && npm install && zip -r functions.zip",
+    "zip": "cd src/functions && npm install && zip -r functions.zip *",
     "postzip": "mv src/functions/functions.zip functions-build",
     "prebuild": "npm run makedir && npm run zip",
     "predeploy": "CI=1 npm i cypress; npm test",

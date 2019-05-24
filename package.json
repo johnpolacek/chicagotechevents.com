@@ -56,7 +56,6 @@
     "dev": "gatsby develop -o",
     "format": "prettier --write --single-quote src/**/*.{js,jsx,json} && prettier --write --single-quote cypress/**/*.{js,jsx,json}",
     "start": "npm run develop",
-    "start:lambda": "netlify-lambda serve src/functions",
     "serve": "gatsby serve",
     "makedir": "rm -rf functions-build && mkdir functions-build",
     "zip": "cd src/functions/add-event && npm install && zip -r add-event.zip * && cd ../get-meetups && npm install && zip -r get-meetups.zip *",

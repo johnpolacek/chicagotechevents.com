@@ -3,7 +3,7 @@ import { graphql, Link } from 'gatsby'
 
 import Layout from '../components/Layout'
 import SEO from '../components/seo'
-import Subscribe from '../components/Subscribe'
+import Subscribe from '../components/forms/Subscribe'
 import EventsByMonth from '../components/events/EventsByMonth'
 import LinkButton from '../components/LinkButton'
 import { Div } from 'styled-system-html'

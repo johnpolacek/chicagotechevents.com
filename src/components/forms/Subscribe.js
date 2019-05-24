@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import jsonp from 'jsonp'
 import { Div, P, Form, Input } from 'styled-system-html'
-import InputSubmit from './forms/InputSubmit'
+import InputSubmit from './InputSubmit'
 
 const SubmitEventForm = props => {
   const READY = 'READY'

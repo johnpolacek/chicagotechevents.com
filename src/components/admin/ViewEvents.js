@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { PropTypes } from 'prop-types'
 import { Div, Form, Input } from 'styled-system-html'
-import Button from './Button'
-import InputSubmit from './InputSubmit'
-import AdminEvent from './AdminEvent'
+import Button from '../Button'
+import InputSubmit from '../InputSubmit'
+import Event from './Event'
 
-const AdminViewEvents = props => {
+const ViewEvents = props => {
 
   const MEETUPS_READY = 'MEETUPS_READY'
   const MEETUPS_LOADING = 'MEETUPS_LOADING'
@@ -82,7 +82,7 @@ const AdminViewEvents = props => {
         <>
           <Div id="meetupEvents" py={4}>
             {meetupData.map(event => (
-              <AdminEvent key={event.id} event={event} />
+              <Event key={event.id} event={event} />
             ))}
           </Div>
           <Div textAlign="center" pb={5}>
@@ -94,8 +94,8 @@ const AdminViewEvents = props => {
   )
 }
 
-AdminViewEvents.propTypes = {
+ViewEvents.propTypes = {
   adminCode: PropTypes.string.isRequired,
 }
 
-export default AdminViewEvents
+export default ViewEvents

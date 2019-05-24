@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Div, H2, Form, Input } from 'styled-system-html'
-import AdminViewEvents from './AdminViewEvents'
-import InputSubmit from './InputSubmit'
+import ViewEvents from './ViewEvents'
+import InputSubmit from '../InputSubmit'
 
-const AdminView = props => {
+const View = props => {
   const SIGNIN_READY = 'SIGNIN_READY'
   const SIGNIN_SENDING = 'SIGNIN_SENDING'
   const SIGNIN_FAIL = 'SIGNIN_FAIL'
@@ -63,11 +63,11 @@ const AdminView = props => {
               Could not access admin.
             </Div>
           ),
-          [SIGNIN_SUCCESS]: <AdminViewEvents adminCode={adminCode} />,
+          [SIGNIN_SUCCESS]: <ViewEvents adminCode={adminCode} />,
         }[signedIn]
       }
     </>
   )
 }
 
-export default AdminView
+export default View

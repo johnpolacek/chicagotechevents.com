@@ -2378,15 +2378,20 @@ export default AdminEventInfo
 
 It can be a mistake to create subdirectories too soon in a project. I prefer to wait until it starts feeling too crowded in `/src/components` and we are at that point now.
 
-`/admin`
+`/admin`  
+We can move all the admin components into this subdirectory and remove the Admin prefix from the component (e.g. `AdminEventInfo` becomes `EventInfo`)
 
-`/email`
+`/email`  
+We already have this subdirectory in our project.
 
-`/forms`
+`/forms`  
 
-`/events`
 
-`/layout`
+`/events`  
+
+`/layout`  
+
+`/ui`  
 
 
 --

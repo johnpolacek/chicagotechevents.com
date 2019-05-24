@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import SEO from '../components/seo'
 import Layout from '../components/Layout'
 import Wrapper from '../components/Wrapper'
-import AdminView from '../components/AdminView'
+import AdminView from '../components/admin/View'
 
 class Admin extends React.Component {
   constructor(props) {

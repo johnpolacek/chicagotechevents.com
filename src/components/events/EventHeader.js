@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
 import { H2, H3 } from 'styled-system-html'
-import theme from '../theme'
+import theme from '../../theme'
 
 const StyledLink = styled(props => <Link {...props} />)`
   color: ${theme.colors.base};

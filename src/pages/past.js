@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql, Link } from 'gatsby'
 import Layout from '../components/Layout'
 import SEO from '../components/seo'
-import EventsByMonth from '../components/EventsByMonth'
+import EventsByMonth from '../components/events/EventsByMonth'
 import LinkButton from '../components/LinkButton'
 import { Div, H2 } from 'styled-system-html'
 

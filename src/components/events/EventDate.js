@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { P } from 'styled-system-html'
-import { getEventDateString } from './util'
+import { getEventDateString } from '../util'
 
 const EventDate = props => (
   <>

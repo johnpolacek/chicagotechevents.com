@@ -2385,13 +2385,16 @@ We can move all the admin components into this subdirectory and remove the Admin
 We already have this subdirectory in our project.
 
 `/forms`  
-Our main form `SubmitEvent`, states like `SubmitSending` and `SubmitFail`, 
+Our main form `SubmitEvent`, states like `SubmitSending` and `SubmitFail`, and controls like `InputSubmit` and `TimePicker` go in here. We could further split these into subdirectories, but we’re not there yet.
 
 `/events`  
+All the event-related components from our events list view go here.
 
 `/layout`  
+All the higher-level layout components like `Body` and `Layout` go here.
 
 `/ui`  
+Shared low-level UI components like `Button` and 
 
 
 --

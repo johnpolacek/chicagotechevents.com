@@ -3,7 +3,7 @@ import { Link, graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
 import SEO from '../components/seo'
-import Event from '../components/Event'
+import Event from '../components/events/Event'
 import Wrapper from '../components/Wrapper'
 import LinkButton from '../components/LinkButton'
 import { Div, Nav, Span } from 'styled-system-html'

@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Wrapper from '../components/Wrapper'
-import MonthHeader from '../components/MonthHeader'
-import Event from '../components/Event'
+import Wrapper from '../Wrapper'
+import MonthHeader from '../MonthHeader'
+import Event from './Event'
 
 const EventsByMonth = props => {
   return Object.keys(props.eventsByMonth).map(month => {

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { PropTypes } from 'prop-types'
 import { Div, Form, Input } from 'styled-system-html'
 import Button from '../Button'
-import InputSubmit from '../InputSubmit'
+import InputSubmit from '../forms/InputSubmit'
 import Event from './Event'
 
 const ViewEvents = props => {

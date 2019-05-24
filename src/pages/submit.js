@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import SEO from '../components/seo'
-import SubmitEvent from '../components/SubmitEvent'
+import SubmitEvent from '../components/forms/SubmitEvent'
 
 class Submit extends React.Component {
   render() {

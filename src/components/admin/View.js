@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Div, H2, Form, Input } from 'styled-system-html'
 import ViewEvents from './ViewEvents'
-import InputSubmit from '../InputSubmit'
+import InputSubmit from '../forms/InputSubmit'
 
 const View = props => {
   const SIGNIN_READY = 'SIGNIN_READY'

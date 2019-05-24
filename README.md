@@ -2385,7 +2385,7 @@ We can move all the admin components into this subdirectory and remove the Admin
 We already have this subdirectory in our project.
 
 `/forms`  
-
+Our main form `SubmitEvent`, states like `SubmitSending` and `SubmitFail`, 
 
 `/events`  
 

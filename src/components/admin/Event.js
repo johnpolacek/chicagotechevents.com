@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { PropTypes } from 'prop-types'
 import { meetupDataToEventData } from '../util'
 import EventInfo from './EventInfo'
-import SubmitEvent from '../SubmitEvent'
+import SubmitEvent from '../forms/SubmitEvent'
 
 const Event = props => {
   const VIEW_INFO = 'VIEW_INFO'

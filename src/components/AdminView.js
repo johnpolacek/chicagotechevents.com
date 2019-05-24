@@ -15,7 +15,6 @@ const AdminView = props => {
 
   const onSignIn = e => {
     e.preventDefault()
-
     setSignedIn(SIGNIN_SENDING)
 
     try {

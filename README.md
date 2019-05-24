@@ -13,13 +13,8 @@
 
 
 - Meetup API
-	- Paginate Meetup API data - adding offset param
-	- Refactoring functions 
-		- Move functions up a level and zip the functions folder instead of subfolders
-		- unbundled isn't working
-			- https://github.com/netlify/netlify-lambda/issues/142 
-			- branch is refactor-functions
-
+	- Write Admin tests. Verify initial load and load more
+		- see Cypress.Commands.add('verifySubmitSuccess'...
 	- Filter out events that already exist. How?
 	- writing up Admin step in README #9 (setting up a PIN for admin)
 - Mailchimp API 
@@ -1287,7 +1282,7 @@ Next, we need to add some build scripts to our package.json to zip our add-event
   }
 ~~~~
 
-Our script zips the add-event directory and puts it in a new directory, `functions-build`. To tell netlify about our function, we create a `netlify.toml` file.
+Our prebuild script goes to the add-event directory then installs the dependencies and zips the files and puts the bundled function into a new directory, `functions-build`. To tell netlify about our function, we create a `netlify.toml` file that specifies a build command and where it can find our functions.
 
 *netlify.toml*
 
@@ -1956,11 +1951,131 @@ export const pageQuery = graphql`
 `
 ~~~~
 
-It seems like overkill to set up user management and login just to create an admin area. We aren't dealing with private user data or confidential information here. This event info is all publicly available and we are just creating a means of curating and sharing it.
+It seems like overkill to set up user management and login just to create an admin area. We aren't dealing with private user data or confidential information. The event info is publicly available, and we are only creating a means of curating and sharing it.
 
-Therefore, we can create a PIN that can be used to access the admin area of the site. With Netlify we can create environment variables that can contain things like API keys, and we can use on of these to store our PIN.
+Therefore, we can create a PIN that can be used to access the admin area of the site. With Netlify we can create environment variables that can contain things like API keys, and we can use on of these to store our PIN. Then, we can create a new Netlify Function to verify the PIN.
 
+*src/functions/admin.js*
 
+~~~~
+exports.handler = (event, context, callback) => {
+
+  const body = JSON.parse(event.body)
+  if (!body) {
+    return callback(null, {
+      statusCode: 422,
+      body: JSON.stringify({
+        data: 'Missing request body'
+      })
+    })
+  }
+
+  if (body.adminCode && body.adminCode === process.env.ADMIN_CODE) {
+    return callback(null, {
+      statusCode: 200,
+      body: JSON.stringify({ message: `success` })
+    })
+  } else {
+    return callback(null, {
+      statusCode: 422,
+      body: JSON.stringify({
+        data: 'Invalid request',
+      })
+    })
+  }
+}
+~~~~
+
+We’ll need to update our functions build script.
+
+*package.json*
+
+~~~~
+...
+"postzip": "mv src/functions/add-event/add-event.zip functions-build && cp src/functions/admin.js functions-build",
+...
+~~~~
+
+Next, we set up our admin view with a basic form for an admin to enter the PIN code and gain access.
+
+*src/components/AdminView.js*
+
+~~~~
+import React, { useState } from 'react'
+import { Div, H2, Form, Input } from 'styled-system-html'
+import AdminViewEvents from './AdminViewEvents'
+import InputSubmit from './InputSubmit'
+
+const AdminView = props => {
+  const SIGNIN_READY = 'SIGNIN_READY'
+  const SIGNIN_SENDING = 'SIGNIN_SENDING'
+  const SIGNIN_FAIL = 'SIGNIN_FAIL'
+  const SIGNIN_SUCCESS = 'SIGNIN_SUCCESS'
+
+  const [signedIn, setSignedIn] = useState(SIGNIN_READY)
+  const [adminCode, setAdminCode] = useState('')
+
+  const onSignIn = e => {
+    e.preventDefault()
+    setSignedIn(SIGNIN_SENDING)
+
+    try {
+      return fetch(`/.netlify/functions/admin/`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ adminCode }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          setSignedIn(data.message === 'success' ? SIGNIN_SUCCESS : SIGNIN_FAIL)
+        })
+    } catch (err) {
+      setSignedIn(SIGNIN_FAIL)
+    }
+  }
+
+  return (
+    <>
+      <H2 pb={4} fontSize={5} textAlign="center" fontWeight="200" color="base">
+        ADMIN
+      </H2>
+      {
+        {
+          [SIGNIN_READY]: (
+            <Form onSubmit={onSignIn} pb={5} textAlign="center">
+              <Input
+                type="password"
+                fontSize={0}
+                width={160}
+                mr={2}
+                id="adminCode"
+                value={adminCode}
+                onChange={e => setAdminCode(e.target.value)}
+              />
+              <InputSubmit fontSize={1} py={2} value="SIGN IN" />
+            </Form>
+          ),
+          [SIGNIN_SENDING]: (
+            <Div textAlign="center" py={5} fontStyle="italic">
+              Sending...
+            </Div>
+          ),
+          [SIGNIN_FAIL]: (
+            <Div textAlign="center" py={5} color="red">
+              Could not access admin.
+            </Div>
+          ),
+          [SIGNIN_SUCCESS]: <AdminViewEvents adminCode={adminCode} />,
+        }[signedIn]
+      }
+    </>
+  )
+}
+
+export default AdminView
+~~~~
+
+Last, we will create the view for the admin to review the meetup events and add them to the list.
 
 
 ## Part 10: Importing Events
@@ -1996,10 +2111,6 @@ In our case, we will be using the `/find/upcoming_events` endpoint
 Once satisfied, we can copy the Request URL and bring it into our function.
 
 
-
-
-
-
 ## Part 11: Component Organization
 
 It can be a mistake to create subdirectories too soon in a project. I prefer to wait until it starts feeling too crowded in `/src/components` and we are at that point now.
@@ -2013,7 +2124,6 @@ It can be a mistake to create subdirectories too soon in a project. I prefer to 
 `/events`
 
 `/layout`
-
 
 
 --

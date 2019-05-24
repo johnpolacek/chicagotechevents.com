@@ -28,7 +28,7 @@ export default props => (
       Thanks for sending your event!
     </P>
     <P id="reviewLink" fontSize={2} pb={4} color="gray8" fontStyle="italic">
-      Review your event submission at <a href={props.url}>this link</a>
+      Review your event info at <a href={props.url}>this link</a>
     </P>
   </SubmitEventMessage>
 )

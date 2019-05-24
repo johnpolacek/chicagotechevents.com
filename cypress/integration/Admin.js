@@ -7,6 +7,7 @@ describe('Admin', function() {
   beforeEach(function() {
     this.fetchSigninDeferred = deferred()
     this.fetchMeetupDeferred = deferred()
+    this.fetchAddEventDeferred = deferred()
     cy.visit('/admin', {
       onBeforeLoad(win) {
         let s = cy.stub(win, 'fetch');
@@ -15,7 +16,10 @@ describe('Admin', function() {
           .returns(this.fetchSigninDeferred.promise)
         s.withArgs('/.netlify/functions/get-meetups/')
           .as('fetchMeetup')
-          .returns(this.fetchMeetupDeferred.promise)          
+          .returns(this.fetchMeetupDeferred.promise)
+        s.withArgs('/.netlify/functions/add-event/')
+          .as('fetchAddEvent')
+          .returns(this.fetchAddEventDeferred.promise)
       },
     })
   })
@@ -37,11 +41,30 @@ describe('Admin', function() {
       },
       ok: true,
     })
-    cy.wait(2000)
-  })
+    cy.get('div').contains('The WTF Lounge').should('be.visible')
+    cy.get('a[href="https://www.meetup.com/Women-Tech-Founders-WTF-of-Chicago/events/258446391/"]').should('be.visible')
+    cy.get('#meetupEvents').contains('Add Event').first().click()
+    cy.get('#submitEvent').click()
+    cy.get('@fetchAddEvent').should('not.be.called') // requires address
+    cy.get('input[name=locationStreet]').type('222 W Merchandise Mart Plaza')
+    cy.get('#submitEvent').click()
+    this.fetchAddEventDeferred.resolve({
+      json() {
+        return { 
+          message: 'success',
+          url: 'https://github.com/johnpolacek/chicagotechevents.com/pull/31'
+        }
+      },
+      ok: true,
+    })
 
-  // it('can load more meetups and submit', function() {
-    
-  // })
+    cy.get('@fetchAddEvent').should('be.called')
+    cy.get('div')
+      .contains('Thanks for sending your event!')
+      .should('be.visible')
+    cy.get('#reviewLink')
+      .find('a')
+      .should('have.attr', 'href', 'https://github.com/johnpolacek/chicagotechevents.com/pull/31/files')
+  })
   
 })

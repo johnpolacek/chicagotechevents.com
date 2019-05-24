@@ -80,7 +80,7 @@ const AdminViewEvents = props => {
       )}
       {meetupData && meetupData.length && (
         <>
-          <Div py={4}>
+          <Div id="meetupEvents" py={4}>
             {meetupData.map(event => (
               <AdminMeetupEvent key={event.id} event={event} />
             ))}

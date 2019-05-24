@@ -41,7 +41,7 @@ const SubmitEvent = props => {
           [SUBMIT_READY]: (
             <SubmitEventForm
               event={props.eventData}
-              instructions="Please provide the info below to get your event listed."
+              instructions={props.instructions}
               onSubmit={onSubmit}
             />
           ),
@@ -56,6 +56,7 @@ const SubmitEvent = props => {
 
 SubmitEvent.propTypes = {
   eventData: PropTypes.object,
+  instructions: PropTypes.string
 }
 
 export default SubmitEvent

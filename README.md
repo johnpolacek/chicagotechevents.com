@@ -13,18 +13,17 @@
 
 
 - Meetup API
-	- Write Admin tests. Verify initial load and load more
-		- see Cypress.Commands.add('verifySubmitSuccess'...
-	- Filter out events that already exist. How?
 	- writing up Admin step in README #9 (setting up a PIN for admin)
-- Mailchimp API 
-	- [Netlify example for Mailchimp integration](https://github.com/tobilg/netlify-functions-landingpage/blob/)169de175d04b165b5d4801b09cb250cd9a740da5/src/lambda/signup.js
-	- [Netlify Function for Emails](https://css-tricks.com/netlify-functions-for-sending-emails/)
 - Eventbrite API
 - Ship It!
-- Sponsors
-
-	
+- Create JSON and RSS feed
+	- https://www.gatsbyjs.org/packages/gatsby-plugin-feed-generator/
+- Prevent adding events that already exist by querying JSON feed
+- Mailchimp API 
+	- [Netlify example for Mailchimp integration](https://github.com/tobilg/netlify-functions-landingpage/blob/169de175d04b165b5d4801b09cb250cd9a740da5/src/lambda/signup.js)
+	- [Netlify Function for Emails](https://css-tricks.com/netlify-functions-for-sending-emails/)
+- Write a Talk
+- Sponsors	
 - ReCAPTCHA 
 	- see [docs](https://developers.google.com/recaptcha/docs/v3)
 	- alternative [honeypot](https://stackoverflow.com/questions/36227376/better-honeypot-implementation-form-anti-spam) also [this](https://stackoverflow.com/questions/26452716/how-to-create-a-nuclear-honeypot-to-catch-form-spammers)
@@ -2075,7 +2074,7 @@ const AdminView = props => {
 export default AdminView
 ~~~~
 
-Last, we will create the view for the admin to review the meetup events and add them to the list.
+Next up, we will create `AdminViewEvents` for the admin to review the meetup events and add them to the list.
 
 
 ## Part 10: Importing Events
@@ -2108,7 +2107,56 @@ Use [Meetup API console](https://secure.meetup.com/meetup_api/console/) to build
 
 In our case, we will be using the `/find/upcoming_events` endpoint
 
-Once satisfied, we can copy the Request URL and bring it into our function.
+Once satisfied, we can copy the Request URL and bring it into a `get-meetups` function.
+
+*src/functions/get-meetups.js*
+
+~~~~
+const meetup = require('meetup-api')({
+	key: process.env.MEETUP_KEY
+})
+
+exports.handler = (event, context, callback) => {
+
+  const body = JSON.parse(event.body)
+  if (!body) {
+    return callback(null, {
+      statusCode: 422,
+      body: JSON.stringify({
+        data: 'Missing request body'
+      })
+    })
+  }
+
+  if (!body.search) {
+    return callback(null, {
+      statusCode: 422,
+      body: JSON.stringify({
+        data: 'Missing search parameter'
+      })
+    })
+  }
+
+  meetup.getUpcomingEvents({
+    lat: 41.8781,
+    lon: -87.6298,
+    text: body.search,
+    radius: 5
+  }, function(err, res) {
+      if (err) {
+        return callback(null, {
+          statusCode: 422,
+          body: JSON.stringify({ message: `Could not load events`, error: err, response: res })
+        })
+      } else {
+        return callback(null, {
+          statusCode: 200,
+          body: JSON.stringify({ message: `success`, response: res })
+        })
+      }
+  });  
+}
+~~~~
 
 
 ## Part 11: Component Organization

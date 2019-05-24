@@ -19,7 +19,7 @@ class Submit extends React.Component {
           title="Submit New Event"
           keywords={[`events`, `calendar`, `gatsby`, `javascript`, `react`]}
         />
-        <SubmitEvent />
+        <SubmitEvent instructions="Please provide the info below to get your event listed." />
       </Layout>
     )
   }

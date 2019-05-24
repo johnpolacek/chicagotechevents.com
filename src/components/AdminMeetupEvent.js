@@ -24,7 +24,7 @@ const AdminMeetupEvent = props => {
               }}
             />
           ),
-          [VIEW_ADD]: <SubmitEvent eventData={meetupDataToEventData(event)} />,
+          [VIEW_ADD]: <SubmitEvent instructions="Please review the info below before adding the event." eventData={meetupDataToEventData(event)} />,
         }[view]
       }
     </>

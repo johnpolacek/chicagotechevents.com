@@ -113,7 +113,7 @@ Cypress.Commands.add('verifySubmitSuccess', test => {
     .should('be.visible')
   cy.get('#reviewLink')
     .find('a')
-    .should('have.attr', 'href')
+    .should('have.attr', 'href', pullRequestUrl+'/files')
 })
 
 Cypress.Commands.add('verifySubmitError', test => {

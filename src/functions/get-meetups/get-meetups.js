@@ -14,14 +14,20 @@ exports.handler = (event, context, callback) => {
     })
   }
 
-  // https://api.meetup.com/find/upcoming_events?&sign=true&photo-host=public&lon=-87.6298&page=20&text=tech&radius=5&lat=41.8781&offset=0
-  // https://secure.meetup.com/meetup_api/console/?path=/find/upcoming_events
+  if (!body.search) {
+    return callback(null, {
+      statusCode: 422,
+      body: JSON.stringify({
+        data: 'Missing search parameter'
+      })
+    })
+  }
 
   meetup.getUpcomingEvents({
     lat: 41.8781,
     lon: -87.6298,
-    text: 'tech',
-    offset: body.page,
+    text: body.search,
+    offset: body.page || 0,
     radius: 5
   }, function(err, res) {
       if (err) {

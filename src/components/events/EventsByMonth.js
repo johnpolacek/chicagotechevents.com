@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Wrapper from '../Wrapper'
+import Wrapper from '../layout/Wrapper'
 import MonthHeader from '../MonthHeader'
 import Event from './Event'
 

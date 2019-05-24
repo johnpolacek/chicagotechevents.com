@@ -1,8 +1,8 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import SEO from '../components/seo'
-import Layout from '../components/Layout'
-import Wrapper from '../components/Wrapper'
+import Layout from '../components/layout/Layout'
+import Wrapper from '../components/layout/Wrapper'
 import AdminView from '../components/admin/View'
 
 class Admin extends React.Component {

@@ -2378,6 +2378,8 @@ export default AdminEventInfo
 
 It can be a mistake to create subdirectories too soon in a project. I prefer to wait until it starts feeling too crowded in `/src/components` and we are at that point now.
 
+**Note: When re-organizing your components into subdirectories, the CLI output is your best friend**
+
 `/admin`  
 We can move all the admin components into this subdirectory and remove the Admin prefix from the component (e.g. `AdminEventInfo` becomes `EventInfo`)
 
@@ -2391,10 +2393,10 @@ Our main form `SubmitEvent`, states like `SubmitSending` and `SubmitFail`, and c
 All the event-related components from our events list view go here.
 
 `/layout`  
-All the higher-level layout components like `Body` and `Layout` go here.
+All the higher-level layout components like `Body`, `Wrapper` and `Layout` go here.
 
 `/ui`  
-Shared low-level UI components like `Button` and 
+Shared low-level UI components like `Button` and `Header` go here.
 
 
 --

@@ -1,8 +1,8 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import Layout from '../components/Layout'
+import Layout from '../components/layout/Layout'
 import SEO from '../components/seo'
-import Wrapper from '../components/Wrapper'
+import Wrapper from '../components/layout/Wrapper'
 
 class Privacy extends React.Component {
   render() {

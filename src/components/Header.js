@@ -1,5 +1,5 @@
 import React from 'react'
-import Wrapper from './Wrapper'
+import Wrapper from './layout/Wrapper'
 import HeaderTitle from './HeaderTitle'
 import HeaderDescription from './HeaderDescription'
 import HeaderLink from './HeaderLink'

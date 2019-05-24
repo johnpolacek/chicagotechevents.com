@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 
-import Layout from '../components/Layout'
+import Layout from '../components/layout/Layout'
 import SEO from '../components/seo'
 import Event from '../components/events/Event'
-import Wrapper from '../components/Wrapper'
+import Wrapper from '../components/layout/Wrapper'
 import LinkButton from '../components/LinkButton'
 import { Div, Nav, Span } from 'styled-system-html'
 

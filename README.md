@@ -2169,7 +2169,7 @@ import { PropTypes } from 'prop-types'
 import { Div, Form, Input } from 'styled-system-html'
 import Button from './Button'
 import InputSubmit from './InputSubmit'
-import AdminMeetupEvent from './AdminMeetupEvent'
+import AdminEvent from './AdminMeetupEvent'
 
 const AdminViewEvents = props => {
 
@@ -2248,7 +2248,7 @@ const AdminViewEvents = props => {
         <>
           <Div id="meetupEvents" py={4}>
             {meetupData.map(event => (
-              <AdminMeetupEvent key={event.id} event={event} />
+              <AdminEvent key={event.id} event={event} />
             ))}
           </Div>
           <Div textAlign="center" pb={5}>
@@ -2267,9 +2267,110 @@ AdminViewEvents.propTypes = {
 export default AdminViewEvents
 ~~~~
 
-Our component begins in a `MEETUPS_READY` state with a search input that starts off defaulted to ‘tech’. When the search is submitted, it hits our function then renders the results to an `AdminMeetupEvent` component that we will create now.
+Our component begins in a `MEETUPS_READY` state with a search input that starts off defaulted to ‘tech’. When the search is submitted, it hits our function then renders the results to an `AdminEvent` component that we will create now.
 
-*src/components/AdminMeetupEvent.js*
+*src/components/AdminEvent.js*
+
+~~~~
+import React, { useState } from 'react'
+import { PropTypes } from 'prop-types'
+import { meetupDataToEventData } from './util'
+import AdminEventInfo from './AdminEventInfo'
+import SubmitEvent from './SubmitEvent'
+
+const AdminEvent = props => {
+  const VIEW_INFO = 'VIEW_INFO'
+  const VIEW_ADD = 'VIEW_ADD'
+  const [view, setView] = useState(VIEW_INFO)
+
+  const event = props.event
+  console.log('event',event)
+
+  return (
+    <>
+      {
+        {
+          [VIEW_INFO]: (
+            <AdminEventInfo
+              event={event}
+              onAddEvent={() => {
+                setView(VIEW_ADD)
+              }}
+            />
+          ),
+          [VIEW_ADD]: <SubmitEvent instructions="Please review the info below before adding the event." eventData={meetupDataToEventData(event)} />,
+        }[view]
+      }
+    </>
+  )
+}
+
+AdminEvent.propTypes = {
+  event: PropTypes.object.isRequired,
+}
+
+export default AdminEvent
+~~~~
+
+The `AdminEvent` component has 2 view states:
+
+- `VIEW_INFO` - Displays the event info via a new `AdminEventInfo` component.
+- `VIEW_ADD` - Edit the event info the add to the events list via our existing `SubmitEvent` component.
+
+
+*src/components/AdminEventInfo.js*
+
+~~~~
+import React from 'react'
+import { PropTypes } from 'prop-types'
+import { Div, H3, Span, A, Button } from 'styled-system-html'
+
+const AdminEventInfo = props => (
+  <Div pb={4}>
+    <Span fontSize={0}>
+      {props.event.local_date} {props.event.local_time}
+    </Span>
+    <H3>
+      {props.event.name}{' '}
+      <A
+        color="base"
+        fontWeight="normal"
+        fontSize={0}
+        ml={1}
+        href={props.event.link}
+        target="_blank"
+      >
+        view event
+      </A>
+    </H3>
+    <Div
+      mb={2}
+      fontSize={1}
+      height="48px"
+      overflow="hidden"
+      dangerouslySetInnerHTML={{ __html: props.event.description }}
+    />
+    <Button
+      onClick={props.onAddEvent}
+      px={3}
+      borderRadius="6px"
+      fontSize={0}
+      bg="cyan"
+      color="white"
+    >
+      Add Event
+    </Button>
+  </Div>
+)
+
+AdminEventInfo.propTypes = {
+  event: PropTypes.object.isRequired,
+  onAddEvent: PropTypes.func.isRequired,
+}
+
+export default AdminEventInfo
+~~~~
+
 
 
 

@@ -13,7 +13,8 @@
 
 
 - Meetup API
-	- writing up Admin step in README #9 (setting up a PIN for admin)
+	- writing up in README #10
+- Component Organization
 - Eventbrite API
 - Ship It!
 - Create JSON and RSS feed
@@ -2074,7 +2075,7 @@ const AdminView = props => {
 export default AdminView
 ~~~~
 
-Next up, we will create `AdminViewEvents` for the admin to review the meetup events and add them to the list.
+Next up, we will create a new `get-meetups` function and an `AdminViewEvents` component for the admin to review the meetup events and add them to the list.
 
 
 ## Part 10: Importing Events
@@ -2157,6 +2158,119 @@ exports.handler = (event, context, callback) => {
   });  
 }
 ~~~~
+
+Now let’s create a React component that can load meetup events from our function.
+
+*src/components/AdminViewEvents.js*
+
+~~~~
+import React, { useState } from 'react'
+import { PropTypes } from 'prop-types'
+import { Div, Form, Input } from 'styled-system-html'
+import Button from './Button'
+import InputSubmit from './InputSubmit'
+import AdminMeetupEvent from './AdminMeetupEvent'
+
+const AdminViewEvents = props => {
+
+  const MEETUPS_READY = 'MEETUPS_READY'
+  const MEETUPS_LOADING = 'MEETUPS_LOADING'
+  const MEETUPS_FAIL = 'MEETUPS_FAIL'
+
+  const [meetupSearch, setMeetupSearch] = useState('tech')
+  const [meetupSearchStatus, setMeetupSearchStatus] = useState(MEETUPS_READY)
+  const [meetupData, setMeetupData] = useState(null)
+  const [resultSet, setResultSet] = useState(0)
+
+  const onSearchMeetups = e => {
+    e.preventDefault()
+    setMeetupSearchStatus(MEETUPS_LOADING)
+
+    try {
+      return fetch(`/.netlify/functions/get-meetups/`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          adminCode: props.adminCode,
+          search: meetupSearch,
+          page: resultSet
+        }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (
+            data.message === 'success' &&
+            typeof data.response.events === 'object'
+          ) {
+            setMeetupData(data.response.events.filter((event) => event.venue))
+            setMeetupSearchStatus(MEETUPS_READY)
+          } else {
+            setMeetupSearchStatus(MEETUPS_FAIL)
+          }
+        })
+    } catch (err) {
+      setMeetupSearchStatus(MEETUPS_FAIL)
+    }
+  }
+
+  const onLoadMore = e => {
+    setResultSet(resultSet+1)
+    onSearchMeetups(e)
+  }
+
+  return (
+    <>
+      <Form onSubmit={onSearchMeetups} pb={5} textAlign="center">
+        <Input
+          type="text"
+          fontSize={0}
+          width={160}
+          mr={2}
+          id="meetupSearch"
+          name="meetupSearch"
+          value={meetupSearch}
+          onChange={e => setMeetupSearch(e.target.value)}
+        />
+        <InputSubmit
+          bg={meetupSearchStatus === MEETUPS_READY ? 'base' : 'gray'}
+          fontSize={1}
+          py={2}
+          value={
+            meetupSearchStatus === MEETUPS_LOADING ? 'SEARCHING...' : 'SEARCH'
+          }
+          disabled={meetupSearchStatus === MEETUPS_LOADING}
+        />
+      </Form>
+      {meetupSearchStatus === MEETUPS_FAIL && (
+        <Div color="red">Could not load meetup data</Div>
+      )}
+      {meetupData && meetupData.length && (
+        <>
+          <Div id="meetupEvents" py={4}>
+            {meetupData.map(event => (
+              <AdminMeetupEvent key={event.id} event={event} />
+            ))}
+          </Div>
+          <Div textAlign="center" pb={5}>
+            <Button py={3} px={4} fontSize={3} onClick={onLoadMore} bg="base" color="white">Load More</Button>
+          </Div>
+        </>
+      )}
+    </>
+  )
+}
+
+AdminViewEvents.propTypes = {
+  adminCode: PropTypes.string.isRequired,
+}
+
+export default AdminViewEvents
+~~~~
+
+Our component begins in a `MEETUPS_READY` state with a search input that starts off defaulted to ‘tech’. When the search is submitted, it hits our function then renders the results to an `AdminMeetupEvent` component that we will create now.
+
+*src/components/AdminMeetupEvent.js*
+
 
 
 ## Part 11: Component Organization

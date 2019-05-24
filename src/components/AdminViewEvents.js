@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types'
 import { Div, Form, Input } from 'styled-system-html'
 import Button from './Button'
 import InputSubmit from './InputSubmit'
-import AdminMeetupEvent from './AdminMeetupEvent'
+import AdminEvent from './AdminEvent'
 
 const AdminViewEvents = props => {
 
@@ -82,7 +82,7 @@ const AdminViewEvents = props => {
         <>
           <Div id="meetupEvents" py={4}>
             {meetupData.map(event => (
-              <AdminMeetupEvent key={event.id} event={event} />
+              <AdminEvent key={event.id} event={event} />
             ))}
           </Div>
           <Div textAlign="center" pb={5}>

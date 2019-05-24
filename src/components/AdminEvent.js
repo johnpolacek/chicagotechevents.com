@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { PropTypes } from 'prop-types'
 import { meetupDataToEventData } from './util'
-import AdminMeetupEventInfo from './AdminMeetupEventInfo'
+import AdminEventInfo from './AdminEventInfo'
 import SubmitEvent from './SubmitEvent'
 
-const AdminMeetupEvent = props => {
+const AdminEvent = props => {
   const VIEW_INFO = 'VIEW_INFO'
   const VIEW_ADD = 'VIEW_ADD'
   const [view, setView] = useState(VIEW_INFO)
@@ -17,7 +17,7 @@ const AdminMeetupEvent = props => {
       {
         {
           [VIEW_INFO]: (
-            <AdminMeetupEventInfo
+            <AdminEventInfo
               event={event}
               onAddEvent={() => {
                 setView(VIEW_ADD)
@@ -31,8 +31,8 @@ const AdminMeetupEvent = props => {
   )
 }
 
-AdminMeetupEvent.propTypes = {
+AdminEvent.propTypes = {
   event: PropTypes.object.isRequired,
 }
 
-export default AdminMeetupEvent
+export default AdminEvent

@@ -2,7 +2,7 @@ import React from 'react'
 import { PropTypes } from 'prop-types'
 import { Div, H3, Span, A, Button } from 'styled-system-html'
 
-const AdminMeetupEventInfo = props => (
+const AdminEventInfo = props => (
   <Div pb={4}>
     <Span fontSize={0}>
       {props.event.local_date} {props.event.local_time}
@@ -40,9 +40,9 @@ const AdminMeetupEventInfo = props => (
   </Div>
 )
 
-AdminMeetupEventInfo.propTypes = {
+AdminEventInfo.propTypes = {
   event: PropTypes.object.isRequired,
   onAddEvent: PropTypes.func.isRequired,
 }
 
-export default AdminMeetupEventInfo
+export default AdminEventInfo

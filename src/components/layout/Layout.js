@@ -3,8 +3,8 @@ import { ThemeProvider } from 'styled-components'
 import theme from '../../theme.js'
 import './Layout.css'
 import Body from './Body'
-import Header from '../Header'
-import Footer from '../Footer'
+import Header from '../ui/header/Header'
+import Footer from '../ui/footer/Footer'
 import { Main } from 'styled-system-html'
 
 export default props => (

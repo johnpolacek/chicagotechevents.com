@@ -1,5 +1,5 @@
 import React from 'react'
-import Wrapper from './layout/Wrapper'
+import Wrapper from '../../layout/Wrapper'
 import FooterItem from './FooterItem'
 import { Footer, Div } from 'styled-system-html'
 import { Link } from 'gatsby'

@@ -1,9 +1,9 @@
 import React from 'react'
-import Wrapper from './layout/Wrapper'
+import Wrapper from '../../layout/Wrapper'
 import HeaderTitle from './HeaderTitle'
 import HeaderDescription from './HeaderDescription'
 import HeaderLink from './HeaderLink'
-import StarBar from './StarBar'
+import StarBar from '../StarBar'
 import { Header, Img } from 'styled-system-html'
 
 export default props => (

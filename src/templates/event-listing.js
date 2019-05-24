@@ -5,7 +5,7 @@ import Layout from '../components/layout/Layout'
 import SEO from '../components/seo'
 import Event from '../components/events/Event'
 import Wrapper from '../components/layout/Wrapper'
-import LinkButton from '../components/LinkButton'
+import LinkButton from '../components/ui/LinkButton'
 import { Div, Nav, Span } from 'styled-system-html'
 
 class CalendarEventTemplate extends React.Component {

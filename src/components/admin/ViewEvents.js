@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { PropTypes } from 'prop-types'
 import { Div, Form, Input } from 'styled-system-html'
-import Button from '../Button'
+import Button from '../ui/Button'
 import InputSubmit from '../forms/InputSubmit'
 import Event from './Event'
 

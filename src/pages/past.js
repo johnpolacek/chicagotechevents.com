@@ -3,7 +3,7 @@ import { graphql, Link } from 'gatsby'
 import Layout from '../components/layout/Layout'
 import SEO from '../components/seo'
 import EventsByMonth from '../components/events/EventsByMonth'
-import LinkButton from '../components/LinkButton'
+import LinkButton from '../components/ui/LinkButton'
 import { Div, H2 } from 'styled-system-html'
 
 class Past extends React.Component {

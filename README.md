@@ -2396,8 +2396,7 @@ All the event-related components from our events list view go here.
 All the higher-level layout components like `Body`, `Wrapper` and `Layout` go here.
 
 `/ui`  
-Shared low-level UI components like `Button` and `Header` go here.
-
+UI components like `Button`, `Header` and `StarBar` go here.
 
 --
 

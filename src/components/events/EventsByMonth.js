@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Wrapper from '../layout/Wrapper'
-import MonthHeader from '../MonthHeader'
+import MonthHeader from '../ui/header/MonthHeader'
 import Event from './Event'
 
 const EventsByMonth = props => {

@@ -65,6 +65,6 @@
     "deploy": "npm run build",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
-    "test": "start-test develop 8000 cy:run"
+    "test": "start-server-and-test develop http://localhost:8000 cy:run"
   }
 }

@@ -1,10 +1,10 @@
 {
-  "name": "get-meetups",
+  "name": "get-eventbrite",
   "version": "1.0.0",
-  "main": "get-meetups.js",
+  "main": "get-eventbrite.js",
   "author": "John Polacek",
   "license": "MIT",
   "dependencies": {
-    "meetup-api": "^1.4.38"
+    "eventbrite": "^1.2.1"
   }
 }

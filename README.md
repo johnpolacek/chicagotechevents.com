@@ -2504,6 +2504,15 @@ We will be using the [Event Search](https://www.eventbrite.com/platform/api#/ref
 
 
 
+
+Eventbrite function stuff here
+
+
+
+We will need to update our build script to zip our new function 
+
+
+
 ----
 
 Thanks to [David Wells](https://davidwells.io/) for answering some questions for me while I was initially figuring out how to connect a Netlify function to the Github API.

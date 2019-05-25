@@ -1341,7 +1341,7 @@ Now we can set up a predeploy script to run the tests every time we push a commi
     "deploy": "npm run build",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
-    "test": "start-test develop 8000 cy:run"
+    "test": "start-server-and-test develop 8000 cy:run"
   }
 ~~~~
 

@@ -2509,7 +2509,16 @@ Eventbrite function stuff here
 
 
 
-We will need to update our build script to zip our new function 
+We will need to update our build script to zip our new function.
+
+*package.json*
+
+~~~~
+...
+"zip": "cd src/functions/add-event && npm install && zip -r add-event.zip * && cd ../get-meetups && npm install && zip -r get-meetups.zip * && cd ../get-eventbrite && npm install && zip -r get-eventbrite.zip *",
+"postzip": "mv src/functions/add-event/add-event.zip functions-build && mv src/functions/get-meetups/get-meetups.zip functions-build && mv src/functions/get-eventbrite/get-eventbrite.zip functions-build && cp src/functions/admin.js functions-build",
+...
+~~~~
 
 
 

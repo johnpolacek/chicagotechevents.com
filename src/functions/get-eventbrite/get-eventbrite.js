@@ -1,4 +1,4 @@
-const eventbrite = require('eventbrite')
+const eventbrite = require('eventbrite').default
 // const sdk = eventbrite({token: process.env.EVENTBRITE_TOKEN})
 
 

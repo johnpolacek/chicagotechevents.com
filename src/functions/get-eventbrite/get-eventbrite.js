@@ -27,14 +27,12 @@ exports.handler = (event, context, callback) => {
   // })
 
   try {
-  	sdk.request('/users/me')
-			.then(response => response.json())
-			.then(data => {
-			  return callback(null, {
-			    statusCode: 200,
-			    body: JSON.stringify({ message: `success`, data: data })
-			  })
-			})
+  	sdk.request('/users/me').then(res => {
+		  return callback(null, {
+		    statusCode: 200,
+		    body: JSON.stringify({response: res})
+		  })
+		});
   } catch(error) {
   	return callback(null, {
       statusCode: 422,

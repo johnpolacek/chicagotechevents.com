@@ -33,7 +33,7 @@ describe('Admin', function() {
       },
       ok: true,
     })
-    cy.get('#meetupSearch').should('have.value', 'tech')
+    cy.get('#eventSearch').should('have.value', 'tech')
     cy.get('input[value=SEARCH]').click()
     this.fetchMeetupDeferred.resolve({
       json() {

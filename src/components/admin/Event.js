@@ -17,7 +17,11 @@ const Event = props => {
         {
           [VIEW_INFO]: (
             <EventInfo
-              event={event}
+              date={event.local_date}
+              time={event.local_time}
+              name={event.name}
+              link={event.link}
+              desc={event.description}
               onAddEvent={() => {
                 setView(VIEW_ADD)
               }}

@@ -5,16 +5,16 @@ import { Div, H3, Span, A, Button } from 'styled-system-html'
 const EventInfo = props => (
   <Div pb={4}>
     <Span fontSize={0}>
-      {props.event.local_date} {props.event.local_time}
+      {props.local_date} {props.local_time}
     </Span>
     <H3>
-      {props.event.name}{' '}
+      {props.name}{' '}
       <A
         color="base"
         fontWeight="normal"
         fontSize={0}
         ml={1}
-        href={props.event.link}
+        href={props.link}
         target="_blank"
       >
         view event
@@ -25,7 +25,7 @@ const EventInfo = props => (
       fontSize={1}
       height="48px"
       overflow="hidden"
-      dangerouslySetInnerHTML={{ __html: props.event.description }}
+      dangerouslySetInnerHTML={{ __html: props.description }}
     />
     <Button
       onClick={props.onAddEvent}
@@ -41,7 +41,11 @@ const EventInfo = props => (
 )
 
 EventInfo.propTypes = {
-  event: PropTypes.object.isRequired,
+  date: PropTypes.string.isRequired,
+  time: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
+  desc: PropTypes.string.isRequired,
   onAddEvent: PropTypes.func.isRequired,
 }
 

@@ -5,6 +5,6 @@
   "author": "John Polacek",
   "license": "MIT",
   "dependencies": {
-    "eventbrite": "^1.2.1"
+    "node-fetch": "^2.6.0"
   }
 }

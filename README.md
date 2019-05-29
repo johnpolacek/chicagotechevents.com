@@ -2478,7 +2478,7 @@ UI components like `Button`, `Header` and `StarBar` go here.
 
 We have Meetup as one source of events for our site. Now we can add Eventbrite as an additional source.
 
-For this, we will use the [Eventbrite JavaScript SDK](https://github.com/eventbrite/eventbrite-sdk-javascript). Create a new directory and `package.json`.
+For this, will need an Eventbrite account and [OAuth Token](https://www.eventbrite.com/platform/docs/authentication). We will be making a fetch request to the [Event Search](https://www.eventbrite.com/platform/api#/reference/event-description/set/search-events) API endpoint.
 
 *src/functions/get-eventbrite*
 
@@ -2492,15 +2492,13 @@ For this, we will use the [Eventbrite JavaScript SDK](https://github.com/eventbr
  }
 ~~~~
 
-Then install the Eventbrite SDK.
+Then install [node-fetch](https://github.com/bitinn/node-fetch).
 
 ~~~~
-npm install eventbrite
+npm install node-fetch
 ~~~~
 
-To use the SDK, you will need an Eventbrite account and OAuth Token (see [these directions](https://www.eventbrite.com/platform/api#ebapi-getting-a-token)). Essentially, you will sign up for a developer account, then create an App under that account and then find the OAuth Client Secret for the App that you may use as a Personal Token. Take that OAuth Client Secret and create a new Netlify Environment Variable to provide it securely to the function.
 
-We will be using the [Event Search](https://www.eventbrite.com/platform/api#/reference/event-description/set/search-events) 
 
 
 

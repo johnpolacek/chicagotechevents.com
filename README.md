@@ -26,6 +26,7 @@
 - Sponsors	
 - ReCAPTCHA 
 	- see [docs](https://developers.google.com/recaptcha/docs/v3)
+	- And [this](https://github.com/sarneeh/reaptcha)
 	- alternative [honeypot](https://stackoverflow.com/questions/36227376/better-honeypot-implementation-form-anti-spam) also [this](https://stackoverflow.com/questions/26452716/how-to-create-a-nuclear-honeypot-to-catch-form-spammers)
 
 <br>
@@ -2517,6 +2518,13 @@ We will need to update our build script to zip our new function.
 "postzip": "mv src/functions/add-event/add-event.zip functions-build && mv src/functions/get-meetups/get-meetups.zip functions-build && mv src/functions/get-eventbrite/get-eventbrite.zip functions-build && cp src/functions/admin.js functions-build",
 ...
 ~~~~
+
+Now over on the component-side, we need to do some renaming/refactoring to allow for two event sources.
+
+First, we will rename our Adming Meetup components to more abstract Event components and re-run our tests to make sure we didn’t break anything.
+
+Next, we edit the `ViewEvents` component to have two search modes - one for Meetup and one for Eventbrite. To do this, I will bring in a `Toggle` component that I had created for a different project (Styled System is great for creating portable UI components).
+
 
 
 

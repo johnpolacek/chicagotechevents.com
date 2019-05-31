@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { PropTypes } from 'prop-types'
-import { Div, Form, Input } from 'styled-system-html'
+import { Div, H3, Form, Input } from 'styled-system-html'
 import Button from '../ui/Button'
+import Toggle from '../ui/Toggle'
 import InputSubmit from '../forms/InputSubmit'
 import Event from './Event'
 
@@ -10,18 +11,20 @@ const ViewEvents = props => {
   const EVENTS_READY = 'EVENTS_READY'
   const EVENTS_LOADING = 'EVENTS_LOADING'
   const EVENTS_FAIL = 'EVENTS_FAIL'
+  const searchModes = ['meetups','eventbrite']
 
   const [eventSearch, setEventSearch] = useState('tech')
   const [eventSearchStatus, setEventSearchStatus] = useState(EVENTS_READY)
   const [eventData, setEventData] = useState(null)
   const [resultSet, setResultSet] = useState(0)
+  const [searchMode, setSearchMode] = useState(searchModes[0])
 
   const onSearchEvents = e => {
     e.preventDefault()
     setEventSearchStatus(EVENTS_LOADING)
 
     try {
-      return fetch(`/.netlify/functions/get-meetups/`, {
+      return fetch('/.netlify/functions/get-'+searchMode+'/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -54,6 +57,10 @@ const ViewEvents = props => {
 
   return (
     <>
+      <H3 textAlign="center" pt={4} pb={2}>Search Events</H3>
+      <Div pb={4} textAlign="center" fontWeight="300" fontSize={0}>
+        <Toggle label="Search Mode" id="searchMode" colorSelected="red" colorSelectedBg="red3" option1={searchModes[0]} option2={searchModes[1]} label1={searchModes[0].toUpperCase()} label2={searchModes[1].toUpperCase()} selectedOption={searchMode} onToggle={() => {setSearchMode(searchMode === searchModes[0] ? searchModes[1] : searchModes[0])}} />
+      </Div>
       <Form onSubmit={onSearchEvents} pb={5} textAlign="center">
         <Input
           type="text"

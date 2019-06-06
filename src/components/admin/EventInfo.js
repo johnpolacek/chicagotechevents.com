@@ -5,16 +5,16 @@ import { Div, H3, Span, A, Button } from 'styled-system-html'
 const EventInfo = props => (
   <Div pb={4}>
     <Span fontSize={0}>
-      {props.local_date} {props.local_time}
+      {new Date(props.startDate).toDateString()} {props.startTime}
     </Span>
     <H3>
-      {props.name}{' '}
+      {props.eventName}{' '}
       <A
         color="base"
         fontWeight="normal"
         fontSize={0}
         ml={1}
-        href={props.link}
+        href={props.linkUrl}
         target="_blank"
       >
         view event
@@ -23,7 +23,7 @@ const EventInfo = props => (
     <Div
       mb={2}
       fontSize={1}
-      height="48px"
+      height="54px"
       overflow="hidden"
       dangerouslySetInnerHTML={{ __html: props.description }}
     />
@@ -41,11 +41,11 @@ const EventInfo = props => (
 )
 
 EventInfo.propTypes = {
-  date: PropTypes.string.isRequired,
-  time: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  link: PropTypes.string.isRequired,
-  desc: PropTypes.string.isRequired,
+  startDate: PropTypes.string.isRequired,
+  startTime: PropTypes.string.isRequired,
+  eventName: PropTypes.string.isRequired,
+  linkUrl: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
   onAddEvent: PropTypes.func.isRequired,
 }
 

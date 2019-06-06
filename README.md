@@ -12,9 +12,10 @@
 **--W--I--P--**
 
 
-- Meetup API
-	- writing up in README #10
 - Eventbrite API
+	- Refactoring Admin - debug on stage 
+		- Fails at .split in `meetupDataToEventData` in `util.js` - *Cannot call split on undefined*
+
 - Ship It!
 - Create JSON and RSS feed
 	- https://www.gatsbyjs.org/packages/gatsby-plugin-feed-generator/

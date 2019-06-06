@@ -33,11 +33,10 @@ const Toggle = props => (
 				>&nbsp;</Span>
 			</Span>
 		</Div>
-		<Span onClick={() => { props.selectedOption !== props.option2 && props.onToggle() }} px={2} color={props.selectedOption === props.label2 ? props.selectedColor : 'gray8'}>{props.label2}</Span>
+		<Span id={props.id} onClick={() => { props.selectedOption !== props.option2 && props.onToggle() }} px={2} color={props.selectedOption === props.label2 ? props.selectedColor : 'gray8'}>{props.label2}</Span>
 		{
 			[props.option1,props.option2].map((option) => (
 				<Input
-					id={props.id}
 					name={props.name || props.id}
 					type="radio"
 					aria-label={props.label}

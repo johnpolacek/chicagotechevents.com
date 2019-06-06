@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { PropTypes } from 'prop-types'
+import { meetupDataToEventData } from '../util'
 import { Div, H3, Form, Input } from 'styled-system-html'
 import Button from '../ui/Button'
 import Toggle from '../ui/Toggle'
@@ -19,6 +20,10 @@ const ViewEvents = props => {
   const [resultSet, setResultSet] = useState(0)
   const [searchMode, setSearchMode] = useState(searchModes[0])
 
+
+  const [filterData, setFilterData] = useState({})
+
+  
   const onSearchEvents = e => {
     e.preventDefault()
     setEventSearchStatus(EVENTS_LOADING)
@@ -39,7 +44,9 @@ const ViewEvents = props => {
             data.message === 'success' &&
             typeof data.response.events === 'object'
           ) {
-            setEventData(data.response.events.filter((event) => event.venue))
+            const filterData = data.response.events.filter(event => event.venue)
+            setEventData(filterData.map(event => meetupDataToEventData(event)))
+            // setEventData(meetupDataToEventData(data.response.events.filter((event) => event.venue)))
             setEventSearchStatus(EVENTS_READY)
           } else {
             setEventSearchStatus(EVENTS_FAIL)
@@ -87,11 +94,12 @@ const ViewEvents = props => {
       )}
       {eventData && eventData.length && (
         <>
-          <Div id="meetupEvents" py={4}>
-            {eventData.map(event => (
-              <Event key={event.id} event={event} />
-            ))}
+          
+
+          <Div id="eventsList" py={4}>
+            {eventData.map(event => <Event key={event.id} {...event} /> )}
           </Div>
+          
           <Div textAlign="center" pb={5}>
             <Button py={3} px={4} fontSize={3} onClick={onLoadMore} bg="base" color="white">Load More</Button>
           </Div>

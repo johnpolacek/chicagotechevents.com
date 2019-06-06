@@ -17,17 +17,17 @@ const Event = props => {
         {
           [VIEW_INFO]: (
             <EventInfo
-              date={event.local_date}
-              time={event.local_time}
-              name={event.name}
-              link={event.link}
-              desc={event.description}
+              startDate={props.startDate}
+              startTime={props.startTime}
+              eventName={props.eventName}
+              linkUrl={props.linkUrl}
+              description={props.description}
               onAddEvent={() => {
                 setView(VIEW_ADD)
               }}
             />
           ),
-          [VIEW_ADD]: <SubmitEvent instructions="Please review the info below before adding the event." eventData={meetupDataToEventData(event)} />,
+          [VIEW_ADD]: <SubmitEvent instructions="Please review the info below before adding the event." eventData={event} />,
         }[view]
       }
     </>
@@ -35,7 +35,11 @@ const Event = props => {
 }
 
 Event.propTypes = {
-  event: PropTypes.object.isRequired,
+  startDate: PropTypes.string.isRequired,
+  startTime: PropTypes.string.isRequired,
+  eventName: PropTypes.string.isRequired,
+  linkUrl: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired
 }
 
 export default Event

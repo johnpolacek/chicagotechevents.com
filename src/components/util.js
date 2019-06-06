@@ -24,13 +24,13 @@ module.exports = {
           .body.textContent || '',
       linkURL: meetupData.link,
       cost: (meetupData.fee && meetupData.fee.amount ? meetupData.fee.amount.toString() : 'FREE'),
-      startDate: new Date(meetupData.local_date),
+      startDate: new Date(meetupData.local_date).toISOString(),
       startTime: timeToAmPm(meetupData.local_time),
       endDate: new Date(
         new Date(meetupData.time + meetupData.duration + meetupData.utc_offset)
           .toISOString()
           .split('T')[0]
-      ),
+      ).toISOString(),
       endTime: getAmPmFromTimestamp(
         meetupData.time + meetupData.duration + meetupData.utc_offset
       ),

@@ -46,7 +46,6 @@ const ViewEvents = props => {
           ) {
             const filterData = data.response.events.filter(event => event.venue)
             setEventData(filterData.map(event => meetupDataToEventData(event)))
-            // setEventData(meetupDataToEventData(data.response.events.filter((event) => event.venue)))
             setEventSearchStatus(EVENTS_READY)
           } else {
             setEventSearchStatus(EVENTS_FAIL)
@@ -94,8 +93,6 @@ const ViewEvents = props => {
       )}
       {eventData && eventData.length && (
         <>
-          
-
           <Div id="eventsList" py={4}>
             {eventData.map(event => <Event key={event.id} {...event} /> )}
           </Div>

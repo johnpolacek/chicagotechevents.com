@@ -40,7 +40,7 @@ const SubmitEvent = props => {
         {
           [SUBMIT_READY]: (
             <SubmitEventForm
-              event={props.eventData}
+              {...props}
               instructions={props.instructions}
               onSubmit={onSubmit}
             />
@@ -55,7 +55,18 @@ const SubmitEvent = props => {
 }
 
 SubmitEvent.propTypes = {
-  eventData: PropTypes.object,
+  eventName: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  linkURL: PropTypes.string.isRequired,
+  cost: PropTypes.string.isRequired,
+  startDate: PropTypes.string.isRequired,
+  startTime: PropTypes.string.isRequired,
+  endDate: PropTypes.string.isRequired,
+  endTime: PropTypes.string.isRequired,
+  locationName: PropTypes.string.isRequired,
+  locationStreet: PropTypes.string.isRequired,
+  locationCity: PropTypes.string.isRequired,
+  authorName: PropTypes.string.isRequired,
   instructions: PropTypes.string
 }
 

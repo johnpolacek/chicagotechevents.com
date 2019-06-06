@@ -6,25 +6,23 @@ import FormControl from './FormControl'
 import FormControlDateTime from './FormControlDateTime'
 import InputSubmit from './InputSubmit'
 
-const SubmitEventForm = props => {
-  const eventData = props.event || {}
-
-  const [eventName, setEventName] = useState(eventData.eventName || '')
-  const [description, setDescription] = useState(eventData.description || '')
-  const [linkURL, setLinkURL] = useState(eventData.linkURL || '')
-  const [cost, setCost] = useState(eventData.cost || '')
-  const [startDate, setStartDate] = useState(eventData.startDate || null)
-  const [startTime, setStartTime] = useState(eventData.startTime || '5:00pm')
-  const [endDate, setEndDate] = useState(eventData.endDate || null)
-  const [endTime, setEndTime] = useState(eventData.endTime || '7:00pm')
-  const [locationName, setLocationName] = useState(eventData.locationName || '')
+const SubmitEventFormDebug = props => {
+  const [eventName, setEventName] = useState(props.eventName || '')
+  const [description, setDescription] = useState(props.description || '')
+  const [linkURL, setLinkURL] = useState(props.linkURL || '')
+  const [cost, setCost] = useState(props.cost || '')
+  const [startDate, setStartDate] = useState(props.startDate || null)
+  const [startTime, setStartTime] = useState(props.startTime || '5:00pm')
+  const [endDate, setEndDate] = useState(props.endDate || null)
+  const [endTime, setEndTime] = useState(props.endTime || '7:00pm')
+  const [locationName, setLocationName] = useState(props.locationName || '')
   const [locationStreet, setLocationStreet] = useState(
-    eventData.locationStreet || ''
+    props.locationStreet || ''
   )
   const [locationCity, setLocationCity] = useState(
-    eventData.locationCity || 'Chicago'
+    props.locationCity || 'Chicago'
   )
-  const [authorName, setAuthorName] = useState(eventData.authorName || '')
+  const [authorName, setAuthorName] = useState(props.authorName || '')
 
   const onSubmit = e => {
     e.preventDefault()
@@ -121,7 +119,7 @@ const SubmitEventForm = props => {
         label="Start Date"
         id="startDate"
         onDateChange={onStartDateChange}
-        dateValue={startDate}
+        dateValue={new Date(startDate)}
         onTimeChange={time => {
           setStartTime(time)
         }}
@@ -132,13 +130,12 @@ const SubmitEventForm = props => {
         label="End Date"
         id="endDate"
         onDateChange={onEndDateChange}
-        dateValue={endDate}
+        dateValue={new Date(endDate)}
         onTimeChange={time => {
           setEndTime(time)
         }}
         timeValue={endTime}
       />
-
       <FormControl
         label="Location Name"
         type="text"
@@ -177,10 +174,22 @@ const SubmitEventForm = props => {
   )
 }
 
-SubmitEventForm.propTypes = {
+SubmitEventFormDebug.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  eventName: PropTypes.string,
+  description: PropTypes.string,
+  linkURL: PropTypes.string,
+  cost: PropTypes.string,
+  startDate: PropTypes.string,
+  startTime: PropTypes.string,
+  endDate: PropTypes.string,
+  endTime: PropTypes.string,
+  locationName: PropTypes.string,
+  locationStreet: PropTypes.string,
+  locationCity: PropTypes.string,
+  authorName: PropTypes.string,
   instructions: PropTypes.string,
-  event: PropTypes.object,
+  instructions: PropTypes.string,
 }
 
-export default SubmitEventForm
+export default SubmitEventFormDebug

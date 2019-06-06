@@ -43,6 +43,33 @@ module.exports = {
       authorName: meetupData.group.name,
     }
   },
+  // eventbriteDataToEventData: eventbriteData => {
+  //   return {
+  //     eventName: meetupData.name,
+  //     description:
+  //       new DOMParser().parseFromString(meetupData.description, 'text/html')
+  //         .body.textContent || '',
+  //     linkURL: meetupData.link,
+  //     cost:
+  //       meetupData.fee && meetupData.fee.amount
+  //         ? meetupData.fee.amount.toString()
+  //         : 'FREE',
+  //     startDate: new Date(meetupData.local_date).toISOString(),
+  //     startTime: timeToAmPm(meetupData.local_time),
+  //     endDate: new Date(
+  //       new Date(meetupData.time + meetupData.duration + meetupData.utc_offset)
+  //         .toISOString()
+  //         .split('T')[0]
+  //     ).toISOString(),
+  //     endTime: getAmPmFromTimestamp(
+  //       meetupData.time + meetupData.duration + meetupData.utc_offset
+  //     ),
+  //     locationName: meetupData.venue.name,
+  //     locationStreet: meetupData.venue.address_1 || '',
+  //     locationCity: meetupData.venue.city,
+  //     authorName: meetupData.group.name,
+  //   }
+  // },
 }
 
 const timeToAmPm = time => {

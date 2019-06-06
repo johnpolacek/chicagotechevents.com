@@ -14,7 +14,7 @@ const EventInfo = props => (
         fontWeight="normal"
         fontSize={0}
         ml={1}
-        href={props.linkUrl}
+        href={props.linkURL}
         target="_blank"
       >
         view event
@@ -41,11 +41,18 @@ const EventInfo = props => (
 )
 
 EventInfo.propTypes = {
+  eventName: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  linkURL: PropTypes.string.isRequired,
+  cost: PropTypes.string.isRequired,
   startDate: PropTypes.string.isRequired,
   startTime: PropTypes.string.isRequired,
-  eventName: PropTypes.string.isRequired,
-  linkUrl: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  endDate: PropTypes.string.isRequired,
+  endTime: PropTypes.string.isRequired,
+  locationName: PropTypes.string.isRequired,
+  locationStreet: PropTypes.string.isRequired,
+  locationCity: PropTypes.string.isRequired,
+  authorName: PropTypes.string.isRequired,
   onAddEvent: PropTypes.func.isRequired,
 }
 

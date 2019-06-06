@@ -19,10 +19,6 @@ const ViewEvents = props => {
   const [eventData, setEventData] = useState(null)
   const [resultSet, setResultSet] = useState(0)
   const [searchMode, setSearchMode] = useState(searchModes[0])
-
-
-  const [filterData, setFilterData] = useState({})
-
   
   const onSearchEvents = e => {
     e.preventDefault()

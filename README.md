@@ -13,7 +13,7 @@
 
 
 - Eventbrite API
-	- Refactoring Admin to import Eventbrite events
+	- Refactor to import Eventbrite - eventbriteDataToEventData util
 	 
 - Ship It!
 - Create JSON and RSS feed

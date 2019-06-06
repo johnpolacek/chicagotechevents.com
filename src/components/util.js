@@ -43,33 +43,33 @@ module.exports = {
       authorName: meetupData.group.name,
     }
   },
-  // eventbriteDataToEventData: eventbriteData => {
-  //   return {
-  //     eventName: meetupData.name,
-  //     description:
-  //       new DOMParser().parseFromString(meetupData.description, 'text/html')
-  //         .body.textContent || '',
-  //     linkURL: meetupData.link,
-  //     cost:
-  //       meetupData.fee && meetupData.fee.amount
-  //         ? meetupData.fee.amount.toString()
-  //         : 'FREE',
-  //     startDate: new Date(meetupData.local_date).toISOString(),
-  //     startTime: timeToAmPm(meetupData.local_time),
-  //     endDate: new Date(
-  //       new Date(meetupData.time + meetupData.duration + meetupData.utc_offset)
-  //         .toISOString()
-  //         .split('T')[0]
-  //     ).toISOString(),
-  //     endTime: getAmPmFromTimestamp(
-  //       meetupData.time + meetupData.duration + meetupData.utc_offset
-  //     ),
-  //     locationName: meetupData.venue.name,
-  //     locationStreet: meetupData.venue.address_1 || '',
-  //     locationCity: meetupData.venue.city,
-  //     authorName: meetupData.group.name,
-  //   }
-  // },
+  eventbriteDataToEventData: eventbriteData => {
+    return {
+      eventName: eventbriteData.name,
+      description:
+        new DOMParser().parseFromString(eventbriteData.description, 'text/html')
+          .body.textContent || '',
+      linkURL: eventbriteData.link,
+      cost:
+        eventbriteData.fee && eventbriteData.fee.amount
+          ? eventbriteData.fee.amount.toString()
+          : 'FREE',
+      startDate: new Date(eventbriteData.local_date).toISOString(),
+      startTime: timeToAmPm(eventbriteData.local_time),
+      endDate: new Date(
+        new Date(eventbriteData.time + eventbriteData.duration + eventbriteData.utc_offset)
+          .toISOString()
+          .split('T')[0]
+      ).toISOString(),
+      endTime: getAmPmFromTimestamp(
+        eventbriteData.time + eventbriteData.duration + eventbriteData.utc_offset
+      ),
+      locationName: eventbriteData.venue.name,
+      locationStreet: eventbriteData.venue.address_1 || '',
+      locationCity: eventbriteData.venue.city,
+      authorName: eventbriteData.group.name,
+    }
+  },
 }
 
 const timeToAmPm = time => {

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { PropTypes } from 'prop-types'
-import { meetupDataToEventData } from '../util'
 import EventInfo from './EventInfo'
 import SubmitEvent from '../forms/SubmitEvent'
 

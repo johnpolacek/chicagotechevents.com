@@ -189,7 +189,6 @@ SubmitEventFormDebug.propTypes = {
   locationCity: PropTypes.string,
   authorName: PropTypes.string,
   instructions: PropTypes.string,
-  instructions: PropTypes.string,
 }
 
 export default SubmitEventFormDebug

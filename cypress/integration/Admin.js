@@ -1,7 +1,4 @@
-import {
-  deferred,
-  getMeetupResults,
-} from '../support/helpers'
+import { deferred, getMeetupResults } from '../support/helpers'
 
 describe('Admin', function() {
   beforeEach(function() {
@@ -11,7 +8,7 @@ describe('Admin', function() {
     this.fetchAddEventDeferred = deferred()
     cy.visit('/admin', {
       onBeforeLoad(win) {
-        let s = cy.stub(win, 'fetch');
+        let s = cy.stub(win, 'fetch')
         s.withArgs('/.netlify/functions/admin/')
           .as('fetchEmailAddress')
           .returns(this.fetchSigninDeferred.promise)
@@ -55,7 +52,7 @@ describe('Admin', function() {
     // cy.get('#submitEvent').click()
     // this.fetchAddEventDeferred.resolve({
     //   json() {
-    //     return { 
+    //     return {
     //       message: 'success',
     //       url: 'https://github.com/johnpolacek/chicagotechevents.com/pull/31'
     //     }
@@ -99,7 +96,7 @@ describe('Admin', function() {
   //   cy.get('#submitEvent').click()
   //   this.fetchAddEventDeferred.resolve({
   //     json() {
-  //       return { 
+  //       return {
   //         message: 'success',
   //         url: 'https://github.com/johnpolacek/chicagotechevents.com/pull/31'
   //       }
@@ -115,5 +112,4 @@ describe('Admin', function() {
   //     .find('a')
   //     .should('have.attr', 'href', 'https://github.com/johnpolacek/chicagotechevents.com/pull/31/files')
   // })
-  
 })

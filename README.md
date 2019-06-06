@@ -13,9 +13,8 @@
 
 
 - Eventbrite API
-	- Refactoring Admin - debug on stage 
-		- Fails at .split in `meetupDataToEventData` in `util.js` - *Cannot call split on undefined*
-
+	- Refactoring Admin to import Eventbrite events
+	 
 - Ship It!
 - Create JSON and RSS feed
 	- https://www.gatsbyjs.org/packages/gatsby-plugin-feed-generator/

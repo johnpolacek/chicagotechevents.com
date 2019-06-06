@@ -43,9 +43,16 @@ describe('Admin', function() {
       ok: true,
     })
     cy.wait(1000)
-    cy.get('div').contains('The WTF Lounge').should('be.visible')
-    cy.get('a[href="https://www.meetup.com/Women-Tech-Founders-WTF-of-Chicago/events/258446391/"]').should('be.visible')
-    cy.get('#eventsList').contains('Add Event').first().click()
+    cy.get('div')
+      .contains('The WTF Lounge')
+      .should('be.visible')
+    cy.get(
+      'a[href="https://www.meetup.com/Women-Tech-Founders-WTF-of-Chicago/events/258446391/"]'
+    ).should('be.visible')
+    cy.get('#eventsList')
+      .contains('Add Event')
+      .first()
+      .click()
     cy.get('#submitEvent').click()
     cy.get('@fetchAddEvent').should('not.be.called') // requires address
     cy.get('input[name=locationStreet]').type('222 W Merchandise Mart Plaza')
@@ -54,7 +61,7 @@ describe('Admin', function() {
       json() {
         return {
           message: 'success',
-          url: 'https://github.com/johnpolacek/chicagotechevents.com/pull/31'
+          url: 'https://github.com/johnpolacek/chicagotechevents.com/pull/31',
         }
       },
       ok: true,
@@ -66,7 +73,11 @@ describe('Admin', function() {
       .should('be.visible')
     cy.get('#reviewLink')
       .find('a')
-      .should('have.attr', 'href', 'https://github.com/johnpolacek/chicagotechevents.com/pull/31/files')
+      .should(
+        'have.attr',
+        'href',
+        'https://github.com/johnpolacek/chicagotechevents.com/pull/31/files'
+      )
   })
 
   // it('can get eventbrite events and submit', function() {

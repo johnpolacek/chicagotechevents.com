@@ -25,12 +25,10 @@ exports.handler = async (event, context, callback) => {
   }
 
   fetch('https://www.eventbriteapi.com/v3/events/search/?q='+body.search+'&location.viewport.northeast.latitude=42.054574&location.viewport.northeast.longitude=-87.537518&location.viewport.southwest.latitude=41.751520&location.viewport.southwest.longitude=-87.712612&date_modified.range_start='+dateRange+'T06%3A50%3A27Z&token='+process.env.EVENTBRITE_TOKEN+'&expand=ticket_classes,venue&page=1', { method: 'POST' })
-    .then(res => res.json()) // expecting a json response
-    .then(data => {
+    .then(res => {
       return  {
         statusCode: 200,
-        body: JSON.stringify({ message: `success`, response: data })
+        body: JSON.stringify({ message: `success`, response: res })
       }
     })
-  
 }

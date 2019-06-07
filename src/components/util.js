@@ -48,7 +48,23 @@ module.exports = {
       eventName: eventbriteData.name.text,
       description: eventbriteData.description.text,
       linkURL: eventbriteData.url,
-      cost: eventbriteData.ticket_classes,
+      cost: {thing: ((tickets) => { 
+        let cost = ''
+        tickets.forEach(ticket => {
+          if (ticket.free) {
+            if (cost.includes('FREE')) {
+              if (cost === '') {
+                cost = 'FREE'
+              } else {
+                cost = 'FREE, ' += cost
+              }
+            }
+          } else {
+            
+          }
+        })
+        return cost
+      } )(eventbriteData.ticket_classes)},
       startDate: new Date(eventbriteData.local_date).toISOString(),
       startTime: timeToAmPm(eventbriteData.local_time),
       endDate: new Date(

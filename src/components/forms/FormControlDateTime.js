@@ -12,24 +12,27 @@ const FormControlDateTime = props => (
     id={props.id}
     labelAddendum={props.labelAddendum}
   >
-    <Div width={1} display="flex" flexWrap="wrap" mb={3}>
-      <Div width={1 / 2}>
-        <DatePicker
-          id={'datepicker-' + props.id}
-          defaultValue=""
-          required={props.required}
-          selected={props.dateValue}
-          onChange={props.onDateChange}
-        />
+    {
+      typeof window != 'undefined' &&
+      <Div width={1} display="flex" flexWrap="wrap" mb={3}>
+        <Div width={1 / 2}>
+          <DatePicker
+            id={'datepicker-' + props.id}
+            defaultValue=""
+            required={props.required}
+            selected={props.dateValue}
+            onChange={props.onDateChange}
+          />
+        </Div>
+        <Div width={[1, 1 / 2]} pl={[0, 2]}>
+          <Timepicker
+            id={'timepicker-' + props.id}
+            defaultTime={props.timeValue}
+            onChange={props.onTimeChange}
+          />
+        </Div>
       </Div>
-      <Div width={[1, 1 / 2]} pl={[0, 2]}>
-        <Timepicker
-          id={'timepicker-' + props.id}
-          defaultTime={props.timeValue}
-          onChange={props.onTimeChange}
-        />
-      </Div>
-    </Div>
+    }
   </FormControl>
 )
 

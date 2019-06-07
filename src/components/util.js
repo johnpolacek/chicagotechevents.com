@@ -48,10 +48,7 @@ module.exports = {
       eventName: eventbriteData.name.text,
       description: eventbriteData.description.text,
       linkURL: eventbriteData.url,
-      cost:
-        eventbriteData.fee && eventbriteData.fee.amount
-          ? eventbriteData.fee.amount.toString()
-          : 'FREE',
+      cost: eventbriteData.ticket_classes,
       startDate: new Date(eventbriteData.local_date).toISOString(),
       startTime: timeToAmPm(eventbriteData.local_time),
       endDate: new Date(

@@ -45,11 +45,9 @@ module.exports = {
   },
   eventbriteDataToEventData: eventbriteData => {
     return {
-      eventName: eventbriteData.name,
-      description:
-        new DOMParser().parseFromString(eventbriteData.description, 'text/html')
-          .body.textContent || '',
-      linkURL: eventbriteData.link,
+      eventName: eventbriteData.name.text,
+      description: eventbriteData.description.text,
+      linkURL: eventbriteData.url,
       cost:
         eventbriteData.fee && eventbriteData.fee.amount
           ? eventbriteData.fee.amount.toString()

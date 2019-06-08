@@ -29,10 +29,20 @@ exports.handler = async (event, context, callback) => {
   return fetch(fetchUrl)
     .then(res => {
       console.log('success', res)
-      return  {
-        statusCode: 200,
-        body: JSON.stringify({ message: `success`, response: res, url: fetchUrl })
-      }
+      res.json().then(data => {
+        console.log('data', data);
+          return  {
+          statusCode: 200,
+          body: JSON.stringify({ message: `success`, response: data, url: fetchUrl })
+        }
+      })
+      .catch((error) => {
+        console.log('error', error)
+        return callback(null, {
+          statusCode: 400,
+          body: JSON.stringify(error)
+        })
+      })
     }).catch((error) => {
       console.log('error', error)
       return callback(null, {

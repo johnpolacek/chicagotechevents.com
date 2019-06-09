@@ -48,7 +48,7 @@ module.exports = {
       eventName: eventbriteData.name.text,
       description: eventbriteData.description.text,
       linkURL: eventbriteData.url,
-      cost: {thing: ((tickets) => { 
+      cost: ((tickets) => { 
         let cost = ''
         tickets.forEach(ticket => {
           if (ticket.free) {
@@ -62,7 +62,7 @@ module.exports = {
           } else {}
         })
         return cost
-      } )(eventbriteData.ticket_classes)},
+      } )(eventbriteData.ticket_classes),
       startDate: new Date(eventbriteData.start.local).toISOString(),
       startTime: timeToAmPm(eventbriteData.start.local),
       endDate: new Date(eventbriteData.end.local).toISOString(),

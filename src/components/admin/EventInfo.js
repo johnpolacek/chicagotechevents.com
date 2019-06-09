@@ -14,6 +14,7 @@ const EventInfo = props => (
         fontWeight="normal"
         fontSize={0}
         ml={1}
+        style={{whiteSpace: 'nowrap'}}
         href={props.linkURL}
         target="_blank"
       >
@@ -23,7 +24,7 @@ const EventInfo = props => (
     <Div
       mb={2}
       fontSize={1}
-      height="54px"
+      maxHeight="54px"
       overflow="hidden"
       dangerouslySetInnerHTML={{ __html: props.description }}
     />

@@ -8,12 +8,11 @@ const EventInfo = props => (
       {new Date(props.startDate).toDateString()} {props.startTime}
     </Span>
     <H3>
-      {props.eventName}{' '}
+      <Span mr={1}>{props.eventName}{' '}</Span>
       <A
         color="base"
         fontWeight="normal"
         fontSize={0}
-        ml={1}
         style={{whiteSpace: 'nowrap'}}
         href={props.linkURL}
         target="_blank"

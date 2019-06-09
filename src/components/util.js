@@ -59,7 +59,12 @@ module.exports = {
                 cost = 'FREE, ' + cost
               }
             }
-          } else {}
+          } else {
+            if (cost !== '') {
+              cost += ', '
+            }
+            cost += ticket.cost.display.replace('.00','')
+          }
         })
         return cost
       } )(eventbriteData.ticket_classes),

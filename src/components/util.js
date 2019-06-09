@@ -40,7 +40,7 @@ module.exports = {
       locationName: meetupData.venue.name,
       locationStreet: meetupData.venue.address_1 || '',
       locationCity: meetupData.venue.city,
-      authorName: meetupData.group.name,
+      authorName: 'Meetup Group: '+meetupData.group.name,
     }
   },
   eventbriteDataToEventData: eventbriteData => {
@@ -63,20 +63,14 @@ module.exports = {
         })
         return cost
       } )(eventbriteData.ticket_classes)},
-      startDate: new Date(eventbriteData.local_date).toISOString(),
-      startTime: timeToAmPm(eventbriteData.local_time),
-      endDate: new Date(
-        new Date(eventbriteData.time + eventbriteData.duration + eventbriteData.utc_offset)
-          .toISOString()
-          .split('T')[0]
-      ).toISOString(),
-      endTime: getAmPmFromTimestamp(
-        eventbriteData.time + eventbriteData.duration + eventbriteData.utc_offset
-      ),
+      startDate: new Date(eventbriteData.start.local).toISOString(),
+      startTime: timeToAmPm(eventbriteData.start.local),
+      endDate: new Date(eventbriteData.end.local).toISOString(),
+      endTime: timeToAmPm(eventbriteData.end.local),
       locationName: eventbriteData.venue.name,
       locationStreet: eventbriteData.venue.address_1 || '',
       locationCity: eventbriteData.venue.city,
-      authorName: eventbriteData.group.name,
+      authorName: 'Eventbrite Org Id: ' + eventbriteData.organization_id
     }
   },
 }

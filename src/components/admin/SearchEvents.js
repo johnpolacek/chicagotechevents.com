@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { PropTypes } from 'prop-types'
-import { meetupDataToEventData } from '../util'
+import { meetupDataToEventData, eventbriteDataToEventData } from '../util'
 import { Div, H3, Form, Input } from 'styled-system-html'
 import Button from '../ui/Button'
 import Toggle from '../ui/Toggle'
@@ -40,8 +40,13 @@ const ViewEvents = props => {
             data.message === 'success' &&
             typeof data.response.events === 'object'
           ) {
+            // both meetup and eventbrite response has events and event.venue
             const filterData = data.response.events.filter(event => event.venue)
-            setEventData(filterData.map(event => meetupDataToEventData(event)))
+            if (searchMode === searchModes[0]) {
+              setEventData(filterData.map(event => meetupDataToEventData(event)))
+            } else if (searchMode === searchModes[1]) {
+              setEventData(filterData.map(event => eventbriteDataToEventData(event)))
+            }
             setEventSearchStatus(EVENTS_READY)
           } else {
             setEventSearchStatus(EVENTS_FAIL)

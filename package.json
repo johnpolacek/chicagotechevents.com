@@ -34,7 +34,7 @@
     "to-querystring": "^1.1.0"
   },
   "devDependencies": {
-    "cypress": "^3.2.0",
+    "cypress": "^3.3.1",
     "luxon": "^1.12.1",
     "prettier": "^1.16.4",
     "start-server-and-test": "^1.7.13"

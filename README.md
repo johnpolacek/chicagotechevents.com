@@ -12,8 +12,6 @@
 **--W--I--P--**
 
 - Fix Submit Did Not Work - authorName undefined?
-- Fix testing
-- Auto-Append Eventbrite Affiliate link
 - Verify Eventbrite Submissions
 - Ship It! 
 	- Set up data for events 6/17 and after

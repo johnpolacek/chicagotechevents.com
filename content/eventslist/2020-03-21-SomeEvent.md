@@ -10,7 +10,7 @@ locationStreet: 123 N State
 locationCity: Chicago
 locationState: IL
 cost: FREE
-eventUrl: https://baconipsum.com/
+eventUrl: https://www.eventbrite.com/e/chicago-web-development-mentorship-tickets-58738126317
 
 ---
 

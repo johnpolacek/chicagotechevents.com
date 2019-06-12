@@ -11,19 +11,24 @@
 
 **--W--I--P--**
 
-
-- Eventbrite API
-	- Refactor to import Eventbrite - eventbriteDataToEventData util
-	 
-- Ship It!
+- Fix Submit Did Not Work - authorName undefined?
+- Fix testing
+- Auto-Append Eventbrite Affiliate link
+- Verify Eventbrite Submissions
+- Ship It! 
+	- Set up data for events 6/17 and after
+	- https://www.netlify.com/docs/custom-domains/#assigning-a-custom-domain
+- Add Suggested Search Terms to admin.
+- Add Sponsorship
+- Add Featured Event
 - Create JSON and RSS feed
 	- https://www.gatsbyjs.org/packages/gatsby-plugin-feed-generator/
-- Prevent adding events that already exist by querying JSON feed
+- Autotweet
 - Mailchimp API 
 	- [Netlify example for Mailchimp integration](https://github.com/tobilg/netlify-functions-landingpage/blob/169de175d04b165b5d4801b09cb250cd9a740da5/src/lambda/signup.js)
 	- [Netlify Function for Emails](https://css-tricks.com/netlify-functions-for-sending-emails/)
+- Prevent adding events that already exist by querying JSON feed- 
 - Write a Talk
-- Sponsors	
 - ReCAPTCHA 
 	- see [docs](https://developers.google.com/recaptcha/docs/v3)
 	- And [this](https://github.com/sarneeh/reaptcha)

@@ -26,7 +26,18 @@
 
 import { getValidEventData } from './helpers'
 
-const API_URL = '/.netlify/functions/add-event/'
+const API_URL_ADD_EVENT = '/.netlify/functions/add-event/'
+
+// Fixes issue where service workers are not cleared by Cypress Test Runner - https://github.com/cypress-io/cypress/issues/702
+Cypress.Commands.add('unregisterServiceWorkers', test => {
+  if (window.navigator && navigator.serviceWorker) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      registrations.forEach((registration) => {
+        registration.unregister()
+      })
+    })
+  }
+})
 
 Cypress.Commands.add('completeEventForm', data => {
   const eventData = { ...getValidEventData(), ...data }
@@ -107,7 +118,7 @@ Cypress.Commands.add('verifySubmitSuccess', test => {
     },
     ok: true,
   })
-  cy.get('@fetchAddEvent').should('be.calledWith', API_URL)
+  cy.get('@fetchAddEvent').should('be.calledWith', API_URL_ADD_EVENT)
   cy.get('div')
     .contains('Thanks for sending your event!')
     .should('be.visible')
@@ -124,7 +135,7 @@ Cypress.Commands.add('verifySubmitError', test => {
     },
     ok: true,
   })
-  cy.get('@fetchAddEvent').should('be.calledWith', API_URL)
+  cy.get('@fetchAddEvent').should('be.calledWith', API_URL_ADD_EVENT)
   cy.get('div')
     .contains('Oops! There was a problem.')
     .should('be.visible')

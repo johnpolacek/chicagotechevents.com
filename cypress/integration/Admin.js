@@ -1,7 +1,10 @@
 import { deferred, getMeetupResults } from '../support/helpers'
 
 describe('Admin', function() {
-  beforeEach(function() {
+  before(function() {
+
+    cy.unregisterServiceWorkers()
+
     this.fetchSigninDeferred = deferred()
     this.fetchMeetupDeferred = deferred()
     this.fetchEventbriteDeferred = deferred()

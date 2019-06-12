@@ -5,6 +5,11 @@ import {
 } from '../support/helpers'
 
 describe('Submit Page', function() {
+
+  before(function() {
+    cy.unregisterServiceWorkers()
+  })
+
   it('can be accessed from homepage', function() {
     cy.visit('/')
     cy.get('a')

@@ -62,6 +62,7 @@
     "predeploy": "CI=1 npm i cypress; npm test",
     "deploy": "npm run build",
     "cy:open": "cypress open",
+    "cy:debug": "DEBUG=cypress:* cypress open",
     "cy:run": "cypress run",
     "test": "start-server-and-test develop http://localhost:8000 cy:run"
   }

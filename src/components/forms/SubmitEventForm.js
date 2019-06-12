@@ -6,7 +6,7 @@ import FormControl from './FormControl'
 import FormControlDateTime from './FormControlDateTime'
 import InputSubmit from './InputSubmit'
 
-const SubmitEventFormDebug = props => {
+const SubmitEventForm = props => {
   const [eventName, setEventName] = useState(props.eventName || '')
   const [description, setDescription] = useState(props.description || '')
   const [linkURL, setLinkURL] = useState(props.linkURL || '')
@@ -174,7 +174,7 @@ const SubmitEventFormDebug = props => {
   )
 }
 
-SubmitEventFormDebug.propTypes = {
+SubmitEventForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   eventName: PropTypes.string,
   description: PropTypes.string,
@@ -191,4 +191,4 @@ SubmitEventFormDebug.propTypes = {
   instructions: PropTypes.string,
 }
 
-export default SubmitEventFormDebug
+export default SubmitEventForm

@@ -11,6 +11,7 @@ describe('Privacy Page', function() {
       .contains('Privacy Policy')
       .click()
     cy.location('pathname', { timeout: 10000 }).should('include', '/privacy')
+    cy.wait(2000)
     cy.get('h2').contains('Privacy Policy').should('be.visible')
   })
 

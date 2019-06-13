@@ -69,9 +69,9 @@ module.exports = {
         return cost
       } )(eventbriteData.ticket_classes),
       startDate: new Date(eventbriteData.start.local).toISOString(),
-      startTime: timeToAmPm(eventbriteData.start.local),
+      startTime: getAmPmFromDate(new Date(eventbriteData.start.local)),
       endDate: new Date(eventbriteData.end.local).toISOString(),
-      endTime: timeToAmPm(eventbriteData.end.local),
+      endTime: getAmPmFromDate(new Date(eventbriteData.end.local)),
       locationName: eventbriteData.venue.name === eventbriteData.venue.address.address_1 ? '' : eventbriteData.venue.name,
       locationStreet: eventbriteData.venue.address.address_1 || '',
       locationCity: eventbriteData.venue.city,
@@ -88,4 +88,8 @@ const timeToAmPm = time => {
 const getAmPmFromTimestamp = timestamp => {
   const time = new Date(timestamp).toISOString().split('T')[1]
   return timeToAmPm(time.split(':')[0] + ':' + time.split(':')[1])
+}
+
+const getAmPmFromDate = date => {
+  return date.getHours() % 12 + ':' + ('0' + date.getMinutes() % 12).slice(-2) + (date.getHours() > 12 ? 'pm' : 'am')
 }

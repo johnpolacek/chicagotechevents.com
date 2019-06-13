@@ -11,8 +11,8 @@
 
 **--W--I--P--**
 
-- Fix Submit Did Not Work - authorName undefined?
-- Verify Eventbrite Submissions
+- Fix Eventbrite Times not correct
+- Verify Eventbrite Submit in Prod
 - Ship It! 
 	- Set up data for events 6/17 and after
 	- https://www.netlify.com/docs/custom-domains/#assigning-a-custom-domain

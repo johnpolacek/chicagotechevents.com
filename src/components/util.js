@@ -47,7 +47,7 @@ module.exports = {
     return {
       eventName: eventbriteData.name.text,
       description: eventbriteData.description.text,
-      linkURL: eventbriteData.url,
+      linkURL: eventbriteData.url.split('?')[0],
       cost: ((tickets) => { 
         let cost = ''
         tickets.forEach(ticket => {
@@ -72,8 +72,8 @@ module.exports = {
       startTime: timeToAmPm(eventbriteData.start.local),
       endDate: new Date(eventbriteData.end.local).toISOString(),
       endTime: timeToAmPm(eventbriteData.end.local),
-      locationName: eventbriteData.venue.name,
-      locationStreet: eventbriteData.venue.address_1 || '',
+      locationName: eventbriteData.venue.name === eventbriteData.venue.address.address_1 ? '' : eventbriteData.venue.name,
+      locationStreet: eventbriteData.venue.address.address_1 || '',
       locationCity: eventbriteData.venue.city,
       authorName: 'Eventbrite Org Id: ' + eventbriteData.organization_id
     }

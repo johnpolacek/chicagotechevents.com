@@ -19,6 +19,7 @@ const ViewEvents = props => {
   const [eventData, setEventData] = useState(null)
   const [resultSet, setResultSet] = useState(0)
   const [searchMode, setSearchMode] = useState(searchModes[0])
+  const [searchError, setSearchError] = useState('')
   
   const onSearchEvents = e => {
     e.preventDefault()
@@ -50,10 +51,12 @@ const ViewEvents = props => {
             setEventSearchStatus(EVENTS_READY)
           } else {
             setEventSearchStatus(EVENTS_FAIL)
+            setSearchError('data: '+JSON.stringify(data))
           }
         })
     } catch (err) {
       setEventSearchStatus(EVENTS_FAIL)
+      setSearchError('Error: '+err)
     }
   }
 
@@ -90,7 +93,10 @@ const ViewEvents = props => {
         />
       </Form>
       {eventSearchStatus === EVENTS_FAIL && (
-        <Div color="red">Could not load event data</Div>
+        <>
+          <Div color="red">Could not load event data</Div>
+          <Div color="red">{searchError}</Div>
+        </>
       )}
       {eventData && eventData.length && (
         <>

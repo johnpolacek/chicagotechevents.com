@@ -66,6 +66,9 @@ module.exports = {
             cost += ticket.cost.display.replace('.00','')
           }
         })
+        if (cost === '') {
+          cost = 'FREE'
+        }
         return cost
       } )(eventbriteData.ticket_classes),
       startDate: new Date(eventbriteData.start.local).toISOString(),

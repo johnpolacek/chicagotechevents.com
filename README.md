@@ -11,6 +11,7 @@
 
 **--W--I--P--**
 
+- Add import Meetup Event date and time is wrong
 - Ship It! 
 	- Set up data for events 6/17 and after
 	- https://www.netlify.com/docs/custom-domains/#assigning-a-custom-domain

@@ -20,7 +20,7 @@ const Event = props => {
               }}
             />
           ),
-          [VIEW_ADD]: <SubmitEvent instructions="Please review the info below before adding the event." {...props} />,
+          [VIEW_ADD]: <SubmitEvent {...props} />,
         }[view]
       }
     </>

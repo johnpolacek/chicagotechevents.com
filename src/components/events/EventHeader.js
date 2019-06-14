@@ -12,11 +12,11 @@ const StyledLink = styled(props => <Link {...props} />)`
 const EventHeader = props => (
   <>
     {props.url ? (
-      <H3 fontSize={[3, 4]}>
+      <H3 fontWeight="normal" fontSize={[3, 4]}>
         <StyledLink to={props.url}>{props.title}</StyledLink>
       </H3>
     ) : (
-      <H2 color="base" fontSize={[3, 4]}>
+      <H2 color="base" fontWeight="normal" fontSize={[3, 4]}>
         {props.title}
       </H2>
     )}

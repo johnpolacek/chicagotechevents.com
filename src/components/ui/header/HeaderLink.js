@@ -7,7 +7,7 @@ import LinkButton from '../LinkButton'
 const HeaderLink = props => (
   <Div pb={[3, 4, 5, 6]} mb={[4, 3]}>
     <Link style={{ textDecoration: 'none' }} to={props.to}>
-      <LinkButton>{props.children}</LinkButton>
+      <LinkButton fontSize={2}>{props.children}</LinkButton>
     </Link>
   </Div>
 )

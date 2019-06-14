@@ -40,7 +40,7 @@ exports.handler = (event, context, callback) => {
   const date = new Date()
   const dateStr = body.startDate.toISOString().slice(0,-14)
   const title = 'New Event - '+body.eventName
-  const filename = dateStr+'-'+body.eventName.toLowerCase().split(' ').join('-')+'.md'
+  const filename = dateStr+'-'+body.eventName.replace('/','-').toLowerCase().split(' ').join('-')+'.md'
   const filepath = 'content/eventslist/'+filename
 
   const newContent = getEventMarkdown({...body, ...{date: date.toISOString()} })

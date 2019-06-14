@@ -49,10 +49,10 @@ module.exports = {
       options: {
         headers: {
           "/*": [
-            "cache-control": "public, max-age=0, must-revalidate"
+            "cache-control: public, max-age=0, must-revalidate"
           ],
           "/public/static": [
-            "cache-control": "public,max-age=31536000,immutable"
+            "cache-control: public,max-age=31536000,immutable"
           ],
         },
       },

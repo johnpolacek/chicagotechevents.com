@@ -45,9 +45,16 @@ module.exports = {
       resolve: `gatsby-plugin-sharp`
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: `gatsby-plugin-netlify`,
       options: {
-        //trackingId: `ADD YOUR TRACKING ID HERE`,
+        headers: {
+          "/*": [
+            "cache-control": "public, max-age=0, must-revalidate"
+          ],
+          "/public/static": [
+            "cache-control": "public,max-age=31536000,immutable"
+          ],
+        },
       },
     },
     {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Div, Form } from 'styled-system-html'
+import { DateTime } from 'luxon'
 import 'react-datepicker/dist/react-datepicker.css'
 import FormControl from './FormControl'
 import FormControlDateTime from './FormControlDateTime'
@@ -107,7 +108,7 @@ const SubmitEventForm = props => {
         label="Start Date"
         id="startDate"
         onDateChange={onStartDateChange}
-        dateValue={new Date(startDate)}
+        dateValue={new Date(DateTime.fromISO(startDate).toString()}
         onTimeChange={time => {
           setStartTime(time)
         }}
@@ -118,7 +119,7 @@ const SubmitEventForm = props => {
         label="End Date"
         id="endDate"
         onDateChange={onEndDateChange}
-        dateValue={new Date(endDate)}
+        dateValue={new Date(DateTime.fromISO(endDate).toString()}
         onTimeChange={time => {
           setEndTime(time)
         }}

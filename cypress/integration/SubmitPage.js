@@ -13,7 +13,7 @@ describe('Submit Page', function() {
   it('can be accessed from homepage', function() {
     cy.visit('/')
     cy.get('a')
-      .contains('+ ADD EVENT')
+      .contains('+ ADD NEW EVENT')
       .click()
     cy.location('pathname', { timeout: 10000 }).should('include', '/submit')
     cy.get('form input[value="ADD EVENT"]', { timeout: 10000 }).should('exist')

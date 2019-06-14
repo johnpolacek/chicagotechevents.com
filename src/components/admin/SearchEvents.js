@@ -23,6 +23,7 @@ const ViewEvents = props => {
   
   const onSearchEvents = e => {
     e.preventDefault()
+    setEventData(null)
     setEventSearchStatus(EVENTS_LOADING)
 
     try {
@@ -60,6 +61,11 @@ const ViewEvents = props => {
     }
   }
 
+  const onChangeMode = mode => {
+    setEventData(null)
+    setSearchMode(mode)
+  }
+
   const onLoadMore = e => {
     setResultSet(resultSet+1)
     onSearchEvents(e)
@@ -69,7 +75,7 @@ const ViewEvents = props => {
     <>
       <H3 textAlign="center" pt={4} pb={2}>Search Events</H3>
       <Div pb={4} textAlign="center" fontWeight="300" fontSize={0}>
-        <Toggle label="Search Mode" id="searchMode" colorSelected="red" colorSelectedBg="red3" option1={searchModes[0]} option2={searchModes[1]} label1={searchModes[0].toUpperCase()} label2={searchModes[1].toUpperCase()} selectedOption={searchMode} onToggle={() => {setSearchMode(searchMode === searchModes[0] ? searchModes[1] : searchModes[0])}} />
+        <Toggle label="Search Mode" id="searchMode" colorSelected="red" colorSelectedBg="red3" option1={searchModes[0]} option2={searchModes[1]} label1={searchModes[0].toUpperCase()} label2={searchModes[1].toUpperCase()} selectedOption={searchMode} onToggle={() => {onChangeMode(searchMode === searchModes[0] ? searchModes[1] : searchModes[0])}} />
       </Div>
       <Form onSubmit={onSearchEvents} pb={5} textAlign="center">
         <Input

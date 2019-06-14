@@ -15,7 +15,7 @@
 - Ship It! 
 	- Set up data for events 6/17 and after
 	- https://www.netlify.com/docs/custom-domains/#assigning-a-custom-domain
-- Add Suggested Search Terms to admin.
+- Add Suggested Search Terms to admin (AWS, Tech, Startup, Agile, Web, VR, React, JavaScript, hackathon, ...)
 - Add Sponsorship
 - Add Featured Event
 - Create JSON and RSS feed
@@ -26,6 +26,7 @@
 	- [Netlify Function for Emails](https://css-tricks.com/netlify-functions-for-sending-emails/)
 - Prevent adding events that already exist by querying JSON feed- 
 - Write a Talk
+- Survey
 - ReCAPTCHA 
 	- see [docs](https://developers.google.com/recaptcha/docs/v3)
 	- And [this](https://github.com/sarneeh/reaptcha)

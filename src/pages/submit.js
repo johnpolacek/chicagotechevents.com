@@ -17,7 +17,7 @@ class Submit extends React.Component {
         description={siteDescription}
       >
         <SEO
-          title="Submit New Event"
+          title="Add New Event"
           keywords={[`events`, `calendar`, `gatsby`, `javascript`, `react`]}
         />
         <H2

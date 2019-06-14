@@ -108,7 +108,7 @@ const SubmitEventForm = props => {
         label="Start Date"
         id="startDate"
         onDateChange={onStartDateChange}
-        dateValue={new Date(DateTime.fromISO(startDate).toString()}
+        dateValue={new Date(DateTime.fromISO(startDate).toString())}
         onTimeChange={time => {
           setStartTime(time)
         }}
@@ -119,7 +119,7 @@ const SubmitEventForm = props => {
         label="End Date"
         id="endDate"
         onDateChange={onEndDateChange}
-        dateValue={new Date(DateTime.fromISO(endDate).toString()}
+        dateValue={new Date(DateTime.fromISO(endDate).toString())}
         onTimeChange={time => {
           setEndTime(time)
         }}

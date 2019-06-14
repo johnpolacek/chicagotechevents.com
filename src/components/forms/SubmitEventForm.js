@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Div, Form } from 'styled-system-html'
-import { DateTime } from 'luxon'
 import 'react-datepicker/dist/react-datepicker.css'
 import FormControl from './FormControl'
 import FormControlDateTime from './FormControlDateTime'
@@ -12,9 +11,9 @@ const SubmitEventForm = props => {
   const [description, setDescription] = useState(props.description || '')
   const [linkURL, setLinkURL] = useState(props.linkURL || '')
   const [cost, setCost] = useState(props.cost || '')
-  const [startDate, setStartDate] = useState(props.startDate || new Date(new Date().setDate(new Date().getDate()+1)).toISOString())
+  const [startDate, setStartDate] = useState(props.startDate || new Date(new Date().setDate(new Date().getDate()+1)))
   const [startTime, setStartTime] = useState(props.startTime || '6:00pm')
-  const [endDate, setEndDate] = useState(props.endDate || new Date(new Date().setDate(new Date().getDate()+1)).toISOString())
+  const [endDate, setEndDate] = useState(props.endDate || new Date(new Date().setDate(new Date().getDate()+1)))
   const [endTime, setEndTime] = useState(props.endTime || '8:00pm')
   const [locationName, setLocationName] = useState(props.locationName || '')
   const [locationStreet, setLocationStreet] = useState(
@@ -108,7 +107,7 @@ const SubmitEventForm = props => {
         label="Start Date"
         id="startDate"
         onDateChange={onStartDateChange}
-        dateValue={new Date(DateTime.fromISO(startDate).toString())}
+        dateValue={new Date(startDate)}
         onTimeChange={time => {
           setStartTime(time)
         }}
@@ -119,7 +118,7 @@ const SubmitEventForm = props => {
         label="End Date"
         id="endDate"
         onDateChange={onEndDateChange}
-        dateValue={new Date(DateTime.fromISO(endDate).toString())}
+        dateValue={new Date(endDate)}
         onTimeChange={time => {
           setEndTime(time)
         }}

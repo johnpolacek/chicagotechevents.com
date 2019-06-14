@@ -9,7 +9,7 @@ locationName: "TechNexus"
 locationStreet: "20 N Upper Wacker Dr #1200"
 locationCity: "Chicago"
 locationState: "IL"
-cost: "30"
+cost: "$30"
 eventUrl: "https://www.meetup.com/WomanDevelopers/events/260889857/"
 
 ---

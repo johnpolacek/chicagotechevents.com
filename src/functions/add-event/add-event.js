@@ -43,6 +43,15 @@ exports.handler = (event, context, callback) => {
   const filename = dateStr+'-'+body.eventName.substring(0,60).toLowerCase().split(' ').join('-').replace(/[\W_]+/g,"")+'.md'
   const filepath = 'content/eventslist/'+filename
 
+  body.cost = body.cost.trim()
+  if (body.cost === 0) {
+    body.cost = 'FREE'
+  } else if (body.cost.toLowerCase() === 'free') {
+    body.cost = 'FREE'
+  } else if (parseInt(body.cost) > 0) {
+    body.cost = '$' + cost
+  }
+
   const newContent = getEventMarkdown({...body, ...{date: date.toISOString()} })
 
   octokit.createPullRequest({

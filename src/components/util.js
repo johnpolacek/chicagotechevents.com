@@ -98,5 +98,9 @@ const getAmPmFromTimestamp = timestamp => {
 }
 
 const getAmPmFromDate = date => {
-  return date.getHours() % 12 + ':' + ('0' + date.getMinutes() % 12).slice(-2) + (date.getHours() > 12 ? 'pm' : 'am')
+  let hours = (date.getHours()+1) % 12
+  hours = hours < 10 ? '0' + hours : hours.toString()
+  let minutes = date.getMinutes() % 15
+  if (minutes === 0) minutes = '00'
+  return hours + ':' + minutes + (date.getHours() > 11 ? 'pm' : 'am')
 }

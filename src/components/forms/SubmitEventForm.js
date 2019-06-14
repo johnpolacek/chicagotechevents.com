@@ -11,10 +11,10 @@ const SubmitEventForm = props => {
   const [description, setDescription] = useState(props.description || '')
   const [linkURL, setLinkURL] = useState(props.linkURL || '')
   const [cost, setCost] = useState(props.cost || '')
-  const [startDate, setStartDate] = useState(props.startDate || null)
-  const [startTime, setStartTime] = useState(props.startTime || '5:00pm')
-  const [endDate, setEndDate] = useState(props.endDate || null)
-  const [endTime, setEndTime] = useState(props.endTime || '7:00pm')
+  const [startDate, setStartDate] = useState(props.startDate || new Date(new Date().setDate(new Date().getDate()+1)))
+  const [startTime, setStartTime] = useState(props.startTime || '6:00pm')
+  const [endDate, setEndDate] = useState(props.endDate || new Date(new Date().setDate(new Date().getDate()+1)))
+  const [endTime, setEndTime] = useState(props.endTime || '8:00pm')
   const [locationName, setLocationName] = useState(props.locationName || '')
   const [locationStreet, setLocationStreet] = useState(
     props.locationStreet || ''

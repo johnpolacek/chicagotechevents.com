@@ -27,7 +27,7 @@ module.exports = {
         meetupData.fee && meetupData.fee.amount
           ? meetupData.fee.amount.toString()
           : 'FREE',
-      startDate: meetupData.local_date,
+      startDate: meetupData.local_date + ' 00:00',
       startTime: timeToAmPm(meetupData.local_time),
       endDate: new Date(
         new Date(meetupData.time + meetupData.duration + meetupData.utc_offset)

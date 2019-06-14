@@ -1,5 +1,5 @@
 ---
-title: "DevOps Chicago: CI/CD Pipeline-driven AWS CloudFormation Authoring and Testing"
+title: "CI/CD Pipeline-driven AWS CloudFormation Authoring and Testing"
 date: "2019-06-11T12:58:01.454Z"
 startDate: "2019-06-18T00:00:00.000Z"
 startTime: "6:00pm"

@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import Layout from '../components/layout/Layout'
 import SEO from '../components/seo'
 import SubmitEvent from '../components/forms/SubmitEvent'
+import { H2 } from 'styled-system-html'
 
 class Submit extends React.Component {
   render() {
@@ -19,7 +20,18 @@ class Submit extends React.Component {
           title="Submit New Event"
           keywords={[`events`, `calendar`, `gatsby`, `javascript`, `react`]}
         />
-        <SubmitEvent instructions="Please provide the info below to get your event listed." />
+        <H2
+          pb={4}
+          mb={3}
+          color="base"
+          fontWeight="bold"
+          textAlign="center"
+          position="relative"
+          zIndex="99"
+        >
+          Add Event
+        </H2>
+        <SubmitEvent />
       </Layout>
     )
   }

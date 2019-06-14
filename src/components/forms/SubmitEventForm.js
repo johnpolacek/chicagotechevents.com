@@ -71,18 +71,6 @@ const SubmitEventForm = props => {
       onSubmit={onSubmit}
       style={{ position: 'relative', zIndex: 999 }}
     >
-      {props.instructions && (
-        <P
-          pt={[4, 4, 3]}
-          pb={4}
-          px={4}
-          color="base"
-          fontWeight="bold"
-          textAlign="center"
-        >
-          {props.instructions}
-        </P>
-      )}
       <FormControl
         label="Name of Event"
         type="text"
@@ -187,8 +175,7 @@ SubmitEventForm.propTypes = {
   locationName: PropTypes.string,
   locationStreet: PropTypes.string,
   locationCity: PropTypes.string,
-  authorName: PropTypes.string,
-  instructions: PropTypes.string,
+  authorName: PropTypes.string
 }
 
 export default SubmitEventForm

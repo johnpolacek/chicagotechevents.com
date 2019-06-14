@@ -29,7 +29,7 @@ class Submit extends React.Component {
           position="relative"
           zIndex="99"
         >
-          Add Event
+          Add New Event
         </H2>
         <SubmitEvent />
       </Layout>

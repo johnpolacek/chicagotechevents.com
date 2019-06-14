@@ -55,7 +55,7 @@ const SubmitEventForm = props => {
 
   const onStartDateChange = date => {
     setStartDate(date)
-    if (date.getTime() > endDate.getTime()) {
+    if (new Date(date).getTime() > new Date(endDate).getTime()) {
       setEndDate(date)
     }
   }

@@ -17,6 +17,14 @@ module.exports = {
         )} to ${endTime.replace(':00', '')}`
   },
   meetupDataToEventData: meetupData => {
+    const startDate = meetupData.local_date + ' 00:00'
+    let endDate = new Date(startDate)
+    const numDays = Math.floor((meetupData.duration / 3600000) / 24)
+    if (numDays > 0) {
+      endDate.setDate(endDate.getDate() + numDays)
+    }
+    endDate = endDate.toISOString().split('T')[0]
+    
     return {
       eventName: meetupData.name,
       description:
@@ -27,13 +35,9 @@ module.exports = {
         meetupData.fee && meetupData.fee.amount
           ? meetupData.fee.amount.toString()
           : 'FREE',
-      startDate: meetupData.local_date + ' 00:00',
+      startDate: startDate,
       startTime: timeToAmPm(meetupData.local_time),
-      endDate: new Date(
-        new Date(meetupData.time + meetupData.duration + meetupData.utc_offset)
-          .toISOString()
-          .split('T')[0]
-      ).toISOString(),
+      endDate: endDate,
       endTime: getAmPmFromTimestamp(
         meetupData.time + meetupData.duration + meetupData.utc_offset
       ),

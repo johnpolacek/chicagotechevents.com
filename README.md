@@ -12,8 +12,9 @@
 **--W--I--P--**
 
 - Ship It! 
-	- Set up data for events 6/17 and after
 	- https://www.netlify.com/docs/custom-domains/#assigning-a-custom-domain
+
+- Old A Record points to 50.87.78.161
 - Add Suggested Search Terms to admin (AWS, Tech, Startup, Agile, Web, VR, React, JavaScript, hackathon, ...)
 - Add Sponsorship
 - Add Featured Event

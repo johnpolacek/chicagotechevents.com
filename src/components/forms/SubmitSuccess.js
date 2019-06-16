@@ -31,7 +31,7 @@ export default props => (
       Review your event info at <a href={props.url}>this link</a>
     </P>
     <P>
-      <a href="./">Add another event</a>
+      <a href="./submit">Add another event</a>
     </P>
   </SubmitEventMessage>
 )

@@ -11,16 +11,12 @@
 
 **--W--I--P--**
 
-- Ship It! 
-	- https://www.netlify.com/docs/custom-domains/#assigning-a-custom-domain
-
-- Old A Record points to 50.87.78.161
 - Add Suggested Search Terms to admin (AWS, Tech, Startup, Agile, Web, VR, React, JavaScript, hackathon, ...)
-- Add Sponsorship
+- Add Sponsorships
 - Add Featured Event
 - Create JSON and RSS feed
 	- https://www.gatsbyjs.org/packages/gatsby-plugin-feed-generator/
-- Autotweet
+- Automate Social
 - Mailchimp API 
 	- [Netlify example for Mailchimp integration](https://github.com/tobilg/netlify-functions-landingpage/blob/169de175d04b165b5d4801b09cb250cd9a740da5/src/lambda/signup.js)
 	- [Netlify Function for Emails](https://css-tricks.com/netlify-functions-for-sending-emails/)

@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { P } from 'styled-system-html'
+import { Div } from 'styled-system-html'
 
 const EventDescription = props => (
-  <P
+  <Div
     fontSize={[1, 2]}
     mb={2}
     dangerouslySetInnerHTML={{

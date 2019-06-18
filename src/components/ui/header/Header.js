@@ -17,7 +17,7 @@ export default props => (
     position="relative"
   >
     <Wrapper mb={-2}>
-      <HeaderTitle>{props.title.toUpperCase()}</HeaderTitle>
+      <HeaderTitle link={props.path !== '/'}>{props.title.toUpperCase()}</HeaderTitle>
       <StarBar mt={[-3, -4, -4, 0]} />
       <HeaderDescription>{props.description}</HeaderDescription>
       {props.path.replace(/\/$/, '') === '/submit' ? (

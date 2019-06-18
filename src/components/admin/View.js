@@ -9,7 +9,7 @@ const View = props => {
   const SIGNIN_FAIL = 'SIGNIN_FAIL'
   const SIGNIN_SUCCESS = 'SIGNIN_SUCCESS'
 
-  const [signedIn, setSignedIn] = useState(SIGNIN_SUCCESS)
+  const [signedIn, setSignedIn] = useState(SIGNIN_READY)
   const [adminCode, setAdminCode] = useState('')
 
   const onSignIn = e => {

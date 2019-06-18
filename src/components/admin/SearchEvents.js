@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { PropTypes } from 'prop-types'
 import { meetupDataToEventData, eventbriteDataToEventData } from '../util'
-import { Div, H3, Form, Input } from 'styled-system-html'
+import { Div, H3, Form, Input, Span, A } from 'styled-system-html'
 import Button from '../ui/Button'
 import Toggle from '../ui/Toggle'
 import InputSubmit from '../forms/InputSubmit'
@@ -61,6 +61,11 @@ const ViewEvents = props => {
     }
   }
 
+  const onClickSearchTerm = e => {
+    setEventSearch(e.target.innerText)
+    onSearchEvents(e)
+  }
+
   const onChangeMode = mode => {
     setEventData(null)
     setSearchMode(mode)
@@ -77,7 +82,7 @@ const ViewEvents = props => {
       <Div pb={4} textAlign="center" fontWeight="300" fontSize={0}>
         <Toggle label="Search Mode" id="searchMode" colorSelected="red" colorSelectedBg="red3" option1={searchModes[0]} option2={searchModes[1]} label1={searchModes[0].toUpperCase()} label2={searchModes[1].toUpperCase()} selectedOption={searchMode} onToggle={() => {onChangeMode(searchMode === searchModes[0] ? searchModes[1] : searchModes[0])}} />
       </Div>
-      <Form onSubmit={onSearchEvents} pb={5} textAlign="center">
+      <Form onSubmit={onSearchEvents} textAlign="center" pb={4}>
         <Input
           type="text"
           fontSize={0}
@@ -98,6 +103,19 @@ const ViewEvents = props => {
           disabled={eventSearchStatus === EVENTS_LOADING}
         />
       </Form>
+      <Div textAlign="center" fontSize={0} pb={5}>
+        <Span mx={1}>Search for:</Span>
+        <A onClick={onClickSearchTerm} mx={1} href="#">AWS</A> 
+        <A onClick={onClickSearchTerm} mx={1} href="#">Tech</A> 
+        <A onClick={onClickSearchTerm} mx={1} href="#">Startup</A> 
+        <A onClick={onClickSearchTerm} mx={1} href="#">Agile</A> 
+        <A onClick={onClickSearchTerm} mx={1} href="#">Web</A> 
+        <A onClick={onClickSearchTerm} mx={1} href="#">VR</A> 
+        <A onClick={onClickSearchTerm} mx={1} href="#">React</A> 
+        <A onClick={onClickSearchTerm} mx={1} href="#">JavaScript</A> 
+        <A onClick={onClickSearchTerm} mx={1} href="#">Hackathon</A>
+        <A onClick={onClickSearchTerm} mx={1} href="#">Serverless</A>
+      </Div>
       {eventSearchStatus === EVENTS_FAIL && (
         <>
           <Div color="red">Could not load event data</Div>

@@ -11,7 +11,6 @@
 
 **--W--I--P--**
 
-- Add Suggested Search Terms to admin (AWS, Tech, Startup, Agile, Web, VR, React, JavaScript, hackathon, ...)
 - Add Sponsorships
 - Add Featured Event
 - Create JSON and RSS feed

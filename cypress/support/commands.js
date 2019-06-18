@@ -31,8 +31,8 @@ const API_URL_ADD_EVENT = '/.netlify/functions/add-event/'
 // Fixes issue where service workers are not cleared by Cypress Test Runner - https://github.com/cypress-io/cypress/issues/702
 Cypress.Commands.add('unregisterServiceWorkers', test => {
   if (window.navigator && navigator.serviceWorker) {
-    navigator.serviceWorker.getRegistrations().then((registrations) => {
-      registrations.forEach((registration) => {
+    navigator.serviceWorker.getRegistrations().then(registrations => {
+      registrations.forEach(registration => {
         registration.unregister()
       })
     })

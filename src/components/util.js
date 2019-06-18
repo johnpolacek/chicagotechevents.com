@@ -19,12 +19,12 @@ module.exports = {
   meetupDataToEventData: meetupData => {
     const startDate = meetupData.local_date + ' 00:00'
     let endDate = new Date(startDate)
-    const numDays = Math.floor((meetupData.duration / 3600000) / 24)
+    const numDays = Math.floor(meetupData.duration / 3600000 / 24)
     if (numDays > 0) {
       endDate.setDate(endDate.getDate() + numDays)
     }
     endDate = endDate.toISOString().split('T')[0]
-    
+
     return {
       eventName: meetupData.name,
       description:
@@ -44,7 +44,7 @@ module.exports = {
       locationName: meetupData.venue.name,
       locationStreet: meetupData.venue.address_1 || '',
       locationCity: meetupData.venue.city,
-      authorName: 'Meetup Group: '+meetupData.group.name,
+      authorName: 'Meetup Group: ' + meetupData.group.name,
     }
   },
   eventbriteDataToEventData: eventbriteData => {
@@ -52,7 +52,7 @@ module.exports = {
       eventName: eventbriteData.name.text,
       description: eventbriteData.description.text,
       linkURL: eventbriteData.url.split('?')[0],
-      cost: ((tickets) => { 
+      cost: (tickets => {
         let cost = ''
         tickets.forEach(ticket => {
           if (ticket.free) {
@@ -67,22 +67,25 @@ module.exports = {
             if (cost !== '') {
               cost += ', '
             }
-            cost += ticket.cost.display.replace('.00','')
+            cost += ticket.cost.display.replace('.00', '')
           }
         })
         if (cost === '') {
           cost = 'FREE'
         }
         return cost
-      } )(eventbriteData.ticket_classes),
+      })(eventbriteData.ticket_classes),
       startDate: new Date(eventbriteData.start.local).toISOString(),
       startTime: getAmPmFromDateString(eventbriteData.start.local),
       endDate: new Date(eventbriteData.end.local).toISOString(),
       endTime: getAmPmFromDateString(eventbriteData.end.local),
-      locationName: eventbriteData.venue.name === eventbriteData.venue.address.address_1 ? '' : eventbriteData.venue.name,
+      locationName:
+        eventbriteData.venue.name === eventbriteData.venue.address.address_1
+          ? ''
+          : eventbriteData.venue.name,
       locationStreet: eventbriteData.venue.address.address_1 || '',
       locationCity: eventbriteData.venue.city,
-      authorName: 'Eventbrite Org Id: ' + eventbriteData.organization_id
+      authorName: 'Eventbrite Org Id: ' + eventbriteData.organization_id,
     }
   },
 }

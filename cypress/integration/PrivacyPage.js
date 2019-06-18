@@ -1,6 +1,4 @@
-
 describe('Privacy Page', function() {
-
   before(function() {
     cy.unregisterServiceWorkers()
   })
@@ -12,12 +10,16 @@ describe('Privacy Page', function() {
       .click()
     cy.location('pathname', { timeout: 10000 }).should('include', '/privacy')
     cy.wait(2000)
-    cy.get('h2').contains('Privacy Policy').should('be.visible')
+    cy.get('h2')
+      .contains('Privacy Policy')
+      .should('be.visible')
   })
 
   it('can be visited directly', function() {
     cy.visit('/privacy')
     cy.location('pathname', { timeout: 10000 }).should('include', '/privacy')
-    cy.get('h2').contains('Privacy Policy').should('be.visible')
+    cy.get('h2')
+      .contains('Privacy Policy')
+      .should('be.visible')
   })
 })

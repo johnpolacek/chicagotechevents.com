@@ -1,7 +1,10 @@
-import { deferred, getMeetupResults, getEventbriteResults } from '../support/helpers'
+import {
+  deferred,
+  getMeetupResults,
+  getEventbriteResults,
+} from '../support/helpers'
 
 describe('Admin', function() {
-
   before(function() {
     cy.unregisterServiceWorkers()
   })
@@ -103,7 +106,9 @@ describe('Admin', function() {
       ok: true,
     })
     cy.get('div')
-      .contains('Black Tech Unplugged Presents: Black Tech Unplugged Live in Chicago!')
+      .contains(
+        'Black Tech Unplugged Presents: Black Tech Unplugged Live in Chicago!'
+      )
       .should('be.visible')
     cy.get(
       'a[href="https://www.eventbrite.com/e/black-tech-unplugged-presents-black-tech-unplugged-live-in-chicago-tickets-61403815465"]'
@@ -128,6 +133,10 @@ describe('Admin', function() {
       .should('be.visible')
     cy.get('#reviewLink')
       .find('a')
-      .should('have.attr', 'href', 'https://github.com/johnpolacek/chicagotechevents.com/pull/31/files')
+      .should(
+        'have.attr',
+        'href',
+        'https://github.com/johnpolacek/chicagotechevents.com/pull/31/files'
+      )
   })
 })

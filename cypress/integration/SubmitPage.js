@@ -5,7 +5,6 @@ import {
 } from '../support/helpers'
 
 describe('Submit Page', function() {
-
   before(function() {
     cy.unregisterServiceWorkers()
   })

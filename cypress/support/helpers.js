@@ -64,7 +64,7 @@ module.exports = {
   getMeetupResults: offset => {
     return meetupResultSet(offset)
   },
-  getEventbriteResults: offset => { 
+  getEventbriteResults: offset => {
     return eventbriteResultSet(offset)
   },
   deferred: () => {

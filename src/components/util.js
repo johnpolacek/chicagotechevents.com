@@ -1,4 +1,17 @@
 module.exports = {
+  getWeeksInYear: () => {
+    let i = 0
+    const now = new Date()
+    now.setDate(now.getDate() + (1 + 7 - now.getDay()) % 7)
+    let weeks = []
+    
+    while (i < 52) { // 1 years
+      weeks.push(now.toISOString().split('T')[0])
+      now.setDate(now.getDate() + 7)
+      i++
+    }
+    return weeks;
+  },
   getEventDateString: (startDate, startTime, endDate, endTime) => {
     return startDate !== endDate
       ? `${startDate

@@ -12,6 +12,15 @@
 **--W--I--P--**
 
 - Add Sponsorships
+	- Available Dates
+	- Create Ad
+		- Sponsor Name and Email Contact
+		- Upload Image to S3
+			- onChange file input verifies size of image then submits with size params that get validated
+			- compress before uploading
+		- Thanks to {Sponsor Name} for sponsoring this week in Chicago Tech Events. Go to {link + link text}
+		- Purchase on Stripe
+		- Submits PR
 - Add Featured Event
 - Create JSON and RSS feed
 	- https://www.gatsbyjs.org/packages/gatsby-plugin-feed-generator/

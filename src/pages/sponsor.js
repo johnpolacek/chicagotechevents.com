@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../components/layout/Layout'
 import SEO from '../components/seo'
-import { Div, H2 } from 'styled-system-html'
+import { Div, H2, P, Form, Label, Span } from 'styled-system-html'
 
 class Submit extends React.Component {
   render() {
@@ -30,8 +30,12 @@ class Submit extends React.Component {
         >
           Sponsor
         </H2>
-        <Div textAlign="center" pb={5}>
-          Become a {siteTitle} sponsor...
+        <Div textAlign="center" mx="auto" pb={5} width={[1,420]}>
+        <P>Want to promote your product, service or event to front of hundreds Chicago Tech Enthusiasts? <Span fontWeight="bold">Become a Chicago Tech Events sponsor!</Span></P>
+          <Form p={4} textAlign="left">
+            <Label fontSize={1} fontWeight="500" for="sponsorImage" display="block" pb={2}>Your sponsorship image</Label>
+            <input type="file" name="sponsorImage" />
+          </Form>
         </Div>
       </Layout>
     )

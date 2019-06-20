@@ -1,5 +1,5 @@
 ---
-title: "Tracy Ramos"
+title: "Music Tech Workshop"
 date: "2019-06-20T16:59:58.189Z"
 startDate: "2019-06-21T16:55:46.370Z"
 startTime: "10:30pm"
@@ -14,18 +14,13 @@ eventUrl: "https://www.ignitetechnology.org/youth-music-tech-sign-up/"
 
 ---
 
-Music Tech Workshop
-June 22, 2019
-10:30 am to 12:30 p.m.
-The Blue Lacuna
-
 Technology is changing the way music it is made. Gone are the days of spending weeks in the recording studio. Now music can be made anytime, anywhere as long as you have your smartphone.
 
 Join Cami Galles, a local independent singer, producer, performing artist and ex-advertising technology executive (Google) for a youth workshop.
 
 Target Audience
 
-This workshop is geared toward youth aged 9 -16 years.
+This workshop is geared toward youth aged 9-16 years.
 
 Training Objective and Schedule
 

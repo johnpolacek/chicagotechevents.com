@@ -1,7 +1,8 @@
 ---
 
-date: "2019-06-25"
-title: "DevOpsDays Chicago"
+date: "2019-06-26T17:50:14.071Z"
+sponsorDate: "2019-06-25"
+title: "Test Sponsor"
 
 ---
 

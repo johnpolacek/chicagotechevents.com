@@ -31,9 +31,12 @@ class Submit extends React.Component {
           Sponsor
         </H2>
         <Div textAlign="center" mx="auto" pb={5} width={[1,420]}>
-        <P>Want to promote your product, service or event to front of hundreds Chicago Tech Enthusiasts? <Span fontWeight="bold">Become a Chicago Tech Events sponsor!</Span></P>
-          <Form p={4} textAlign="left">
-            <Label fontSize={1} fontWeight="500" for="sponsorImage" display="block" pb={2}>Your sponsorship image</Label>
+        <P>Promote your product, service or event to hundreds Chicago Tech Enthusiasts!</P>
+          <Form p={4}>
+            <Label fontSize={1} fontWeight="500" for="sponsorImage" display="block" pb={2}>
+              Your sponsorship image <br/>
+              <Span color="gray8" fontSize={0} fontWeight="300">(will be resized to 1200x400 pixels)</Span>
+            </Label>
             <input type="file" name="sponsorImage" />
           </Form>
         </Div>

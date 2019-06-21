@@ -1,7 +1,7 @@
 ---
 
-date: "2019-06-26T17:50:14.071Z"
-sponsorDate: "2019-06-25"
+date: "2019-06-18T17:50:14.071Z"
+sponsorDate: "2019-06-18"
 title: "Test Sponsor"
 
 ---

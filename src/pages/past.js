@@ -11,12 +11,16 @@ class Past extends React.Component {
     const { data } = this.props
     const siteTitle = data.site.siteMetadata.title
     const siteDescription = data.site.siteMetadata.description
-    const events = data.allMarkdownRemark.edges
-    const currEvents = events.filter(
+
+    // filter out sponsors
+    const events = data.allMarkdownRemark.edges.filter(
+      ({ node }) => node.frontmatter.startDate
+    )
+    const pastEvents = events.filter(
       ({ node }) => new Date(node.frontmatter.endDate) < new Date()
     )
     const eventsByMonth = {}
-    currEvents.forEach(({ node }) => {
+    pastEvents.forEach(({ node }) => {
       const month =
         node.frontmatter.startDate.split(' ')[0] +
         ' ' +

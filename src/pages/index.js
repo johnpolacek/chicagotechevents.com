@@ -1,19 +1,25 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
-
 import Layout from '../components/layout/Layout'
+import { Div } from 'styled-system-html'
+import { getMonday } from '../components/util'
 import SEO from '../components/seo'
 import Subscribe from '../components/forms/Subscribe'
 import EventsByMonth from '../components/events/EventsByMonth'
 import LinkButton from '../components/ui/LinkButton'
-import { Div } from 'styled-system-html'
 
 class Index extends React.Component {
   render() {
     const { data } = this.props
     const siteTitle = data.site.siteMetadata.title
     const siteDescription = data.site.siteMetadata.description
-    const events = data.allMarkdownRemark.edges
+    const sponsors = data.allMarkdownRemark.edges.filter(
+      ({ node }) => node.frontmatter.sponsorDate && new Date(node.frontmatter.sponsorDate) >= getMonday(-1) && new Date(node.frontmatter.sponsorDate) < getMonday()
+    )
+    const sponsor = sponsors.length !== 0 ? sponsors[0].node.frontmatter : null
+    const events = data.allMarkdownRemark.edges.filter(
+      ({ node }) => node.frontmatter.startDate
+    )
     const currEvents = events.filter(
       ({ node }) => new Date(node.frontmatter.endDate) >= new Date()
     )
@@ -41,7 +47,7 @@ class Index extends React.Component {
           keywords={[`events`, `calendar`, `gatsby`, `javascript`, `react`]}
         />
         <Subscribe />
-        <EventsByMonth eventsByMonth={eventsByMonth} />
+        <EventsByMonth sponsor={sponsor} eventsByMonth={eventsByMonth} />
         {currEvents < events && (
           <Div textAlign="center" pb={4} mb={3}>
             <Link style={{ textDecoration: 'none' }} to={`/past`}>
@@ -73,6 +79,7 @@ export const pageQuery = graphql`
           }
           frontmatter {
             title
+            sponsorDate
             startDate(formatString: "MMMM DD, YYYY")
             startTime
             endDate(formatString: "MMMM DD, YYYY")

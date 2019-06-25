@@ -2,7 +2,7 @@
 title: "IIT RTC Conference"
 date: "2019-06-25T13:27:59.216Z"
 startDate: "2019-10-14T13:20:39.000Z"
-startTime: "7:30pm"
+startTime: "7:30am"
 endDate: "2019-10-16T13:20:39.000Z"
 endTime: "8:00pm"
 locationName: "IIT Main Campus, Hermann Hall"

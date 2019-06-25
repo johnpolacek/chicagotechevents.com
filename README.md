@@ -11,6 +11,10 @@
 
 **--W--I--P--**
 
+- Upload sponsor ad to S3. 
+	- Made a docqet service with Serverless. Test endpoint at https://m6mffkbuv0.execute-api.us-east-2.amazonaws.com/dev/docqet/sponsor/add should upload a test file
+	- Switch method to a POST
+
 - Add Sponsorships
 	- Available Dates
 	- Create Ad

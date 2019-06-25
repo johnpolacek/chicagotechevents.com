@@ -10,7 +10,7 @@ locationStreet: "330 N Wabash Street"
 locationCity: "Chicago"
 locationState: "IL"
 cost: "FREE"
-eventUrl: "https://www.eventbrite.com/e/pride-and-equality-panel-chicago-tickets-62799065696?ref=eios"
+eventUrl: "https://www.eventbrite.com/e/pride-and-equality-panel-chicago-tickets-62799065696"
 
 ---
 

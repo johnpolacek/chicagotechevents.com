@@ -10,7 +10,7 @@ locationStreet: "515 N State Street , Floor 14"
 locationCity: "Chicago"
 locationState: "IL"
 cost: "FREE"
-eventUrl: "https://www.eventbrite.com/e/flatiron-school-data-science-launch-party-chicago-tickets-62879523347?ref=eios"
+eventUrl: "https://www.eventbrite.com/e/flatiron-school-data-science-launch-party-chicago-tickets-62879523347"
 
 ---
 

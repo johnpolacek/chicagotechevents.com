@@ -2,7 +2,7 @@
 title: "Psychology for Digital Behavior Change  - 2-3 day Course"
 date: "2019-06-24T20:09:15.421Z"
 startDate: "2019-12-02T20:58:26.000Z"
-startTime: "9:00am"
+startTime: "9:00pm"
 endDate: "2019-12-04T20:58:26.000Z"
 endTime: "8:00pm"
 locationName: "DePaul University"

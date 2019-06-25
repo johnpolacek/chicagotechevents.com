@@ -5,7 +5,7 @@ export default props => (
   <>
     <tr style={{ background: theme.colors.blue7, textAlign: 'center' }}>
       <td style={{ padding: '32px 0 8px' }}>
-        <h1 style={{margin: '8px 0 0', fontWeight:'normal', fontSize: '42px', color: '#fff', textAlign: 'center' }}>{props.title.toUpperCase()}</h1>
+        <h1 style={{margin: '8px 0 0', fontWeight:'normal', fontSize: '42px', color: '#fff !important', textAlign: 'center' }}>{props.title.toUpperCase()}</h1>
       </td>
     </tr>
     <tr>

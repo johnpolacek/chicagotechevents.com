@@ -9,7 +9,11 @@
 
 <br>
 
+
 **--W--I--P--**
+
+- Try to submit an image from the sponsors page
+	- Created Netlify Function
 
 - Add Sponsorships
 	- Available Dates

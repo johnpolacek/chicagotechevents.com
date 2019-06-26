@@ -2,7 +2,7 @@
 title: "The Zendesk Showcase: Chicago"
 date: "2019-06-26T18:39:24.886Z"
 startDate: "2019-07-18T18:37:18.000Z"
-startTime: "8:00pm"
+startTime: "8:00am"
 endDate: "2019-07-18T18:37:18.000Z"
 endTime: "8:00pm"
 locationName: "Revel Fulton Market"

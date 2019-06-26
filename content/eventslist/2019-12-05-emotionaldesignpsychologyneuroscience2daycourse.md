@@ -1,5 +1,5 @@
 ---
-title: "Emotional Design Psychology & Neuroscience  - 2-day Course"
+title: "Emotional Design Psychology & Neuroscience - 2-day Course"
 date: "2019-06-24T20:26:02.513Z"
 startDate: "2019-12-05T21:23:19.000Z"
 startTime: "6:00pm"

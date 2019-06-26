@@ -10,7 +10,7 @@ locationStreet: "1215 W Fulton Market"
 locationCity: "Chicago"
 locationState: "IL"
 cost: "FREE"
-eventUrl: "https://zendeskshowcase.com/chicago/?source=ChicagoBusinessJournal/&utm_source=press_release&utm_medium=referral&utm_campaign=showcase_chicago"
+eventUrl: "https://zendeskshowcase.com/chicago/?source=ChicagoTechEvents/&utm_source=press_release&utm_medium=referral&utm_campaign=showcase_chicago"
 
 ---
 

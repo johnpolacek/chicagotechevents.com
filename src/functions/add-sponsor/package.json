@@ -1,0 +1,10 @@
+{
+  "name": "add-sponsor",
+  "version": "1.0.0",
+  "main": "add-sponsor.js",
+  "author": "John Polacek",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.481.0"
+	}
+}

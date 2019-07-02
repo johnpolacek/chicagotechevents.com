@@ -1,5 +1,5 @@
 ---
-title: "DATA ANALYTICS WITH TABLEAU"
+title: "Data Analytics with Tableau"
 date: "2019-07-01T17:08:06.645Z"
 startDate: "2019-08-01T17:05:33.000Z"
 startTime: "6:00pm"

@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+import FormControl from '../forms/FormControl'
 import Button from '../../components/ui/Button'
 import { Div, Form, Label, Span, Img, A } from 'styled-system-html'
 
 const SponsorForm = props => {
 
+  const [personName, setPersonName] = useState('')
   const [sponsorImageUpload, setSponsorImageUpload] = useState(null)
 
   const onFileSelect = e => {
@@ -23,11 +25,18 @@ const SponsorForm = props => {
   const onSponsorSubmit = (e) => {
     e.preventDefault()
     console.log('onSponsorSubmit', sponsorImageUpload)
-    
+
   }
 
   return (
     <Form onSubmit={onSponsorSubmit} p={4}>
+      <FormControl
+        label="Your Name"
+        type="text"
+        id="personName"
+        value={personName}
+        setValue={setPersonName}
+      />
       <Label fontSize={1} fontWeight="500" htmlFor="sponsorImage" display="block" pb={2}>
         Your sponsorship image <br/>
         <Span color="gray8" fontSize={0} fontWeight="300">(will be resized to 1200x400 pixels)</Span>

@@ -12,10 +12,10 @@ const getFormControl = type => {
 
 const FormControl = props => (
   <Div pb={2}>
-    <Label pb={1} display="block" htmlFor={props.id}>
+    <Label fontSize={1} fontWeight="500" pb={1} display="block" htmlFor={props.id}>
       {props.label}
       {props.labelAddendum ? (
-        <Span fontSize={0} pl={1}>
+        <Span fontWeight={300} fontSize={0} pl={1}>
           {' '}
           {props.labelAddendum}
         </Span>

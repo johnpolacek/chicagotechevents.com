@@ -9,11 +9,13 @@ exports.handler = async (event, context, callback) => {
   try {
   
     const submitData = JSON.parse(event.body)
-    // const srcData = Buffer.from(submitData.file.replace(/^data:image\/\w+;base64,/, ""), 'base64')
+    const srcData = Buffer.from(submitData.file.replace(/^data:image\/\w+;base64,/, ""), 'base64')
+
     const params = {
       Bucket: 'docqet-images',
-      Key: 'sponsors/test',
-      Body: 'test'
+      Key: 'sponsors/test.jpg',
+      Body: srcData,
+      ContentType: 'image/jpeg'
     }
 
     s3.putObject(params, function(err, data) {

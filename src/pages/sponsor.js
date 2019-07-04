@@ -2,8 +2,8 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../components/layout/Layout'
 import SEO from '../components/seo'
-import Button from '../components/ui/Button'
-import { Div, H2, P, Form, Label, Span } from 'styled-system-html'
+import { Div, H2, P, Span } from 'styled-system-html'
+import SponsorForm from '../components/sponsor/SponsorForm'
 
 class Submit extends React.Component {
   render() {
@@ -33,14 +33,7 @@ class Submit extends React.Component {
         </H2>
         <Div textAlign="center" mx="auto" pb={5} width={[1,420]}>
           <P>Want to promote your product, service or event to front of hundreds Chicago Tech Enthusiasts? <Span fontWeight="bold">Become a Chicago Tech Events sponsor!</Span></P>
-          <Form p={4}>
-            <Label fontSize={1} fontWeight="500" for="sponsorImage" display="block" pb={2}>
-              Your sponsorship image <br/>
-              <Span color="gray8" fontSize={0} fontWeight="300">(will be resized to 1200x400 pixels)</Span>
-            </Label>
-            <input type="file" name="sponsorImage" />
-            <Button>Upload</Button>
-          </Form>
+          <SponsorForm />
         </Div>
       </Layout>
     )

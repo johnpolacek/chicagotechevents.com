@@ -1,5 +1,5 @@
 ---
-title: "TechDebates"
+title: "Tech Debates Chicago"
 date: "2019-07-05T15:12:15.009Z"
 startDate: "2019-07-18T15:10:49.000Z"
 startTime: "6:00pm"
@@ -10,7 +10,7 @@ locationStreet: "222 W Merchandise Mart Plaza #1212"
 locationCity: "Chicago"
 locationState: "IL"
 cost: "FREE"
-eventUrl: "www.techdebates.org"
+eventUrl: "https://www.techdebates.org/upcoming-events/chicago#location-section"
 
 ---
 

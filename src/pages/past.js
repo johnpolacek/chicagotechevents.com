@@ -13,9 +13,15 @@ class Past extends React.Component {
     const siteDescription = data.site.siteMetadata.description
 
     // filter out sponsors
-    const events = data.allMarkdownRemark.edges.filter(
+    const { edges } = this.props.data.allMarkdownRemark
+    const events = edges.filter(
       ({ node }) => node.frontmatter.startDate
     )
+    const sponsors = edges.filter(
+      ({ node }) => node.frontmatter.sponsorDate
+    )
+    const sponsor = sponsors.length !== 0 ? sponsors[0].node.frontmatter : null
+
     const pastEvents = events.filter(
       ({ node }) => new Date(node.frontmatter.endDate) < new Date()
     )
@@ -50,7 +56,7 @@ class Past extends React.Component {
             <LinkButton fontWeight={1}>VIEW CURRENT EVENTS</LinkButton>
           </Link>
         </Div>
-        <EventsByMonth eventsByMonth={eventsByMonth} />
+        <EventsByMonth sponsor={sponsor} eventsByMonth={eventsByMonth} />
       </Layout>
     )
   }

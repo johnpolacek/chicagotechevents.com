@@ -2,7 +2,6 @@ import React from 'react'
 import { graphql, Link } from 'gatsby'
 import Layout from '../components/layout/Layout'
 import { Div } from 'styled-system-html'
-import { getMonday } from '../components/util'
 import SEO from '../components/seo'
 import Subscribe from '../components/forms/Subscribe'
 import EventsByMonth from '../components/events/EventsByMonth'
@@ -13,13 +12,15 @@ class Index extends React.Component {
     const { data } = this.props
     const siteTitle = data.site.siteMetadata.title
     const siteDescription = data.site.siteMetadata.description
-    const sponsors = data.allMarkdownRemark.edges.filter(
-      ({ node }) => node.frontmatter.sponsorDate && new Date(node.frontmatter.sponsorDate) >= getMonday(-1) && new Date(node.frontmatter.sponsorDate) < getMonday()
-    )
-    const sponsor = sponsors.length !== 0 ? sponsors[0].node.frontmatter : null
-    const events = data.allMarkdownRemark.edges.filter(
+
+    const { edges } = this.props.data.allMarkdownRemark
+    const events = edges.filter(
       ({ node }) => node.frontmatter.startDate
     )
+    const sponsors = edges.filter(
+      ({ node }) => node.frontmatter.sponsorDate
+    )
+    const sponsor = sponsors.length !== 0 ? sponsors[0].node.frontmatter : null
     const currEvents = events.filter(
       ({ node }) => new Date(node.frontmatter.endDate) >= new Date()
     )

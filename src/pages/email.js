@@ -9,7 +9,14 @@ class Email extends React.Component {
   render() {
     const { data } = this.props
     const siteTitle = data.site.siteMetadata.title
-    const events = data.allMarkdownRemark.edges
+    const { edges } = this.props.data.allMarkdownRemark
+    const events = edges.filter(
+      ({ node }) => node.frontmatter.startDate
+    )
+    const sponsors = edges.filter(
+      ({ node }) => node.frontmatter.sponsorDate
+    )
+    const sponsor = sponsors.length !== 0 ? sponsors[0].node.frontmatter : null
     const currEvents = events.filter(
       ({ node }) => new Date(node.frontmatter.endDate) >= new Date()
     )
@@ -64,7 +71,7 @@ class Email extends React.Component {
               to stop receiving updates
             </td>
           </tr>
-          <EventsByMonth eventsByMonth={eventsByMonth} />
+          <EventsByMonth sponsor={sponsor} eventsByMonth={eventsByMonth} />
         </table>
       </ThemeProvider>
     )

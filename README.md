@@ -13,7 +13,7 @@
 **--W--I--P--**
 
 - Try to submit an image from the sponsors page
-	- Created Netlify Function
+	- Created Netlify Function: See if it works
 
 - Add Sponsorships
 	- Available Dates

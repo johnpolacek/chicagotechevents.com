@@ -80,7 +80,7 @@ const SponsorForm = props => {
         )
       }
       <Div pt={3} pb={5} mb={4} textAlign="right">
-        <InputSubmit disabled={submitState === SUBMIT_READY} id="submitSponsor" value="SUBMIT" />
+        <InputSubmit disabled={submitState !== SUBMIT_READY} id="submitSponsor" value="SUBMIT" />
       </Div>
     </Form>
   )

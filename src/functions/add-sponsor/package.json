@@ -6,5 +6,5 @@
   "license": "MIT",
   "dependencies": {
     "aws-sdk": "^2.481.0"
-	}
+  }
 }

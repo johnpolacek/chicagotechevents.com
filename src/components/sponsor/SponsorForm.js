@@ -35,7 +35,8 @@ const SponsorForm = props => {
       return fetch(`/.netlify/functions/add-sponsor/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({file:sponsorImageUpload.data}),
+        body: JSON.stringify({test:'test'}),
+        // body: JSON.stringify({file:sponsorImageUpload.data}),
       })
         .then(response => response.json())
         .then(data => {

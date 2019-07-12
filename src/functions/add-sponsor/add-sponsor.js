@@ -18,24 +18,19 @@ exports.handler = async (event, context, callback) => {
       ContentType: 'image/jpeg'
     }
 
-    return  {
-      statusCode: 200,
-      body: JSON.stringify({ message: `success` })
-    }
-
-    // s3.putObject(params, function(err, data) {
-    //   if (err) {
-    //     return  {
-    //       statusCode: 500,
-    //       body: JSON.stringify({ message: `Could not upload image`, error: err })
-    //     }
-    //   } else {
-    //     return  {
-    //       statusCode: 200,
-    //       body: JSON.stringify({ message: `success` })
-    //     }
-    //   }
-    // })
+    s3.putObject(params, function(err, data) {
+      if (err) {
+        return  {
+          statusCode: 500,
+          body: JSON.stringify({ message: `Could not upload image`, error: err })
+        }
+      } else {
+        return  {
+          statusCode: 200,
+          body: JSON.stringify({ message: `success` })
+        }
+      }
+    })
 
   } catch (err) {
     return  {

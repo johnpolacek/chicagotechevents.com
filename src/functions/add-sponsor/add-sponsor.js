@@ -6,17 +6,39 @@ const s3 = new AWS.S3({
 
 exports.handler = async (event, context, callback) => {
 
+
+  // TESTING: Upload a file, do nothing with it, put a test file on S3. If not uploading a file, return success message
+
   try {
   
     const submitData = JSON.parse(event.body)
+    // if (typeof(submitData.file !== 'undefined')) {
+    //   const srcData = Buffer.from(submitData.file.replace(/^data:image\/\w+;base64,/, ""), 'base64')
+
+    //   const params = {
+    //     Bucket: 'docqet-images',
+    //     Key: 'sponsors/test.jpg',
+    //     Body: srcData,
+    //     ContentType: 'image/jpeg'
+    //   }
+    //   return  {
+    //     statusCode: 200,
+    //     body: JSON.stringify({ params: params })
+    //   }
+    // } else {
+    //   return  {
+    //     statusCode: 200,
+    //     body: JSON.stringify({ message: `success` })
+    //   }
+    // }
+
     if (typeof(submitData.file !== 'undefined')) {
-      const srcData = Buffer.from(submitData.file.replace(/^data:image\/\w+;base64,/, ""), 'base64')
+      // const srcData = Buffer.from(submitData.file.replace(/^data:image\/\w+;base64,/, ""), 'base64')
 
       const params = {
         Bucket: 'docqet-images',
-        Key: 'sponsors/test.jpg',
-        Body: srcData,
-        ContentType: 'image/jpeg'
+        Key: 'sponsors/test',
+        Body: 'test',
       }
       return  {
         statusCode: 200,

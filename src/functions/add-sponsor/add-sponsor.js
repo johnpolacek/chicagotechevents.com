@@ -34,16 +34,26 @@ exports.handler = async (event, context, callback) => {
 
     if (typeof(submitData.file !== 'undefined')) {
       // const srcData = Buffer.from(submitData.file.replace(/^data:image\/\w+;base64,/, ""), 'base64')
+      const srcData = 'test'
 
       const params = {
         Bucket: 'docqet-images',
         Key: 'sponsors/test',
-        Body: 'test',
+        Body: srcData,
       }
-      return  {
-        statusCode: 200,
-        body: JSON.stringify({ params: params })
-      }
+      s3.putObject(params, function(err, data) {
+        if (err) {
+          return  {
+            statusCode: 500,
+            body: JSON.stringify({ srcData: srcData, message: `putObject Error: Could not upload image`, error: err })
+          }
+        } else {
+          return  {
+            statusCode: 200,
+            body: JSON.stringify({ message: `success` })
+          }
+        }
+      })
     } else {
       return  {
         statusCode: 200,
@@ -52,19 +62,7 @@ exports.handler = async (event, context, callback) => {
     }
 
 
-    // s3.putObject(params, function(err, data) {
-    //   if (err) {
-    //     return  {
-    //       statusCode: 500,
-    //       body: JSON.stringify({ srcData: srcData, message: `putObject Error: Could not upload image`, error: err })
-    //     }
-    //   } else {
-    //     return  {
-    //       statusCode: 200,
-    //       body: JSON.stringify({ message: `success` })
-    //     }
-    //   }
-    // })
+    
 
   } catch (err) {
     return  {

@@ -41,28 +41,32 @@ exports.handler = async (event, context, callback) => {
         Key: 'sponsors/test',
         Body: srcData,
       }
-      s3.putObject(params, function(err, data) {
-        return  {
-          statusCode: 200,
-          body: JSON.stringify({ message: `putObject called` })
-        }
-        // if (err) {
-        //   return  {
-        //     statusCode: 500,
-        //     body: JSON.stringify({ srcData: srcData, message: `putObject Error: Could not upload image`, error: err })
-        //   }
-        // } else {
-        //   return  {
-        //     statusCode: 200,
-        //     body: JSON.stringify({ message: `success` })
-        //   }
-        // }
-      })
-    } else {
+
       return  {
         statusCode: 200,
-        body: JSON.stringify({ message: `success` })
+        body: JSON.stringify({ message: `testing credentials`, credentials: s3.config.credentials })
       }
+
+      
+
+    //   s3.putObject(params, function(err, data) {
+    //     if (err) {
+    //       return  {
+    //         statusCode: 500,
+    //         body: JSON.stringify({ srcData: srcData, message: `putObject Error: Could not upload image`, error: err })
+    //       }
+    //     } else {
+    //       return  {
+    //         statusCode: 200,
+    //         body: JSON.stringify({ message: `success` })
+    //       }
+    //     }
+    //   })
+    // } else {
+    //   return  {
+    //     statusCode: 200,
+    //     body: JSON.stringify({ message: `success` })
+    //   }
     }
 
 

@@ -13,7 +13,10 @@
 **--W--I--P--**
 
 - Try to submit an image from the sponsors page
-	- Created Netlify Function: See if it works
+	- Created Netlify Function
+		- SponsorForm.js:40 Uncaught (in promise) SyntaxError: Unexpected end of JSON input
+		- Server does not return anything. putObject fails - can't figure out why
+		- Make a serverless project for image uploads?
 
 - Add Sponsorships
 	- Available Dates

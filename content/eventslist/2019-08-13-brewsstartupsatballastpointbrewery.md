@@ -9,7 +9,7 @@ locationName: "Ballast Point Brewing Company"
 locationStreet: "212 N Green Street"
 locationCity: "Chicago"
 locationState: "IL"
-cost: "$25 per person"
+cost: "$25"
 eventUrl: "http://bit.ly/brewsmeetup0812"
 
 ---

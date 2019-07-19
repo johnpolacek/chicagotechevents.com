@@ -10,9 +10,9 @@ locationStreet: "201 E Randolph St, Chicago, IL 60602"
 locationCity: "Chicago"
 locationState: "IL"
 cost: "FREE"
-eventUrl: "https://www.meetup.com/Chicago-Entrepreneurial-Networking-Meetup/events/263264008/?isFirstPublish=true"
+eventUrl: "https://www.meetup.com/Chicago-Entrepreneurial-Networking-Meetup/events/263264008/"
 
 ---
 
-https://www.meetup.com/Chicago-Entrepreneurial-Networking-Meetup/events/263264008/?isFirstPublish=true
+Inviting IT people to meet and help each other learn new and different technologies.
 

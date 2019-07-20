@@ -33,12 +33,11 @@ exports.handler = async (event, context, callback) => {
     // }
 
     if (typeof(submitData.file !== 'undefined')) {
-      // const srcData = Buffer.from(submitData.file.replace(/^data:image\/\w+;base64,/, ""), 'base64')
-      const srcData = 'test'
-
+      const srcData = Buffer.from(submitData.file.replace(/^data:image\/\w+;base64,/, ""), 'base64')
+      
       const params = {
         Bucket: 'docqet-images',
-        Key: 'sponsors/test',
+        Key: 'sponsors/test-123.jpg',
         Body: srcData,
       }
     

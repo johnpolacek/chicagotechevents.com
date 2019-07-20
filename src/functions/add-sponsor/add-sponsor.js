@@ -37,8 +37,8 @@ exports.handler = async (event, context, callback) => {
       
       const params = {
         Bucket: 'docqet-images',
-        Key: 'sponsors/test-123.jpg',
-        Body: srcData,
+        Key: 'sponsors/test-1',
+        Body: 'test',
       }
     
 

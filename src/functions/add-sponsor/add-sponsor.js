@@ -38,9 +38,9 @@ exports.handler = (event, context, callback) => {
       
       const params = {
         Bucket: 'docqet-images',
-        Key: 'sponsors/test-2.jpg',
+        Key: 'sponsors/test123.jpg',
         ContentType: 'image/jpeg',
-        Body: srcData,
+        Body: srcData
       }
     
 

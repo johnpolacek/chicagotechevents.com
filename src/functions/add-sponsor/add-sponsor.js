@@ -45,32 +45,29 @@ exports.handler = (event, context, callback) => {
 
       s3.putObject(params, function(err, data) {
         if (err) {
-          return  {
+          return callback(null, {
             statusCode: 500,
             body: JSON.stringify({ srcData: srcData, message: `putObject Error: Could not upload image`, error: err })
-          }
+          })
         } else {
-          return  {
+          return callback(null, {
             statusCode: 200,
             body: JSON.stringify({ message: `success` })
-          }
+          })
         }
       })
     } else {
-      return  {
+      return callback(null, {
         statusCode: 200,
         body: JSON.stringify({ message: `success` })
-      }
-    }
-
-
-    
+      })
+    }    
 
   } catch (err) {
-    return  {
+    return callback(null, {
       statusCode: 500,
       body: JSON.stringify({ message: `Could not upload image`, error: err })
-    }
+    })
   }
 }
 

@@ -12,8 +12,6 @@
 
 **--W--I--P--**
 
-- Try to submit an image from the sponsors page
-
 - Add Sponsorships
 	- Available Dates
 	- Create Ad

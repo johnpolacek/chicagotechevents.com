@@ -13,24 +13,23 @@
 **--W--I--P--**
 
 - Try to submit an image from the sponsors page
-	- Created Netlify Function
-		- SponsorForm.js:40 Uncaught (in promise) SyntaxError: Unexpected end of JSON input
-		- Server does not return anything. putObject fails - can't figure out why
-		- Make a serverless project for image uploads?
 
 - Add Sponsorships
 	- Available Dates
 	- Create Ad
-		- Sponsor Name and Email Contact (upload to S3)
+		- Sponsor Name
+		- Email Contact (upload to S3)
+		- Id
 		- Upload Image to S3
-			- onChange file input verifies size of image then submits with size params that get validated
-			- compress before uploading
-		- Tweet Preview: Thanks to {Sponsor Name} for sponsoring this week in Chicago Tech Events. Go to {link + link text}
+			- resize in Netlify function
+		- Show Preview of Ad and newsletter: Thanks to {Sponsor Name} for sponsoring this week in Chicago Tech Events. Go to {link + link text}
 		- Purchase on Stripe
 		- Submits PR
 - Add Featured Event
+	- Appears at top of feed
 - Create JSON and RSS feed
 	- https://www.gatsbyjs.org/packages/gatsby-plugin-feed-generator/
+- Refactor to theme-ui
 - Automate Social
 - Mailchimp API 
 	- [Netlify example for Mailchimp integration](https://github.com/tobilg/netlify-functions-landingpage/blob/169de175d04b165b5d4801b09cb250cd9a740da5/src/lambda/signup.js)

@@ -20,7 +20,7 @@ export default props => (
       <HeaderTitle link={props.path !== '/'}>{props.title.toUpperCase()}</HeaderTitle>
       <StarBar mt={[-3, -4, -4, 0]} />
       <HeaderDescription>{props.description}</HeaderDescription>
-      {props.path.replace(/\/$/, '') === '/submit' ? (
+      {props.path.replace(/\/$/, '') === '/submit' || props.path.replace(/\/$/, '') === '/sponsor' ? (
         <HeaderLink to={'/'}>VIEW EVENTS</HeaderLink>
       ) : (
         <HeaderLink to={'/submit'}>+ ADD NEW EVENT</HeaderLink>

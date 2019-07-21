@@ -3,13 +3,13 @@ import FormControl from '../forms/FormControl'
 import InputSubmit from '../forms/InputSubmit'
 import { Div, Form, Label, Input, Span, Img, A } from 'styled-system-html'
 
-const SponsorForm = props => {
+const SponsorAdForm = props => {
   const SUBMIT_READY = 'SUBMIT_READY'
   const SUBMIT_SENDING = 'SUBMIT_SENDING'
   const SUBMIT_SUCCESS = 'SUBMIT_SUCCESS'
   const SUBMIT_FAIL = 'SUBMIT_FAIL'
   const [submitState, setSubmitState] = useState(SUBMIT_READY)
-  const [personName, setPersonName] = useState('')
+  const [SponsorName, setSponsorName] = useState('')
   const [sponsorImageUpload, setSponsorImageUpload] = useState(null)
 
   const onFileSelect = e => {
@@ -28,7 +28,6 @@ const SponsorForm = props => {
   }
 
   const onSponsorSubmit = e => {
-    console.log('onSponsorSubmit')
     if (e.target.checkValidity()) {
       e.preventDefault()
       setSubmitState(SUBMIT_SENDING)
@@ -55,11 +54,11 @@ const SponsorForm = props => {
   return (
     <Form textAlign="left" onSubmit={onSponsorSubmit} p={4}>
       <FormControl
-        label="Your Name"
+        label="Sponsor Name"
         type="text"
-        id="personName"
-        value={personName}
-        setValue={setPersonName}
+        id="SponsorName"
+        value={SponsorName}
+        setValue={setSponsorName}
       />
       <Label fontSize={1} fontWeight="500" htmlFor="sponsorImage" display="block" pb={2}>
         Your sponsorship image <br/>
@@ -86,4 +85,4 @@ const SponsorForm = props => {
   )
 }
 
-export default SponsorForm
+export default SponsorAdForm

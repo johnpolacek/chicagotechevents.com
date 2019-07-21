@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Wrapper from '../layout/Wrapper'
 import MonthHeader from '../ui/header/MonthHeader'
 import Event from './Event'
-import Sponsor from '../sponsor/Sponsor'
+import SponsorAd from '../sponsor/SponsorAd'
 import SponsorPromo from '../sponsor/SponsorPromo'
 
 const EventsByMonth = props => {
@@ -19,7 +19,7 @@ const EventsByMonth = props => {
               <>
                 {
                   props.sponsor ? (
-                    <Sponsor sponsor={props.sponsor} />
+                    <SponsorAd sponsor={props.sponsor} />
                   ) : (
                     <SponsorPromo />
                   )

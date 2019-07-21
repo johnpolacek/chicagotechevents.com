@@ -5,7 +5,7 @@ const s3 = new AWS.S3({
   region: 'us-east-2'
 })
 
-exports.handler =(event, context, callback) => {
+exports.handler = (event, context, callback) => {
 
 
   // TESTING: Upload a file, do nothing with it, put a test file on S3. If not uploading a file, return success message

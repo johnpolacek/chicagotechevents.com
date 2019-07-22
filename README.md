@@ -27,6 +27,7 @@
 	- Appears at top of feed
 - Create JSON and RSS feed
 	- https://www.gatsbyjs.org/packages/gatsby-plugin-feed-generator/
+- Autopublish blog (14 Tech Events in Chicago the week of 7/14/2019)
 - Refactor to theme-ui
 - Automate Social
 - Mailchimp API 

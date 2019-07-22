@@ -4,6 +4,8 @@ import { ThemeProvider } from 'styled-components'
 import theme from '../theme.js'
 import Header from '../components/email/Header'
 import EventsByMonth from '../components/email/EventsByMonth'
+import SponsorAd from '../components/sponsor/SponsorAd'
+import SponsorPromo from '../components/sponsor/SponsorPromo'
 
 class Email extends React.Component {
   render() {
@@ -46,6 +48,20 @@ class Email extends React.Component {
           }}
         >
           <Header title={siteTitle} />
+          <tr>
+            <td>
+              {
+                sponsor ? (
+                  <SponsorAd sponsor={sponsor} />
+                ) : (
+                  <>
+                    <p style={{paddingTop:'32px',textAlign:'center'}}>Want to sponsor this newsletter and reach hundreds of Chicago tech enthusiasts?</p>
+                    <p style={{paddingBottom:'32px',fontWeight:'bold',textAlign:'center'}}>Find out more at <a href="https://chicagotechevents.com/sponsor">chicagotechevents.com/sponsor</a></p>
+                  </>
+                )
+              }
+            </td>
+          </tr>
           <tr>
             <td style={{ padding: '16px 0 24px', textAlign: 'center' }}>
               View these events online at{' '}
@@ -97,6 +113,7 @@ export const pageQuery = graphql`
           }
           frontmatter {
             title
+            sponsorDate
             startDate(formatString: "MMMM DD, YYYY")
             startTime
             endDate(formatString: "MMMM DD, YYYY")

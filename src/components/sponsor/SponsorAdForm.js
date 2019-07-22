@@ -10,6 +10,7 @@ const SponsorAdForm = props => {
   const SUBMIT_FAIL = 'SUBMIT_FAIL'
   const [submitState, setSubmitState] = useState(SUBMIT_READY)
   const [SponsorName, setSponsorName] = useState('')
+  const [SponsorLink, setSponsorLink] = useState('')
   const [sponsorImageUpload, setSponsorImageUpload] = useState(null)
 
   const onFileSelect = e => {
@@ -59,6 +60,13 @@ const SponsorAdForm = props => {
         id="SponsorName"
         value={SponsorName}
         setValue={setSponsorName}
+      />
+      <FormControl
+        label="Sponsor Link"
+        type="text"
+        id="SponsorLink"
+        value={SponsorLink}
+        setValue={setSponsorLink}
       />
       <Label fontSize={1} fontWeight="500" htmlFor="sponsorImage" display="block" pb={2}>
         Your sponsorship image <br/>

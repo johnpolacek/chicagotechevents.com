@@ -20,11 +20,12 @@ const SponsorCreate = props => {
       {
         sponsorWeek ? (
           <>
-            <Div position="absolute" top="0" right="0" fontSize={0} pt="40px" pr={3} textAlign="right">
-              Week: {sponsorWeekReadable}<br/>
-              <A href="#" color="blue" onClick={e => {e.preventDefault(); setSponsorWeek(null)}}>change</A>
-            </Div>
-            <SponsorAdCreate />
+            <SponsorAdCreate>
+              <Div py={2} fontSize={0} fontWeight="bold">
+                Sponsorship week start date: {sponsorWeekReadable}<br/>
+                <A href="#" color="blue" onClick={e => {e.preventDefault(); setSponsorWeek(null)}}>change</A>
+              </Div>
+            </SponsorAdCreate>
           </>
         ) : (
           <SponsorChooseWeek weeksAvailable={props.weeksAvailable} onChooseWeek={week => setSponsorWeek(week)} />

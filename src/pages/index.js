@@ -80,6 +80,7 @@ export const pageQuery = graphql`
           }
           frontmatter {
             title
+            sponsorDate
             startDate(formatString: "MMMM DD, YYYY")
             startTime
             endDate(formatString: "MMMM DD, YYYY")

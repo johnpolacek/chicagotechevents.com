@@ -41,7 +41,7 @@ class Submit extends React.Component {
         </H2>
         <Div textAlign="center" pb={5} px={3}>
           <P mb={1}>Want to promote your product, service or event to hundreds of Chicago Tech Enthusiasts?</P>
-          <P fontWeight="bold">Become a Chicago Tech Events sponsor!</P>
+          <P fontWeight="bold">Become a Chicago Tech Events sponsor for only $50!</P>
           <SponsorCreate weeksAvailable={sponsorDatesAvailable} />
         </Div>
       </Layout>

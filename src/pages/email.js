@@ -2,10 +2,10 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { ThemeProvider } from 'styled-components'
 import theme from '../theme.js'
+import { getMonday } from '../components/util'
 import Header from '../components/email/Header'
 import EventsByMonth from '../components/email/EventsByMonth'
 import SponsorAd from '../components/sponsor/SponsorAd'
-import SponsorPromo from '../components/sponsor/SponsorPromo'
 
 class Email extends React.Component {
   render() {
@@ -15,10 +15,6 @@ class Email extends React.Component {
     const events = edges.filter(
       ({ node }) => node.frontmatter.startDate
     )
-    const sponsors = edges.filter(
-      ({ node }) => node.frontmatter.sponsorDate
-    )
-    const sponsor = sponsors.length !== 0 ? sponsors[0].node.frontmatter : null
     const currEvents = events.filter(
       ({ node }) => new Date(node.frontmatter.endDate) >= new Date()
     )
@@ -34,6 +30,16 @@ class Email extends React.Component {
         eventsByMonth[month].push({ node })
       }
     })
+
+    const monday = getMonday()
+    const nextMonday = getMonday(1)
+    const sponsors = edges.filter(
+      ({ node }) => {
+        const sponsorDate = new Date(node.frontmatter.sponsorDate)
+        return sponsorDate > monday && sponsorDate < nextMonday
+      }
+    )
+    const sponsor = sponsors.length !== 0 ? sponsors[0].node.frontmatter : null
 
     return (
       <ThemeProvider theme={theme}>

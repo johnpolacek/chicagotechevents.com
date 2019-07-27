@@ -64,9 +64,13 @@ const SponsorAdPreview = props => {
             ),
             [PREVIEW_NEWSLETTER]: (
               <>
-                <P fontSize={1}>The Sponsor Ad Image appears after the 2nd event and again every 10 events after that.</P>
+                <P fontSize={1}>The Sponsor Ad Image and Thank You For Sponsoring message appear at the top of the newsletter.</P>
                 <Div pt={4} px={4} bg="white">
                   <Header title="CHICAGO TECH EVENTS" />
+                  <Div position="relative" px={3} pb={4} textAlign="center">
+                    <P pb={0} mb={1} fontStyle="italic" fontSize={0} color="gray">Thank you to [Company Name] for sponsoring this newsletter</P>
+                    <Img width={[1,'450px']} src="/img/sponsor-placeholder.gif" />
+                  </Div>
                 </Div>
               </>
             ),

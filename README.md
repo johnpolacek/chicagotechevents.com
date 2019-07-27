@@ -15,9 +15,7 @@
 - Add Sponsorships
 	- Available Dates
 	- Create Ad
-		- Sponsor Name
-		- Email Contact (upload to S3)
-		- Id
+		- State management for form data and render preview
 		- Upload Image to S3
 			- resize in Netlify function
 		- Show Preview of Ad and newsletter: Thanks to {Sponsor Name} for sponsoring this week in Chicago Tech Events. Go to {link + link text}

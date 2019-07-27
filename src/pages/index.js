@@ -1,5 +1,6 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
+import { getMonday } from '../components/util'
 import Layout from '../components/layout/Layout'
 import { Div } from 'styled-system-html'
 import SEO from '../components/seo'
@@ -17,10 +18,6 @@ class Index extends React.Component {
     const events = edges.filter(
       ({ node }) => node.frontmatter.startDate
     )
-    const sponsors = edges.filter(
-      ({ node }) => node.frontmatter.sponsorDate
-    )
-    const sponsor = sponsors.length !== 0 ? sponsors[0].node.frontmatter : null
     const currEvents = events.filter(
       ({ node }) => new Date(node.frontmatter.endDate) >= new Date()
     )
@@ -37,6 +34,16 @@ class Index extends React.Component {
       }
     })
 
+    const monday = getMonday()
+    const nextMonday = getMonday(1)
+    const sponsors = edges.filter(
+      ({ node }) => {
+        const sponsorDate = new Date(node.frontmatter.sponsorDate)
+        return sponsorDate > monday && sponsorDate < nextMonday
+      }
+    )
+    const sponsor = sponsors.length !== 0 ? sponsors[0].node.frontmatter : null
+    
     return (
       <Layout
         location={this.props.location}

@@ -16,8 +16,8 @@ class Submit extends React.Component {
     const sponsors = edges.filter(
       ({ node }) => node.frontmatter.sponsorDate
     )
-    const sponsorDatesInUse = sponsors.map(sponsor => sponsor.node.frontmatter.sponsorDate)
-    const sponsorDatesAvailable = getWeeksInYear().filter(week => !sponsorDatesInUse.includes(week))
+    const sponsorDatesInUse = sponsors.map(sponsor => sponsor.node.frontmatter.sponsorDate.split('T')[0])
+    const sponsorDatesAvailable = getWeeksInYear().filter(week => !sponsorDatesInUse.includes(week.split('T')[0]))
 
     return (
       <Layout

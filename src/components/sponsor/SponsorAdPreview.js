@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import useSponsorData from './useSponsorData'
-import { Div, H4, Img, P } from 'styled-system-html'
+import { Div, H4, Img, P, A } from 'styled-system-html'
 import TabButton from '../ui/TabButton'
 import Event from '../events/Event'
 import Header from '../email/Header'
@@ -74,13 +74,15 @@ const SponsorAdPreview = props => {
                   <Div position="relative" px={3} pb={4} textAlign="center">
                     <P pb={0} mb={1} fontStyle="italic" fontSize={0} color="gray">Thank you to {sponsorName === '' ? '[Company Name]}' : sponsorName} for sponsoring this newsletter</P>
                     <Div textAlign="center">
-                      {sponsorImageUpload && sponsorImageUpload.data ?
-                        (
-                          <Img width="auto" height="150px" src={sponsorImageUpload.data} />
-                        ) : (
-                          <Img width="auto" height="150px" src="/img/sponsor-placeholder.gif" />
-                        )
-                      }
+                      <A href={sponsorLink} target="_blank" onClick={e => { if (sponsorLink === '') e.preventDefault()}}>
+                        {sponsorImageUpload && sponsorImageUpload.data ?
+                          (
+                            <Img width="auto" height="150px" src={sponsorImageUpload.data} />
+                          ) : (
+                            <Img width="auto" height="150px" src="/img/sponsor-placeholder.gif" />
+                          )
+                        }
+                      </A>
                     </Div>
                   </Div>
                 </Div>

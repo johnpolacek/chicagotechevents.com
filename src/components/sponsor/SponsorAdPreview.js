@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import useSponsorData from './useSponsorData'
 import { Div, H4, Img, P } from 'styled-system-html'
 import TabButton from '../ui/TabButton'
 import Event from '../events/Event'
@@ -9,6 +10,9 @@ const SponsorAdPreview = props => {
   const PREVIEW_SITE = 'PREVIEW_SITE'
   const PREVIEW_SOCIAL = 'PREVIEW_SOCIAL'
   const [preview, setPreview] = useState(PREVIEW_NEWSLETTER)
+
+  const { 
+    sponsorName, sponsorLink, sponsorImageUpload } = useSponsorData();
 
   return (
     <>
@@ -68,8 +72,16 @@ const SponsorAdPreview = props => {
                 <Div pt={4} px={4} bg="white">
                   <Header title="CHICAGO TECH EVENTS" />
                   <Div position="relative" px={3} pb={4} textAlign="center">
-                    <P pb={0} mb={1} fontStyle="italic" fontSize={0} color="gray">Thank you to [Company Name] for sponsoring this newsletter</P>
-                    <Img width={[1,'450px']} src="/img/sponsor-placeholder.gif" />
+                    <P pb={0} mb={1} fontStyle="italic" fontSize={0} color="gray">Thank you to {sponsorName === '' ? '[Company Name]}' : sponsorName} for sponsoring this newsletter</P>
+                    <Div textAlign="center">
+                      {sponsorImageUpload && sponsorImageUpload.data ?
+                        (
+                          <Img width="auto" height="150px" src={sponsorImageUpload.data} />
+                        ) : (
+                          <Img width="auto" height="150px" src="/img/sponsor-placeholder.gif" />
+                        )
+                      }
+                    </Div>
                   </Div>
                 </Div>
               </>

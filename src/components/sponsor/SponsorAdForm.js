@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import useSponsorData from "./useSponsorData"
+import useSponsorData from './useSponsorData'
 import FormControl from '../forms/FormControl'
 import InputSubmit from '../forms/InputSubmit'
 import { Div, Form, Label, Input, Span, Img, A } from 'styled-system-html'
@@ -75,7 +75,7 @@ const SponsorAdForm = props => {
       />
       <Label fontSize={1} fontWeight="500" htmlFor="sponsorImage" display="block" pb={2}>
         Your sponsorship image <br/>
-        <Span color="gray8" fontSize={0} fontWeight="300">(will be resized to 1200x400 pixels)</Span>
+        <Span color="gray8" fontSize={0} fontWeight="300">Recommended size: 1200x400 pixels, will be resized to fit within sponsorship area</Span>
       </Label>
       {
         sponsorImageUpload ? (

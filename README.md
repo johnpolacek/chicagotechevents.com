@@ -17,7 +17,7 @@
 	- Create Ad
 		- Upload Image to S3 and issue PR of sponsor md file
 			- resize in Netlify function
-		- Show Preview of Social Media: Thanks to {Sponsor Name} for sponsoring this week in Chicago Tech Events. Go to {link + link text}
+		- Show Preview of Social Media (get Twitter screenshot)
 		- Purchase on Stripe
 		- Submits PR
 - Add Featured Event

@@ -5,8 +5,11 @@ const SponsorContext = React.createContext([{}, () => {}]);
 const SponsorProvider = (props) => {
 
   const [state, setState] = useState({
-    sponsorWeek: null,
-  })
+  sponsorName: '',
+  sponsorLink: '',
+  sponsorImageUpload: null,
+  sponsorWeek: null
+})
 
   return (
     <SponsorContext.Provider value={[state, setState]}>

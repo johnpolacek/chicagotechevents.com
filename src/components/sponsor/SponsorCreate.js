@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Div, A } from 'styled-system-html'
-import useSponsorData from "./useSponsorData";
+import useSponsorData from "./useSponsorData"
 import SponsorChooseWeek from './SponsorChooseWeek'
 import SponsorAdCreate from './SponsorAdCreate'
 

@@ -4,14 +4,31 @@ import { SponsorContext } from "./SponsorContext";
 const useSponsorData = () => {
   const [state, setState] = useContext(SponsorContext);
 
+  function setSponsorName(name) {
+    setState(state => ({ ...state, sponsorName: name }));
+  }
+
+  function setSponsorLink(link) {
+    setState(state => ({ ...state, sponsorLink: link }));
+  }
+
+  function setSponsorImageUpload(img) {
+    setState(state => ({ ...state, sponsorImageUpload: img }));
+  }
+
   function setSponsorWeek(week) {
-    console.log('setSponsorWeek',week)
     setState(state => ({ ...state, sponsorWeek: week }));
   }
 
   return {
-   sponsorWeek: state.sponsorWeek ||  null,
-   setSponsorWeek
+    sponsorName: state.sponsorName || '',
+    sponsorLink: state.sponsorLink || '',
+    sponsorImageUpload: state.sponsorImageUpload || null,
+    sponsorWeek: state.sponsorWeek ||  null,
+    setSponsorName,
+    setSponsorLink,
+    setSponsorImageUpload,
+    setSponsorWeek
   }
 };
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Div, H3, H4, H5, Img, P } from 'styled-system-html'
+import { Div, H3 } from 'styled-system-html'
 import SponsorAdForm from './SponsorAdForm'
 import SponsorAdPreview from './SponsorAdPreview'
 

@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { Div, A } from 'styled-system-html'
+import useSponsorData from "./useSponsorData";
 import SponsorChooseWeek from './SponsorChooseWeek'
 import SponsorAdCreate from './SponsorAdCreate'
 
 
 const SponsorCreate = props => {
-  
-  const [sponsorWeek, setSponsorWeek] = useState(null)
+
+  const { sponsorWeek, setSponsorWeek } = useSponsorData();
 
   let sponsorWeekReadable = ''
   if (sponsorWeek) {

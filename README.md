@@ -15,7 +15,7 @@
 - Add Sponsorships
 	- Available Dates
 	- Create Ad
-		- State management for form data and render preview
+		- [State management with useContext](https://upmostly.com/tutorials/how-to-use-the-usecontext-hook-in-react) for form data and render preview
 		- Upload Image to S3
 			- resize in Netlify function
 		- Show Preview of Ad and newsletter: Thanks to {Sponsor Name} for sponsoring this week in Chicago Tech Events. Go to {link + link text}

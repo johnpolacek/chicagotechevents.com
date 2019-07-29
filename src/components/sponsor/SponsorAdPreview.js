@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Div, H3, H4, H5, Img, P, A } from 'styled-system-html'
+import { Div, H4, Img, P } from 'styled-system-html'
 import TabButton from '../ui/TabButton'
 import Event from '../events/Event'
 import Header from '../email/Header'

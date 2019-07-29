@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import Layout from '../components/layout/Layout'
 import SEO from '../components/seo'
 import { Div, H2, P } from 'styled-system-html'
+import { SponsorProvider } from '../components/sponsor/SponsorContext'
 import SponsorCreate from '../components/sponsor/SponsorCreate'
 import { getWeeksInYear } from '../components/util'
 
@@ -42,7 +43,9 @@ class Submit extends React.Component {
         <Div textAlign="center" pb={5} px={3}>
           <P mb={1}>Want to promote your product, service or event to hundreds of Chicago Tech Enthusiasts?</P>
           <P fontWeight="bold">Become a Chicago Tech Events sponsor for only $50!</P>
-          <SponsorCreate weeksAvailable={sponsorDatesAvailable} />
+          <SponsorProvider>
+            <SponsorCreate weeksAvailable={sponsorDatesAvailable} />
+          </SponsorProvider>
         </Div>
       </Layout>
     )

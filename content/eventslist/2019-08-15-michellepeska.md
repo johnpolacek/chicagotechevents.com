@@ -1,5 +1,5 @@
 ---
-title: "Michelle Peska"
+title: "Full Stack + Falafels : Study Session"
 date: "2019-08-01T16:36:56.780Z"
 startDate: "2019-08-15T16:33:00.000Z"
 startTime: "5:45pm"

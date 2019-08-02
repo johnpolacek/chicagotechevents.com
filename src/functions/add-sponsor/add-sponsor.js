@@ -40,26 +40,26 @@ exports.handler = (event, context, callback) => {
         body: JSON.stringify({ message: `success`, id: sponsorId, newContent: newContent })
       })
       
-      // const params = {
-      //   Bucket: 'docqet-images',
-      //   Key: 'sponsors/'+sponsorId+'.jpg',
-      //   ContentType: 'image/jpeg',
-      //   Body: srcData
-      // }
+      const params = {
+        Bucket: 'docqet-images',
+        Key: 'sponsors/'+sponsorId+'.jpg',
+        ContentType: 'image/jpeg',
+        Body: srcData
+      }
     
-      // s3.putObject(params, function(err, data) {
-      //   if (err) {
-      //     return callback(null, {
-      //       statusCode: 500,
-      //       body: JSON.stringify({ srcData: srcData, message: `putObject Error: Could not upload image`, error: err })
-      //     })
-      //   } else {
-      //     return callback(null, {
-      //       statusCode: 200,
-      //       body: JSON.stringify({ message: `success` })
-      //     })
-      //   }
-      // })
+      s3.putObject(params, function(err, data) {
+        if (err) {
+          return callback(null, {
+            statusCode: 500,
+            body: JSON.stringify({ srcData: srcData, message: `putObject Error: Could not upload image`, error: err })
+          })
+        } else {
+          return callback(null, {
+            statusCode: 200,
+            body: JSON.stringify({ message: `success` })
+          })
+        }
+      })
     } else {
       return callback(null, {
         statusCode: 500,

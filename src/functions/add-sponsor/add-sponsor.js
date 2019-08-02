@@ -35,11 +35,6 @@ exports.handler = (event, context, callback) => {
         link: submitData.link
       })
 
-      return callback(null, {
-        statusCode: 200,
-        body: JSON.stringify({ message: `success`, id: sponsorId, newContent: newContent })
-      })
-      
       const params = {
         Bucket: 'docqet-images',
         Key: 'sponsors/'+sponsorId+'.jpg',

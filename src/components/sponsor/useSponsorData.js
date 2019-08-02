@@ -17,7 +17,7 @@ const useSponsorData = () => {
   }
 
   function setSponsorWeek(week) {
-    setState(state => ({ ...state, sponsorWeek: week }));
+    setState(state => ({ ...state, sponsorWeek: week.split('T')[0] }));
   }
 
   return {

@@ -37,24 +37,24 @@ const SponsorAdForm = props => {
     if (e.target.checkValidity()) {
       e.preventDefault()
       console.log({sponsorName, sponsorLink, sponsorImageUpload, week: sponsorWeek})
-      // setSubmitState(SUBMIT_SENDING)
-      // return fetch(`/.netlify/functions/add-sponsor/`, {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({name: sponsorName, link: sponsorLink, file:sponsorImageUpload.data}),
-      // })
-      //   .then(response => response.json())
-      //   .then(data => {
-      //     try {
-      //       if (data.message === 'success') {
-      //         setSubmitState(SUBMIT_SUCCESS)
-      //       } else {
-      //         setSubmitState(SUBMIT_FAIL)
-      //       }
-      //     } catch (err) {
-      //       setSubmitState(SUBMIT_FAIL)
-      //     }
-      //   })
+      setSubmitState(SUBMIT_SENDING)
+      return fetch(`/.netlify/functions/add-sponsor/`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({name: sponsorName, link: sponsorLink, file:sponsorImageUpload.data, week: sponsorWeek}),
+      })
+        .then(response => response.json())
+        .then(data => {
+          try {
+            if (data.message === 'success') {
+              setSubmitState(SUBMIT_SUCCESS)
+            } else {
+              setSubmitState(SUBMIT_FAIL)
+            }
+          } catch (err) {
+            setSubmitState(SUBMIT_FAIL)
+          }
+        })
     }
   }
 

@@ -1,5 +1,5 @@
 ---
-title: "Explore Designing Mobile Apps at a Free Workshop!"
+title: "Explore Designing Mobile Apps"
 date: "2019-08-01T19:28:04.374Z"
 startDate: "2019-08-24T19:19:24.000Z"
 startTime: "10:00pm"

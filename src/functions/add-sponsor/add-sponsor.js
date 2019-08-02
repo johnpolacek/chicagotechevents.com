@@ -5,6 +5,19 @@ const s3 = new AWS.S3({
   region: 'us-east-2'
 })
 
+const url = require('url')
+const Octokit = require('@octokit/rest').plugin(require('./createPullRequest'))
+const getSponsorMarkdown = require('./getSponsorMarkdown')
+
+const octokit = new Octokit()
+octokit.authenticate({
+  type: 'oauth',
+  token: process.env.GITHUB_TOKEN
+})
+
+const repo = 'chicagotechevents.com'
+const owner = 'johnpolacek'
+
 exports.handler = (event, context, callback) => {
 
   try {
@@ -13,11 +26,18 @@ exports.handler = (event, context, callback) => {
 
     if (typeof(submitData.name !== 'undefined') && typeof(submitData.link !== 'undefined') && typeof(submitData.week !== 'undefined') && typeof(submitData.file !== 'undefined')) {
       const srcData = Buffer.from(submitData.file.replace(/^data:image\/\w+;base64,/, ""), 'base64')
-      const sponsorId = submitData.week + '-' + submitData.name.replace(/[^0-9a-z]/gi, '')
+      const sponsorId = submitData.week + '-' + submitData.name.replace(/\s+/g, '-').toLowerCase().replace(/[^0-9a-z]/gi, '')
+
+      const newContent = getSponsorMarkdown({
+        id: sponsorId,
+        name: submitData.name, 
+        week: submitData.week, 
+        link: submitData.link
+      })
 
       return callback(null, {
         statusCode: 200,
-        body: JSON.stringify({ message: `success`, id: sponsorId })
+        body: JSON.stringify({ message: `success`, id: sponsorId, newContent: newContent })
       })
       
       // const params = {

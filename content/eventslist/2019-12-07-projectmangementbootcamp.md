@@ -1,5 +1,5 @@
 ---
-title: "Project Mangement Bootcamp "
+title: "Project Management Bootcamp "
 date: "2019-08-02T16:28:40.963Z"
 startDate: "2019-12-07T17:27:28.000Z"
 startTime: "10:00pm"

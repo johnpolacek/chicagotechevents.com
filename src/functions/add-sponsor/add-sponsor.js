@@ -67,7 +67,7 @@ exports.handler = (event, context, callback) => {
               body: JSON.stringify({
                 message: `success`,
                 sponsorId: sponsorId
-                url: response.data.html_url})
+              })
             })
           }).catch((e) => {
             console.log('error', e)

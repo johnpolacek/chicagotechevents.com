@@ -48,7 +48,13 @@ const SponsorAdPreview = props => {
                   <Div position="relative" top="-40px" mb={-3} textAlign="center">
                     <P pb={0} mb={1} fontStyle="italic" fontSize={0} color="gray">Thank you to {sponsorName === '' ? '[Sponsor Name]' : sponsorName} for sponsoring this newsletter</P>
                     <A href={sponsorLink} target="_blank" onClick={e => { if (sponsorLink === '') e.preventDefault()}}>
-                      <Img width="100%" src="/img/sponsor-placeholder.gif" />
+                      {sponsorImageUpload && sponsorImageUpload.data ?
+                          (
+                            <Img width={1} height="auto" src={sponsorImageUpload.data} />
+                          ) : (
+                            <Img width={1} height="auto" src="/img/sponsor-placeholder.gif" />
+                          )
+                        }
                     </A>
                   </Div>
                   <Event
@@ -79,12 +85,12 @@ const SponsorAdPreview = props => {
                   <Div position="relative" px={3} pb={4} textAlign="center">
                     <P pb={0} mb={1} fontStyle="italic" fontSize={0} color="gray">Thank you to {sponsorName === '' ? '[Sponsor Name]' : sponsorName} for sponsoring this newsletter</P>
                     <Div textAlign="center">
-                      <A href={sponsorLink} target="_blank" onClick={e => { if (sponsorLink === '') e.preventDefault()}}>
+                      <A href={sponsorLink} width={1} target="_blank" onClick={e => { if (sponsorLink === '') e.preventDefault()}}>
                         {sponsorImageUpload && sponsorImageUpload.data ?
                           (
-                            <Img width="auto" height="150px" src={sponsorImageUpload.data} />
+                            <Img width={1} height="auto" src={sponsorImageUpload.data} />
                           ) : (
-                            <Img width="auto" height="150px" src="/img/sponsor-placeholder.gif" />
+                            <Img width={1} height="auto" src="/img/sponsor-placeholder.gif" />
                           )
                         }
                       </A>

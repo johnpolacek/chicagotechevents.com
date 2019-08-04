@@ -52,8 +52,8 @@ exports.handler = (event, context, callback) => {
           octokit.createPullRequest({
             owner,
             repo,
-            title: title,
-            body: 'New sponsor - '+submitData.name+' - '+submitData.week,
+            title: 'New Sponsor - '+submitData.name+' - '+submitData.week,
+            body: 'New Sponsor - '+submitData.name+' - '+submitData.week,
             base: 'master',
             head: `pull-request-branch-name-${sponsorId}`,
             changes: {

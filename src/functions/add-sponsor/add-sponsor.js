@@ -57,17 +57,19 @@ exports.handler = (event, context, callback) => {
             base: 'master',
             head: `pull-request-branch-name-${sponsorId}`,
             changes: {
-              files: {
-                [filepath]: newContent,
-              },
+              files: {[filepath]: newContent},
               commit: 'new sponsor - '+sponsorId
-            }}).then((response) => {
+            }
+          }).then((response) => {
             console.log('data', response.data)
             return callback(null, {
               statusCode: 200,
               body: JSON.stringify({
                 message: `success`,
-                url: response.data.html_url})})}).catch((e) => {
+                sponsorId: sponsorId
+                url: response.data.html_url})
+            })
+          }).catch((e) => {
             console.log('error', e)
             if (e.status === 422) {
               console.log('BRANCH ALREADY EXISTS!')
@@ -77,10 +79,6 @@ exports.handler = (event, context, callback) => {
                   error: `BRANCH ALREADY EXISTS!`})})
             }
           })
-          return callback(null, {
-            statusCode: 200,
-            body: JSON.stringify({ message: `success`, sponsorId: sponsorId })
-          })
         }
       })
     } else {
@@ -89,7 +87,6 @@ exports.handler = (event, context, callback) => {
         body: JSON.stringify({ message: `Missing required data` })
       })
     }    
-
   } catch (err) {
     return callback(null, {
       statusCode: 500,

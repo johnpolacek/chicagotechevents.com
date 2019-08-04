@@ -11,7 +11,7 @@ const SponsorAdCreate = props => (
       <Div width={1/3} bg="white">
         <SponsorAdForm />
       </Div>
-      <Div width={2/3} py={3} px={4} bg="gray2" textAlign="left">
+      <Div width={2/3} py={3} px={4} bg="gray2" textAlign="left" border="1px solid" borderColor="rgba(0,0,0,.1)">
         <SponsorAdPreview />
       </Div>
     </Div>

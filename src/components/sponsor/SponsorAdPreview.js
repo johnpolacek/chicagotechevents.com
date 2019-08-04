@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import useSponsorData from './useSponsorData'
-import { Div, H4, Img, P, A } from 'styled-system-html'
+import { Div, H4, Img, P, A, Span } from 'styled-system-html'
 import TabButton from '../ui/TabButton'
 import Event from '../events/Event'
 import Header from '../email/Header'
@@ -16,18 +16,18 @@ const SponsorAdPreview = props => {
 
   return (
     <>
-      <H4 pb={3} color="gray8" fontSize={0} fontWeight="300">PREVIEW</H4>
+      <H4 textAlign="right" pb={3} pr={1} color="gray8" fontSize={0}>PREVIEW</H4>
 
       <TabButton isActive={preview === PREVIEW_NEWSLETTER} onClick={() => setPreview(PREVIEW_NEWSLETTER)}>Newsletter</TabButton>
-      <TabButton isActive={preview === PREVIEW_SITE} onClick={() => setPreview(PREVIEW_SITE)}>Events Site</TabButton>
+      <TabButton isActive={preview === PREVIEW_SITE} onClick={() => setPreview(PREVIEW_SITE)}>Website</TabButton>
       <TabButton isActive={preview === PREVIEW_SOCIAL} onClick={() => setPreview(PREVIEW_SOCIAL)}>Social</TabButton>
       <Div bg="gray0" p={4}>
         {
           {
             [PREVIEW_SITE]: (
               <>
-                <P fontSize={1}>The Sponsor Ad Image appears after the 2nd event and again every 10 events after that.</P>
-                <Div pt={4} px={4} bg="white">
+                <P fontSize={1}>On <A href="https://chicagotechevents.com" target="_blank">chicagotechevents.com</A>, the Sponsor Ad Image will appear after the 2nd event and again every 10 events after that.</P>
+                <Div pt={4} px={4} bg="white" border="1px solid" borderColor="rgba(0,0,0,.1)">
                   <Event
                       {...{
                         title: 'An Awesome Event',
@@ -45,7 +45,12 @@ const SponsorAdPreview = props => {
                         isLast: true
                       }}
                     />
-                  <Div position="relative" top="-40px" mb={-3}><Img width="100%" src="/img/sponsor-placeholder.gif" /></Div>
+                  <Div position="relative" top="-40px" mb={-3} textAlign="center">
+                    <P pb={0} mb={1} fontStyle="italic" fontSize={0} color="gray">Thank you to {sponsorName === '' ? '[Sponsor Name]' : sponsorName} for sponsoring this newsletter</P>
+                    <A href={sponsorLink} target="_blank" onClick={e => { if (sponsorLink === '') e.preventDefault()}}>
+                      <Img width="100%" src="/img/sponsor-placeholder.gif" />
+                    </A>
+                  </Div>
                   <Event
                     {...{
                       title: 'Another Awesome Event',
@@ -69,7 +74,7 @@ const SponsorAdPreview = props => {
             [PREVIEW_NEWSLETTER]: (
               <>
                 <P fontSize={1}>The Sponsor Ad Image and Thank You For Sponsoring message appear at the top of the newsletter.</P>
-                <Div pt={4} px={4} bg="white">
+                <Div pt={4} px={4} bg="white" border="1px solid" borderColor="rgba(0,0,0,.1)">
                   <Header title="CHICAGO TECH EVENTS" />
                   <Div position="relative" px={3} pb={4} textAlign="center">
                     <P pb={0} mb={1} fontStyle="italic" fontSize={0} color="gray">Thank you to {sponsorName === '' ? '[Sponsor Name]' : sponsorName} for sponsoring this newsletter</P>
@@ -88,7 +93,20 @@ const SponsorAdPreview = props => {
                 </Div>
               </>
             ),
-            [PREVIEW_SOCIAL]: <Div py={6} textAlign="center">Thanks to {sponsorName === '' ? '[Sponsor Name]' : sponsorName} for sponsoring this week in Chicago Tech Events. Go to {sponsorLink === '' ? '[Sponsor Link]}' : sponsorLink}</Div>
+            [PREVIEW_SOCIAL]: (
+              <>
+                <P fontSize={1}>A sponsorship announcement tweet will be sent out.</P>
+                <Div pb={6} mb={6} bg="white" border="1px solid" borderColor="rgba(0,0,0,.1)">
+                  <Div position="relative">
+                    <Img width={1} src="/img/tweet.png" />
+                    <P position="absolute" px={3} pb={5} textAlign="left" bg="white" fontSize="2.2vw" style={{top:'50%',lineHeight:1.4, fontFamily:'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif'}}>
+                      <Span>Thanks to {sponsorName === '' ? '[Sponsor Name]' : sponsorName} for sponsoring this week’s Chicago Tech Events. Visit them at </Span>
+                      <A fontWeight="400" href={sponsorLink} onClick={e => { if (sponsorLink === '') e.preventDefault()}}>{sponsorLink === '' ? '[Sponsor Link]' : sponsorLink.replace(/^(https|http):\/\//,'')}</A>
+                    </P>
+                  </Div>
+                </Div>
+              </>
+            )
           }[preview]
         }
       </Div>

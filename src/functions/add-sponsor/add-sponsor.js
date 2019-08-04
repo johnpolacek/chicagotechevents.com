@@ -49,9 +49,37 @@ exports.handler = (event, context, callback) => {
             body: JSON.stringify({ srcData: srcData, message: `putObject Error: Could not upload image`, error: err })
           })
         } else {
+          octokit.createPullRequest({
+            owner,
+            repo,
+            title: title,
+            body: 'New sponsor - '+submitData.name+' - '+submitData.week,
+            base: 'master',
+            head: `pull-request-branch-name-${sponsorId}`,
+            changes: {
+              files: {
+                [filepath]: newContent,
+              },
+              commit: 'new sponsor - '+sponsorId
+            }}).then((response) => {
+            console.log('data', response.data)
+            return callback(null, {
+              statusCode: 200,
+              body: JSON.stringify({
+                message: `success`,
+                url: response.data.html_url})})}).catch((e) => {
+            console.log('error', e)
+            if (e.status === 422) {
+              console.log('BRANCH ALREADY EXISTS!')
+              return callback(null, {
+                statusCode: 400,
+                body: JSON.stringify({
+                  error: `BRANCH ALREADY EXISTS!`})})
+            }
+          })
           return callback(null, {
             statusCode: 200,
-            body: JSON.stringify({ message: `success` })
+            body: JSON.stringify({ message: `success`, sponsorId: sponsorId })
           })
         }
       })

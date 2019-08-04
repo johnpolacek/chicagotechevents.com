@@ -27,6 +27,8 @@ exports.handler = (event, context, callback) => {
     if (typeof(submitData.name !== 'undefined') && typeof(submitData.link !== 'undefined') && typeof(submitData.week !== 'undefined') && typeof(submitData.file !== 'undefined')) {
       const srcData = Buffer.from(submitData.file.replace(/^data:image\/\w+;base64,/, ""), 'base64')
       const sponsorId = submitData.week + '-' + submitData.name.replace(/\s+/g, '-').toLowerCase().replace(/[^0-9a-z]/gi, '')
+      const filename = sponsorId+'.md'
+      const filepath = 'content/eventslist/'+filename
 
       const newContent = getSponsorMarkdown({
         id: sponsorId,

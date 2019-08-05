@@ -1,9 +1,9 @@
 ---
 title: "Post-Work Day Mindful Meditation "
-date: "2019-08-02T14:55:15.052Z"
-startDate: "2019-11-06T15:54:08.000Z"
+date: "2019-08-05T17:10:47.281Z"
+startDate: "2019-11-06T18:08:48.000Z"
 startTime: "5:00pm"
-endDate: "2019-11-06T15:54:08.000Z"
+endDate: "2019-11-06T18:08:48.000Z"
 endTime: "8:00pm"
 locationName: "GA Chicago @ Rent 24"
 locationStreet: "444 N Wabash Avenue, 5th Floor"

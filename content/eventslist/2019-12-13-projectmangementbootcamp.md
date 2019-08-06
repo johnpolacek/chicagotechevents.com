@@ -1,10 +1,10 @@
 ---
-title: "Project Mangement Bootcamp "
+title: "Project Management Bootcamp "
 date: "2019-08-06T17:48:50.501Z"
 startDate: "2019-12-13T18:47:30.000Z"
-startTime: "10:00pm"
+startTime: "10:00am"
 endDate: "2019-12-13T18:47:30.000Z"
-endTime: "8:00pm"
+endTime: "5:00pm"
 locationName: "GA Chicago @ Rent 24"
 locationStreet: "444 N Wabash Avenue, 5th Floor"
 locationCity: "Chicago"

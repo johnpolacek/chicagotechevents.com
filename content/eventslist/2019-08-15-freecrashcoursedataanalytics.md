@@ -2,7 +2,7 @@
 title: "Free Crash Course | Data Analytics"
 date: "2019-08-07T00:14:13.698Z"
 startDate: "2019-08-15T00:13:16.000Z"
-startTime: "6:00pm"
+startTime: "6:30pm"
 endDate: "2019-08-15T00:13:16.000Z"
 endTime: "8:00pm"
 locationName: "MakeOffices River North"

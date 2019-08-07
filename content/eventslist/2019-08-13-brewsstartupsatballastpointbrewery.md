@@ -1,9 +1,9 @@
 ---
 title: "Brews+Startups at Ballast Point Brewery"
 date: "2019-08-02T02:29:34.248Z"
-startDate: "2019-08-13T02:28:07.000Z"
+startDate: "2019-08-12T02:28:07.000Z"
 startTime: "6:00pm"
-endDate: "2019-08-13T02:28:07.000Z"
+endDate: "2019-08-12T02:28:07.000Z"
 endTime: "8:00pm"
 locationName: "Ballast Point Brewing Company"
 locationStreet: "212 N Green Street"

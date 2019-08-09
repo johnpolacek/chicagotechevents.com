@@ -13,13 +13,13 @@
 **--W--I--P--**
 
 - Add Sponsorships
-	- Available Dates
-	- Create Ad
-		- Upload Image to S3 and issue PR of sponsor md file
-			- resize in Netlify function
-		- Show Preview of Social Media (get Twitter screenshot)
-		- Purchase on Stripe
-		- Submits PR
+	- Add pricing info
+	- Add payment after ad info input
+	- Stripe Checkout 
+		- [github.com/gillkyle/gatsby-stripe](https://github.com/gillkyle/gatsby-stripe)
+		- [github.com/gillkyle/gatsby-stripe/blob/master/src/components/checkout.js](https://github.com/gillkyle/gatsby-stripe/blob/master/src/components/checkout.js)
+		- [www.gatsbyjs.org/tutorial/ecommerce-tutorial](https://www.gatsbyjs.org/tutorial/ecommerce-tutorial/)
+		- [macarthur.me/posts/building-a-lambda-function-with-netlify](https://macarthur.me/posts/building-a-lambda-function-with-netlify)
 - Add Featured Event
 	- Appears at top of feed
 - Create JSON and RSS feed

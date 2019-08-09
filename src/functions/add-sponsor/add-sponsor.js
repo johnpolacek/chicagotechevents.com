@@ -39,10 +39,12 @@ exports.handler = (event, context, callback) => {
           console.log(err)
         }
         let status = charge === null || charge.status !== 'succeeded' ? 'failed' : charge.status
-        callback(null, {
-          statusCode,
-          headers,
-          body: JSON.stringify({ status }),
+        return callback(null, {
+          statusCode: 200,
+          body: JSON.stringify({
+            message: `success`,
+            sponsorId: sponsorId
+          })
         })
       })
 

@@ -25,6 +25,8 @@ exports.handler = (event, context, callback) => {
   
     const submitData = JSON.parse(event.body)
 
+    const sponsorId = submitData.week + '-' + submitData.name.replace(/\s+/g, '-').toLowerCase().replace(/[^0-9a-z]/gi, '')
+
     if (submitData.name && submitData.link && submitData.week && submitData.file && submitData.token) {
 
       stripe.charges.create({
@@ -43,14 +45,14 @@ exports.handler = (event, context, callback) => {
           statusCode: 200,
           body: JSON.stringify({
             message: `success`,
-            sponsorId: sponsorId
+            sponsorId: submitData.token.id
           })
         })
       })
 
 
       // const srcData = Buffer.from(submitData.file.replace(/^data:image\/\w+;base64,/, ""), 'base64')
-      // const sponsorId = submitData.week + '-' + submitData.name.replace(/\s+/g, '-').toLowerCase().replace(/[^0-9a-z]/gi, '')
+      
       // const filename = sponsorId+'.md'
       // const filepath = 'content/eventslist/'+filename
 

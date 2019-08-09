@@ -4,7 +4,8 @@
   "main": "add-sponsor.js",
   "author": "John Polacek",
   "dependencies": {
+    "@octokit/rest": "^16.3.0",
     "aws-sdk": "^2.481.0",
-    "@octokit/rest": "^16.3.0"
+    "stripe": "^7.6.2"
   }
 }

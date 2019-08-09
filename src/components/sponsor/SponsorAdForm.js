@@ -14,22 +14,20 @@ const SponsorAdForm = props => {
   const SUBMIT_PAYMENT = 'SUBMIT_PAYMENT'
   const SUBMIT_PAYCARD = 'SUBMIT_PAYCARD'
   const SUBMIT_SENDING = 'SUBMIT_SENDING'
-  const SUBMIT_SUCCESS = 'SUBMIT_SUCCESS'
   const SUBMIT_FAIL = 'SUBMIT_FAIL'
-  const [submitState, setSubmitState] = useState(SUBMIT_APPROVE)
-
-  const [token, setToken] = useState(null)
+  const [submitState, setSubmitState] = useState(SUBMIT_SENDING)
 
   const { 
     sponsorName, setSponsorName, 
     sponsorLink, setSponsorLink, 
     sponsorImageUpload, setSponsorImageUpload, 
+    setSponsorToken, 
     sponsorWeek 
   } = useSponsorData()
 
   const onToken = token => {
     console.log('onToken', token)
-    setToken(token)
+    setSponsorToken(token)
     setSubmitState(SUBMIT_SENDING)
     fetch(`/.netlify/functions/add-sponsor/`, {
       method: 'POST',
@@ -40,7 +38,7 @@ const SponsorAdForm = props => {
       .then(data => {
         try {
           if (data.message === 'success') {
-            setSubmitState(SUBMIT_SUCCESS)
+            setSponsorToken(token)
           } else {
             setSubmitState(SUBMIT_FAIL)
           }
@@ -115,7 +113,7 @@ const SponsorAdForm = props => {
       </Div>
       {
         submitState === SUBMIT_FAIL && 
-        <Div>
+        <Div p={4}>
           <P color="red">Sorry there was a problem processing the sponsorship data.</P>
         </Div>
       }
@@ -136,7 +134,12 @@ const SponsorAdForm = props => {
           />
         </Div>
       }
-      
+      {
+        submitState === SUBMIT_SENDING && 
+        <Div textAlign="center" pt={6}>
+          <P color="blue" fontStyle="italic">Sending sponsorship data...</P>
+        </Div>
+      }
     </Form>
   )
 }

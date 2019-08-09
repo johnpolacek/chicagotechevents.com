@@ -20,15 +20,21 @@ const useSponsorData = () => {
     setState(state => ({ ...state, sponsorWeek: week.split('T')[0] }));
   }
 
+  function setSponsorToken(token) {
+    setState(state => ({ ...state, sponsorToken: token }));
+  }
+
   return {
     sponsorName: state.sponsorName || '',
     sponsorLink: state.sponsorLink || '',
     sponsorImageUpload: state.sponsorImageUpload || null,
     sponsorWeek: state.sponsorWeek ||  null,
+    sponsorToken: state.sponsorToken || null,
     setSponsorName,
     setSponsorLink,
     setSponsorImageUpload,
-    setSponsorWeek
+    setSponsorWeek,
+    setSponsorToken
   }
 };
 

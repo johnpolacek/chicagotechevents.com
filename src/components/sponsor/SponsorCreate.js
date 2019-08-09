@@ -8,7 +8,7 @@ import SponsorAdCreate from './SponsorAdCreate'
 
 const SponsorCreate = props => {
 
-  const { sponsorWeek, setSponsorWeek } = useSponsorData();
+  const { sponsorWeek, setSponsorWeek, sponsorToken } = useSponsorData();
 
   let sponsorWeekReadable = ''
   if (sponsorWeek) {
@@ -21,12 +21,18 @@ const SponsorCreate = props => {
       {
         sponsorWeek ? (
           <>
-            <SponsorAdCreate>
-              <Div py={2} fontSize={0} fontWeight="bold">
-                Sponsorship week start date: {sponsorWeekReadable}<br/>
-                <A href="#" color="blue" onClick={e => {e.preventDefault(); setSponsorWeek(null)}}>change</A>
-              </Div>
-            </SponsorAdCreate>
+            {
+              sponsorToken ? (
+                <Div p={5}>Thanks for sponsoring!</Div>
+              ) : (
+                <SponsorAdCreate>
+                  <Div py={2} fontSize={0} fontWeight="bold">
+                    Sponsorship week start date: {sponsorWeekReadable}<br/>
+                    <A href="#" color="blue" onClick={e => {e.preventDefault(); setSponsorWeek(null)}}>change</A>
+                  </Div>
+                </SponsorAdCreate>
+              )
+            }
           </>
         ) : (
           <SponsorChooseWeek weeksAvailable={props.weeksAvailable} onChooseWeek={week => setSponsorWeek(week)} />

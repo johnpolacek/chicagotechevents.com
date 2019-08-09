@@ -23,7 +23,7 @@ const SponsorCreate = props => {
           <>
             {
               sponsorToken ? (
-                <Div p={5}>Thanks for sponsoring!</Div>
+                <Div fontSize={3} p={5}>Thanks for sponsoring!</Div>
               ) : (
                 <SponsorAdCreate>
                   <Div py={2} fontSize={0} fontWeight="bold">

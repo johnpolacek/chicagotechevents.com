@@ -2,7 +2,8 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET);
 const AWS = require('aws-sdk')
 const s3 = new AWS.S3({
   accessKeyId: process.env.AWS_KEY,
-  secretAccessKey: process.env.AWS_SECRET, 
+  // secretAccessKey: process.env.AWS_SECRET, 
+  secretAccessKey: process.env.AWS_SECRET_TEST, 
   region: 'us-east-2'
 })
 

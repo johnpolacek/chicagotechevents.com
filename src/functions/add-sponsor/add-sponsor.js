@@ -32,24 +32,19 @@ exports.handler = (event, context, callback) => {
         amount: 50,
         source: data.token.id,
         receipt_email: data.token.email,
-        description: `Sponsorship Purchase`,
+        description: `Sponsorship Purchase`
       },
       (err, charge) => {
         if (err !== null) {
           console.log(err)
         }
-
-        let status =
-          charge === null || charge.status !== 'succeeded'
-            ? 'failed'
-            : charge.status
-
+        let status = charge === null || charge.status !== 'succeeded' ? 'failed' : charge.status
         callback(null, {
           statusCode,
           headers,
           body: JSON.stringify({ status }),
         })
-      }
+      })
 
 
       // const srcData = Buffer.from(submitData.file.replace(/^data:image\/\w+;base64,/, ""), 'base64')
@@ -112,7 +107,7 @@ exports.handler = (event, context, callback) => {
       // })
 
 
-      
+
     } else {
       return callback(null, {
         statusCode: 500,

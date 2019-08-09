@@ -1,5 +1,5 @@
 ---
-title: "Moving Beyond "std::cout""
+title: "Moving Beyond “std::cout”"
 date: "2019-08-09T21:14:44.523Z"
 startDate: "2019-08-13T21:09:56.000Z"
 startTime: "6:00pm"

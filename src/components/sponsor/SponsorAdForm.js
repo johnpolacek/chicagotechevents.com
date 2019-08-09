@@ -15,7 +15,7 @@ const SponsorAdForm = props => {
   const SUBMIT_PAYCARD = 'SUBMIT_PAYCARD'
   const SUBMIT_SENDING = 'SUBMIT_SENDING'
   const SUBMIT_FAIL = 'SUBMIT_FAIL'
-  const [submitState, setSubmitState] = useState(SUBMIT_SENDING)
+  const [submitState, setSubmitState] = useState(SUBMIT_APPROVE)
 
   const { 
     sponsorName, setSponsorName, 

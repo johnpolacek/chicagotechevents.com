@@ -31,23 +31,23 @@ const SponsorAdForm = props => {
     console.log('onToken', token)
     setToken(token)
     setSubmitState(SUBMIT_SENDING)
-    // fetch(`/.netlify/functions/add-sponsor/`, {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({name: sponsorName, link: sponsorLink, file:sponsorImageUpload.data, week: sponsorWeek, token: token}),
-    // })
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     try {
-    //       if (data.message === 'success') {
-    //         setSubmitState(SUBMIT_SUCCESS)
-    //       } else {
-    //         setSubmitState(SUBMIT_FAIL)
-    //       }
-    //     } catch (err) {
-    //       setSubmitState(SUBMIT_FAIL)
-    //     }
-    //   })
+    fetch(`/.netlify/functions/add-sponsor/`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({name: sponsorName, link: sponsorLink, file:sponsorImageUpload.data, week: sponsorWeek, token: token}),
+    })
+      .then(response => response.json())
+      .then(data => {
+        try {
+          if (data.message === 'success') {
+            setSubmitState(SUBMIT_SUCCESS)
+          } else {
+            setSubmitState(SUBMIT_FAIL)
+          }
+        } catch (err) {
+          setSubmitState(SUBMIT_FAIL)
+        }
+      })
   }
 
   const onFileSelect = e => {

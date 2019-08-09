@@ -30,8 +30,8 @@ exports.handler = (event, context, callback) => {
       stripe.charges.create({
         currency: 'usd',
         amount: 50,
-        source: data.token.id,
-        receipt_email: data.token.email,
+        source: submitData.token.id,
+        receipt_email: submitData.token.email,
         description: `Sponsorship Purchase`
       },
       (err, charge) => {

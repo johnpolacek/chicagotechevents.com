@@ -13,9 +13,8 @@
 **--W--I--P--**
 
 - Add Sponsorships
-	- Add pricing info
-	- Add payment after ad info input
 	- Stripe Checkout 
+		- [github.com/azmenak/react-stripe-checkout](https://github.com/azmenak/react-stripe-checkout)
 		- [github.com/gillkyle/gatsby-stripe](https://github.com/gillkyle/gatsby-stripe)
 		- [github.com/gillkyle/gatsby-stripe/blob/master/src/components/checkout.js](https://github.com/gillkyle/gatsby-stripe/blob/master/src/components/checkout.js)
 		- [www.gatsbyjs.org/tutorial/ecommerce-tutorial](https://www.gatsbyjs.org/tutorial/ecommerce-tutorial/)

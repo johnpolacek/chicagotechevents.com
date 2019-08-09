@@ -1,23 +1,54 @@
 import React, { useState } from 'react'
+import StripeCheckout from 'react-stripe-checkout'
 import useSponsorData from './useSponsorData'
 import FormControl from '../forms/FormControl'
 import InputSubmit from '../forms/InputSubmit'
 import { Div, H3, P, Form, Label, Input, Span, Img, A } from 'styled-system-html'
 
 const SponsorAdForm = props => {
+
+  const STRIPE_PUBLIC_KEY = 'pk_test_e2AvuR0qmELYrmccvofLAKB0'
+  // const STRIPE_PUBLIC_KEY = 'pk_live_Ni5Xeg88ULRb8XFDG0hKhrxG'
+
   const SUBMIT_APPROVE = 'SUBMIT_APPROVE'
   const SUBMIT_PAYMENT = 'SUBMIT_PAYMENT'
+  const SUBMIT_PAYCARD = 'SUBMIT_PAYCARD'
   const SUBMIT_SENDING = 'SUBMIT_SENDING'
   const SUBMIT_SUCCESS = 'SUBMIT_SUCCESS'
   const SUBMIT_FAIL = 'SUBMIT_FAIL'
   const [submitState, setSubmitState] = useState(SUBMIT_APPROVE)
+
+  const [token, setToken] = useState(null)
 
   const { 
     sponsorName, setSponsorName, 
     sponsorLink, setSponsorLink, 
     sponsorImageUpload, setSponsorImageUpload, 
     sponsorWeek 
-  } = useSponsorData();
+  } = useSponsorData()
+
+  const onToken = token => {
+    console.log('onToken', token)
+    setToken(token)
+    setSubmitState(SUBMIT_SENDING)
+    // fetch(`/.netlify/functions/add-sponsor/`, {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({name: sponsorName, link: sponsorLink, file:sponsorImageUpload.data, week: sponsorWeek, token: token}),
+    // })
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     try {
+    //       if (data.message === 'success') {
+    //         setSubmitState(SUBMIT_SUCCESS)
+    //       } else {
+    //         setSubmitState(SUBMIT_FAIL)
+    //       }
+    //     } catch (err) {
+    //       setSubmitState(SUBMIT_FAIL)
+    //     }
+    //   })
+  }
 
   const onFileSelect = e => {
     let file = e.target.files[0];
@@ -38,25 +69,6 @@ const SponsorAdForm = props => {
       e.preventDefault()
       if (submitState === SUBMIT_APPROVE) {
         setSubmitState(SUBMIT_PAYMENT)
-      } else {
-        setSubmitState(SUBMIT_SENDING)
-        return fetch(`/.netlify/functions/add-sponsor/`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({name: sponsorName, link: sponsorLink, file:sponsorImageUpload.data, week: sponsorWeek}),
-        })
-          .then(response => response.json())
-          .then(data => {
-            try {
-              if (data.message === 'success') {
-                setSubmitState(SUBMIT_SUCCESS)
-              } else {
-                setSubmitState(SUBMIT_FAIL)
-              }
-            } catch (err) {
-              setSubmitState(SUBMIT_FAIL)
-            }
-          })
       }
     }
   }
@@ -97,7 +109,7 @@ const SponsorAdForm = props => {
           )
         }
       </Div>
-      <Div display={submitState === SUBMIT_PAYMENT ? 'block' : 'none'}>
+      <Div display={submitState === SUBMIT_PAYMENT || submitState === SUBMIT_PAYCARD ? 'block' : 'none'}>
         <H3 pb={3}>Almost Done!</H3>
         <P>All that’s left is to make your payment, then you will be all set.</P>
       </Div>
@@ -116,8 +128,12 @@ const SponsorAdForm = props => {
       {
         submitState === SUBMIT_PAYMENT && 
         <Div pt={3} pb={5} mb={4} textAlign="right">
-          <A href="#" mr={4} onClick={ e => { e.preventDefault(); setSubmitState(SUBMIT_APPROVE); } }>edit ad</A>
-          <InputSubmit disabled={submitState !== SUBMIT_PAYMENT} id="submitSponsor" value="PAY FOR SPONSORSHIP" />
+          <A fontSize={1} href="#" mr={4} onClick={ e => { e.preventDefault(); setSubmitState(SUBMIT_APPROVE); } }>edit ad</A>
+          <StripeCheckout
+            onOpened={() => setSubmitState(SUBMIT_PAYCARD)}
+            token={onToken}
+            stripeKey={STRIPE_PUBLIC_KEY}
+          />
         </Div>
       }
       

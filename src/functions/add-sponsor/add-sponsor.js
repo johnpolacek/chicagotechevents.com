@@ -32,86 +32,84 @@ exports.handler = (event, context, callback) => {
 
     if (submitData.name && submitData.link && submitData.week && submitData.file && submitData.token) {
 
-      stripe.charges.create({
-        currency: 'usd',
-        amount: 50,
-        source: submitData.token.id,
-        receipt_email: submitData.token.email,
-        description: `Sponsorship Purchase`
-      },
-      (err, charge) => {
-        if (err !== null) {
-          console.log(err)
-        }
-        let status = charge === null || charge.status !== 'succeeded' ? 'failed' : charge.status
-        return callback(null, {
-          statusCode: 200,
-          body: JSON.stringify({
-            message: `success`,
-            sponsorId: submitData.token.id
-          })
-        })
+      const srcData = Buffer.from(submitData.file.replace(/^data:image\/\w+;base64,/, ""), 'base64')
+      
+      const filename = sponsorId+'.md'
+      const filepath = 'content/eventslist/'+filename
+
+      const newContent = getSponsorMarkdown({
+        id: sponsorId,
+        name: submitData.name, 
+        week: submitData.week, 
+        link: submitData.link
       })
 
-
-      // const srcData = Buffer.from(submitData.file.replace(/^data:image\/\w+;base64,/, ""), 'base64')
-      
-      // const filename = sponsorId+'.md'
-      // const filepath = 'content/eventslist/'+filename
-
-      // const newContent = getSponsorMarkdown({
-      //   id: sponsorId,
-      //   name: submitData.name, 
-      //   week: submitData.week, 
-      //   link: submitData.link
-      // })
-
-      // const params = {
-      //   Bucket: 'docqet-images',
-      //   Key: 'sponsors/'+sponsorId+'.jpg',
-      //   ContentType: 'image/jpeg',
-      //   Body: srcData
-      // }
+      const params = {
+        Bucket: 'docqet-images',
+        Key: 'sponsors/'+sponsorId+'.jpg',
+        ContentType: 'image/jpeg',
+        Body: srcData
+      }
     
-      // s3.putObject(params, function(err, data) {
-      //   if (err) {
-      //     return callback(null, {
-      //       statusCode: 500,
-      //       body: JSON.stringify({ srcData: srcData, message: `putObject Error: Could not upload image`, error: err })
-      //     })
-      //   } else {
-      //     octokit.createPullRequest({
-      //       owner,
-      //       repo,
-      //       title: 'New Sponsor - '+submitData.name+' - '+submitData.week,
-      //       body: 'New Sponsor - '+submitData.name+' - '+submitData.week,
-      //       base: 'master',
-      //       head: `pull-request-branch-name-${sponsorId}`,
-      //       changes: {
-      //         files: {[filepath]: newContent},
-      //         commit: 'new sponsor - '+sponsorId
-      //       }
-      //     }).then((response) => {
-      //       console.log('data', response.data)
-      //       return callback(null, {
-      //         statusCode: 200,
-      //         body: JSON.stringify({
-      //           message: `success`,
-      //           sponsorId: sponsorId
-      //         })
-      //       })
-      //     }).catch((e) => {
-      //       console.log('error', e)
-      //       if (e.status === 422) {
-      //         console.log('BRANCH ALREADY EXISTS!')
-      //         return callback(null, {
-      //           statusCode: 400,
-      //           body: JSON.stringify({
-      //             error: `BRANCH ALREADY EXISTS!`})})
-      //       }
-      //     })
-      //   }
-      // })
+      s3.putObject(params, function(err, data) {
+        if (err) {
+          return callback(null, {
+            statusCode: 500,
+            body: JSON.stringify({ srcData: srcData, message: `putObject Error: Could not upload image`, error: err })
+          })
+        } else {
+          // sponsor image upload success, now make pull request
+
+          octokit.createPullRequest({
+            owner,
+            repo,
+            title: 'New Sponsor - '+submitData.name+' - '+submitData.week,
+            body: 'New Sponsor - '+submitData.name+' - '+submitData.week,
+            base: 'master',
+            head: `pull-request-branch-name-${sponsorId}`,
+            changes: {
+              files: {[filepath]: newContent},
+              commit: 'new sponsor - '+sponsorId
+            }
+          }).then((response) => {
+            console.log('data', response.data)
+            // pull request successful, now make payment
+
+            stripe.charges.create({
+              currency: 'usd',
+              amount: 5000,
+              source: submitData.token.id,
+              receipt_email: submitData.token.email,
+              description: 'Sponsorship Purchase '+sponsorId
+            },
+            (err, charge) => {
+              if (err !== null) {
+                console.log(err)
+              }
+              let status = charge === null || charge.status !== 'succeeded' ? 'failed' : charge.status
+              return callback(null, {
+                statusCode: 200,
+                body: JSON.stringify({
+                  message: 'success'
+                })
+              })
+            })
+           
+
+
+
+          }).catch((e) => {
+            console.log('error', e)
+            if (e.status === 422) {
+              console.log('BRANCH ALREADY EXISTS!')
+              return callback(null, {
+                statusCode: 400,
+                body: JSON.stringify({
+                  error: `BRANCH ALREADY EXISTS!`})})
+            }
+          })
+        }
+      })
 
 
 

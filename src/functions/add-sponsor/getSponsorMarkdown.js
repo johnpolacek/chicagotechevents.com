@@ -4,7 +4,6 @@ id: "${data.id}"
 name: "${data.name}"
 week: "${data.week}"
 link: "${data.link}"
-paid: "false"
 
 ---
 

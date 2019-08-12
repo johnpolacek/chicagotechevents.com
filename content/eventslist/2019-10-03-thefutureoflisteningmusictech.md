@@ -10,7 +10,7 @@ locationStreet: "4245 N. Knox Avenue "
 locationCity: "Chicago"
 locationState: "IL"
 cost: "FREE"
-eventUrl: "https://www.meetup.com/Chicago-Startup-Community/events/263942334/?isFirstPublish=true"
+eventUrl: "https://www.meetup.com/Chicago-Startup-Community/events/263942334/"
 
 ---
 

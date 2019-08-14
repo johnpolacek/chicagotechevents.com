@@ -24,7 +24,6 @@
 - Create JSON and RSS feed
 	- https://www.gatsbyjs.org/packages/gatsby-plugin-feed-generator/
 - Autopublish blog (14 Tech Events in Chicago the week of 7/14/2019)
-- Refactor to theme-ui
 - Automate Social
 - Mailchimp API 
 	- [Netlify example for Mailchimp integration](https://github.com/tobilg/netlify-functions-landingpage/blob/169de175d04b165b5d4801b09cb250cd9a740da5/src/lambda/signup.js)

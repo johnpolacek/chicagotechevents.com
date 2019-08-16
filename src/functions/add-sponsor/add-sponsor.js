@@ -4,8 +4,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST);
 const AWS = require('aws-sdk')
 const s3 = new AWS.S3({
   accessKeyId: process.env.AWS_KEY,
-  // secretAccessKey: process.env.AWS_SECRET, 
-  secretAccessKey: process.env.AWS_SECRET_TEST, 
+  secretAccessKey: process.env.AWS_SECRET, 
   region: 'us-east-2'
 })
 
@@ -59,7 +58,6 @@ exports.handler = (event, context, callback) => {
           })
         } else {
           // sponsor image upload success, now make pull request
-
           octokit.createPullRequest({
             owner,
             repo,
@@ -84,6 +82,13 @@ exports.handler = (event, context, callback) => {
             },
             (err, charge) => {
               if (err !== null) {
+                return callback(null, {
+                  statusCode: 500,
+                  body: JSON.stringify({
+                    message: 'error',
+                    error: err
+                  })
+                })
                 console.log(err)
               }
               let status = charge === null || charge.status !== 'succeeded' ? 'failed' : charge.status
@@ -94,10 +99,6 @@ exports.handler = (event, context, callback) => {
                 })
               })
             })
-           
-
-
-
           }).catch((e) => {
             console.log('error', e)
             if (e.status === 422) {
@@ -110,9 +111,6 @@ exports.handler = (event, context, callback) => {
           })
         }
       })
-
-
-
     } else {
       return callback(null, {
         statusCode: 500,

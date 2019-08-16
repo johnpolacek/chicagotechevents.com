@@ -12,9 +12,7 @@ class Email extends React.Component {
     const { data } = this.props
     const siteTitle = data.site.siteMetadata.title
     const { edges } = this.props.data.allMarkdownRemark
-    const events = edges.filter(
-      ({ node }) => node.frontmatter.startDate
-    )
+    const events = edges.filter(({ node }) => node.frontmatter.startDate)
     const currEvents = events.filter(
       ({ node }) => new Date(node.frontmatter.endDate) >= new Date()
     )
@@ -33,12 +31,10 @@ class Email extends React.Component {
 
     const monday = getMonday()
     const nextMonday = getMonday(1)
-    const sponsors = edges.filter(
-      ({ node }) => {
-        const sponsorDate = new Date(node.frontmatter.sponsorDate)
-        return sponsorDate > monday && sponsorDate < nextMonday
-      }
-    )
+    const sponsors = edges.filter(({ node }) => {
+      const sponsorDate = new Date(node.frontmatter.sponsorDate)
+      return sponsorDate > monday && sponsorDate < nextMonday
+    })
     const sponsor = sponsors.length !== 0 ? sponsors[0].node.frontmatter : null
 
     return (
@@ -56,16 +52,28 @@ class Email extends React.Component {
           <Header title={siteTitle} />
           <tr>
             <td>
-              {
-                sponsor ? (
-                  <SponsorAd sponsor={sponsor} />
-                ) : (
-                  <>
-                    <p style={{paddingTop:'32px',textAlign:'center'}}>Want to sponsor this newsletter and reach hundreds of Chicago tech enthusiasts?</p>
-                    <p style={{paddingBottom:'32px',fontWeight:'bold',textAlign:'center'}}>Find out more at <a href="https://chicagotechevents.com/sponsor">chicagotechevents.com/sponsor</a></p>
-                  </>
-                )
-              }
+              {sponsor ? (
+                <SponsorAd sponsor={sponsor} />
+              ) : (
+                <>
+                  <p style={{ paddingTop: '32px', textAlign: 'center' }}>
+                    Want to sponsor this newsletter and reach hundreds of
+                    Chicago tech enthusiasts?
+                  </p>
+                  <p
+                    style={{
+                      paddingBottom: '32px',
+                      fontWeight: 'bold',
+                      textAlign: 'center',
+                    }}
+                  >
+                    Find out more at{' '}
+                    <a href="https://chicagotechevents.com/sponsor">
+                      chicagotechevents.com/sponsor
+                    </a>
+                  </p>
+                </>
+              )}
             </td>
           </tr>
           <tr>

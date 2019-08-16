@@ -14,11 +14,13 @@ class Submit extends React.Component {
     const siteDescription = data.site.siteMetadata.description
 
     const { edges } = this.props.data.allMarkdownRemark
-    const sponsors = edges.filter(
-      ({ node }) => node.frontmatter.sponsorDate
+    const sponsors = edges.filter(({ node }) => node.frontmatter.sponsorDate)
+    const sponsorDatesInUse = sponsors.map(
+      sponsor => sponsor.node.frontmatter.sponsorDate.split('T')[0]
     )
-    const sponsorDatesInUse = sponsors.map(sponsor => sponsor.node.frontmatter.sponsorDate.split('T')[0])
-    const sponsorDatesAvailable = getWeeksInYear().filter(week => !sponsorDatesInUse.includes(week.split('T')[0]))
+    const sponsorDatesAvailable = getWeeksInYear().filter(
+      week => !sponsorDatesInUse.includes(week.split('T')[0])
+    )
 
     return (
       <Layout
@@ -41,8 +43,13 @@ class Submit extends React.Component {
           Sponsor
         </H2>
         <Div textAlign="center" pb={5} px={3}>
-          <P mb={1}>Want to promote your product, service or event to hundreds of Chicago Tech Enthusiasts?</P>
-          <P fontWeight="bold">Become a Chicago Tech Events sponsor for only $50!</P>
+          <P mb={1}>
+            Want to promote your product, service or event to hundreds of
+            Chicago Tech Enthusiasts?
+          </P>
+          <P fontWeight="bold">
+            Become a Chicago Tech Events sponsor for only $50!
+          </P>
           <SponsorProvider>
             <SponsorCreate weeksAvailable={sponsorDatesAvailable} />
           </SponsorProvider>

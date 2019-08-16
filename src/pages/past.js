@@ -14,12 +14,8 @@ class Past extends React.Component {
 
     // filter out sponsors
     const { edges } = this.props.data.allMarkdownRemark
-    const events = edges.filter(
-      ({ node }) => node.frontmatter.startDate
-    )
-    const sponsors = edges.filter(
-      ({ node }) => node.frontmatter.sponsorDate
-    )
+    const events = edges.filter(({ node }) => node.frontmatter.startDate)
+    const sponsors = edges.filter(({ node }) => node.frontmatter.sponsorDate)
     const sponsor = sponsors.length !== 0 ? sponsors[0].node.frontmatter : null
 
     const pastEvents = events.filter(

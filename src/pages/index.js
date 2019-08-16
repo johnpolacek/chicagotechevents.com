@@ -15,9 +15,7 @@ class Index extends React.Component {
     const siteDescription = data.site.siteMetadata.description
 
     const { edges } = this.props.data.allMarkdownRemark
-    const events = edges.filter(
-      ({ node }) => node.frontmatter.startDate
-    )
+    const events = edges.filter(({ node }) => node.frontmatter.startDate)
     const currEvents = events.filter(
       ({ node }) => new Date(node.frontmatter.endDate) >= new Date()
     )
@@ -36,14 +34,12 @@ class Index extends React.Component {
 
     const monday = getMonday()
     const nextMonday = getMonday(1)
-    const sponsors = edges.filter(
-      ({ node }) => {
-        const sponsorDate = new Date(node.frontmatter.sponsorDate)
-        return sponsorDate > monday && sponsorDate < nextMonday
-      }
-    )
+    const sponsors = edges.filter(({ node }) => {
+      const sponsorDate = new Date(node.frontmatter.sponsorDate)
+      return sponsorDate > monday && sponsorDate < nextMonday
+    })
     const sponsor = sponsors.length !== 0 ? sponsors[0].node.frontmatter : null
-    
+
     return (
       <Layout
         location={this.props.location}

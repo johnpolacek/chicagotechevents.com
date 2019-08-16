@@ -1,10 +1,10 @@
 function getMonday(offset) {
   const now = new Date()
-  now.setHours(0,0,0,0)
-  if (typeof(offset) === 'number') {
-    now.setDate(now.getDate()+(offset*7))
+  now.setHours(0, 0, 0, 0)
+  if (typeof offset === 'number') {
+    now.setDate(now.getDate() + offset * 7)
   }
-  now.setDate(now.getDate() + (1 + 7 - now.getDay()) % 7)
+  now.setDate(now.getDate() + ((1 + 7 - now.getDay()) % 7))
   return now
 }
 
@@ -14,13 +14,14 @@ module.exports = {
     let i = 0
     const monday = getMonday()
     let weeks = []
-    
-    while (i < 52) { // 1 years
+
+    while (i < 52) {
+      // 1 years
       weeks.push(monday.toISOString())
       monday.setDate(monday.getDate() + 7)
       i++
     }
-    return weeks;
+    return weeks
   },
   getEventDateString: (startDate, startTime, endDate, endTime) => {
     return startDate !== endDate

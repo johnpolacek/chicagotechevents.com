@@ -1,6 +1,10 @@
 import getEventMarkdown from '../../src/functions/add-event/getEventMarkdown'
 import getSponsorMarkdown from '../../src/functions/add-sponsor/getSponsorMarkdown'
-import { getValidEventData, getValidSponsorData, getDefaultEventDate } from '../support/helpers'
+import {
+  getValidEventData,
+  getValidSponsorData,
+  getDefaultEventDate,
+} from '../support/helpers'
 import { DateTime } from 'luxon'
 
 describe('API', function() {
@@ -28,11 +32,27 @@ describe('API', function() {
       id: '2019-08-26-acme-co',
       name: 'Acme Co',
       week: '2019-08-26',
-      link: 'https://chicagotechevents.com'
+      link: 'https://chicagotechevents.com',
     }
-    
-    const validSponsorDataMarkdownOutput = '---\nid: "'+validSponsorData.id+'"\nname: "' + validSponsorData.name + '"\nweek: "' + validSponsorData.week + '"\nlink: "' + validSponsorData.link +'"\n\n---\n\n' + validSponsorData.name + '\n\n' + '<a href="' + validSponsorData.link + '"><img src="https://docqet-images.s3.us-east-2.amazonaws.com/sponsors/'+validSponsorData.id+'.jpg" /></a>\n\n'
-    
+
+    const validSponsorDataMarkdownOutput =
+      '---\nid: "' +
+      validSponsorData.id +
+      '"\nname: "' +
+      validSponsorData.name +
+      '"\nweek: "' +
+      validSponsorData.week +
+      '"\nlink: "' +
+      validSponsorData.link +
+      '"\n\n---\n\n' +
+      validSponsorData.name +
+      '\n\n' +
+      '<a href="' +
+      validSponsorData.link +
+      '"><img src="https://docqet-images.s3.us-east-2.amazonaws.com/sponsors/' +
+      validSponsorData.id +
+      '.jpg" /></a>\n\n'
+
     cy.expect(getSponsorMarkdown(validSponsorData)).to.equal(
       validSponsorDataMarkdownOutput
     )

@@ -13,12 +13,13 @@
 **--W--I--P--**
 
 - Add Sponsorships
+	- Testing
+		- test generate markdown
+		- cy.exec() to move test markdown
+		- var to switch live or test
 	- Stripe Checkout 
-		- [github.com/azmenak/react-stripe-checkout](https://github.com/azmenak/react-stripe-checkout)
-		- [github.com/gillkyle/gatsby-stripe](https://github.com/gillkyle/gatsby-stripe)
-		- [github.com/gillkyle/gatsby-stripe/blob/master/src/components/checkout.js](https://github.com/gillkyle/gatsby-stripe/blob/master/src/components/checkout.js)
-		- [www.gatsbyjs.org/tutorial/ecommerce-tutorial](https://www.gatsbyjs.org/tutorial/ecommerce-tutorial/)
-		- [macarthur.me/posts/building-a-lambda-function-with-netlify](https://macarthur.me/posts/building-a-lambda-function-with-netlify)
+		
+		
 - Add Featured Event
 	- Appears at top of feed
 - Create JSON and RSS feed

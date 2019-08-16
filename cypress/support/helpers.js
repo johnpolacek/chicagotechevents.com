@@ -34,17 +34,25 @@ const eventbriteResultSet = offset => {
   const year = nextMonth.year
   const month = nextMonth.month
   let data = EVENTBRITE_RESPONSE
-  // for (let i = 0; i < data.response.events.length; i++) {
-  //   const eventTime = nextMonth.plus({ days: i })
-  //   data.response.events[i].time = eventTime.valueOf()
-  //   data.response.events[i].local_date = eventTime.toISODate()
-  //   data.response.events[i].local_time = eventTime.toFormat('HH:mm')
-  // }
   return data
 }
 
 module.exports = {
   getValidEventData: () => ({
+    eventName: 'Test Event',
+    description: 'This is not a real event. It is just for testing',
+    linkURL: 'https://eventbrite.com/test-event',
+    cost: 'FREE',
+    locationName: '1871 Chicago',
+    locationStreet: '222 W Merchandise Mart Plaza #1212',
+    locationCity: 'Chicago',
+    authorName: 'Joe Tester',
+    startDate: defaultEventDate(),
+    startTime: '5:00pm',
+    endDate: defaultEventDate(),
+    endTime: '7:00pm',
+  }),
+  getValidSponsorData: () => ({
     eventName: 'Test Event',
     description: 'This is not a real event. It is just for testing',
     linkURL: 'https://eventbrite.com/test-event',

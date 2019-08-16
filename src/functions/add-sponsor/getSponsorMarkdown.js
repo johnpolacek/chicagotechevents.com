@@ -1,4 +1,4 @@
-const getEventMarkdown = (data) => {
+const getSponsorMarkdown = (data) => {
 return `---
 id: "${data.id}"
 name: "${data.name}"
@@ -14,4 +14,4 @@ ${data.name}
 `
 }
 
-module.exports = getEventMarkdown
+module.exports = getSponsorMarkdown

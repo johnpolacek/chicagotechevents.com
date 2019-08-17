@@ -1,0 +1,18 @@
+---
+title: "ReasonConf"
+date: "2019-08-17T15:15:57.523Z"
+startDate: "2019-10-07T15:13:54.000Z"
+startTime: "8:00pm"
+endDate: "2019-10-08T15:13:54.000Z"
+endTime: "8:00pm"
+locationName: "Chicago, IL"
+locationStreet: "610 S. Michigan Ave Chicago, IL 60605"
+locationCity: "Chicago"
+locationState: "IL"
+cost: "$299"
+eventUrl: "https://www.reason-conf.us/"
+
+---
+
+A hands-on ReasonML conference for web developers & OCaml enthusiasts.
+

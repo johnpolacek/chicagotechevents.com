@@ -1,9 +1,9 @@
 const getSponsorMarkdown = (data) => {
 return `---
-id: "${data.id}"
-name: "${data.name}"
-week: "${data.week}"
-link: "${data.link}"
+title: "${data.name}"
+date: "${data.date}"
+sponsorDate: "${data.week}"
+eventUrl: "${data.link}"
 
 ---
 

@@ -37,8 +37,8 @@ exports.handler = (event, context, callback) => {
       const filepath = 'content/eventslist/'+filename
 
       const newContent = getSponsorMarkdown({
-        id: sponsorId,
         name: submitData.name, 
+        date: new Date().toISOString();
         week: submitData.week, 
         link: submitData.link
       })

@@ -26,7 +26,7 @@ const SponsorAdPreview = props => {
           {
             [PREVIEW_SITE]: (
               <>
-                <P fontSize={1}>On <A href="https://chicagotechevents.com" target="_blank">chicagotechevents.com</A>, the Sponsor Ad Image will appear after the 2nd event and again every 10 events after that.</P>
+                <P fontSize={1}>On <A href="https://chicagotechevents.com" target="_blank">chicagotechevents.com</A>, the Sponsor Ad Image will appear after the 2nd event for each month with at least 2 events listed on the calendar.</P>
                 <Div pt={4} px={4} bg="white" border="1px solid" borderColor="rgba(0,0,0,.1)">
                   <Event
                       {...{
@@ -46,7 +46,7 @@ const SponsorAdPreview = props => {
                       }}
                     />
                   <Div position="relative" top="-40px" mb={-3} textAlign="center">
-                    <P pb={0} mb={1} fontStyle="italic" fontSize={0} color="gray">Thank you to {sponsorName === '' ? '[Sponsor Name]' : sponsorName} for sponsoring this newsletter</P>
+                    <P pb={0} mb={1} fontStyle="italic" fontSize={0} color="gray">Thank you to <A href={sponsorLink}>{sponsorName === '' ? '[Sponsor Name]' : sponsorName}</A> for being this week’s sponsor.</P>
                     <A href={sponsorLink} target="_blank" onClick={e => { if (sponsorLink === '') e.preventDefault()}}>
                       {sponsorImageUpload && sponsorImageUpload.data ?
                           (
@@ -83,7 +83,7 @@ const SponsorAdPreview = props => {
                 <Div pt={4} px={4} bg="white" border="1px solid" borderColor="rgba(0,0,0,.1)">
                   <Header title="CHICAGO TECH EVENTS" />
                   <Div position="relative" px={3} pb={4} textAlign="center">
-                    <P pb={0} mb={1} fontStyle="italic" fontSize={0} color="gray">Thank you to {sponsorName === '' ? '[Sponsor Name]' : sponsorName} for sponsoring this newsletter</P>
+                    <P pb={0} mb={1} fontStyle="italic" fontSize={0} color="gray">Thank you to <A href={sponsorLink}>{sponsorName === '' ? '[Sponsor Name]' : sponsorName}</A> for sponsoring this newsletter</P>
                     <Div textAlign="center">
                       <A href={sponsorLink} width={1} target="_blank" onClick={e => { if (sponsorLink === '') e.preventDefault()}}>
                         {sponsorImageUpload && sponsorImageUpload.data ?

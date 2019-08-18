@@ -36,9 +36,19 @@ class Index extends React.Component {
     const nextMonday = getMonday(1)
     const sponsors = edges.filter(({ node }) => {
       const sponsorDate = new Date(node.frontmatter.sponsorDate)
-      return sponsorDate > monday && sponsorDate < nextMonday
+      if (node.frontmatter.sponsorDate) {
+        return sponsorDate >= monday && sponsorDate < nextMonday
+      } else {
+        return false
+      }
     })
-    const sponsor = sponsors.length !== 0 ? sponsors[0].node.frontmatter : null
+    let sponsor = null
+    if (sponsors.length !== 0) {
+      console.log('sponsors[0].node',sponsors[0].node)
+      sponsor = sponsors[0].node.frontmatter
+      sponsor.id = sponsors[0].node.fields.slug.split('/')[2]
+    }
+    console.log('sponsor',sponsor)
 
     return (
       <Layout

@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon'
 import { MEETUP_RESPONSE, EVENTBRITE_RESPONSE } from './responses'
+import { getMonday } from '../../src/components/util'
 
 const defaultEventDate = () => {
   const now = DateTime.local().setZone('America/Chicago')
@@ -52,20 +53,16 @@ module.exports = {
     endDate: defaultEventDate(),
     endTime: '7:00pm',
   }),
-  getValidSponsorData: () => ({
-    eventName: 'Test Event',
-    description: 'This is not a real event. It is just for testing',
-    linkURL: 'https://eventbrite.com/test-event',
-    cost: 'FREE',
-    locationName: '1871 Chicago',
-    locationStreet: '222 W Merchandise Mart Plaza #1212',
-    locationCity: 'Chicago',
-    authorName: 'Joe Tester',
-    startDate: defaultEventDate(),
-    startTime: '5:00pm',
-    endDate: defaultEventDate(),
-    endTime: '7:00pm',
-  }),
+  getValidSponsorData: () => {
+    const sponsorDate = getMonday().toISOString()
+    return {
+      id: sponsorDate.split('T')[0]+'-acme-co',
+      name: 'Acme Co',
+      date: new Date().toISOString(),
+      week: sponsorDate,
+      link: 'https://chicagotechevents.com',
+    }
+  },
   getDefaultEventDate: () => {
     return defaultEventDate()
   },

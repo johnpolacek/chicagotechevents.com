@@ -1,23 +1,25 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { Div } from 'styled-system-html'
+import { Div, P, A, Img } from 'styled-system-html'
 
 const Sponsor = props => (
-  <Div
-    key={props.url}
-    py={5}
-    mb={5}
-    mt={-4}
-    textAlign="center"
-    bg="blue2"
-    color="white"
-  >
-    Sponsor goes here. 1200x400 Image will be something like https://chicagotechevents.s3.amazonaws.com/sponsors/{props.sponsor.sponsorDate}.jpg
+  <Div textAlign="center" pt={4} bg="#f6f6f6" mt={-5}>
+    <P pb={0} mb={1} fontStyle="italic" fontSize={0} color="gray">
+      <span>Thank you to </span>
+      <A href={props.sponsor.eventUrl}>{props.sponsor.title}</A>
+      <span> for being this week’s sponsor.</span>
+    </P>
+    <Div
+      key={props.sponsor.id}
+      py={5}
+      mb={5}
+      bg="blue2"
+      color="white"
+    >
+      <A href={props.sponsor.eventUrl}>
+        <Img alt={props.sponsor.title} width={1} height="auto" src={'https://docqet-images.s3.us-east-2.amazonaws.com/sponsors/'+props.sponsor.id+'.png'} />
+      </A>
+    </Div>
   </Div>
 )
-
-Sponsor.propTypes = {
-  url: PropTypes.string
-}
 
 export default Sponsor

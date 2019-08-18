@@ -1,4 +1,5 @@
 import getSponsorMarkdown from '../../src/functions/add-sponsor/getSponsorMarkdown'
+import { getValidSponsorData } from '../support/helpers' 
 import { deferred } from '../support/helpers'
 
 describe('Sponsor', function() {
@@ -24,9 +25,22 @@ describe('Sponsor', function() {
   })
 
   it('ad shows when active', function() {
-    // cy.writeFile md file into content
-    // cy.writeFile('path/to/message.txt', 'Hello World')
-    // what happens when there is already a file there
+    
+    // need handle when there is an active sponsor is prod
+    const sponsorData = getValidSponsorData()
+    cy.writeFile('content/eventslist/sponsors/'+sponsorData.id+'.md', getSponsorMarkdown(sponsorData))
+
+    cy.visit('/')
+    cy.get('p')
+      .contains('This Space Available')
+      .should('not.exist')
+
+    cy.get('a')
+      .contains('Acme Co')
+      .should('be.visible')
+
+    cy.exec('rm ./content/eventslist/sponsors/'+sponsorData.id+'.md')
+
   })
 
   it('can create ad', function() {

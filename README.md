@@ -1,3 +1,5 @@
+chicagotechevents.com is an open source Gatsby site created and maintained by Chicago Web Developer [John Polacek](https://johnpolacek.com/).
+
 
 # ChicagoTechEvents.com Build Log
 

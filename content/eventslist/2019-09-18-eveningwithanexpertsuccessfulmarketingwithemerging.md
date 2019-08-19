@@ -1,5 +1,5 @@
 ---
-title: "Evening with an Expert – Successful Marketing with Emerging Tech – Sept. 2019"
+title: "Evening with an Expert – Successful Marketing with Emerging Tech"
 date: "2019-08-19T11:58:34.064Z"
 startDate: "2019-09-18T22:30:00.000Z"
 startTime: "5:30pm"

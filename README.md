@@ -13,12 +13,8 @@
 **--W--I--P--**
 
 - Add Sponsorships
-
-	- NEED TO REFORMAT GENERATED SPONSOR MD to match the test sponsor one
-
 	- Testing
-		- test generate markdown
-		- cy.exec() to move test markdown
+		- write create ad test
 		- var to switch live or test
 	- Stripe Checkout 
 		

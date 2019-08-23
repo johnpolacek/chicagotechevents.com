@@ -37,6 +37,7 @@
     "to-querystring": "^1.1.0"
   },
   "devDependencies": {
+    "cypress-file-upload": "^3.3.3",
     "prettier": "^1.16.4",
     "start-server-and-test": "^1.7.13"
   },

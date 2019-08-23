@@ -77,14 +77,14 @@ const SponsorAdForm = props => {
         <FormControl
           label="Sponsor Name"
           type="text"
-          id="SponsorName"
+          id="sponsorName"
           value={sponsorName}
           setValue={setSponsorName}
         />
         <FormControl
           label="Sponsor Link"
           type="text"
-          id="SponsorLink"
+          id="sponsorLink"
           value={sponsorLink}
           setValue={setSponsorLink}
         />
@@ -95,7 +95,7 @@ const SponsorAdForm = props => {
         {
           sponsorImageUpload ? (
             <>
-              <Img width={1} src={sponsorImageUpload.data} />
+              <Img id="sponsorImageUploadPreview" width={1} src={sponsorImageUpload.data} />
               <Div py={2} onClick={e => { e.preventDefault(); setSponsorImageUpload(null) }}>
                 <A href="#">Choose a different image</A>
               </Div>

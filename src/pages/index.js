@@ -44,11 +44,9 @@ class Index extends React.Component {
     })
     let sponsor = null
     if (sponsors.length !== 0) {
-      console.log('sponsors[0].node',sponsors[0].node)
       sponsor = sponsors[0].node.frontmatter
       sponsor.id = sponsors[0].node.fields.slug.split('/')[2]
     }
-    console.log('sponsor',sponsor)
 
     return (
       <Layout

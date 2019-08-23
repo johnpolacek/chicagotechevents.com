@@ -5,7 +5,7 @@ import { getEventDateString } from '../util'
 
 const Event = props => (
   <tr>
-    <td colspan="3" key={props.url} style={{padding: '16px 0 32px', marginBottom: '32px', borderBottom: props.isLast ? 'none' : 'solid 1px #ccc' }}>
+    <td colSpan="3" key={props.url} style={{padding: '16px 0 32px', marginBottom: '32px', borderBottom: props.isLast ? 'none' : 'solid 1px #ccc' }}>
       <h2 style={{ color: theme.colors.base, fontSize: '30px'}}>{props.title}</h2>
       <p style={{ color: theme.colors.red, fontStyle:"italic", fontWeight:"bold", fontSize: '14px', marginBottom: '8px'}}>
         {getEventDateString(

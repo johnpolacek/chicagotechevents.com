@@ -5,7 +5,7 @@ import theme from '../theme.js'
 import { getMonday } from '../components/util'
 import Header from '../components/email/Header'
 import EventsByMonth from '../components/email/EventsByMonth'
-import SponsorAd from '../components/sponsor/SponsorAd'
+import SponsorAd from '../components/email/SponsorAd'
 
 class Email extends React.Component {
   render() {
@@ -33,15 +33,24 @@ class Email extends React.Component {
     const nextMonday = getMonday(1)
     const sponsors = edges.filter(({ node }) => {
       const sponsorDate = new Date(node.frontmatter.sponsorDate)
-      return sponsorDate > monday && sponsorDate < nextMonday
+      if (node.frontmatter.sponsorDate) {
+        return sponsorDate >= monday && sponsorDate < nextMonday
+      } else {
+        return false
+      }
     })
-    const sponsor = sponsors.length !== 0 ? sponsors[0].node.frontmatter : null
+    let sponsor = null
+    if (sponsors.length !== 0) {
+      sponsor = sponsors[0].node.frontmatter
+      sponsor.id = sponsors[0].node.fields.slug.split('/')[2]
+    }
+    console.log('sponsor',sponsor)
 
     return (
       <ThemeProvider theme={theme}>
         <table
           id="emailTemplate"
-          cellpadding="0"
+          cellPadding="0"
           style={{
             background: '#fff',
             fontFamily: theme.font,
@@ -50,58 +59,48 @@ class Email extends React.Component {
           }}
         >
           <Header title={siteTitle} />
-          <tr>
-            <td>
-              {sponsor ? (
-                <SponsorAd sponsor={sponsor} />
-              ) : (
-                <>
-                  <p style={{ paddingTop: '32px', textAlign: 'center' }}>
-                    Want to sponsor this newsletter and reach hundreds of
-                    Chicago tech enthusiasts?
-                  </p>
-                  <p
-                    style={{
-                      paddingBottom: '32px',
-                      fontWeight: 'bold',
-                      textAlign: 'center',
-                    }}
-                  >
-                    Find out more at{' '}
-                    <a href="https://chicagotechevents.com/sponsor">
-                      chicagotechevents.com/sponsor
-                    </a>
-                  </p>
-                </>
-              )}
-            </td>
-          </tr>
-          <tr>
-            <td style={{ padding: '16px 0 24px', textAlign: 'center' }}>
-              View these events online at{' '}
-              <a
-                style={{ color: theme.colors.blue, fontSize: '18px' }}
-                href="https://chicagotechevents.com"
+          <tbody>
+            <tr>
+              <td style={{ padding: '16px 0 24px', textAlign: 'center' }}>
+                View these events online at{' '}
+                <a
+                  style={{ color: theme.colors.blue, fontSize: '18px' }}
+                  href="https://chicagotechevents.com"
+                >
+                  chicagotechevents.com
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                {sponsor ? (
+                  <SponsorAd sponsor={sponsor} />
+                ) : (
+                  <>
+                    <p style={{textAlign: 'center' }}>
+                      Want to sponsor this newsletter and reach hundreds of Chicago tech enthusiasts? Go to <a href="https://chicagotechevents.com/sponsor">chicagotechevents.com/sponsor</a>
+                    </p>
+                  </>
+                )}
+              </td>
+            </tr>
+            <tr>
+              <td
+                style={{
+                  paddingTop: '24px',
+                  paddingBottom: '36px',
+                  textAlign: 'center',
+                  fontSize: '14px',
+                }}
               >
-                chicagotechevents.com
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td
-              style={{
-                paddingBottom: '48px',
-                textAlign: 'center',
-                fontSize: '14px',
-              }}
-            >
-              <a style={{ color: theme.colors.blue }} href="*|UNSUB|*">
-                Unsubscribe
-              </a>{' '}
-              to stop receiving updates
-            </td>
-          </tr>
-          <EventsByMonth sponsor={sponsor} eventsByMonth={eventsByMonth} />
+                <a style={{ color: theme.colors.blue }} href="*|UNSUB|*">
+                  Unsubscribe
+                </a>{' '}
+                to stop receiving updates
+              </td>
+            </tr>
+            <EventsByMonth sponsor={sponsor} eventsByMonth={eventsByMonth} />
+          </tbody>
         </table>
       </ThemeProvider>
     )

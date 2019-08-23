@@ -13,14 +13,11 @@
 **--W--I--P--**
 
 - Add Sponsorships
-	- Testing
-		- write create ad test
-		- var to switch live or test
-	- Stripe Checkout 
-		
-		
-- Add Featured Event
-	- Appears at top of feed
+	- Show Sponsor on Email
+		- Check image by using a temp valid sponsor with docqet S3 image
+		- Add test for email with active/inactive sponsor
+	- Filter out Sponsorship Week availability when booked
+
 - Create JSON and RSS feed
 	- https://www.gatsbyjs.org/packages/gatsby-plugin-feed-generator/
 - Autopublish blog (14 Tech Events in Chicago the week of 7/14/2019)

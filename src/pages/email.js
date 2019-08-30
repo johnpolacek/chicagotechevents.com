@@ -29,8 +29,8 @@ class Email extends React.Component {
       }
     })
 
-    const monday = getMonday()
-    const nextMonday = getMonday(1)
+    const monday = getMonday(-1)
+    const nextMonday = getMonday(0)
     const sponsors = edges.filter(({ node }) => {
       const sponsorDate = new Date(node.frontmatter.sponsorDate)
       if (node.frontmatter.sponsorDate) {
@@ -52,6 +52,8 @@ class Email extends React.Component {
           id="emailTemplate"
           cellPadding="0"
           style={{
+            maxWidth: '640px',
+            margin: 'auto',
             background: '#fff',
             fontFamily: theme.font,
             paddingBottom: '32px',

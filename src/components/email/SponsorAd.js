@@ -9,7 +9,7 @@ const Sponsor = props => (
     </p>
     <p style={{textAlign:'center', paddingLeft:'48px',paddingRight:'48px'}}>
       <a href={props.sponsor.eventUrl}>
-        <img alt={props.sponsor.title} width="100%" height="auto" src={'https://docqet-images.s3.us-east-2.amazonaws.com/sponsors/'+props.sponsor.id+'.png'} />
+        <img alt={props.sponsor.title} width="100%" height="auto" src={'https://docqet-images.s3.us-east-2.amazonaws.com/sponsors/'+props.sponsor.id+'.jpg'} />
       </a>
     </p>
   </>

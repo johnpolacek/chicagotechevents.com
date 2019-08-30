@@ -10,13 +10,11 @@ const Sponsor = props => (
     </P>
     <Div
       key={props.sponsor.id}
-      py={5}
       mb={5}
-      bg="blue2"
       color="white"
     >
-      <A href={props.sponsor.eventUrl}>
-        <Img alt={props.sponsor.title} width={1} height="auto" src={'https://docqet-images.s3.us-east-2.amazonaws.com/sponsors/'+props.sponsor.id+'.png'} />
+      <A href={props.sponsor.eventUrl} p={0}>
+        <Img alt={props.sponsor.title} width={1} height="auto" src={'https://docqet-images.s3.us-east-2.amazonaws.com/sponsors/'+props.sponsor.id+'.jpg'} />
       </A>
     </Div>
   </Div>

@@ -8,5 +8,5 @@ eventUrl: "https://awesomecompany.com"
 
 Awesome Company
 
-<a href="https://awesomecompany.com"><img src="https://docqet-images.s3.us-east-2.amazonaws.com/sponsors/undefined.jpg" /></a>
+<a href="https://awesomecompany.com"><img src="https://docqet-images.s3.us-east-2.amazonaws.com/sponsors/2019-09-02-awesomecompany.jpg" /></a>
 

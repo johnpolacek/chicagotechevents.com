@@ -1,3 +1,5 @@
+const fetch = require('node-fetch')
+
 // const meetup = require('meetup-api')({
 // 	key: process.env.MEETUP_KEY
 // })

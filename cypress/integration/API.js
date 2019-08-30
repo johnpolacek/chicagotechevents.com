@@ -30,24 +30,24 @@ describe('API', function() {
   it('can generate sponsor markdown from valid sponsor data', function() {
     const validSponsorData = {
       id: '2019-08-26-acme-co',
+      date: new Date().toISOString(),
       name: 'Acme Co',
       week: '2019-08-26',
       link: 'https://chicagotechevents.com',
     }
 
     const validSponsorDataMarkdownOutput =
-      '---\nid: "' +
-      validSponsorData.id +
-      '"\nname: "' +
+      '---\ntitle: "' +
       validSponsorData.name +
-      '"\nweek: "' +
+      '"\ndate: "' +
+      validSponsorData.date +
+      '"\nsponsorDate: "' +
       validSponsorData.week +
-      '"\nlink: "' +
+      '"\neventUrl: "' +
       validSponsorData.link +
       '"\n\n---\n\n' +
       validSponsorData.name +
-      '\n\n' +
-      '<a href="' +
+      '\n\n<a href="' +
       validSponsorData.link +
       '"><img src="https://docqet-images.s3.us-east-2.amazonaws.com/sponsors/' +
       validSponsorData.id +

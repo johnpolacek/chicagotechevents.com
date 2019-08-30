@@ -38,7 +38,7 @@ exports.handler = (event, context, callback) => {
 
       const newContent = getSponsorMarkdown({
         name: submitData.name, 
-        date: new Date().toISOString();
+        date: new Date().toISOString(),
         week: submitData.week, 
         link: submitData.link
       })

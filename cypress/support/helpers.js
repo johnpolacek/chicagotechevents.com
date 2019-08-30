@@ -54,7 +54,7 @@ module.exports = {
     endTime: '7:00pm',
   }),
   getValidSponsorData: () => {
-    const sponsorDate = getMonday().toISOString()
+    const sponsorDate = getMonday(-1).toISOString()
     return {
       id: sponsorDate.split('T')[0]+'-acme-co',
       name: 'Acme Co',

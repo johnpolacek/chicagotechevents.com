@@ -15,10 +15,9 @@ chicagotechevents.com is an open source Gatsby site created and maintained by Ch
 **--W--I--P--**
 
 - Add Sponsorships
-	- Show Sponsor on Email
-		- Check image by using a temp valid sponsor with docqet S3 image
-		- Add test for email with active/inactive sponsor
-	- Filter out Sponsorship Week availability when booked
+	- Filter out Sponsorship Week availability when booked (and test)
+
+- Update Meetup API for OAuth
 
 - Create JSON and RSS feed
 	- https://www.gatsbyjs.org/packages/gatsby-plugin-feed-generator/

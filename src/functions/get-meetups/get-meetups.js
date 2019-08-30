@@ -1,6 +1,6 @@
-const meetup = require('meetup-api')({
-	key: process.env.MEETUP_KEY
-})
+// const meetup = require('meetup-api')({
+// 	key: process.env.MEETUP_KEY
+// })
 
 exports.handler = (event, context, callback) => {
 

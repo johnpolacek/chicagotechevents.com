@@ -15,39 +15,9 @@ chicagotechevents.com is an open source Gatsby site created and maintained by Ch
 **--W--I--P--**
 
 - Update Meetup API for OAuth
+	- Handle new client side response data in handleSearchResults
 
-	- responds with https://chicagotechevents.com/admin/#access_token=36da6d1e69baa59b36cc5aed2138890c&token_type=bearer&expires_in=3600
-	- then do client side meetup api requests (can remove `get-meetups` netlify function) with: 
 
-```
-fetch('https://cors-anywhere.herokuapp.com/https://api.meetup.com/find/upcoming_events?&sign=true&photo-host=public&lon=-87.6298&page=20&text=tech&radius=5&lat=41.8781', {
-    method: 'GET', // *GET, POST, PUT, DELETE, etc.
-    mode: 'cors', // no-cors, cors, *same-origin
-    headers: {
-        'Authorization': 'Bearer 36da6d1e69baa59b36cc5aed2138890c',
-        'Origin': 'https://chicagotechevents.com',
-    }
-}).then(res => {
-    return res.json()
-  }).then(data => {
-    console.log('data', data);
-    // do stuff with data
-  }).catch((error) => {
-    console.log('error', error)
-  })
-```
-
-- Add Sponsorships
-	- Available Dates
-	- Create Ad
-		- Sponsor Name and Email Contact
-		- Upload Image to S3
-			- onChange file input verifies size of image then submits with size params that get validated
-			- compress before uploading
-		- Thanks to {Sponsor Name} for sponsoring this week in Chicago Tech Events. Go to {link + link text}
-		- Purchase on Stripe
-		- Submits PR
-- Add Featured Event
 - Create JSON and RSS feed
 	- https://www.gatsbyjs.org/packages/gatsby-plugin-feed-generator/
 - Automate Social

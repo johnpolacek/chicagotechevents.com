@@ -87,7 +87,7 @@ module.exports = {
                 cost = 'FREE, ' + cost
               }
             }
-          } else if (ticket.cost !== undefined) {
+          } else if (ticket.cost !== undefined && ticket.cost.display !== undefined && ticket.cost.display) {
             if (cost !== '') {
               cost += ', '
             }

@@ -14,12 +14,8 @@ chicagotechevents.com is an open source Gatsby site created and maintained by Ch
 
 **--W--I--P--**
 
-- Add Sponsorships
-	- Ready to deploy?
-
 - Update Meetup API for OAuth
-	- update admin page. check for location hash, if none then...
-	- redirect to https://secure.meetup.com/oauth2/authorize?client_id=ch3hjqgh7nh72u5o72fdkkbeh6%20&response_type=token&redirect_uri=https%3A%2F%2Fchicagotechevents.com%2Fadmin
+
 	- responds with https://chicagotechevents.com/admin/#access_token=36da6d1e69baa59b36cc5aed2138890c&token_type=bearer&expires_in=3600
 	- then do client side meetup api requests (can remove `get-meetups` netlify function) with: 
 

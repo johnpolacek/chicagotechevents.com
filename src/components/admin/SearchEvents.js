@@ -26,39 +26,63 @@ const ViewEvents = props => {
     setEventData(null)
     setEventSearchStatus(EVENTS_LOADING)
 
-    try {
-      return fetch('/.netlify/functions/get-'+searchMode+'/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          adminCode: props.adminCode,
-          search: eventSearch,
-          page: resultSet
-        }),
-      })
-        .then(response => response.json())
-        .then(data => {
-          if (
-            data.message === 'success' &&
-            typeof data.response.events === 'object'
-          ) {
-            // both meetup and eventbrite response has events and event.venue
-            const filterData = data.response.events.filter(event => event.venue)
-            if (searchMode === searchModes[0]) {
-              setEventData(filterData.map(event => meetupDataToEventData(event)))
-            } else if (searchMode === searchModes[1]) {
-              setEventData(filterData.map(event => eventbriteDataToEventData(event)))
-            }
-            setEventSearchStatus(EVENTS_READY)
-          } else {
-            setEventSearchStatus(EVENTS_FAIL)
-            setSearchError('data: '+JSON.stringify(data))
+    if (searchMode === 'meetups') {
+      const meetupToken = window.location.hash.split('=')[1].split('&')[0]
+
+      try {
+        return fetch('https://cors-anywhere.herokuapp.com/https://api.meetup.com/find/upcoming_events?&sign=true&photo-host=public&lon=-87.6298&page=20&text='+eventSearch+'&radius=5&lat=41.8781', {
+          method: 'GET',
+          mode: 'cors',
+          headers: {
+            'Authorization': 'Bearer '+meetupToken,
+            'Origin': window.location.href.split('.com')[0]+'.com',
           }
         })
-    } catch (err) {
-      setEventSearchStatus(EVENTS_FAIL)
-      setSearchError('Error: '+err)
+        .then(response => response.json())
+        .then(data => {
+          console.log(data)
+        })
+      } catch (err) {
+        setEventSearchStatus(EVENTS_FAIL)
+        setSearchError('Error: '+err)
+      }
+
+    } else {
+      try {
+        return fetch('/.netlify/functions/get-'+searchMode+'/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            adminCode: props.adminCode,
+            search: eventSearch,
+            page: resultSet
+          }),
+        })
+          .then(response => response.json())
+          .then(data => {
+            if (
+              data.message === 'success' &&
+              typeof data.response.events === 'object'
+            ) {
+              // both meetup and eventbrite response has events and event.venue
+              const filterData = data.response.events.filter(event => event.venue)
+              if (searchMode === searchModes[0]) {
+                setEventData(filterData.map(event => meetupDataToEventData(event)))
+              } else if (searchMode === searchModes[1]) {
+                setEventData(filterData.map(event => eventbriteDataToEventData(event)))
+              }
+              setEventSearchStatus(EVENTS_READY)
+            } else {
+              setEventSearchStatus(EVENTS_FAIL)
+              setSearchError('data: '+JSON.stringify(data))
+            }
+          })
+      } catch (err) {
+        setEventSearchStatus(EVENTS_FAIL)
+        setSearchError('Error: '+err)
+      }
     }
+
   }
 
   const onClickSearchTerm = e => {

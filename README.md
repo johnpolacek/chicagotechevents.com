@@ -15,7 +15,7 @@ chicagotechevents.com is an open source Gatsby site created and maintained by Ch
 **--W--I--P--**
 
 - Add Sponsorships
-	- Filter out Sponsorship Week availability when booked (and test)
+	- Ready to deploy?
 
 - Update Meetup API for OAuth
 

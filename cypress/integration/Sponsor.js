@@ -1,9 +1,43 @@
 import 'cypress-file-upload'
 import getSponsorMarkdown from '../../src/functions/add-sponsor/getSponsorMarkdown'
-import { getValidSponsorData } from '../support/helpers' 
+import { getValidSponsorData, getValidSponsorDataNextWeek } from '../support/helpers' 
 import { deferred } from '../support/helpers'
 
 describe('Sponsor', function() {
+
+  it('cannot reserve an existing sponsor', function() {
+    // cy.exec move any existing sponsor md file into temp then back
+    cy.exec('mkdir ./temp')
+    cy.exec('mv ./content/eventslist/sponsors/*.md ./temp')
+
+    // wait for rebuild
+    cy.wait(2000)
+
+    // verify number of sponsorships available
+    cy.visit('/sponsor')
+    cy.get('input[name="sponsorWeek"]').should('have.length', 52)
+
+    const sponsorData = getValidSponsorDataNextWeek()
+
+    // set sponsor date for next week
+
+    const sponsorFileName = 'content/eventslist/sponsors/'+sponsorData.id+'.md'
+    cy.writeFile(sponsorFileName, getSponsorMarkdown(sponsorData))
+
+    // wait for rebuild
+    cy.wait(2000)
+
+    cy.reload()
+    cy.get('input[name="sponsorWeek"]').should('have.length', 52)
+
+    cy.exec('mv ./temp/*.md ./content/eventslist/sponsors')
+    cy.exec('rmdir ./temp')
+
+    // wait for rebuild
+    cy.wait(2000)
+  })
+
+
   it('ad when inactive shows promo', function() {
     // cy.exec move any existing sponsor md file into temp then back
     cy.exec('mkdir ./temp')
@@ -101,7 +135,7 @@ describe('Sponsor', function() {
 
     const fileName = 'sponsor-image-example.png'
     cy.fixture(fileName).then(fileContent => {
-      cy.get('input[name=sponsorImage]').upload({ fileContent, fileName, mimeType: 'image/png' });
+      cy.get('input[name=sponsorImage]').upload({ fileContent, fileName, mimeType: 'image/png' })
     })
 
     // verify preview

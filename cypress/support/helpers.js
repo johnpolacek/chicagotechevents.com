@@ -38,6 +38,17 @@ const eventbriteResultSet = offset => {
   return data
 }
 
+const getSponsorData = offset => {
+  const sponsorDate = getMonday(offset).toISOString()
+  return {
+    id: sponsorDate.split('T')[0]+'-acme-co',
+    name: 'Acme Co',
+    date: new Date().toISOString(),
+    week: sponsorDate,
+    link: 'https://chicagotechevents.com',
+  }
+}
+
 module.exports = {
   getValidEventData: () => ({
     eventName: 'Test Event',
@@ -54,14 +65,10 @@ module.exports = {
     endTime: '7:00pm',
   }),
   getValidSponsorData: () => {
-    const sponsorDate = getMonday(-1).toISOString()
-    return {
-      id: sponsorDate.split('T')[0]+'-acme-co',
-      name: 'Acme Co',
-      date: new Date().toISOString(),
-      week: sponsorDate,
-      link: 'https://chicagotechevents.com',
-    }
+    return getSponsorData(-1)
+  },
+  getValidSponsorDataNextWeek: () => {
+    return getSponsorData(1)
   },
   getDefaultEventDate: () => {
     return defaultEventDate()

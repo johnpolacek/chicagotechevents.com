@@ -47,7 +47,7 @@ module.exports = {
     if (numDays > 0) {
       endDate.setDate(endDate.getDate() + numDays)
     }
-    endDate = endDate.toISOString().split('T')[0]
+    endDate = endDate.toISOString().split('T')[0] + ' 00:00'
 
     return {
       eventName: meetupData.name,

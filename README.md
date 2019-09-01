@@ -14,13 +14,11 @@ chicagotechevents.com is an open source Gatsby site created and maintained by Ch
 
 **--W--I--P--**
 
-- Create JSON and RSS feed
-	- https://www.gatsbyjs.org/packages/gatsby-plugin-feed-generator/
-- Autopublish blog (14 Tech Events in Chicago the week of 7/14/2019)
 - Automate Social
 - Mailchimp API 
 	- [Netlify example for Mailchimp integration](https://github.com/tobilg/netlify-functions-landingpage/blob/169de175d04b165b5d4801b09cb250cd9a740da5/src/lambda/signup.js)
 	- [Netlify Function for Emails](https://css-tricks.com/netlify-functions-for-sending-emails/)
+- Autopublish blog (14 Tech Events in Chicago the week of 7/14/2019)
 - Prevent adding events that already exist by querying JSON feed- 
 - Write a Talk
 - Survey

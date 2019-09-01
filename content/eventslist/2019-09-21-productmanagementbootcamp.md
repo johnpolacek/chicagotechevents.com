@@ -2,7 +2,7 @@
 title: "Product Management Bootcamp"
 date: "2019-07-31T00:51:42.587Z"
 startDate: "2019-09-21T00:52:52.000Z"
-startTime: "10:00pm"
+startTime: "10:00am"
 endDate: "2019-09-21T00:52:52.000Z"
 endTime: "8:00pm"
 locationName: "GA Chicago @ Rent 24"

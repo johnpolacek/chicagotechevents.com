@@ -2,7 +2,7 @@
 title: "Finance Networking Event at Arlington Park"
 date: "2019-08-12T20:54:37.648Z"
 startDate: "2019-09-20T20:52:21.000Z"
-startTime: "11:00pm"
+startTime: "11:00am"
 endDate: "2019-09-20T20:52:21.000Z"
 endTime: "8:00pm"
 locationName: "Arlington Park"

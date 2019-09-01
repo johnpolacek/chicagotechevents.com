@@ -2,7 +2,7 @@
 title: "IEEE Women In Engineering AI Leadership Summit"
 date: "2019-06-15T20:10:48.531Z"
 startDate: "2019-09-20T20:08:30.000Z"
-startTime: "6:00am"
+startTime: "7:30am"
 endDate: "2019-09-20T20:08:30.000Z"
 endTime: "8:00pm"
 locationName: "Nokia Auditorium"

@@ -1,9 +1,9 @@
 ---
 title: "Product Management Bootcamp "
 date: "2019-07-31T15:43:47.783Z"
-startDate: "2019-11-08T16:41:51.000Z"
-startTime: "10:00pm"
-endDate: "2019-11-08T16:41:51.000Z"
+startDate: "2019-11-09T16:41:51.000Z"
+startTime: "10:00am"
+endDate: "2019-11-09T16:41:51.000Z"
 endTime: "8:00pm"
 locationName: "GA Chicago @ Rent 24"
 locationStreet: "444 N Wabash Avenue, 5th Floor"

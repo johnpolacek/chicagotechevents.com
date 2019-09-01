@@ -1,9 +1,9 @@
 ---
 title: "Agile & Scrum Bootcamp "
 date: "2019-08-01T15:54:49.380Z"
-startDate: "2019-09-27T15:53:49.000Z"
-startTime: "10:00pm"
-endDate: "2019-09-27T15:53:49.000Z"
+startDate: "2019-09-28T15:53:49.000Z"
+startTime: "10:00am"
+endDate: "2019-09-28T15:53:49.000Z"
 endTime: "8:00pm"
 locationName: "GA Chicago @ Rent 24"
 locationStreet: "444 N Wabash Avenue, 5th Floor"

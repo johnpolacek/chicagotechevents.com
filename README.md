@@ -14,8 +14,6 @@ chicagotechevents.com is an open source Gatsby site created and maintained by Ch
 
 **--W--I--P--**
 
-- Update Meetup API for OAuth
-
 - Create JSON and RSS feed
 	- https://www.gatsbyjs.org/packages/gatsby-plugin-feed-generator/
 - Autopublish blog (14 Tech Events in Chicago the week of 7/14/2019)

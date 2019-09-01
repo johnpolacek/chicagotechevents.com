@@ -63,7 +63,7 @@ module.exports = {
       startTime: timeToAmPm(meetupData.local_time),
       endDate: endDate,
       endTime: getAmPmFromTimestamp(
-        meetupData.time + meetupData.duration + meetupData.utc_offset
+        meetupData.time + meetupData.duration
       ),
       locationName: meetupData.venue.name,
       locationStreet: meetupData.venue.address_1 || '',
@@ -87,7 +87,7 @@ module.exports = {
                 cost = 'FREE, ' + cost
               }
             }
-          } else if (ticket.cost !== undefined && ticket.cost.display !== undefined && ticket.cost.display) {
+		} else if (typeof(ticket.cost) !== undefined && typeof(ticket.cost.display) !== 'undefined' && ticket.cost.display) {
             if (cost !== '') {
               cost += ', '
             }

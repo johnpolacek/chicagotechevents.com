@@ -12,6 +12,11 @@ class Admin extends React.Component {
   }
 
   render() {
+
+    if (typeof window !== 'undefined' && window.location.hash === '') {
+      window.location.href = 'https://secure.meetup.com/oauth2/authorize?client_id=ch3hjqgh7nh72u5o72fdkkbeh6%20&response_type=token&redirect_uri=https%3A%2F%2Fchicagotechevents.com%2Fadmin'
+    }
+
     const { data } = this.props
     const siteTitle = data.site.siteMetadata.title
 

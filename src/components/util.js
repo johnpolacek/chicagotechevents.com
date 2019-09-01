@@ -87,7 +87,7 @@ module.exports = {
                 cost = 'FREE, ' + cost
               }
             }
-		} else if (typeof(ticket.cost) !== 'undefined' && typeof(ticket.cost.display) !== 'undefined' && ticket.cost.display) {
+		} else if (typeof(ticket.cost) === 'object' && typeof(ticket.cost.display) !== 'undefined' && ticket.cost.display) {
             if (cost !== '') {
               cost += ', '
             }

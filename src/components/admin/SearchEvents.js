@@ -67,10 +67,10 @@ const ViewEvents = props => {
 
   const handleSearchResults = data => {
     if (
-      typeof data.events === 'object' || typeof data.response.events === 'object'
+      typeof(data.events) === 'object' || typeof(data.response.events) === 'object'
     ) {
       // both meetup and eventbrite response has events and event.venue
-      const eventData = typeof data.events === 'object' ? data.events : typeof data.response.events
+      const eventData = typeof(data.events) === 'object' ? data.events : data.response.events
       const filterData = eventData.filter(event => event.venue)
       if (searchMode === searchModes[0]) {
         setEventData(filterData.map(event => meetupDataToEventData(event)))

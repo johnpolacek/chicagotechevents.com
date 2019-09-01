@@ -90,7 +90,9 @@ module.exports = {
             if (cost !== '') {
               cost += ', '
             }
-            cost += ticket.cost.display.replace('.00', '')
+            if (typeof(ticket.cost.display) !== 'undefined') {
+            	cost += ticket.cost.display.replace('.00', '')
+            }
           }
         })
         if (cost === '') {

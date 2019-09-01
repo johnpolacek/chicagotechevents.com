@@ -63,7 +63,7 @@ module.exports = {
       startTime: timeToAmPm(meetupData.local_time),
       endDate: endDate,
       endTime: getAmPmFromTimestamp(
-        meetupData.time + meetupData.duration
+        meetupData.time + meetupData.duration + meetupData.utc_offset
       ),
       locationName: meetupData.venue.name,
       locationStreet: meetupData.venue.address_1 || '',

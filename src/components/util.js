@@ -86,13 +86,11 @@ module.exports = {
                 cost = 'FREE, ' + cost
               }
             }
-          } else if (ticket.cost !== undefined) {
+          } else if (typeof(ticket.cost) !== undefined && typeof(ticket.cost.display) !== 'undefined') {
             if (cost !== '') {
               cost += ', '
             }
-            if (typeof(ticket.cost.display) !== 'undefined') {
-            	cost += ticket.cost.display.replace('.00', '')
-            }
+            cost += ticket.cost.display.replace('.00', '')
           }
         })
         if (cost === '') {

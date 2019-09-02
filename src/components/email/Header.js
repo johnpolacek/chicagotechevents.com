@@ -9,7 +9,7 @@ export default props => (
     </Div>
     <Div>
       <Div>
-        <img alt="Chicago Stars and Skyline" style={{width:'100%',height:'auto'}} src="/img/email-header.gif" />
+        <img alt="Chicago Stars and Skyline" style={{width:'100%',height:'auto'}} src="https://chicagotechevents.com/img/email-header.gif" />
       </Div>
     </Div>
   </thead>

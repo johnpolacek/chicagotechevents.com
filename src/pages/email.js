@@ -79,7 +79,7 @@ class Email extends React.Component {
                   <SponsorAd sponsor={sponsor} />
                 ) : (
                   <>
-                    <p style={{textAlign: 'center' }}>
+                    <p style={{textAlign: 'center', padding: '0 16px' }}>
                       Want to sponsor this newsletter and reach hundreds of Chicago tech enthusiasts? Go to <a href="https://chicagotechevents.com/sponsor">chicagotechevents.com/sponsor</a>
                     </p>
                   </>

@@ -5,7 +5,7 @@ import { Div } from 'styled-system-html'
 export default props => (
   <thead>
     <Div style={{ background: theme.colors.blue7, textAlign: 'center' }}>
-      <Div style={{ padding: '32px 0 8px', margin: '8px 0 0', fontWeight:'normal', fontSize: '42px', color: '#fff', textAlign: 'center' }}>{props.title.toUpperCase()}</Div>
+      <Div style={{ lineHeight: 1, padding: '32px 0 8px', margin: '8px 0 0', fontWeight:'normal', fontSize: '42px', color: '#fff', textAlign: 'center' }}>{props.title.toUpperCase()}</Div>
     </Div>
     <Div>
       <Div>

@@ -2,7 +2,7 @@
 title: "Design Thinking Workshop: Envision the Future of AR"
 date: "2019-09-03T01:34:20.760Z"
 startDate: "2019-09-18T01:31:18.000Z"
-startTime: "6:00pm"
+startTime: "5:30pm"
 endDate: "2019-09-18T01:31:18.000Z"
 endTime: "8:00pm"
 locationName: "Metis Chicago"

@@ -1,5 +1,5 @@
 ---
-title: "Michelle Peska"
+title: "How to Survive a Tech Bootcamp | Alumni Panel"
 date: "2019-09-03T16:27:52.345Z"
 startDate: "2019-10-02T16:26:40.000Z"
 startTime: "5:00pm"

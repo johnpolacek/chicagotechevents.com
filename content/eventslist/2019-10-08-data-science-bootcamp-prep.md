@@ -1,10 +1,10 @@
 ---
-title: "Michelle Peska"
+title: "Data Science Bootcamp Prep Study Session"
 date: "2019-09-03T16:38:22.890Z"
 startDate: "2019-10-08T16:29:49.000Z"
-startTime: "5:00pm"
+startTime: "5:30pm"
 endDate: "2019-10-08T16:29:49.000Z"
-endTime: "8:00pm"
+endTime: "7:00pm"
 locationName: "Flatiron School"
 locationStreet: "515 N State Street, 12th Floor"
 locationCity: "Chicago"

@@ -2,7 +2,7 @@
 title: "Design Thinking Workshop: Transform Welch's Hiring Process"
 date: "2019-09-03T15:46:10.811Z"
 startDate: "2019-09-18T15:43:04.000Z"
-startTime: "5:00pm"
+startTime: "5:30pm"
 endDate: "2019-09-18T15:43:04.000Z"
 endTime: "8:00pm"
 locationName: "Flatiron School"

@@ -1,10 +1,10 @@
 ---
-title: "Michelle Peska"
+title: "Project Showcase + Open House"
 date: "2019-09-03T16:29:43.556Z"
 startDate: "2019-10-03T16:28:07.000Z"
-startTime: "6:00pm"
+startTime: "5:00pm"
 endDate: "2019-10-03T16:28:07.000Z"
-endTime: "8:00pm"
+endTime: "7:00pm"
 locationName: "Flatiron School"
 locationStreet: "515 N State Street, 12th Floor"
 locationCity: "Chicago"

@@ -11,9 +11,12 @@ chicagotechevents.com is an open source Gatsby site created and maintained by Ch
 
 <br>
 
-
 **--W--I--P--**
 
+- Add Start Time / End Time labels
+- Validate duration is greater than zero minutes
+- Submit Event Preview
+- Times start empty
 - Automate Social
 - Mailchimp API 
 	- [Netlify example for Mailchimp integration](https://github.com/tobilg/netlify-functions-landingpage/blob/169de175d04b165b5d4801b09cb250cd9a740da5/src/lambda/signup.js)

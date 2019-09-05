@@ -72,7 +72,7 @@ const SubmitEventForm = props => {
       style={{ position: 'relative', zIndex: 999 }}
     >
       <FormControl
-        label="Name of Event"
+        label="Event Title"
         type="text"
         id="eventName"
         value={eventName}

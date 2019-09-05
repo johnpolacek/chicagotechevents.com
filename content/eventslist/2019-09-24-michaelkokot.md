@@ -1,5 +1,5 @@
 ---
-title: "Michael Kokot"
+title: "Data & Design Accelerator: Build a Business Strategy"
 date: "2019-09-05T03:26:27.882Z"
 startDate: "2019-09-24T03:24:30.000Z"
 startTime: "8:00pm"

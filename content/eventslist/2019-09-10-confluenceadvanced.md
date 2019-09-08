@@ -2,7 +2,7 @@
 title: "Confluence Advanced"
 date: "2019-09-06T16:21:36.910Z"
 startDate: "2019-09-10T16:17:40.000Z"
-startTime: "6:00pm"
+startTime: "5:30pm"
 endDate: "2019-09-10T16:17:40.000Z"
 endTime: "8:00pm"
 locationName: "Rock Bottom Restaurant & Brewery"

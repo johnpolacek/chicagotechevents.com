@@ -1,10 +1,10 @@
 ---
 title: "LinkedIn & Resume Refresher for Career Changes "
 date: "2019-07-31T17:32:10.776Z"
-startDate: "2019-10-21T17:31:20.000Z"
+startDate: "2019-10-24T17:31:20.000Z"
 startTime: "6:00pm"
-endDate: "2019-10-21T17:31:20.000Z"
-endTime: "8:00pm"
+endDate: "2019-10-24T17:31:20.000Z"
+endTime: "8:30pm"
 locationName: "GA Chicago @ Rent 24"
 locationStreet: "444 N Wabash Avenue, 5th Floor"
 locationCity: "Chicago"

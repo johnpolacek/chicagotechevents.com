@@ -1,5 +1,5 @@
 ---
-title: "DEVELOP YOUR ENTREPRENEURIAL BUSINESS WITH THE EXPERIENCE ECONOMY "
+title: "Develop Your Entrepreneurial Business With The Experience Economy"
 date: "2019-09-10T14:40:32.686Z"
 startDate: "2019-11-05T15:39:43.000Z"
 startTime: "6:00pm"

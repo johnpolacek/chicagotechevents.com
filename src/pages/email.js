@@ -13,8 +13,12 @@ class Email extends React.Component {
     const siteTitle = data.site.siteMetadata.title
     const { edges } = this.props.data.allMarkdownRemark
     const events = edges.filter(({ node }) => node.frontmatter.startDate)
+
+    const today = new Date()
+    today.setHours(0,0,0,0)
+
     const currEvents = events.filter(
-      ({ node }) => new Date(node.frontmatter.endDate) >= new Date()
+      ({ node }) => new Date(node.frontmatter.endDate) >= today
     )
     const eventsByMonth = {}
     currEvents.forEach(({ node }) => {

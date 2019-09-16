@@ -41,9 +41,6 @@ class Index extends React.Component {
     const sponsors = edges.filter(({ node }) => {
       const sponsorDate = new Date(node.frontmatter.sponsorDate)
       if (node.frontmatter.sponsorDate) {
-        console.log('has sponsorDate', sponsorDate)
-        console.log('monday',monday)
-        console.log('nextMonday',nextMonday)
         return sponsorDate >= monday && sponsorDate < nextMonday
       } else {
         return false

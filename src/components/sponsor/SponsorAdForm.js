@@ -26,7 +26,6 @@ const SponsorAdForm = props => {
   } = useSponsorData()
 
   const onToken = token => {
-    console.log('onToken', token)
     setSponsorToken(token)
     setSubmitState(SUBMIT_SENDING)
     fetch(`/.netlify/functions/add-sponsor/`, {

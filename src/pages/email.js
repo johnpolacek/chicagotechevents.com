@@ -48,7 +48,6 @@ class Email extends React.Component {
       sponsor = sponsors[0].node.frontmatter
       sponsor.id = sponsors[0].node.fields.slug.split('/')[2]
     }
-    console.log('sponsor',sponsor)
 
     return (
       <ThemeProvider theme={theme}>

@@ -2,15 +2,15 @@
 title: "SharePoint Fest Chicago 2019"
 date: "2019-09-16T17:54:23.021Z"
 startDate: "2019-12-09T18:53:08.000Z"
-startTime: "9:00pm"
+startTime: "9:00am"
 endDate: "2019-12-13T18:53:08.000Z"
-endTime: "8:00pm"
+endTime: "5:00pm"
 locationName: "McCormick Place South"
 locationStreet: "2301 S. King Drive"
 locationCity: "Chicago"
 locationState: "IL"
 cost: "$795"
-eventUrl: "http://bit.ly/SPFestChi19 "
+eventUrl: "http://bit.ly/SPFestChi19"
 
 ---
 

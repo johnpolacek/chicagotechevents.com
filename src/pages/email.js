@@ -55,12 +55,16 @@ class Email extends React.Component {
           id="emailTemplate"
           cellPadding="0"
           style={{
-            maxWidth: '640px',
+            maxWidth: '720px',
             margin: 'auto',
             background: '#fff',
             fontFamily: theme.font,
             paddingBottom: '32px',
             borderCollapse: 'collapse',
+            paddingLeft: 0,
+            paddingRight: 0,
+            marginLeft: 0,
+            marginRight: 0
           }}
         >
           <Header title={siteTitle} />

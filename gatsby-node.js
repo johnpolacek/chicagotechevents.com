@@ -31,23 +31,24 @@ exports.createPages = ({ graphql, actions }) => {
     }
 
     // Create blog posts pages.
-    const posts = result.data.allMarkdownRemark.edges
+    const posts = result.data.allMarkdownRemark.edges.filter(post => { return typeof(post.node.fields) !== 'undefined' && typeof(post.node.fields.slug) !== 'undefined' && !post.node.fields.slug.includes('/sponsors/') })
+
+    console.log('posts',JSON.stringify(posts))
+
 
     posts.forEach((post, index) => {
       const previous = index === posts.length - 1 ? null : posts[index + 1].node
       const next = index === 0 ? null : posts[index - 1].node
 
-      if (typeof(post.node.fields) !== 'undefined' && typeof(post.node.fields.slug) !== 'undefined') {
-        createPage({
-          path: post.node.fields.slug,
-          component: eventListing,
-          context: {
-            slug: post.node.fields.slug,
-            previous,
-            next,
-          },
-        })
-      }
+      createPage({
+        path: post.node.fields.slug,
+        component: eventListing,
+        context: {
+          slug: post.node.fields.slug,
+          previous,
+          next,
+        },
+      })
     })
 
     return null

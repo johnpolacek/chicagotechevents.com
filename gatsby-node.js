@@ -30,21 +30,18 @@ exports.createPages = ({ graphql, actions }) => {
       throw result.errors
     }
 
-    // Create blog posts pages.
-    const posts = result.data.allMarkdownRemark.edges.filter(post => { return typeof(post.node.fields) !== 'undefined' && typeof(post.node.fields.slug) !== 'undefined' && !post.node.fields.slug.includes('/sponsors/') })
+    // Create events pages.
+    const events = result.data.allMarkdownRemark.edges.filter(event => { return typeof(event.node.fields) !== 'undefined' && typeof(event.node.fields.slug) !== 'undefined' && !event.node.fields.slug.includes('/sponsors/') })
 
-    console.log('posts',JSON.stringify(posts))
-
-
-    posts.forEach((post, index) => {
-      const previous = index === posts.length - 1 ? null : posts[index + 1].node
-      const next = index === 0 ? null : posts[index - 1].node
+    events.forEach((event, index) => {
+      const previous = index === events.length - 1 ? null : events[index + 1].node
+      const next = index === 0 ? null : events[index - 1].node
 
       createPage({
-        path: post.node.fields.slug,
+        path: event.node.fields.slug,
         component: eventListing,
         context: {
-          slug: post.node.fields.slug,
+          slug: event.node.fields.slug,
           previous,
           next,
         },

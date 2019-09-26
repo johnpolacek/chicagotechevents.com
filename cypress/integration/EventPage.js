@@ -10,8 +10,6 @@ describe('Event Page', function() {
     cy.location('pathname', { timeout: 10000 }).should('include', '/20') // starts with year. this will break in the year 2100
     cy.wait(2000)
     cy.get('h2').should('be.visible')
-    cy.get('a > span').contains('VIEW ALL EVENTS').click()
-    cy.location('pathname', { timeout: 10000 }).should('not.include', '/20')
   })
 
 })

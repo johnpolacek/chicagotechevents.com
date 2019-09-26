@@ -30,15 +30,12 @@ exports.createPages = ({ graphql, actions }) => {
       throw result.errors
     }
 
-    // Create event pages
-    const { edges } = result.data.allMarkdownRemark
-    const events = edges.filter(
-      ({ node }) => node.id && !node.id.includes('/sponsors')
-    )
+    // Create blog posts pages.
+    const posts = result.data.allMarkdownRemark.edges
 
-    events.forEach((post, index) => {
-      const previous = index === events.length - 1 ? null : events[index + 1].node
-      const next = index === 0 ? null : events[index - 1].node
+    posts.forEach((post, index) => {
+      const previous = index === posts.length - 1 ? null : posts[index + 1].node
+      const next = index === 0 ? null : posts[index - 1].node
 
       if (post.node.fields && post.fields.slug) {
         createPage({

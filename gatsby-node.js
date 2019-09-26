@@ -37,7 +37,7 @@ exports.createPages = ({ graphql, actions }) => {
       const previous = index === posts.length - 1 ? null : posts[index + 1].node
       const next = index === 0 ? null : posts[index - 1].node
 
-      if (typeof(post.node.fields) !== 'undefined' && typeof(post.fields.slug) !== 'undefined') {
+      if (typeof(post.node.fields) !== 'undefined' && typeof(post.node.fields.slug) !== 'undefined') {
         createPage({
           path: post.node.fields.slug,
           component: eventListing,

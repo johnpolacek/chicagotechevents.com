@@ -69,45 +69,45 @@ describe('Sponsor', function() {
     cy.wait(2000)
   })
 
-  it('ad shows when active', function() {
+  // it('ad shows when active', function() {
 
-    // cy.exec move any existing sponsor md file into temp then back
-    cy.exec('mkdir ./temp')
-    cy.exec('mv ./content/eventslist/sponsors/*.md ./temp')
+  //   // cy.exec move any existing sponsor md file into temp then back
+  //   cy.exec('mkdir ./temp')
+  //   cy.exec('mv ./content/eventslist/sponsors/*.md ./temp')
     
-    // need handle when there is an active sponsor is prod
-    const sponsorData = getValidSponsorData()
-    const sponsorFileName = 'content/eventslist/sponsors/'+sponsorData.id+'.md'
-    cy.writeFile(sponsorFileName, getSponsorMarkdown(sponsorData))
+  //   // need handle when there is an active sponsor is prod
+  //   const sponsorData = getValidSponsorData()
+  //   const sponsorFileName = 'content/eventslist/sponsors/'+sponsorData.id+'.md'
+  //   cy.writeFile(sponsorFileName, getSponsorMarkdown(sponsorData))
 
-    // wait for rebuild
-    cy.wait(2000)
+  //   // wait for rebuild
+  //   cy.wait(2000)
 
-    cy.visit('/')
-    cy.get('p')
-      .contains('This Space Available')
-      .should('not.exist')
+  //   cy.visit('/')
+  //   cy.get('p')
+  //     .contains('This Space Available')
+  //     .should('not.exist')
 
-    cy.get('a')
-      .contains('Acme Co')
-      .should('be.visible')
+  //   cy.get('a')
+  //     .contains('Acme Co')
+  //     .should('be.visible')
 
-    cy.visit('/email')
-    cy.get('p')
-      .contains('This Space Available')
-      .should('not.exist')
+  //   cy.visit('/email')
+  //   cy.get('p')
+  //     .contains('This Space Available')
+  //     .should('not.exist')
 
-    cy.get('a')
-      .contains('Acme Co')
-      .should('be.visible')
+  //   cy.get('a')
+  //     .contains('Acme Co')
+  //     .should('be.visible')
 
-    cy.exec('rm ./'+sponsorFileName)
-    cy.exec('mv ./temp/*.md ./content/eventslist/sponsors')
-    cy.exec('rmdir ./temp')
+  //   cy.exec('rm ./'+sponsorFileName)
+  //   cy.exec('mv ./temp/*.md ./content/eventslist/sponsors')
+  //   cy.exec('rmdir ./temp')
 
-    // wait for rebuild
-    cy.wait(2000)
-  })
+  //   // wait for rebuild
+  //   cy.wait(2000)
+  // })
 
   // it('can preview and create ad', function() {
   //   // see Admin tests for how to stub out api response - /.netlify/functions/add-sponsor/

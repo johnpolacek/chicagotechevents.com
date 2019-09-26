@@ -19,13 +19,11 @@ Welcome to the Chicago Seleniumistas Monthly meetup!
 Doors at Glassdoor will open at 6PM. Food is provided by SauceLabs.
 
 Abstract:
--------------
 This talk will focus on what it means to author a test automation framework, drawn from Adrian's experience with OpenTest. It will cover the framework's design goals and important features, as well as how it integrates with source control and continuous integration. Although this talk is centered around the OpenTest framework, it is relevant to any test engineer tasked with building or maintaining a test framework.
 
 Adrian would like to highlight that the views expressed in his talk are his own, and not those of his employer.
 
 About Adrian:
-------------------
 Adrian Theodorescu is a software architect with 18 years of experience, covering a wide array of technologies and programming languages over the length of his career. Adrian was part of the team that built the open source test automation tool OpenTest.
 
 About Glassdoor:

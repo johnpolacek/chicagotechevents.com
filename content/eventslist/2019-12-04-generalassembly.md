@@ -1,5 +1,5 @@
 ---
-title: "General Assembly"
+title: "Design Your Life Design Your Year"
 date: "2019-09-30T23:41:41.886Z"
 startDate: "2019-12-04T00:41:21.000Z"
 startTime: "6:00pm"

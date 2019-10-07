@@ -2,7 +2,7 @@
 title: "Perseverance: Rising Above Failures in Your Professional Life"
 date: "2019-10-02T20:59:14.236Z"
 startDate: "2019-10-23T20:49:15.000Z"
-startTime: "5:00pm"
+startTime: "5:30pm"
 endDate: "2019-10-23T20:49:15.000Z"
 endTime: "8:00pm"
 locationName: "Illinois Technology Association (ITA)"

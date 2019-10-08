@@ -5,69 +5,75 @@ import { deferred } from '../support/helpers'
 
 describe('Sponsor', function() {
 
-  it('cannot reserve an existing sponsor', function() {
-    // cy.exec move any existing sponsor md file into temp then back
-    cy.exec('mkdir ./temp')
-    cy.exec('mv ./content/eventslist/sponsors/*.md ./temp')
-
-    // wait for rebuild
-    cy.wait(2000)
-
-    // verify number of sponsorships available
+  it('can visit sponsor page', function() {
     cy.visit('/sponsor')
-    cy.get('input[name="sponsorWeek"]').should('have.length', 52)
-
-    const sponsorData = getValidSponsorDataNextWeek()
-
-    // set sponsor date for next week
-
-    const sponsorFileName = 'content/eventslist/sponsors/'+sponsorData.id+'.md'
-    cy.writeFile(sponsorFileName, getSponsorMarkdown(sponsorData))
-
-    // wait for rebuild
-    cy.wait(2000)
-
-    cy.reload()
-    cy.get('input[name="sponsorWeek"]').should('have.length', 52)
-
-    cy.exec('mv ./temp/*.md ./content/eventslist/sponsors')
-    cy.exec('rmdir ./temp')
-
-    // wait for rebuild
-    cy.wait(2000)
+    cy.contains('Sponsor').should('be.visible')
+    cy.contains('CHOOSE A WEEK').should('be.visible')
   })
 
+  // it('cannot reserve an existing sponsor', function() {
+  //   // cy.exec move any existing sponsor md file into temp then back
+  //   cy.exec('mkdir ./temp')
+  //   cy.exec('mv ./content/eventslist/sponsors/*.md ./temp')
 
-  it('ad when inactive shows promo', function() {
-    // cy.exec move any existing sponsor md file into temp then back
-    cy.exec('mkdir ./temp')
-    cy.exec('mv ./content/eventslist/sponsors/*.md ./temp')
+  //   // wait for rebuild
+  //   cy.wait(2000)
 
-    // wait for rebuild
-    cy.wait(2000)
+  //   // verify number of sponsorships available
+  //   cy.visit('/sponsor')
+  //   cy.get('input[name="sponsorWeek"]').should('have.length', 52)
 
-    cy.visit('/')
-    cy.get('p')
-      .contains('This Space Available')
-      .should('be.visible')
-    cy.get('a')
-      .contains('Become a Sponsor')
-      .click()
-    cy.location('pathname', { timeout: 10000 }).should('include', '/sponsor')
-    cy.wait(2000)
-    cy.get('h2')
-      .contains('Sponsor')
-      .should('be.visible')
-    cy.get('h3')
-      .contains('CHOOSE A WEEK')
-      .should('be.visible')
+  //   const sponsorData = getValidSponsorDataNextWeek()
 
-    cy.exec('mv ./temp/*.md ./content/eventslist/sponsors')
-    cy.exec('rmdir ./temp')
+  //   // set sponsor date for next week
 
-    // wait for rebuild
-    cy.wait(2000)
-  })
+  //   const sponsorFileName = 'content/eventslist/sponsors/'+sponsorData.id+'.md'
+  //   cy.writeFile(sponsorFileName, getSponsorMarkdown(sponsorData))
+
+  //   // wait for rebuild
+  //   cy.wait(2000)
+
+  //   cy.reload()
+  //   cy.get('input[name="sponsorWeek"]').should('have.length', 52)
+
+  //   cy.exec('mv ./temp/*.md ./content/eventslist/sponsors')
+  //   cy.exec('rmdir ./temp')
+
+  //   // wait for rebuild
+  //   cy.wait(2000)
+  // })
+
+
+  // it('ad when inactive shows promo', function() {
+  //   // cy.exec move any existing sponsor md file into temp then back
+  //   cy.exec('mkdir ./temp')
+  //   cy.exec('mv ./content/eventslist/sponsors/*.md ./temp')
+
+  //   // wait for rebuild
+  //   cy.wait(2000)
+
+  //   cy.visit('/')
+  //   cy.get('p')
+  //     .contains('This Space Available')
+  //     .should('be.visible')
+  //   cy.get('a')
+  //     .contains('Become a Sponsor')
+  //     .click()
+  //   cy.location('pathname', { timeout: 10000 }).should('include', '/sponsor')
+  //   cy.wait(2000)
+  //   cy.get('h2')
+  //     .contains('Sponsor')
+  //     .should('be.visible')
+  //   cy.get('h3')
+  //     .contains('CHOOSE A WEEK')
+  //     .should('be.visible')
+
+  //   cy.exec('mv ./temp/*.md ./content/eventslist/sponsors')
+  //   cy.exec('rmdir ./temp')
+
+  //   // wait for rebuild
+  //   cy.wait(2000)
+  // })
 
   // it('ad shows when active', function() {
 

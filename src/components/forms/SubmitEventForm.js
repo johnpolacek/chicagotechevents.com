@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { Div, Form } from 'styled-system-html'
+import { Div, Form, H4, P } from 'styled-system-html'
 import 'react-datepicker/dist/react-datepicker.css'
 import FormControl from './FormControl'
 import FormControlDateTime from './FormControlDateTime'
 import InputSubmit from './InputSubmit'
+import Event from '../events/Event'
 
 const SubmitEventForm = props => {
   const [eventName, setEventName] = useState(props.eventName || '')
@@ -64,101 +65,132 @@ const SubmitEventForm = props => {
     setEndDate(date)
   }
 
+  const formatDate = d => {
+    const dateToFormat = new Date(d)
+    return dateToFormat.toLocaleString('default', { month: 'long' }) + ' ' + dateToFormat.getDate() + ', ' + dateToFormat.getFullYear()
+  }
+
   return (
     <Form
-      width={[1, 360]}
-      mx="auto"
+      width={1}
+      px={[3,4,5]}
       onSubmit={onSubmit}
       style={{ position: 'relative', zIndex: 999 }}
     >
-      <FormControl
-        label="Event Title"
-        type="text"
-        id="eventName"
-        value={eventName}
-        setValue={setEventName}
-      />
-      <FormControl
-        label="Event Description"
-        type="textarea"
-        id="description"
-        value={description}
-        setValue={setDescription}
-        labelAddendum="(up to 320 characters)"
-      />
-      <FormControl
-        label="Event Website"
-        type="text"
-        id="linkURL"
-        value={linkURL}
-        setValue={setLinkURL}
-        labelAddendum="(e.g.&nbsp;http://www.meetup.com/Chicago-Open-Coffee)"
-      />
-      <FormControl
-        label="Cost"
-        type="text"
-        id="cost"
-        value={cost}
-        setValue={setCost}
-        labelAddendum="(if none, enter FREE)"
-      />
-      <FormControlDateTime
-        required={true}
-        label="Start Date"
-        id="startDate"
-        onDateChange={onStartDateChange}
-        dateValue={new Date(startDate)}
-        onTimeChange={time => {
-          setStartTime(time)
-        }}
-        timeValue={startTime}
-      />
-      <FormControlDateTime
-        required={true}
-        label="End Date"
-        id="endDate"
-        onDateChange={onEndDateChange}
-        dateValue={new Date(endDate)}
-        onTimeChange={time => {
-          setEndTime(time)
-        }}
-        timeValue={endTime}
-      />
-      <FormControl
-        label="Location Name"
-        type="text"
-        id="locationName"
-        value={locationName}
-        setValue={setLocationName}
-        labelAddendum="(No Webinar/Online events)"
-      />
-      <FormControl
-        label="Street Address"
-        type="text"
-        id="locationStreet"
-        value={locationStreet}
-        setValue={setLocationStreet}
-        labelAddendum="(short street name, e.g. 120 N State)"
-      />
-      <FormControl
-        label="City"
-        type="text"
-        id="locationCity"
-        value={locationCity}
-        setValue={setLocationCity}
-        labelAddendum="(must be in Chicagoland area)"
-      />
-      <FormControl
-        label="Your Name"
-        type="text"
-        id="authorName"
-        value={authorName}
-        setValue={setAuthorName}
-      />
-      <Div pt={3} pb={5} mb={4} textAlign="right">
+      <Div display={['block','block','flex']} flexWrap="wrap" pt={4} px={4} bg="white" width={[1,480,1,1,1,1200]} mx="auto">
+        <Div width={[1,1,1/3]}>
+          <FormControl
+            label="Event Title"
+            type="text"
+            id="eventName"
+            value={eventName}
+            setValue={setEventName}
+          />
+          <FormControl
+            label="Event Description"
+            type="textarea"
+            id="description"
+            value={description}
+            setValue={setDescription}
+            labelAddendum="(up to 320 characters)"
+          />
+          <FormControl
+            label="Event Website"
+            type="text"
+            id="linkURL"
+            value={linkURL}
+            setValue={setLinkURL}
+            labelAddendum="(e.g.&nbsp;http://www.meetup.com/Chicago-Open-Coffee)"
+          />
+          <FormControl
+            label="Cost"
+            type="text"
+            id="cost"
+            value={cost}
+            setValue={setCost}
+            labelAddendum="(if none, enter FREE)"
+          />
+          <FormControlDateTime
+            required={true}
+            label="Start Date"
+            id="startDate"
+            onDateChange={onStartDateChange}
+            dateValue={new Date(startDate)}
+            onTimeChange={time => {
+              setStartTime(time)
+            }}
+            timeValue={startTime}
+          />
+          <FormControlDateTime
+            required={true}
+            label="End Date"
+            id="endDate"
+            onDateChange={onEndDateChange}
+            dateValue={new Date(endDate)}
+            onTimeChange={time => {
+              setEndTime(time)
+            }}
+            timeValue={endTime}
+          />
+          <FormControl
+            label="Location Name"
+            type="text"
+            id="locationName"
+            value={locationName}
+            setValue={setLocationName}
+            labelAddendum="(No Webinar/Online events)"
+          />
+          <FormControl
+            label="Street Address"
+            type="text"
+            id="locationStreet"
+            value={locationStreet}
+            setValue={setLocationStreet}
+            labelAddendum="(short street name, e.g. 120 N State)"
+          />
+          <FormControl
+            label="City"
+            type="text"
+            id="locationCity"
+            value={locationCity}
+            setValue={setLocationCity}
+            labelAddendum="(must be in Chicagoland area)"
+          />
+          <FormControl
+            label="Your Name"
+            type="text"
+            id="authorName"
+            value={authorName}
+            setValue={setAuthorName}
+          />
+        </Div>
+      <Div width={[1,1,2/3]} pl={[0,0,4,5]} pr={[0,0,4]}>
+        <H4 fontSize={0} fontStyle="italic" color="gray" pb={2}>Event Listing Preview</H4>
+        <Div pt={3} px={3} border="1px solid" borderColor="#ddd">
+          <Event
+            url='url' 
+            title={eventName || 'Event Title'} 
+            startDate={formatDate(startDate)}
+            startTime={startTime} 
+            endDate={formatDate(endDate)}
+            endTime={endTime} 
+            content={description}
+            locationName={locationName || 'Location Name'}
+            locationStreet={locationStreet || 'Street'}
+            locationCity={locationCity || 'City'}
+            locationState={'IL'}
+            cost={cost || 'FREE'} 
+            eventUrl={linkURL || 'Your event website'} 
+            isLast={true}
+          />
+        </Div>
+        <P fontWeight="bold" color="red" fontStyle="italic" pt={2}>Please make sure your event date, time and other info is correct</P>
+      </Div>
+      <Div width={[1,1,1/3]} pt={3} pb={5} mb={4} textAlign="right">
         <InputSubmit id="submitEvent" value="ADD EVENT" />
       </Div>
-    </Form>
+    </Div>
+  </Form>
   )
 }
 

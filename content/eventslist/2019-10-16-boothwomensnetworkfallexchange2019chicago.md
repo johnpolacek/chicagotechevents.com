@@ -1,5 +1,5 @@
 ---
-title: "BOOTH WOMEN'S NETWORK: FALL EXCHANGE 2019 - CHICAGO"
+title: "Booth Women's Network: Fall Exchange"
 date: "2019-10-08T19:05:46.047Z"
 startDate: "2019-10-16T19:02:14.000Z"
 startTime: "6:00pm"

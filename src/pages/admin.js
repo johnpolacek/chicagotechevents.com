@@ -32,7 +32,7 @@ class Admin extends React.Component {
             },
           ]}
         />
-        <Div style={{ maxWidth: '1100px', zIndex: '999' }}>
+        <Div style={{ maxWidth: '1200px', zIndex: '999' }}>
           <AdminView />
         </Div>
       </Layout>

@@ -2,8 +2,8 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import SEO from '../components/seo'
 import Layout from '../components/layout/Layout'
-import Wrapper from '../components/layout/Wrapper'
 import AdminView from '../components/admin/View'
+import { Div } from 'styled-system-html'
 
 class Admin extends React.Component {
   constructor(props) {
@@ -32,9 +32,9 @@ class Admin extends React.Component {
             },
           ]}
         />
-        <Wrapper>
+        <Div style={{ maxWidth: '1100px', zIndex: '999' }}>
           <AdminView />
-        </Wrapper>
+        </Div>
       </Layout>
     )
   }

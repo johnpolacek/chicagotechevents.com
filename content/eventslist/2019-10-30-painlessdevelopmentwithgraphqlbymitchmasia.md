@@ -1,5 +1,5 @@
 ---
-title: ""Painless development with GraphQL" by Mitch Masia"
+title: "Painless development with GraphQL by Mitch Masia"
 date: "2019-10-14T13:56:47.617Z"
 startDate: "2019-10-30 00:00"
 startTime: "6:00pm"

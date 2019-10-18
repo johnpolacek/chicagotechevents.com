@@ -1,9 +1,9 @@
 ---
-title: "Howard Tullman, world-class serial entrepreneur, Speaking 11/18 from 5:00pm - 8:00pm"
+title: "AITP Chicago Dinner Meeting at the Kaplan Institute with Serial Entrepreneur Howard Tullman"
 date: "2019-10-17T00:51:59.149Z"
-startDate: "2019-11-19T01:41:12.000Z"
-startTime: "6:00pm"
-endDate: "2019-11-19T01:41:12.000Z"
+startDate: "2019-11-18T01:41:12.000Z"
+startTime: "5:00pm"
+endDate: "2019-11-18T01:41:12.000Z"
 endTime: "8:00pm"
 locationName: "Ed Kaplan Family Institute "
 locationStreet: "3137 S Federal St"

@@ -2,7 +2,7 @@
 title: "Free seminar: Learn how to optimize your business."
 date: "2019-10-17T21:51:13.754Z"
 startDate: "2019-11-15T22:45:39.000Z"
-startTime: "8:30pm"
+startTime: "8:30am"
 endDate: "2019-11-15T22:45:39.000Z"
 endTime: "12:00pm"
 locationName: "Convene"

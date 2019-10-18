@@ -1,9 +1,9 @@
 ---
 title: "Web Development Mentorship"
 date: "2019-10-17T23:00:52.730Z"
-startDate: "2019-11-26T00:02:24.000Z"
+startDate: "2019-11-25T00:02:24.000Z"
 startTime: "6:00pm"
-endDate: "2019-11-26T00:02:24.000Z"
+endDate: "2019-11-25T00:02:24.000Z"
 endTime: "8:00pm"
 locationName: "Fullstack Academy"
 locationStreet: "405 West Superior Street"

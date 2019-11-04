@@ -2,7 +2,7 @@
 title: "Ethics in Business featuring Theranos Whistleblower Erika Cheung"
 date: "2019-11-02T22:20:45.219Z"
 startDate: "2019-11-20T23:16:29.000Z"
-startTime: "5:00pm"
+startTime: "5:30pm"
 endDate: "2019-11-20T23:16:29.000Z"
 endTime: "8:00pm"
 locationName: "Discovery Partners Institute"

@@ -36,7 +36,8 @@ class Email extends React.Component {
     const monday = getMonday(-1)
     const nextMonday = getMonday(0)
     const sponsors = edges.filter(({ node }) => {
-      const sponsorDate = new Date(node.frontmatter.sponsorDate)
+      let sponsorDate = new Date(node.frontmatter.sponsorDate)
+      sponsorDate.setDate(sponsorDate.getDate() + 1)
       if (node.frontmatter.sponsorDate) {
         return sponsorDate >= monday && sponsorDate < nextMonday
       } else {
@@ -46,7 +47,7 @@ class Email extends React.Component {
     let sponsor = null
     if (sponsors.length !== 0) {
       sponsor = sponsors[0].node.frontmatter
-      sponsor.id = sponsors[0].node.fields.slug.split('/')[2]
+      sponsor.id = sponsors[0].node.fields.slug.split('/')[1]
     }
 
     return (

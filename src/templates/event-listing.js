@@ -26,23 +26,26 @@ class CalendarEventTemplate extends React.Component {
           description={node.frontmatter.description || node.excerpt}
         />
         <Wrapper>
-          <Event
-            {...{
-              title: node.frontmatter.title || node.fields.slug,
-              startDate: node.frontmatter.startDate,
-              startTime: node.frontmatter.startTime,
-              endDate: node.frontmatter.endDate,
-              endTime: node.frontmatter.endTime,
-              locationName: node.frontmatter.locationName,
-              locationStreet: node.frontmatter.locationStreet,
-              locationCity: node.frontmatter.locationCity,
-              locationState: node.frontmatter.locationState,
-              cost: node.frontmatter.cost,
-              eventUrl: node.frontmatter.eventUrl,
-              content: node.html,
-              isLast: true,
-            }}
-          />
+          {
+            node.frontmatter.startDate && 
+            <Event
+              {...{
+                title: node.frontmatter.title || node.fields.slug,
+                startDate: node.frontmatter.startDate,
+                startTime: node.frontmatter.startTime,
+                endDate: node.frontmatter.endDate,
+                endTime: node.frontmatter.endTime,
+                locationName: node.frontmatter.locationName,
+                locationStreet: node.frontmatter.locationStreet,
+                locationCity: node.frontmatter.locationCity,
+                locationState: node.frontmatter.locationState,
+                cost: node.frontmatter.cost,
+                eventUrl: node.frontmatter.eventUrl,
+                content: node.html,
+                isLast: true,
+              }}
+            />
+          }
           <Div textAlign="center" pb={[5, 6]}>
             <Link to={`/`} style={{ textDecoration: 'none' }}>
               <LinkButton fontSize="2">VIEW ALL EVENTS</LinkButton>

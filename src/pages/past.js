@@ -1,5 +1,6 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
+import { getMonday } from '../components/util'
 import Layout from '../components/layout/Layout'
 import SEO from '../components/seo'
 import EventsByMonth from '../components/events/EventsByMonth'
@@ -15,8 +16,28 @@ class Past extends React.Component {
     // filter out sponsors
     const { edges } = this.props.data.allMarkdownRemark
     const events = edges.filter(({ node }) => node.frontmatter.startDate)
-    const sponsors = edges.filter(({ node }) => node.frontmatter.sponsorDate)
-    const sponsor = sponsors.length !== 0 ? sponsors[0].node.frontmatter : null
+
+    const monday = getMonday(-1)
+    const nextMonday = getMonday(0)
+    const sponsors = edges.filter(({ node }) => {
+      let sponsorDate = new Date(node.frontmatter.sponsorDate)
+      sponsorDate.setDate(sponsorDate.getDate() + 1)
+      if (node.frontmatter.sponsorDate) {
+        console.log('sponsorDate', sponsorDate)
+        console.log('monday',monday)
+        console.log('nextMonday',nextMonday)
+        
+        return sponsorDate >= monday && sponsorDate < nextMonday
+      } else {
+        return false
+      }
+    })
+    let sponsor = null
+    console.log(sponsors)
+    if (sponsors.length !== 0) {
+      sponsor = sponsors[0].node.frontmatter
+      sponsor.id = sponsors[0].node.fields.slug.split('/')[1]
+    }
 
     const pastEvents = events.filter(
       ({ node }) => new Date(node.frontmatter.endDate) < new Date()

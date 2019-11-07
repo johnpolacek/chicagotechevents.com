@@ -2,7 +2,7 @@
 title: "November Nerd Therapy: Why the term “digital transformation” is #*$@!"
 date: "2019-11-07T15:57:59.229Z"
 startDate: "2019-11-14T15:56:05.000Z"
-startTime: "5:00pm"
+startTime: "5:30pm"
 endDate: "2019-11-14T15:56:05.000Z"
 endTime: "8:00pm"
 locationName: "Nerdery"

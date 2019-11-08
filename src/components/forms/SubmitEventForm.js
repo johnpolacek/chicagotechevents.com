@@ -117,6 +117,7 @@ const SubmitEventForm = props => {
             onDateChange={onStartDateChange}
             dateValue={new Date(startDate)}
             onTimeChange={time => {
+              console.log('onTimeChange', time)
               setStartTime(time)
             }}
             timeValue={startTime}

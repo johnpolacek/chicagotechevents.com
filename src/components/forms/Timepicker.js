@@ -1,33 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Div, Select, Span } from 'styled-system-html'
 
 const Timepicker = props => {
   const [time, setTime] = useState(props.defaultTime || '')
 
-  const onHourChange = newHour => {
-    setTime(newHour + ':' + time.split(':')[1])
+  useEffect(() => {
     if (props.onChange) {
       props.onChange(time)
     }
+  })
+
+  const onHourChange = newHour => {
+    setTime(newHour + ':' + time.split(':')[1])
   }
 
   const onMinutesChange = newMinutes => {
     setTime(
       time.split(':')[0] + ':' + newMinutes + time.split(':')[1].substring(2)
     )
-    if (props.onChange) {
-      props.onChange(time)
-    }
   }
 
   const onPeriodChange = newPeriod => {
     setTime(
       time.split(':')[0] + ':' + time.split(':')[1].substring(0, 2) + newPeriod
     )
-    if (props.onChange) {
-      props.onChange(time)
-    }
   }
 
   return (

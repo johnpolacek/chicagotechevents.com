@@ -7,29 +7,6 @@ chicagotechevents.com is an open source Gatsby site created and maintained by Ch
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/62b593a7-7d74-49b1-b85f-b48f57bb426c/deploy-status)](https://app.netlify.com/sites/chicagotechevents/deploys)
 
-----
-
-<br>
-
-**--W--I--P--**
-
-- Add Start Time / End Time labels
-- Validate duration is greater than zero minutes
-- Submit Event Preview
-- Times start empty for submit view (not admin)
-- Automate Social
-- Mailchimp API 
-	- [Netlify example for Mailchimp integration](https://github.com/tobilg/netlify-functions-landingpage/blob/169de175d04b165b5d4801b09cb250cd9a740da5/src/lambda/signup.js)
-	- [Netlify Function for Emails](https://css-tricks.com/netlify-functions-for-sending-emails/)
-- Autopublish blog (14 Tech Events in Chicago the week of 7/14/2019)
-- Prevent adding events that already exist by querying JSON feed- 
-- Write a Talk
-- Survey
-- ReCAPTCHA 
-	- see [docs](https://developers.google.com/recaptcha/docs/v3)
-	- And [this](https://github.com/sarneeh/reaptcha)
-	- alternative [honeypot](https://stackoverflow.com/questions/36227376/better-honeypot-implementation-form-anti-spam) also [this](https://stackoverflow.com/questions/26452716/how-to-create-a-nuclear-honeypot-to-catch-form-spammers)
-
 <br>
 
 ----
@@ -2526,6 +2503,25 @@ First, we will rename our Adming Meetup components to more abstract Event compon
 
 Next, we edit the `ViewEvents` component to have two search modes - one for Meetup and one for Eventbrite. To do this, I will bring in a `Toggle` component that I had created for a different project (Styled System is great for creating portable UI components).
 
+
+----
+
+<br>
+
+**--W--I--P--**
+
+- Add Start Time / End Time labels
+- Validate duration is greater than zero minutes
+- Automate Social
+- Mailchimp API 
+	- [Netlify example for Mailchimp integration](https://github.com/tobilg/netlify-functions-landingpage/blob/169de175d04b165b5d4801b09cb250cd9a740da5/src/lambda/signup.js)
+	- [Netlify Function for Emails](https://css-tricks.com/netlify-functions-for-sending-emails/)
+- Autopublish blog (14 Tech Events in Chicago the week of 7/14/2019)
+- Prevent adding events that already exist by querying JSON feed- 
+- ReCAPTCHA 
+	- see [docs](https://developers.google.com/recaptcha/docs/v3)
+	- And [this](https://github.com/sarneeh/reaptcha)
+	- alternative [honeypot](https://stackoverflow.com/questions/36227376/better-honeypot-implementation-form-anti-spam) also [this](https://stackoverflow.com/questions/26452716/how-to-create-a-nuclear-honeypot-to-catch-form-spammers)
 
 
 

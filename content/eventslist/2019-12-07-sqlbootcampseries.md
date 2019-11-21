@@ -1,15 +1,15 @@
 ---
-title: "SQL Bootcamp Series "
-date: "2019-08-02T16:20:41.949Z"
-startDate: "2019-12-07T17:19:36.000Z"
-startTime: "10:00pm"
-endDate: "2019-12-07T17:19:36.000Z"
-endTime: "8:00pm"
+title: "SQL BOOTCAMP SERIES "
+date: "2019-11-21T14:41:51.483Z"
+startDate: "2019-12-07T14:39:51.000Z"
+startTime: "10:00am"
+endDate: "2019-12-08T14:39:51.000Z"
+endTime: "5:00pm"
 locationName: "GA Chicago @ Rent 24"
-locationStreet: "444 N Wabash Avenue, 5th Floor"
+locationStreet: "444 N. Wabash Ave, 5th Floor"
 locationCity: "Chicago"
 locationState: "IL"
-cost: "$300.00"
+cost: "$300"
 eventUrl: "https://generalassemb.ly/education/sql-bootcamp-series/chicago/85676"
 
 ---

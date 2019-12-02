@@ -1,5 +1,5 @@
 ---
-title: "❤️🎄 User Group Holiday Party"
+title: "User Group Holiday Party"
 date: "2019-11-25T16:23:15.755Z"
 startDate: "2019-12-05 00:00"
 startTime: "6:30pm"

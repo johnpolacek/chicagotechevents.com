@@ -1,5 +1,5 @@
 ---
-title: "Digital Marketing Conference & Exhibition - June 17-18, 2020 - Chicago, IL"
+title: "Digital Marketing Conference & Exhibition"
 date: "2019-12-02T05:32:40.160Z"
 startDate: "2020-06-17T04:59:37.000Z"
 startTime: "9:00am"
@@ -29,6 +29,6 @@ Be a part of DigiMarCon Midwest 2020 and discover how to thrive and succeed as a
 
 Secure your seat now and take advantage of our discounted super early bird registration rates. 
 
-For more details visit https://digimarconmidwest.com.
+For more details visit [digimarconmidwest.com](https://digimarconmidwest.com).
 
 

@@ -1,5 +1,5 @@
 ---
-title: "Campus Tour"
+title: "Fullstack Chicago Campus Tour"
 date: "2019-12-05T15:11:08.298Z"
 startDate: "2020-01-17T14:54:47.000Z"
 startTime: "2:00pm"

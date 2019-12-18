@@ -1,5 +1,5 @@
 ---
-title: "LADIES GET COFFEE"
+title: "Ladies Get Coffee"
 date: "2019-12-17T23:51:34.779Z"
 startDate: "2020-01-10T23:50:04.000Z"
 startTime: "8:30am"

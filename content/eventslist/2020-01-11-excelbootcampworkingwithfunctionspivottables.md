@@ -1,5 +1,5 @@
 ---
-title: "EXCEL BOOTCAMP: WORKING WITH FUNCTIONS & PIVOT TABLES"
+title: "Excel Bootcamp: Working with Functions & Pivot Tables"
 date: "2019-12-18T00:02:32.482Z"
 startDate: "2020-01-11T23:59:49.000Z"
 startTime: "10:00am"

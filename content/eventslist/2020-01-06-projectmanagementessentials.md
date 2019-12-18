@@ -1,5 +1,5 @@
 ---
-title: "PROJECT MANAGEMENT ESSENTIALS"
+title: "Project Management Essentials"
 date: "2019-12-17T23:45:44.320Z"
 startDate: "2020-01-06T23:45:11.000Z"
 startTime: "6:00pm"

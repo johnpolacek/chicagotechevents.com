@@ -1,5 +1,5 @@
 ---
-title: "CODING FOR BEGINNERS: HTML AND CSS"
+title: "Coding for Beginners: HTML and CSS"
 date: "2019-12-17T23:47:59.340Z"
 startDate: "2020-01-07T23:46:24.000Z"
 startTime: "6:00pm"

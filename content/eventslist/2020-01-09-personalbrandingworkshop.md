@@ -1,5 +1,5 @@
 ---
-title: "PERSONAL BRANDING WORKSHOP "
+title: "Personal Branding Workshop"
 date: "2019-12-17T23:49:24.900Z"
 startDate: "2020-01-09T23:48:42.000Z"
 startTime: "6:00pm"

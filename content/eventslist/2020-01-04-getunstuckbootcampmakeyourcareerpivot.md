@@ -1,5 +1,5 @@
 ---
-title: "GET UNSTUCK BOOTCAMP: MAKE YOUR CAREER PIVOT"
+title: "Get Unstuck Bootcamp: Make Your Career Pivot"
 date: "2019-12-17T23:42:37.591Z"
 startDate: "2020-01-04T23:42:00.000Z"
 startTime: "10:00am"

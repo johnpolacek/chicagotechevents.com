@@ -1,5 +1,5 @@
 ---
-title: "2-DAY PRODUCT DESIGN BOOTCAMP"
+title: "2-Day Product Design Bootcamp"
 date: "2019-12-18T01:58:42.547Z"
 startDate: "2020-01-12T00:03:13.000Z"
 startTime: "10:00am"

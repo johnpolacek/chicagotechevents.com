@@ -1,5 +1,5 @@
 ---
-title: "ADOBE PHOTOSHOP BOOTCAMP"
+title: "Adobe Photoshop Bootcamp"
 date: "2019-12-17T23:41:16.384Z"
 startDate: "2020-01-04T23:33:58.000Z"
 startTime: "10:00am"

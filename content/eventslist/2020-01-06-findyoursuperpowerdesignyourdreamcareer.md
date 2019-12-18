@@ -1,5 +1,5 @@
 ---
-title: "FIND YOUR SUPERPOWER: DESIGN YOUR DREAM CAREER"
+title: "Find Your Superpower: Design Your Dream Career"
 date: "2019-12-17T23:44:06.878Z"
 startDate: "2020-01-06T23:43:09.000Z"
 startTime: "6:00pm"

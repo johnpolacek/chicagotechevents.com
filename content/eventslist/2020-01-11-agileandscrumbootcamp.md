@@ -1,5 +1,5 @@
 ---
-title: "AGILE AND SCRUM BOOTCAMP"
+title: "Agile and Scrum Bootcamp"
 date: "2019-12-17T23:59:09.648Z"
 startDate: "2020-01-11T23:52:11.000Z"
 startTime: "10:00am"

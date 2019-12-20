@@ -1,5 +1,5 @@
 ---
-title: "Meet & Hire:Software Engineering, User Experience Design & Data Science"
+title: "Meet & Hire: Software Engineering, User Experience Design & Data Science"
 date: "2019-12-18T20:53:26.981Z"
 startDate: "2020-01-15T20:50:30.000Z"
 startTime: "5:00pm"

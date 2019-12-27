@@ -1,5 +1,5 @@
 ---
-title: "COFFEE TALK ORIGINS BY PRESENCE AGENCY @ ACE HOTEL"
+title: "Coffee Talk Origins by Presence Agency @ Ace Hotel"
 date: "2019-12-18T23:16:27.237Z"
 startDate: "2020-01-15T23:15:01.000Z"
 startTime: "6:00pm"

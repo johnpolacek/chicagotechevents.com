@@ -1,5 +1,5 @@
 ---
-title: "GETTING STARTED WITH WORDPRESS "
+title: "Getting Started With Wordpress"
 date: "2019-12-18T23:14:21.548Z"
 startDate: "2020-01-14T23:13:36.000Z"
 startTime: "6:00pm"

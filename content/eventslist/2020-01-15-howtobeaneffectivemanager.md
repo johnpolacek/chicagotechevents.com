@@ -1,5 +1,5 @@
 ---
-title: "HOW TO BE AN EFFECTIVE MANAGER "
+title: "How To Be An Effective Manager"
 date: "2019-12-18T23:22:31.055Z"
 startDate: "2020-01-15T23:20:58.000Z"
 startTime: "6:00pm"

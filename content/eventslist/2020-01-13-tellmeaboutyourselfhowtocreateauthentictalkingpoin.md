@@ -1,5 +1,5 @@
 ---
-title: "TELL ME ABOUT YOURSELF: HOW TO CREATE AUTHENTIC TALKING POINTS"
+title: "Tell Me About Yourself: How to Create Authentic Talking Points"
 date: "2019-12-18T23:12:40.767Z"
 startDate: "2020-01-13T23:06:21.000Z"
 startTime: "6:00pm"

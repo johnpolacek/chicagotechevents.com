@@ -1,9 +1,9 @@
 ---
 title: "Project Management Bootcamp"
-date: "2019-12-18T23:56:25.768Z"
-startDate: "2020-01-17T23:39:47.000Z"
+date: "2019-12-19T00:47:21.245Z"
+startDate: "2020-01-17T23:57:08.000Z"
 startTime: "10:00am"
-endDate: "2020-01-17T23:39:47.000Z"
+endDate: "2020-01-17T23:57:08.000Z"
 endTime: "4:00pm"
 locationName: "GA Chicago @ Rent 24"
 locationStreet: "444 N. Wabash Ave, 5th Floor"

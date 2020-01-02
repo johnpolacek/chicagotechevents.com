@@ -1,5 +1,5 @@
 ---
-title: "EXCEL AT EXCEL: GETTING DOWN TO THE BASICS"
+title: "Excel and Excel: Getting Down to the Basics"
 date: "2019-12-19T01:06:43.198Z"
 startDate: "2020-01-23T00:55:55.000Z"
 startTime: "6:00pm"

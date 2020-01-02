@@ -14,5 +14,5 @@ eventUrl: "http://www.aecnext.com"
 
 ---
 
-North America’s only vendor-neutral technology conference and expo focused on what’s NEXT in AEC (Architecture, Engineering, Construction).  It explores collaboration, trends, emerging technologies (from BIM to smart cities) and solutions to design, construct and manage projects smarter.  1,500+ attendees as part of 2,500+ total delegates at the collocated expo. Use code SAVE100 for a $100 discount off the prevailing 3-day conference fee.  www.aecnext.com
+North America’s only vendor-neutral technology conference and expo focused on what’s NEXT in AEC (Architecture, Engineering, Construction).  It explores collaboration, trends, emerging technologies (from BIM to smart cities) and solutions to design, construct and manage projects smarter.  1,500+ attendees as part of 2,500+ total delegates at the collocated expo. Use code SAVE100 for a $100 discount off the prevailing 3-day conference fee.
 

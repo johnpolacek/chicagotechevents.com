@@ -1,5 +1,5 @@
 ---
-title: "CONTENT STRATEGY MASTERCLASS: CULTIVATE YOUR BRAND, GROW YOUR AUDIENCE"
+title: "Content Strategy Masterclass"
 date: "2019-12-19T00:55:05.277Z"
 startDate: "2020-01-22T00:48:10.000Z"
 startTime: "6:00pm"

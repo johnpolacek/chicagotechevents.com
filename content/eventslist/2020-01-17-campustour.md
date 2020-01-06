@@ -1,9 +1,9 @@
 ---
-title: "Fullstack Chicago Campus Tour"
-date: "2019-12-05T15:11:08.298Z"
-startDate: "2020-01-17T14:54:47.000Z"
+title: "Campus Tour"
+date: "2020-01-06T20:11:52.969Z"
+startDate: "2020-01-17T20:10:56.000Z"
 startTime: "2:00pm"
-endDate: "2020-01-17T14:54:47.000Z"
+endDate: "2020-01-17T20:10:56.000Z"
 endTime: "3:00pm"
 locationName: "Fullstack Academy"
 locationStreet: "405 W. Superior Street, 3rd Floor"

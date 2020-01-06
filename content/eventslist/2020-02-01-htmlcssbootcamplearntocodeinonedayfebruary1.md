@@ -1,5 +1,5 @@
 ---
-title: "HTML & CSS BOOTCAMP: LEARN TO CODE IN ONE DAY | FEBRUARY 1"
+title: "HTML & CSS Bootcamp: Learn to Code in One Day"
 date: "2020-01-06T16:32:52.381Z"
 startDate: "2020-02-01T16:30:33.000Z"
 startTime: "10:00am"

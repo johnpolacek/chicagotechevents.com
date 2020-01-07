@@ -1,5 +1,5 @@
 ---
-title: ""How I learned GraphQL with AWS’ Amplify and AppSync" by Matt Marks"
+title: "How I learned GraphQL with AWS’ Amplify and AppSync by Matt Marks"
 date: "2020-01-02T20:01:25.806Z"
 startDate: "2020-01-15 00:00"
 startTime: "6:00pm"

@@ -1,5 +1,5 @@
 ---
-title: "On-Campus Info Session"
+title: "Fullstack Academy On-Campus Info Session"
 date: "2020-01-06T20:13:00.251Z"
 startDate: "2020-01-27T20:12:08.000Z"
 startTime: "6:00pm"

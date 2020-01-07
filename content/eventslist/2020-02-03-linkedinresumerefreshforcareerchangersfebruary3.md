@@ -1,5 +1,5 @@
 ---
-title: "LINKEDIN & RESUME REFRESH FOR CAREER CHANGERS | FEBRUARY 3"
+title: "LinkedIn & Resumé Refresh for Career Changers"
 date: "2020-01-06T17:09:40.645Z"
 startDate: "2020-02-03T17:08:40.000Z"
 startTime: "6:00pm"

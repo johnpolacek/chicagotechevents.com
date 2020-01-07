@@ -1,9 +1,9 @@
 ---
-title: "Fullstack Chicago On-Campus Info Session"
-date: "2019-12-05T16:50:09.031Z"
-startDate: "2020-01-27T16:48:00.000Z"
+title: "Fullstack Academy On-Campus Info Session"
+date: "2020-01-06T20:13:00.251Z"
+startDate: "2020-01-27T20:12:08.000Z"
 startTime: "6:00pm"
-endDate: "2020-01-27T16:48:00.000Z"
+endDate: "2020-01-27T20:12:08.000Z"
 endTime: "7:00pm"
 locationName: "Fullstack Academy"
 locationStreet: "405 W. Superior Street, 3rd Floor"
@@ -14,5 +14,5 @@ eventUrl: "https://www.eventbrite.com/e/fullstack-academy-information-session-ch
 
 ---
 
-Swing on by our River North campus to learn more about our program! We will discuss our structure, curriculum, career support, admissions process, and more.
+Swing on by Fullstack Academy to learn how you can become a software engineer, update your current professional skill set, or simply learn about coding in general. At this free info session, we will cover Fullstack Academy's structure, curriculum, admissions process, and career outcomes.
 

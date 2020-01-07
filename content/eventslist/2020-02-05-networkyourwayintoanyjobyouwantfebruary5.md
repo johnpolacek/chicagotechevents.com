@@ -1,5 +1,5 @@
 ---
-title: "NETWORK YOUR WAY INTO ANY JOB YOU WANT | FEBRUARY 5"
+title: "Network Your Way Into Any Job You Want"
 date: "2020-01-06T17:29:51.385Z"
 startDate: "2020-02-05T17:28:47.000Z"
 startTime: "6:00pm"

@@ -1,9 +1,9 @@
 ---
-title: "Excel and Excel: Getting Down to the Basics"
-date: "2019-12-19T01:06:43.198Z"
-startDate: "2020-01-23T00:55:55.000Z"
+title: "EXCEL AT EXCEL: GETTING DOWN TO THE BASICS"
+date: "2020-01-08T00:06:26.127Z"
+startDate: "2020-01-23T00:03:20.000Z"
 startTime: "6:00pm"
-endDate: "2020-01-23T00:55:55.000Z"
+endDate: "2020-01-23T00:03:20.000Z"
 endTime: "8:00pm"
 locationName: "GA Chicago @ Rent 24"
 locationStreet: "444 N. Wabash Ave, 5th Floor"

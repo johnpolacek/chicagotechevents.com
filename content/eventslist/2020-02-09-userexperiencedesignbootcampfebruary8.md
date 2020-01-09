@@ -1,5 +1,5 @@
 ---
-title: "USER EXPERIENCE DESIGN BOOTCAMP | FEBRUARY 8"
+title: "User Experience Design Bootcamp"
 date: "2020-01-08T00:13:53.098Z"
 startDate: "2020-02-09T00:13:03.000Z"
 startTime: "10:00am"

@@ -1,5 +1,5 @@
 ---
-title: "INTERVIEWING LIKE A PRO: HOW TO STRIKE THE RIGHT NOTE WHEN TALKING ABOUT YOURSELF | FEBRUARY 7"
+title: "Interviewing Like a Pro: How to Strike the Right Note When Talking About Yourself"
 date: "2020-01-07T23:49:39.281Z"
 startDate: "2020-02-07T23:48:00.000Z"
 startTime: "12:00pm"

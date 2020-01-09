@@ -1,5 +1,5 @@
 ---
-title: "SKETCH FOR NON-DESIGNERS | MARCH 3"
+title: "Sketch for Non-Designers"
 date: "2020-01-09T16:01:50.304Z"
 startDate: "2020-03-03T16:00:32.000Z"
 startTime: "6:00pm"

@@ -1,5 +1,5 @@
 ---
-title: "CODE IN THE BREWERY PRESENTED BY GA + PILOT PROJECT BREWING | MARCH 10"
+title: "Code in the Brewery Presented by GA + Pilot Project Brewing"
 date: "2020-01-09T18:24:39.488Z"
 startDate: "2020-03-10T17:22:58.000Z"
 startTime: "6:00pm"

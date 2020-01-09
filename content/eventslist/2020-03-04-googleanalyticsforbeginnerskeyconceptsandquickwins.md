@@ -1,5 +1,5 @@
 ---
-title: "GOOGLE ANALYTICS FOR BEGINNERS: KEY CONCEPTS AND QUICK WINS | MARCH 4"
+title: "Google Analytics for Beginners: Key Concepts and Quick Wins"
 date: "2020-01-09T16:03:05.007Z"
 startDate: "2020-03-04T16:02:19.000Z"
 startTime: "6:00pm"

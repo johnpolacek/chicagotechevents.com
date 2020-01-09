@@ -1,5 +1,5 @@
 ---
-title: "INTRO TO GOOGLE ADS"
+title: "Intro to Google Ads"
 date: "2020-01-08T00:58:24.318Z"
 startDate: "2020-02-20T00:54:31.000Z"
 startTime: "6:00pm"

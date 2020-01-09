@@ -1,5 +1,5 @@
 ---
-title: "RISE & SHINE: LEADERSHIP SKILLS FOR RISING MANAGERS | FEBRUARY 7"
+title: "Rise & Shine: Leadership Skills for Rising Managers"
 date: "2020-01-08T00:06:01.658Z"
 startDate: "2020-02-08T00:04:48.000Z"
 startTime: "9:00am"

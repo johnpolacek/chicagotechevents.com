@@ -1,5 +1,5 @@
 ---
-title: "HOW TO BE AN EFFECTIVE MANAGER | MARCH 12"
+title: "How To Be An Effective Manager"
 date: "2020-01-09T18:27:07.845Z"
 startDate: "2020-03-12T17:26:23.000Z"
 startTime: "6:00pm"

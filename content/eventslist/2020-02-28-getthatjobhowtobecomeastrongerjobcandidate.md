@@ -1,5 +1,5 @@
 ---
-title: "GET THAT JOB: HOW TO BECOME A STRONGER JOB CANDIDATE"
+title: "Get That Job: How to Become a Stronger Job Candidate"
 date: "2020-01-08T01:28:57.042Z"
 startDate: "2020-02-28T01:24:35.000Z"
 startTime: "6:00pm"

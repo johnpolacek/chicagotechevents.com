@@ -1,5 +1,5 @@
 ---
-title: "EXCEL AT EXCEL: GETTING DOWN TO THE BASICS | FEBRUARY 6"
+title: "Excel at Excel: Getting Down to the Basics"
 date: "2020-01-06T17:43:56.066Z"
 startDate: "2020-02-06T17:42:45.000Z"
 startTime: "12:00pm"
@@ -14,7 +14,6 @@ eventUrl: "https://generalassemb.ly/education/excel-at-excel-getting-down-to-the
 
 ---
 
-About This Class |
 Take a break from your busy work day to learn Excel basics!
 
 For most professionals, the ability to organize information is quickly becoming a fundamental part of the job description. Whether you already consider yourself an expert or are just getting started with spreadsheets, this hands-on workshop will allow you to take your skills to the next level and become a “power” user.

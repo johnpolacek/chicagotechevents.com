@@ -1,5 +1,5 @@
 ---
-title: "GENERAL ASSEMBLY OPEN HOUSE + HAPPY HOUR | FEBRUARY 6 (FREE)"
+title: "General Assembly Open House + Happy Hour"
 date: "2020-01-07T23:55:58.346Z"
 startDate: "2020-02-06T23:54:54.000Z"
 startTime: "6:00pm"

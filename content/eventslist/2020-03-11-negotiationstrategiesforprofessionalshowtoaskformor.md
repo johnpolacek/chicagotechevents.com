@@ -1,5 +1,5 @@
 ---
-title: "NEGOTIATION STRATEGIES FOR PROFESSIONALS: HOW TO ASK FOR MORE | MARCH 11"
+title: "Negotiation Strategies for Professionals: How to Ask For More"
 date: "2020-01-09T18:26:03.840Z"
 startDate: "2020-03-11T17:24:59.000Z"
 startTime: "6:00pm"

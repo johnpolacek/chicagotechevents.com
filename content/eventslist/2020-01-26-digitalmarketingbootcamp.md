@@ -1,5 +1,5 @@
 ---
-title: "DIGITAL MARKETING BOOTCAMP"
+title: "Digital Marketing Bootcamp"
 date: "2020-01-08T00:11:52.869Z"
 startDate: "2020-01-26T00:12:14.000Z"
 startTime: "10:00am"

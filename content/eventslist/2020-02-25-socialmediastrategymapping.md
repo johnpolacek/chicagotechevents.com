@@ -1,5 +1,5 @@
 ---
-title: "SOCIAL MEDIA STRATEGY MAPPING"
+title: "Social Media Strategy Mapping"
 date: "2020-01-08T01:20:01.291Z"
 startDate: "2020-02-25T01:20:12.000Z"
 startTime: "6:00pm"

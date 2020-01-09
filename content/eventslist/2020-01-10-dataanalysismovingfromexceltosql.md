@@ -1,5 +1,5 @@
 ---
-title: "DATA ANALYSIS: MOVING FROM EXCEL TO SQL"
+title: "Data Analysis: Moving from Excel to SQL"
 date: "2020-01-09T02:17:16.304Z"
 startDate: "2020-01-10T02:09:14.720Z"
 startTime: "6:00pm"

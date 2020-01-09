@@ -1,5 +1,5 @@
 ---
-title: "PRODUCT MANAGEMENT BOOTCAMP | FEBRUARY 8"
+title: "Product Management Bootcamp"
 date: "2020-01-08T00:23:24.285Z"
 startDate: "2020-02-09T00:22:33.000Z"
 startTime: "10:00am"

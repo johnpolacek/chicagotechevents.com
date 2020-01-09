@@ -9,7 +9,7 @@ locationName: "Marriot Chicago O'Hare"
 locationStreet: "8535 West Higgins Road"
 locationCity: "Chicago"
 locationState: "IL"
-cost: "Coming Soon"
+cost: "$2095 - $3490"
 eventUrl: "https://agiletestingdays.us"
 
 ---

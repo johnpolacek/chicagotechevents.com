@@ -1,5 +1,5 @@
 ---
-title: "CONTENT STRATEGY MASTERCLASS: CULTIVATE YOUR BRAND, GROW YOUR AUDIENCE | MARCH 12"
+title: "Content Strategy Masterclass: Cultivate Your Brand, Grow Your Audience"
 date: "2020-01-09T18:33:06.076Z"
 startDate: "2020-03-12T17:31:51.000Z"
 startTime: "6:00pm"

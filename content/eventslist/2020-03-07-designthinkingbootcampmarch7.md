@@ -1,5 +1,5 @@
 ---
-title: "DESIGN THINKING BOOTCAMP | MARCH 7"
+title: "Design Thinking Bootcamp"
 date: "2020-01-09T16:04:07.004Z"
 startDate: "2020-03-07T16:03:24.000Z"
 startTime: "10:00am"

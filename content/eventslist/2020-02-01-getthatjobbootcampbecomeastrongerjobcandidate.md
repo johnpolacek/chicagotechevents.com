@@ -1,5 +1,5 @@
 ---
-title: "GET THAT JOB BOOTCAMP: BECOME A STRONGER JOB CANDIDATE"
+title: "Get That Job Bootcamp: Become a Stronger Job Candidate"
 date: "2020-01-08T00:43:25.333Z"
 startDate: "2020-02-01T00:37:11.000Z"
 startTime: "10:00am"

@@ -1,5 +1,5 @@
 ---
-title: "SPEAKING TIPS TO NAIL THE NETWORKING EVENT FOR BUSINESS OWNERS & ENTREPRENEURS"
+title: "Speaking Tips to Nail the Networking Event for Business Owners and Entrepreneurs"
 date: "2020-01-08T01:22:44.318Z"
 startDate: "2020-02-27T01:21:52.000Z"
 startTime: "6:00pm"

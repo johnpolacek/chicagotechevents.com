@@ -1,5 +1,5 @@
 ---
-title: "WORDPRESS BOOTCAMP: BUILD A WEBSITE WITH WORDPRESS | MARCH 7"
+title: "WordPress Bootcamp: Build a Website with WordPress"
 date: "2020-01-10T15:39:04.924Z"
 startDate: "2020-03-07T15:37:45.000Z"
 startTime: "10:00am"

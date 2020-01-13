@@ -1,5 +1,5 @@
 ---
-title: "SQL BOOTCAMP SERIES | MARCH 14"
+title: "SQL Bootcamp"
 date: "2020-01-10T17:23:26.880Z"
 startDate: "2020-03-14T16:22:27.000Z"
 startTime: "10:00am"

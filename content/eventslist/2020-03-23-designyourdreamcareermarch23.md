@@ -1,5 +1,5 @@
 ---
-title: "DESIGN YOUR DREAM CAREER | MARCH 23"
+title: "Design Your Dream Career"
 date: "2020-01-10T17:49:39.399Z"
 startDate: "2020-03-23T16:48:39.000Z"
 startTime: "6:00pm"
@@ -13,8 +13,6 @@ cost: "$60"
 eventUrl: "https://generalassemb.ly/education/design-your-dream-career/chicago/97031"
 
 ---
-
-It's March, which means that the buzz and promise of the New Year has probably worn off by now. As you settle into 2020, you remember how much you dislike your current job. How every day feels like an uphill battle and no weekend ever feels long enough. Don’t wait until next year to make moves. Seize this chance to design your ideal career now!
 
 In this workshop, you will get a brief introduction to future visioning and project design (the methodology we will use to learn and create in the class) and an overview of the basic steps to take to transform your career. You’ll then roll up your sleeves, design a model of your ideal career, explore the impact of maintaining your career status quo, and create concrete action steps to get you moving as soon as you leave the classroom.
 

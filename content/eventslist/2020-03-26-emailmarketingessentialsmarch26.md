@@ -1,5 +1,5 @@
 ---
-title: "EMAIL MARKETING ESSENTIALS | MARCH 26"
+title: "Email Marketing Essentials"
 date: "2020-01-10T17:52:38.371Z"
 startDate: "2020-03-26T16:52:10.000Z"
 startTime: "6:00pm"

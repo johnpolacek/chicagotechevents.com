@@ -1,5 +1,5 @@
 ---
-title: "WOMEN IN TECH BREAKFAST: CELEBRATING INTERNATIONAL WOMEN'S MONTH | MARCH 27"
+title: "Women in Tech Breakfast: Celebrating International Women’s Month"
 date: "2020-01-13T14:52:04.088Z"
 startDate: "2020-03-27T13:47:39.000Z"
 startTime: "8:30am"

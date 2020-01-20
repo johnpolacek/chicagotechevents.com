@@ -1,5 +1,5 @@
 ---
-title: "HOW TO MASTER INSTAGRAM | MARCH 30"
+title: "How to Master Instagram"
 date: "2020-01-13T15:12:26.706Z"
 startDate: "2020-03-30T14:09:08.000Z"
 startTime: "6:00pm"

@@ -1,5 +1,5 @@
 ---
-title: "PODCASTING PRODUCTION + PROMOTION BOOTCAMP | MARCH 28"
+title: "Podcasting Production + Promotion Bootcamp"
 date: "2020-01-13T15:05:39.855Z"
 startDate: "2020-03-28T13:52:11.000Z"
 startTime: "10:00am"

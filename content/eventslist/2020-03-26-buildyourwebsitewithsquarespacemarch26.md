@@ -1,5 +1,5 @@
 ---
-title: "BUILD YOUR WEBSITE WITH SQUARESPACE | MARCH 26"
+title: "Build Your Website With Squarespace"
 date: "2020-01-13T14:47:35.764Z"
 startDate: "2020-03-26T13:46:52.000Z"
 startTime: "6:00pm"

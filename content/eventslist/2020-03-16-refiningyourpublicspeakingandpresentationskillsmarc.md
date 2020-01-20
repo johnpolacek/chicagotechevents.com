@@ -1,5 +1,5 @@
 ---
-title: "REFINING YOUR PUBLIC SPEAKING AND PRESENTATION SKILLS | MARCH 16"
+title: "Refining Your Public Speaking and Presentation Skills"
 date: "2020-01-10T17:35:16.326Z"
 startDate: "2020-03-16T16:34:26.000Z"
 startTime: "6:00pm"

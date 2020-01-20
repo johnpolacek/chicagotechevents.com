@@ -1,6 +1,6 @@
 ---
 title: "Harnessing Continuous Delivery by Javier Otero"
-date: "2020-01-09T20:27:54.151Z"
+date: "2020-01-20T17:54:17.164Z"
 startDate: "2020-02-19 00:00"
 startTime: "6:00pm"
 endDate: "2020-02-19 00:00"

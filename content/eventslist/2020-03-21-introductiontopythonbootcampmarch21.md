@@ -1,5 +1,5 @@
 ---
-title: "INTRODUCTION TO PYTHON BOOTCAMP | MARCH 21"
+title: "Introduction to Python Bootcamp"
 date: "2020-01-10T17:48:18.884Z"
 startDate: "2020-03-21T16:47:16.000Z"
 startTime: "10:00am"

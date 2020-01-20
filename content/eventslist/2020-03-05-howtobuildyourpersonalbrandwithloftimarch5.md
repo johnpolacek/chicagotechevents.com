@@ -1,5 +1,5 @@
 ---
-title: "HOW TO BUILD YOUR PERSONAL BRAND - WITH LOFTI | MARCH 5"
+title: "How to Build Your Personal Brand - with Lofti"
 date: "2020-01-17T20:41:10.830Z"
 startDate: "2020-03-05T20:39:58.000Z"
 startTime: "6:00pm"

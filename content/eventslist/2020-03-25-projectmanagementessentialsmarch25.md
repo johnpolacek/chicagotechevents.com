@@ -1,5 +1,5 @@
 ---
-title: "PROJECT MANAGEMENT ESSENTIALS | MARCH 25"
+title: "Project Management Essentials"
 date: "2020-01-10T17:51:43.853Z"
 startDate: "2020-03-25T16:51:15.000Z"
 startTime: "6:00pm"

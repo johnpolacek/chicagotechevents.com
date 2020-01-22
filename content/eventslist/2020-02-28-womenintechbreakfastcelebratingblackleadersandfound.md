@@ -1,5 +1,5 @@
 ---
-title: "WOMEN IN TECH BREAKFAST: CELEBRATING BLACK LEADERS AND FOUNDERS | FEBRUARY 28 "
+title: "Women in Tech Breakfast: Celebrating Black Leaders and Founders"
 date: "2020-01-21T17:06:16.228Z"
 startDate: "2020-02-28T17:04:46.000Z"
 startTime: "8:00am"

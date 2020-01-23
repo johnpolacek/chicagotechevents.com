@@ -85,6 +85,7 @@ const SubmitEventForm = props => {
             id="eventName"
             value={eventName}
             setValue={setEventName}
+            labelAddendum="(please do not format in ALL CAPS)"
           />
           <FormControl
             label="Event Description"

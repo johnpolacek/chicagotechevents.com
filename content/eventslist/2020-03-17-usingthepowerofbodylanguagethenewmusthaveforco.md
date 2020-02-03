@@ -1,5 +1,5 @@
 ---
-title: "Using the Power of Body Language: The New "Must Have" for Confidence Leaders | March 17 ($60)"
+title: "Using the Power of Body Language"
 date: "2020-01-30T17:24:06.264Z"
 startDate: "2020-03-17T16:22:53.000Z"
 startTime: "6:00pm"

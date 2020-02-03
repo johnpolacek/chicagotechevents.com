@@ -1,5 +1,5 @@
 ---
-title: "Break Into Data Science: Panel & Info Session | March 2 (FREE) "
+title: "Break Into Data Science: Panel & Info Session"
 date: "2020-01-29T17:44:27.227Z"
 startDate: "2020-03-02T17:40:32.000Z"
 startTime: "6:00pm"

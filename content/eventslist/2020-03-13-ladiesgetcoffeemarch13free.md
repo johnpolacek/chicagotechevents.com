@@ -1,5 +1,5 @@
 ---
-title: "Ladies Get Coffee | March 13 (FREE)"
+title: "Ladies Get Coffee"
 date: "2020-01-29T17:47:04.988Z"
 startDate: "2020-03-13T16:44:32.000Z"
 startTime: "8:30am"

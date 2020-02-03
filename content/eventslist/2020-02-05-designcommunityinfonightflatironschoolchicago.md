@@ -16,7 +16,7 @@ eventUrl: "https://www.eventbrite.com/e/design-community-info-night-flatiron-sch
 
 Want to launch your career in design and join a community of inspiring and creative individuals? Join us at our community and info night!
 
-Get ready to change your life with Flatiron School and Designation. Join us on Wed, February 5th at our Community & Info Night for an informative look into our 24 week UX/UI design program.
+Get ready to change your life with Flatiron School and Designation. Join us for our Community & Info Night for an informative look into our 24 week UX/UI design program.
 
 Whether you’re starting your career, considering a career switch into design, or advancing your design career, now is the best time to learn about our program including:
 

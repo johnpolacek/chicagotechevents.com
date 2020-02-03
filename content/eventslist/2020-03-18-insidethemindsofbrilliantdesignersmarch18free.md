@@ -1,5 +1,5 @@
 ---
-title: "Inside the Minds of Brilliant Designers | March 18 (FREE)"
+title: "Inside the Minds of Brilliant Designers"
 date: "2020-01-29T17:49:54.371Z"
 startDate: "2020-03-18T16:47:22.000Z"
 startTime: "6:00pm"

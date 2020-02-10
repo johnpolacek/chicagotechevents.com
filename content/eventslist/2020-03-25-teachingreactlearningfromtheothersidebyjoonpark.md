@@ -1,5 +1,5 @@
 ---
-title: ""Teaching React - Learning from the other side" by Joon Park"
+title: "Teaching React - Learning from the other side by Joon Park"
 date: "2020-01-20T17:53:58.691Z"
 startDate: "2020-03-25 00:00"
 startTime: "6:00pm"

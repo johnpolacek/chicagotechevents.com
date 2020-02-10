@@ -1,5 +1,5 @@
 ---
-title: ""26k lines of React Native" by Mitch Masia"
+title: "26k lines of React Native by Mitch Masia"
 date: "2020-02-03T19:02:15.463Z"
 startDate: "2020-04-28 00:00"
 startTime: "6:00pm"

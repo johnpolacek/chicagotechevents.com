@@ -1,5 +1,5 @@
 ---
-title: "How to Be an Effective Manager ($75)"
+title: "How to Be an Effective Manager"
 date: "2020-02-05T17:16:02.711Z"
 startDate: "2020-04-08T16:14:59.000Z"
 startTime: "6:00pm"

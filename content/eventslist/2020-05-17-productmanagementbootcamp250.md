@@ -1,5 +1,5 @@
 ---
-title: "Product Management Bootcamp ($250)"
+title: "Product Management Bootcamp"
 date: "2020-02-11T02:09:38.418Z"
 startDate: "2020-05-17T01:07:58.000Z"
 startTime: "10:00am"

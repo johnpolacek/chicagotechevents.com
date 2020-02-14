@@ -1,5 +1,5 @@
 ---
-title: "Run Social Media Ads Like a Pro | April 2 ($60)"
+title: "Run Social Media Ads Like a Pro"
 date: "2020-02-05T16:18:01.325Z"
 startDate: "2020-04-02T15:15:11.000Z"
 startTime: "6:00pm"

@@ -1,5 +1,5 @@
 ---
-title: "Improv at Work: Comedy for Better Collaboration, Communication, & Creation | April 1 ($35) "
+title: "Improv at Work: Comedy for Better Collaboration, Communication & Creation"
 date: "2020-02-05T15:47:41.407Z"
 startDate: "2020-04-01T14:45:58.000Z"
 startTime: "6:00pm"

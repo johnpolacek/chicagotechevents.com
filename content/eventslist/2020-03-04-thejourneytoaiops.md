@@ -14,8 +14,6 @@ eventUrl: "https://www.meetup.com/Parkar-Consulting-Labs/events/268706475/"
 
 ---
 
-Details:
-
 What makes AIOps more than just the latest buzzword entry in the endless parade of technologies that are marketed to ITOps professionals? If you’re reading this, you’re likely interested in this new movement in the IT industry called “AIOps”.
 
 That’s what The Journey to AIOPs aims to give you. Come meet our speaker, and hear him talk about the AIOps journey, promises, and challenges. Learn how AIOps can help your organizations take on more operational responsibility and reliability with less human intervention.

@@ -1,5 +1,5 @@
 ---
-title: "Public Speaking Bootcamp ($200)"
+title: "Public Speaking Bootcamp"
 date: "2020-02-18T22:35:56.697Z"
 startDate: "2020-04-10T21:34:56.000Z"
 startTime: "10:00am"

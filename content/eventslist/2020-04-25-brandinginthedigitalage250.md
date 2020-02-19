@@ -1,5 +1,5 @@
 ---
-title: "Branding in the Digital Age ($250)"
+title: "Branding in the Digital Age"
 date: "2020-02-19T00:24:41.963Z"
 startDate: "2020-04-25T23:23:54.000Z"
 startTime: "10:00am"

@@ -1,5 +1,5 @@
 ---
-title: "HTML & CSS Bootcamp: Learn to Code in One Day ($250)"
+title: "HTML & CSS Bootcamp: Learn to Code in One Day"
 date: "2020-02-18T21:09:33.335Z"
 startDate: "2020-03-14T20:08:23.000Z"
 startTime: "10:00am"

@@ -1,5 +1,5 @@
 ---
-title: "Cultivate Career Agility: How to Create Your Edge in the Modern Workplace (FREE!)"
+title: "Cultivate Career Agility: How to Create Your Edge in the Modern Workplace"
 date: "2020-02-19T00:04:09.515Z"
 startDate: "2020-04-16T23:03:20.000Z"
 startTime: "6:00pm"

@@ -1,5 +1,5 @@
 ---
-title: ""Integrating GraphQL into a REST App" by Yohei Kanehara"
+title: "Integrating GraphQL into a REST App by Yohei Kanehara"
 date: "2020-02-20T17:38:42.839Z"
 startDate: "2020-05-13 00:00"
 startTime: "6:00pm"

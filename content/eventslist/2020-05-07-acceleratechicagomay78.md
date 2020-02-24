@@ -1,5 +1,5 @@
 ---
-title: "ACCELERATE Chicago | May 7-8 "
+title: "ACCELERATE Chicago"
 date: "2020-02-21T17:42:47.400Z"
 startDate: "2020-05-07T15:52:02.000Z"
 startTime: "8:00am"

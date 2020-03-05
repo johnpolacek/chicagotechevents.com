@@ -1,5 +1,5 @@
 ---
-title: "Project Management Essentials ($60)"
+title: "Project Management Essentials"
 date: "2020-02-26T22:24:43.777Z"
 startDate: "2020-05-11T21:23:54.000Z"
 startTime: "6:00pm"

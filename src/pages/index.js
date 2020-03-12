@@ -65,7 +65,14 @@ class Index extends React.Component {
           keywords={[`events`, `calendar`, `gatsby`, `javascript`, `react`]}
         />
         <Subscribe />
-        <EventsByMonth sponsor={sponsor} eventsByMonth={eventsByMonth} />
+        <Div fontSize={3} my={4} mx="auto" px={3} pb={5} width={[1,1,1,'820px']}>
+          <Div pb={4}>To help prevent the spread of COVID-19, it is recommended that everyone follow the practice of social distancing and stay away from public gatherings. Containment until immunity builds in the population is the only way to control the spread of the virus.</Div>
+          <Div pb={4}>Chicagotechevents.com will stop listing events at this time and urges everyone to stay home as much as possible.</Div>
+          <Div pb={4}>To better understand the need to act now, read <a href="https://medium.com/@tomaspueyo/coronavirus-act-today-or-people-will-die-f4d3d9cd99ca">this article</a></Div>
+        </Div>
+        <Div display="none">
+          <EventsByMonth sponsor={sponsor} eventsByMonth={eventsByMonth} />
+        </Div>
         {currEvents < events && (
           <Div textAlign="center" pb={4} mb={3}>
             <Link style={{ textDecoration: 'none' }} to={`/past`}>

@@ -6,6 +6,6 @@
   "license": "MIT",
   "dependencies": {
     "meetup-api": "^1.4.38",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1"
   }
 }
